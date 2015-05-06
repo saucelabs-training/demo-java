@@ -19,7 +19,7 @@ import com.saucelabs.junit.SauceOnDemandTestWatcher;
 import java.net.URL;
 import java.util.LinkedList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 
@@ -42,7 +42,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
      */
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication("YOUR_USERNAME", "YOUR_ACCESS_KEY");
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(System.getenv("SAUCE_USERNAME"), System.getenv("SAUCE_ACCESS_KEY"));
 
     /**
      * JUnit Rule which will mark the Sauce Job as passed/failed when the test succeeds or fails.
@@ -112,13 +112,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         browsers.add(new String[]{"Windows 7", "41", "chrome", null, null});
 
         // OS X 10.8, Safari 6
-        browsers.add(new String[]{"OSX 10.8", "6", "safari", null, null});
-
-        // ios
-        browsers.add(new String[]{"OS X 10.10", "8.2", "safari", "iPhone Simulator", "portrait"});
-
-        // android
-        browsers.add(new String[]{"Linux", "4.2", "android", "Samsung Galaxy S4 Emulator", "portrait"});
+        // browsers.add(new String[]{"OSX 10.8", "6", "safari", null, null});
 
         return browsers;
     }
@@ -151,30 +145,30 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     }
 
     /**
-     * Runs a simple test verifying the title of the americanexpress.com home page.
+     * Runs a simple test verifying the title of the bofa.com home page.
      * @throws Exception
      */
     @Test
     public void verifyTitleTest() throws Exception {
-        driver.get("http://www.americanexpress.com/");
-        assertEquals("American Express Credit Cards, Rewards, Travel and Business Services", driver.getTitle());
+        driver.get("http://www.bofa.com/");
+        assertTrue(driver.getTitle().contains("Bank of America"));
+//        assertEquals("Bank of America ? Banking, Credit Cards, Mortgages and Investing", driver.getTitle());
     }
 
     /**
-     * Go to americanexpress.com, fill out username and password field, and click login
+     * Go to bofa.com, fill out username and password field, and click login
      * @throws Exception
      */
     @Test
     public void loginTest() throws Exception {
-        driver.get("http://www.americanexpress.com/");
+        driver.get("http://www.bofa.com/");
 
         WebDriverWait wait = new WebDriverWait(driver, 5); // wait for a maximum of 5 seconds
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#Username")));
-        driver.findElement(By.cssSelector("#Username")).sendKeys("sampleUsername");
-        driver.findElement(By.cssSelector("#Password")).sendKeys("samplePassword");
-        driver.findElement(By.cssSelector("#loginLink")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#id")));
+        driver.findElement(By.cssSelector("#id")).sendKeys("sampleUsername");
+        driver.findElement(By.cssSelector("#hp-sign-in-btn")).click();
 
-        // TO DO : verify login elements are there
+        // TO DO : enter in password. Verify login
     }
 
     /**
