@@ -190,83 +190,8 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#shoppingBagPlaceHolder")));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#global_search_box")));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".container_24")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".container_24 .hero")));
 
         assertTrue(driver.getTitle().equals("Home - belk.com - Belk.com"));
-    }
-
-    /**
-     * Go to belk.com, click women in navigation menu, and verify UI
-     * @throws Exception
-     */
-    @Test
-    public void verifyWomenTab() throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
-        WebElement womenTab = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#Women a")));
-        womenTab.click();
-
-        By selector = By.cssSelector(".collapsibleNav .firstSubnavHeading");
-        WebElement firstSection = wait.until(ExpectedConditions.presenceOfElementLocated(selector));
-
-        String text = firstSection.getText();
-
-        assertTrue(text.contains("Shorts & Capris") && text.contains("Skirts"));
-
-        // Special sizes
-        selector = By.cssSelector(".collapsibleNav .firstSubnavHeading + li");
-        WebElement specialSizesSection = wait.until(ExpectedConditions.presenceOfElementLocated(selector));
-
-        assertTrue(specialSizesSection.getText().contains("Women's Plus"));
-
-        // we should see the vertical image
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#vertical-hero")));
-
-        // TO DO: verify other elements
-
-        // make sure url and title has changed
-        assertTrue(driver.getTitle().equals("Women - Belk.com"));
-        assertTrue(driver.getCurrentUrl().equals("http://www.belk.com/AST/Main/Belk_Primary/Women.jsp"));
-
-        // verify women tab is selected
-        assertTrue(driver.findElement(By.cssSelector(".current")).getText().contains("Women"));
-    }
-
-    /**
-     * Go to belk.com, click Beauty & Fragrance in navigation menu, and verify UI
-     * @throws Exception
-     */
-    @Test
-    public void verifyBeautyAndFragrance() throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
-        WebElement beautyFragranceTab = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#Beauty_And_Fragrance a")));
-        beautyFragranceTab.click();
-
-        By selector = By.cssSelector(".collapsibleNav .firstSubnavHeading");
-        WebElement firstSection = wait.until(ExpectedConditions.presenceOfElementLocated(selector));
-
-        String text = firstSection.getText();
-
-        assertTrue(text.contains("Bath & Body") && text.contains("Fragrance") && text.contains("Makeup"));
-
-        // Features
-        selector = By.cssSelector(".collapsibleNav .firstSubnavHeading + li");
-        WebElement specialSizesSection = wait.until(ExpectedConditions.presenceOfElementLocated(selector));
-
-        text = specialSizesSection.getText();
-        assertTrue(text.contains("What's New") && text.contains("Allure Best of Beauty"));
-
-        // we should see the vertical image
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#horizontal-hero")));
-
-        // TO DO: verify other elements
-
-        // make sure url and title has changed
-        assertTrue(driver.getTitle().equals("Beauty And Fragrance - Belk.com"));
-        assertTrue(driver.getCurrentUrl().equals("http://www.belk.com/AST/Main/Belk_Primary/Beauty_And_Fragrance.jsp"));
-
-        // verify women tab is selected
-        text = driver.findElement(By.cssSelector(".current")).getText();
-        assertTrue(text.contains("Beauty &") && text.contains("Fragrance"));
     }
 
     /**
