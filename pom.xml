@@ -49,7 +49,7 @@
                 <version>2.12.4</version>
                 <configuration>
                 	<parallel>classes</parallel>
-          			<threadCount>10</threadCount>
+                    <threadCount>20</threadCount>
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
                 </configuration>
             </plugin>

@@ -1,6 +1,5 @@
 package com.yourcompany;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Console;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
 import org.junit.After;
@@ -19,7 +18,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import com.saucelabs.junit.ConcurrentParameterized;
 import com.saucelabs.junit.SauceOnDemandTestWatcher;
 
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.LinkedList;
 
@@ -57,7 +55,11 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
 
-    @Rule public TestName name = new TestName();
+    @Rule public TestName name = new TestName() {
+        public String getMethodName() {
+        		return String.format("%s : (%s %s %s)", super.getMethodName(), os, browser, version);
+        };
+    };
 
     /**
      * Represents the browser to be used as part of the test run.
