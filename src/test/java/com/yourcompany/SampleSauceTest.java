@@ -167,7 +167,9 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         if (deviceOrientation != null) capabilities.setCapability("device-orientation", deviceOrientation);
 
         capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", name.getMethodName());
+
+        String methodName = name.getMethodName();
+        capabilities.setCapability("name", methodName);
 
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() +
@@ -175,7 +177,9 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
                 capabilities);
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
 
-        this.driver.get("http://www.belk.com/");
+        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", this.sessionId, methodName);
+        System.out.println(message);
+
     }
 
     /**
@@ -184,6 +188,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      */
     @Test
     public void verifyBelkHompage() throws Exception {
+        driver.get("http://www.belk.com");
         WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".primary-nav")));
 
@@ -202,6 +207,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      */
     @Test
     public void verifySignInRegisterPage() throws Exception {
+        driver.get("http://www.belk.com");
         WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
         WebElement signInRegisterLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".hide-logged-in a")));
         signInRegisterLink.click();
