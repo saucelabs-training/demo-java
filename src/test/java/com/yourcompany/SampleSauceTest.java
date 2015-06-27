@@ -177,8 +177,8 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
                 capabilities);
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
 
-        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", this.sessionId, methodName);
-        System.out.println(message);
+        // String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", this.sessionId, methodName);
+        // System.out.println(message);
     }
 
     /**
