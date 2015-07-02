@@ -1,5 +1,6 @@
 package com.yourcompany;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
 import org.junit.After;
@@ -18,6 +19,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import com.saucelabs.junit.ConcurrentParameterized;
 import com.saucelabs.junit.SauceOnDemandTestWatcher;
 
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.LinkedList;
 
@@ -55,11 +57,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
 
-    @Rule public TestName name = new TestName() {
-        public String getMethodName() {
-        		return String.format("%s : (%s %s %s)", super.getMethodName(), os, browser, version);
-        };
-    };
+    @Rule public TestName name = new TestName();
 
     /**
      * Represents the browser to be used as part of the test run.
@@ -89,7 +87,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     /**
      * The {@link WebDriver} instance which is used to perform browser interactions with.
      */
-    private WebDriver driver;
+    private WebDriver wd;
 
     /**
      * Constructs a new instance of the test.  The constructor requires three string parameters, which represent the operating
@@ -120,31 +118,16 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         LinkedList browsers = new LinkedList();
 
         // windows 7, Chrome 41
-        browsers.add(new String[]{"Windows 7", "41", "chrome", null, null});
+        browsers.add(new String[]{"OS X 10.10", "41", "chrome", null, null});
 
-        // windows xp, IE 8
-        browsers.add(new String[]{"Windows XP", "8", "internet explorer", null, null});
+        // Windows 8.1, IE 11
+         browsers.add(new String[]{"Windows 8.1", "11", "internet explorer", null, null});
 
-        // windows 7, IE 9
-        browsers.add(new String[]{"Windows 7", "9", "internet explorer", null, null});
+         // Windows XP, IE 8
+         browsers.add(new String[]{"Windows 7", "10", "internet explorer", null, null});
 
-        // windows 8, IE 10
-        browsers.add(new String[]{"Windows 8", "10", "internet explorer", null, null});
-
-        // windows 8.1, IE 11
-        browsers.add(new String[]{"Windows 8.1", "11", "internet explorer", null, null});
-
-        // OS X 10.8, Safari 6
-        browsers.add(new String[]{"OSX 10.8", "6", "safari", null, null});
-
-        // OS X 10.9, Safari 7
-        browsers.add(new String[]{"OSX 10.9", "7", "safari", null, null});
-
-        // OS X 10.10, Safari 7
-        browsers.add(new String[]{"OSX 10.10", "8", "safari", null, null});
-
-        // Linux, Firefox 37
-        browsers.add(new String[]{"Linux", "37", "firefox", null, null});
+         // Linux, Firefox 37
+         browsers.add(new String[]{"Linux", "37", "firefox", null, null});
 
         return browsers;
     }
@@ -167,18 +150,13 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
         if (deviceOrientation != null) capabilities.setCapability("device-orientation", deviceOrientation);
 
         capabilities.setCapability(CapabilityType.PLATFORM, os);
+        capabilities.setCapability("name", name.getMethodName());
 
-        String methodName = name.getMethodName();
-        capabilities.setCapability("name", methodName);
-
-        this.driver = new RemoteWebDriver(
+        this.wd = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() +
                         "@ondemand.saucelabs.com:80/wd/hub"),
                 capabilities);
-        this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
-
-        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", this.sessionId, methodName);
-        System.out.println(message);
+        this.sessionId = (((RemoteWebDriver) wd).getSessionId()).toString();
     }
 
     /**
@@ -186,43 +164,42 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void verifyBelkHompage() throws Exception {
-        driver.get("http://www.belk.com");
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".primary-nav")));
+    public void searchForSFHotel() {
+    	wd.get("http://www.priceline.com/");
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".promo-utility")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".logo")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#shoppingBagPlaceHolder")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#global_search_box")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".container_24")));
+        WebDriverWait wait = new WebDriverWait(wd, 20);
+        WebElement element;
 
-        assertTrue(driver.getTitle().equals("Home - belk.com - Belk.com"));
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("hotel-dest")));
+        element.click();
+        element.clear();
+        element.sendKeys("San Francisco, CA");
+
+        element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("img.ui-datepicker-trigger")));
+        element.click();
+
+        wd.findElement(By.xpath("//a[@class='ui-state-default'][text()=17]")).click();
+        wd.findElement(By.xpath("//a[@class='ui-state-default'][text()=24]")).click();
+
+        wd.findElement(By.id("hotel-btn-submit-retl")).click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Holiday Inn Express San Francisco Airport South")));
     }
 
-    /**
-     * Go to belk.com, click sigin/register in top bar, and verify UI
-     * @throws Exception
-     */
     @Test
-    public void verifySignInRegisterPage() throws Exception {
-        driver.get("http://www.belk.com");
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
-        WebElement signInRegisterLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".hide-logged-in a")));
-        signInRegisterLink.click();
+    public void SFONorthTest() {
+        wd.get("http://www.priceline.com/");
+        wd.findElement(By.xpath("//div[@class='xdeals-container']//a[.='Search Express Deals®']")).click();
+        wd.findElement(By.id("sopq-hotel-checkout")).click();
+        wd.findElement(By.linkText("17")).click();
+        wd.findElement(By.id("sopq-hotel-dest")).click();
+        wd.findElement(By.id("sopq-hotel-dest")).clear();
+        wd.findElement(By.id("sopq-hotel-dest")).sendKeys("San Francisco, CA");
+        wd.findElement(By.id("hotel-btn-submit-sopq")).click();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("returningRadio")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[value='2']")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_email_address_n")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_email_address_n")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_password_n")));
+        WebDriverWait wait = new WebDriverWait(wd, 20);
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("forgot_Password")));
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("#signInButton")));
-
-        assertTrue(driver.getTitle().equals("Sign In/Register - Belk.com"));
-        assertTrue(driver.getCurrentUrl().equals("https://www.belk.com/AST/Misc/Belk_Stores/Global_Navigation/Sign_In_Register.jsp"));
+        wait.until(ExpectedConditions.textToBePresentInElement(wd.findElement(By.tagName("html")), "SFO North - San Bruno Area Hotel"));
     }
 
     /**
@@ -232,7 +209,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      */
     @After
     public void tearDown() throws Exception {
-        driver.quit();
+        wd.quit();
     }
 
     /**
