@@ -40,8 +40,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 @RunWith(ConcurrentParameterized.class)
 public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
 
-    public String username = System.getenv("SAUCE_USER_NAME") != null ? System.getenv("SAUCE_USER_NAME") : System.getenv("SAUCE_USERNAME");
-    public String accesskey = System.getenv("SAUCE_API_KEY") != null ? System.getenv("SAUCE_API_KEY") : System.getenv("SAUCE_ACCESS_KEY");
+    public String username = System.getenv("SAUCE_USERNAME");
+    public String accesskey = System.getenv("SAUCE_ACCESS_KEY");
 
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
