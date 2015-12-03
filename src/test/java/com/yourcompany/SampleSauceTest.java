@@ -187,31 +187,35 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void guineaPigHompage() throws Exception {        
-        WebDriver guineaPigPage = GuineaPig.getGuineaPigHome(driver);
-        WebDriver guineaPigPage2 = GuineaPig.getGuineaPigHome(driver);
-        // click the link;
-        WebElement guineaPigLink = GuineaPig.findLink(guineaPigPage);
-        guineaPigLink.click();
+    public void verifyEmailInputTest() throws Exception {        
+        String emailInputText = "abc@gmail.com";
         
-        assertEquals(guineaPigPage.getTitle(), guineaPigPage2.getTitle());
+        /*
+         actions and interaction with page should go here...
+        */
+        driver.get("https://saucelabs.com/test/guinea-pig");
+
+        /*
+         Use page object pattern to interact with application under test.
+
+             Page object will have public methods represent the "services" that the page offers.
+             Page object will also contain the internals of the app (selectors / locators), which will
+                 which can be accessed or interacted with via a "service"
+        */
+        GuineaPigPage page = new GuineaPigPage(driver);
+
+        /*
+         fillOutEmailInput page is an exposed "service",
+             which interacts with the email input field element by sending text to it.
+        */
+        page.fillOutEmailInput(emailInputText);
+
+        /*
+         Assertions should be part of test and not part of Page object.
+         Each test should be verifying one piece of functionality (atomic testing)
+        */
+        assertEquals(page.getEmailInput(), emailInputText);
  
-    }
-
-    /**
-     * Go to belk.com, click sigin/register in top bar, and verify UI
-     * @throws Exception
-     */
-    @Test
-    public void clickLink() throws Exception {
-        WebDriver guineaPigPage = GuineaPig.getGuineaPigHome(driver);
-        WebDriver guineaPigPage2 = GuineaPig.getGuineaPigHome(driver);
-        // click the link;
-        WebElement guineaPigLink = GuineaPig.findLink(guineaPigPage);
-        guineaPigLink.click();
-        
-        assertEquals(guineaPigPage.getTitle(), guineaPigPage2.getTitle());
-
     }
 
     /**
