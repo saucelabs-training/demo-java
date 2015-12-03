@@ -2,6 +2,7 @@ package com.yourcompany;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
+import com.yourcompany.Pages.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -186,18 +187,15 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void verifyBelkHompage() throws Exception {
-        driver.get("http://www.belk.com");
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".primary-nav")));
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".promo-utility")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".logo")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#shoppingBagPlaceHolder")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#global_search_box")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".container_24")));
-
-        assertTrue(driver.getTitle().equals("Home - belk.com - Belk.com"));
+    public void guineaPigHompage() throws Exception {        
+        WebDriver guineaPigPage = GuineaPig.getGuineaPigHome(driver);
+        WebDriver guineaPigPage2 = GuineaPig.getGuineaPigHome(driver);
+        // click the link;
+        WebElement guineaPigLink = GuineaPig.findLink(guineaPigPage);
+        guineaPigLink.click();
+        
+        assertEquals(guineaPigPage.getTitle(), guineaPigPage2.getTitle());
+ 
     }
 
     /**
@@ -205,24 +203,15 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void verifySignInRegisterPage() throws Exception {
-        driver.get("http://www.belk.com");
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
-        WebElement signInRegisterLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".hide-logged-in a")));
-        signInRegisterLink.click();
+    public void clickLink() throws Exception {
+        WebDriver guineaPigPage = GuineaPig.getGuineaPigHome(driver);
+        WebDriver guineaPigPage2 = GuineaPig.getGuineaPigHome(driver);
+        // click the link;
+        WebElement guineaPigLink = GuineaPig.findLink(guineaPigPage);
+        guineaPigLink.click();
+        
+        assertEquals(guineaPigPage.getTitle(), guineaPigPage2.getTitle());
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("returningRadio")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[value='2']")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_email_address_n")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_email_address_n")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_password_n")));
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("forgot_Password")));
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("#signInButton")));
-
-        assertTrue(driver.getTitle().equals("Sign In/Register - Belk.com"));
-        assertTrue(driver.getCurrentUrl().equals("https://www.belk.com/AST/Misc/Belk_Stores/Global_Navigation/Sign_In_Register.jsp"));
     }
 
     /**
