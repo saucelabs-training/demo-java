@@ -2,6 +2,7 @@ package com.yourcompany;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
+import com.yourcompany.Pages.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -186,43 +187,35 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * @throws Exception
      */
     @Test
-    public void verifyBelkHompage() throws Exception {
-        driver.get("http://www.belk.com");
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".primary-nav")));
+    public void verifyEmailInputTest() throws Exception {        
+        String emailInputText = "abc@gmail.com";
+        
+        /*
+         actions and interaction with page should go here...
+        */
+        driver.get("https://saucelabs.com/test/guinea-pig");
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".promo-utility")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".logo")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#shoppingBagPlaceHolder")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#global_search_box")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".container_24")));
+        /*
+         Use page object pattern to interact with application under test.
 
-        assertTrue(driver.getTitle().equals("Home - belk.com - Belk.com"));
-    }
+             Page object will have public methods represent the "services" that the page offers.
+             Page object will also contain the internals of the app (selectors / locators), which will
+                 which can be accessed or interacted with via a "service"
+        */
+        GuineaPigPage page = new GuineaPigPage(driver);
 
-    /**
-     * Go to belk.com, click sigin/register in top bar, and verify UI
-     * @throws Exception
-     */
-    @Test
-    public void verifySignInRegisterPage() throws Exception {
-        driver.get("http://www.belk.com");
-        WebDriverWait wait = new WebDriverWait(driver, 10); // wait for a maximum of 5 seconds
-        WebElement signInRegisterLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".hide-logged-in a")));
-        signInRegisterLink.click();
+        /*
+         fillOutEmailInput page is an exposed "service",
+             which interacts with the email input field element by sending text to it.
+        */
+        page.fillOutEmailInput(emailInputText);
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("returningRadio")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[value='2']")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_email_address_n")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_email_address_n")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_password_n")));
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("forgot_Password")));
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("#signInButton")));
-
-        assertTrue(driver.getTitle().equals("Sign In/Register - Belk.com"));
-        assertTrue(driver.getCurrentUrl().equals("https://www.belk.com/AST/Misc/Belk_Stores/Global_Navigation/Sign_In_Register.jsp"));
+        /*
+         Assertions should be part of test and not part of Page object.
+         Each test should be verifying one piece of functionality (atomic testing)
+        */
+        assertEquals(page.getEmailInput(), emailInputText);
+ 
     }
 
     /**
