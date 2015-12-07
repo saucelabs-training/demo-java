@@ -6,4 +6,7 @@
 ```
 
 # Running the tests
-to run: `mvn test`
+ * Maven: `mvn test`
+ * Ant: `ant test`
+
+n

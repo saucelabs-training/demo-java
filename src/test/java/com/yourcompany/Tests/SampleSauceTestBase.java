@@ -1,4 +1,4 @@
-package com.yourcompany;
+package com.yourcompany.Tests;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
@@ -39,7 +39,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author Neil Manvar
  */
 @RunWith(ConcurrentParameterized.class)
-public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
+public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
 
     public String username = System.getenv("SAUCE_USERNAME");
     public String accesskey = System.getenv("SAUCE_ACCESS_KEY");
@@ -65,32 +65,32 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
     /**
      * Represents the browser to be used as part of the test run.
      */
-    private String browser;
+    protected String browser;
     /**
      * Represents the operating system to be used as part of the test run.
      */
-    private String os;
+    protected String os;
     /**
      * Represents the version of the browser to be used as part of the test run.
      */
-    private String version;
+    protected String version;
     /**
      * Represents the deviceName of mobile device
      */
-    private String deviceName;
+    protected String deviceName;
     /**
      * Represents the device-orientation of mobile device
      */
-    private String deviceOrientation;
+    protected String deviceOrientation;
     /**
      * Instance variable which contains the Sauce Job Id.
      */
-    private String sessionId;
+    protected String sessionId;
 
     /**
      * The {@link WebDriver} instance which is used to perform browser interactions with.
      */
-    private WebDriver driver;
+    protected WebDriver driver;
 
     /**
      * Constructs a new instance of the test.  The constructor requires three string parameters, which represent the operating
@@ -103,7 +103,7 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
      * @param deviceOrientation
      */
 
-    public SampleSauceTest(String os, String version, String browser, String deviceName, String deviceOrientation) {
+    public SampleSauceTestBase(String os, String version, String browser, String deviceName, String deviceOrientation) {
         super();
         this.os = os;
         this.version = version;
@@ -180,52 +180,6 @@ public class SampleSauceTest implements SauceOnDemandSessionIdProvider {
 
         String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", this.sessionId, methodName);
         System.out.println(message);
-    }
-
-    /**
-     * Runs a simple test verifying the UI and title of the belk.com home page.
-     * @throws Exception
-     */
-    @Test
-    public void verifyEmailInputTest() throws Exception {        
-        String emailInputText = "abc@gmail.com";
-        
-        /*
-         actions and interaction with page should go here...
-        */
-        driver.get("https://saucelabs.com/test/guinea-pig");
-
-        /*
-         Use page object pattern to interact with application under test.
-
-             Page object will have public methods represent the "services" that the page offers.
-             Page object will also contain the internals of the app (selectors / locators), which will
-                 which can be accessed or interacted with via a "service"
-        */
-        GuineaPigPage page = new GuineaPigPage(driver);
-
-        /*
-         fillOutEmailInput page is an exposed "service",
-             which interacts with the email input field element by sending text to it.
-        */
-        page.fillOutEmailInput(emailInputText);
-
-        /*
-         Assertions should be part of test and not part of Page object.
-         Each test should be verifying one piece of functionality (atomic testing)
-        */
-        assertEquals(page.getEmailInput(), emailInputText);
- 
-    }
-
-    /**
-     * Closes the {@link WebDriver} session.
-     *
-     * @throws Exception
-     */
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
     }
 
     /**
