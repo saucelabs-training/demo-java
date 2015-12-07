@@ -9,55 +9,59 @@
 ### Environment Setup
 
 1. Global Dependencies
-    * Install Maven
-    	https://maven.apache.org/install.html
-    * Or Install Maven with Homebrew
-    	http://brew.sh/
-    ```
-    $ brew install maven
-    ```
-2. Sauce Credentials
-    * In the terminal export your Sauce Labs Credentials as environmental variables:
-    ```
-    $ export SAUCE_USERNAME=<your Sauce Labs username>
-    $ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>
-    ```
-	## Optional:
-    ```
-        export BUILD_TAG=your_build_tag
-    ```
+* Install Maven
+    https://maven.apache.org/install.html
+* Or Install Maven with Homebrew
+    http://brew.sh/ <br>
+```
+$ brew install maven
+```
+    
+####Optional:
 
+* Install Maven
+        https://ant.apache.org/manual/install.html
+* Or Install Ant with Homebrew
+        http://brew.sh/ <br>
+```
+$ brew install ant
+```
+
+2. Sauce Credentials
+    * In the terminal export your Sauce Labs Credentials as environmental variables: <br>
+```$ export SAUCE_USERNAME=<your Sauce Labs username>``` <br>
+```$ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>```
+    ####Optional:
+```$ export BUILD_TAG=<your build tag>```    
 3. Project Dependencies
-	* Check that Packages are Availalbe
+	* Check that Packages are available by compiling your test code.
 	```
 	$ cd Java-Junit-Selenium
 	$ mvn test-compile
 	```
 ### Running Tests
+Tests in Parallel:<br>
+```
+$ mvn test
+```
+####Optional:
+```
+$ ant test
+```
 
-Tests in Parallel:
-	```
-	$ mvn test
-	```
-Sauce Labs Dashboard:
-https://saucelabs.com/beta/dashboard/
+[Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard/)
 
 ### Advice/Troubleshooting
 1. It may be useful to use a Java IDE such as IntelliJ or Eclipse to help troubleshoot potential issues. 
 
 ### Resources
-##### Sauce Labs Documentation: 
-* https://wiki.saucelabs.com/
+* [Sauce Labs Documentation](https://wiki.saucelabs.com/)
 
-##### SeleniumHQ Documentation:
-* http://www.seleniumhq.org/docs/
+* [SeleniumHQ Documentation](http://www.seleniumhq.org/docs/)
 
-##### Junit Documentation: 
-* http://junit.org/javadoc/latest/index.html
+* [Junit Documentation](http://junit.org/javadoc/latest/index.html)
 
-##### Java Documentation: 
-* https://docs.oracle.com/javase/7/docs/api/
+* [Java Documentation](https://docs.oracle.com/javase/7/docs/api/)
 
-##### Stack Overflow:
-* A great resource to search for issues not explicitly covered by documentation.
-* http://stackoverflow.com/
+* [Stack Overflow](http://stackoverflow.com/): A great resource to search for issues not explicitly covered by documentation.
+
