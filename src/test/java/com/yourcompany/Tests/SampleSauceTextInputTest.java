@@ -4,7 +4,6 @@ package com.yourcompany.Tests;
 import com.yourcompany.Pages.*;
 import com.yourcompany.TestRules.Retry;
 import com.yourcompany.Tests.SampleSauceTestBase;
-import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.InvalidElementStateException;
 
