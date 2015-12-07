@@ -2,16 +2,11 @@ package com.yourcompany.Tests;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
-import com.yourcompany.Pages.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import com.yourcompany.TestRules.RetryRule;
+import org.junit.*;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,12 +17,8 @@ import com.saucelabs.junit.SauceOnDemandTestWatcher;
 import java.net.URL;
 import java.util.LinkedList;
 
-import static org.junit.Assert.*;
-
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 /**
@@ -38,6 +29,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  * @author Neil Manvar
  */
+@Ignore
 @RunWith(ConcurrentParameterized.class)
 public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
 
@@ -56,11 +48,18 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this, authentication);
 
-    @Rule public TestName name = new TestName() {
+    @Rule
+    public TestName name = new TestName() {
         public String getMethodName() {
         		return String.format("%s : (%s %s %s)", super.getMethodName(), os, browser, version);
-        };
+        }
     };
+
+    /**
+     * Test decorated with @Retry will be run 3 times in case they fail using this rule.
+     */
+    @Rule
+    public RetryRule rule = new RetryRule(3);
 
     /**
      * Represents the browser to be used as part of the test run.
@@ -171,6 +170,15 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
 
         String methodName = name.getMethodName();
         capabilities.setCapability("name", methodName);
+
+        //Getting the build name.
+        //Using the Jenkins ENV var. You can use your own. If it is not set test will run without a build id.
+        String buildName = System.getenv("BUILD_TAG");
+        if (buildName != null) {
+            capabilities.setCapability("build", buildName);
+        }
+
+
 
         this.driver = new RemoteWebDriver(
                 new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() +

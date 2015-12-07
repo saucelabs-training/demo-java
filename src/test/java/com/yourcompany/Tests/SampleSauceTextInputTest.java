@@ -2,7 +2,9 @@ package com.yourcompany.Tests;
 
 
 import com.yourcompany.Pages.*;
+import com.yourcompany.TestRules.Retry;
 import com.yourcompany.Tests.SampleSauceTestBase;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.InvalidElementStateException;
 
@@ -52,6 +54,7 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
      * @throws InvalidElementStateException
      */
     @Test
+    @Retry
     public void verifyCommentInputTest() throws InvalidElementStateException {
         String commentInputText = UUID.randomUUID().toString();
 
@@ -68,7 +71,7 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
          Assertions should be part of test and not part of Page object.
          Each test should be verifying one piece of functionality (atomic testing)
         */
-        assertEquals(page.getEmailText(), commentInputText);
+        assertEquals(commentInputText, page.getCommentText());
 
     }
 }

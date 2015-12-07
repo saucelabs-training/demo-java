@@ -8,7 +8,7 @@ public class PageBase {
 
     protected static void setCheckCheckBoxState(WebElement checkBox, boolean checked)
             throws InvalidElementStateException {
-        if (checkBox.getAttribute("type") != "checkbox" || checkBox.getTagName() != "input"){
+        if (!checkBox.getAttribute("type").contentEquals("checkbox") || !checkBox.getTagName().contentEquals("input")){
             throw new InvalidElementStateException("This web element is not a checkbox!");
         }
         //we may wanna check if it is displayed and enabled, when performing actions.
@@ -26,17 +26,17 @@ public class PageBase {
 
     protected static void setTextInputValue(WebElement textInput, String value)
             throws InvalidElementStateException {
-        setTextElementText(textInput, "text", value);
+        setTextElementText(textInput, "text", "input", value);
 
     }
 
     protected static void setTextAreaInputValue(WebElement textArea, String value)
             throws InvalidElementStateException{
-        setTextElementText(textArea, "textarea", value);
+        setTextElementText(textArea, "textarea", "textarea", value);
     }
 
     protected static void clickButton(WebElement button) throws InvalidElementStateException{
-        if (button.getAttribute("type") != "submit" || button.getTagName() != "input"){
+        if (!button.getAttribute("type").contentEquals("submit") || !button.getTagName().contentEquals("input")){
             throw new InvalidElementStateException("This web element is not a button input!");
         }
         //we may wanna check if it is displayed and enabled, when performing actions.
@@ -49,9 +49,10 @@ public class PageBase {
         }
     }
 
-    private static void setTextElementText(WebElement textElement, String textInputType, String value)
+    private static void setTextElementText(WebElement textElement, String textInputType, String tag, String value)
             throws InvalidElementStateException {
-        if (textElement.getAttribute("type") != value || textElement.getTagName() != "input"){
+        if (!textElement.getAttribute("type").contentEquals(textInputType) ||
+                !textElement.getTagName().contentEquals(tag)){
             throw new InvalidElementStateException("This web element is not a text input!");
         }
         //we may wanna check if it is displayed and enabled, when performing actions.

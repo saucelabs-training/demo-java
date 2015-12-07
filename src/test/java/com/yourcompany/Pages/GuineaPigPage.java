@@ -32,7 +32,6 @@ public class GuineaPigPage extends PageBase {
     public static GuineaPigPage navigateTo(WebDriver driver, String url){
         driver.get(url);
         //This will fail if we get redirected.
-        assert(driver.getCurrentUrl() == url);
         return PageFactory.initElements(driver, GuineaPigPage.class);
     }
 
@@ -52,10 +51,10 @@ public class GuineaPigPage extends PageBase {
 
     public void enterCommentText(String text){
         this.commentsTextAreaInput.click();
-        this.commentsTextAreaInput.sendKeys(text);
+        setTextAreaInputValue(this.commentsTextAreaInput, text);
     }
-    public void getCommentText(String text){
-        this.commentsTextAreaInput.getAttribute("value");
+    public String getCommentText(){
+        return this.commentsTextAreaInput.getAttribute("value");
     }
     public void submitForm(){
         clickButton(this.submitButton);
