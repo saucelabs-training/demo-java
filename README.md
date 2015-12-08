@@ -57,10 +57,3 @@ https://saucelabs.com/beta/dashboard/
 * A great resource to search for issues not explicitly covered by documentation.
 * http://stackoverflow.com/
 
-
-
-
-
-
-
-
