@@ -45,14 +45,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <parallel>both</parallel>
-                    <threadCount>20</threadCount>
-                    <properties>
-                        <property>
-                            <name>dataproviderthreadcount</name>
-                            <value>10</value>
-                        </property>
-                    </properties>
+                    <parallel>classes</parallel>
+                    <threadCount>40</threadCount>
+
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
                 </configuration>
                 <version>2.12.4</version>
