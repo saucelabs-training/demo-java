@@ -31,8 +31,11 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
     public void verifyEmailInputTest() throws InvalidElementStateException {
         String emailInputText = "abc@gmail.com";
 
-        //Navigate to the page
-        GuineaPigPage page = GuineaPigPage.navigateTo(driver, "https://saucelabs.com/test/guinea-pig");
+        // Navigate to the page
+        driver.get("https://saucelabs.com/test/guinea-pig");
+
+        // get page object
+        GuineaPigPage page = GuineaPigPage.getPage(driver);
 
         /*
          enterEmailText page is an exposed "service",
@@ -57,8 +60,10 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
     public void verifyCommentInputTest() throws InvalidElementStateException {
         String commentInputText = UUID.randomUUID().toString();
 
-        //Navigate to the page
-        GuineaPigPage page = GuineaPigPage.navigateTo(driver, "https://saucelabs.com/test/guinea-pig");
+        driver.get("https://saucelabs.com/test/guinea-pig");
+
+        // Navigate to the page
+        GuineaPigPage page = GuineaPigPage.getPage(driver);
 
         /*
          enterCommentText page is an exposed "service",

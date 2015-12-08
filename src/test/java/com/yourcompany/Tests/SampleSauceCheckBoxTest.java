@@ -1,10 +1,14 @@
 package com.yourcompany.Tests;
 
 import com.yourcompany.Pages.GuineaPigPage;
+
 import org.junit.Test;
+
 import com.yourcompany.Pages.GuineaPigPage;
 import com.yourcompany.Tests.SampleSauceTestBase;
+
 import org.openqa.selenium.InvalidElementStateException;
+import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.Assert.*;
 
@@ -27,7 +31,10 @@ public class SampleSauceCheckBoxTest extends SampleSauceTestBase {
     public void verifyUncheckedCheckBoxInputTest() throws InvalidElementStateException {
 
         //Navigate to the page
-        GuineaPigPage page = GuineaPigPage.navigateTo(driver, "https://saucelabs.com/test/guinea-pig");
+    	driver.get("https://saucelabs.com/test/guinea-pig");
+
+    	// get page object
+    	GuineaPigPage page = GuineaPigPage.getPage(driver);
 
         /*
          checkUncheckedCheckBox is an exposed "service",
@@ -50,8 +57,10 @@ public class SampleSauceCheckBoxTest extends SampleSauceTestBase {
     @Test
     public void verifyCheckedCheckBoxInputTest() throws InvalidElementStateException {
 
+    	driver.get("https://saucelabs.com/test/guinea-pig");
+
         //Navigate to the page
-        GuineaPigPage page = GuineaPigPage.navigateTo(driver, "https://saucelabs.com/test/guinea-pig");
+        GuineaPigPage page = GuineaPigPage.getPage(driver);
 
         /*
          checkUncheckedCheckBox is an exposed "service",
