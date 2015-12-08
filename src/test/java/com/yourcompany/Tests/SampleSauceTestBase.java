@@ -51,7 +51,7 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     @Rule
     public TestName name = new TestName() {
         public String getMethodName() {
-        		return String.format("%s : (%s %s %s)", super.getMethodName(), os, browser, version);
+        		return String.format("%s", super.getMethodName());
         }
     };
 
@@ -135,16 +135,16 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
         browsers.add(new String[]{"Windows 8.1", "11", "internet explorer", null, null});
 
         // OS X 10.8, Safari 6
-//        browsers.add(new String[]{"OSX 10.8", "6", "safari", null, null});
-//
-//        // OS X 10.9, Safari 7
-//        browsers.add(new String[]{"OSX 10.9", "7", "safari", null, null});
-//
-//        // OS X 10.10, Safari 7
-//        browsers.add(new String[]{"OSX 10.10", "8", "safari", null, null});
-//
-//        // Linux, Firefox 37
-//        browsers.add(new String[]{"Linux", "37", "firefox", null, null});
+        browsers.add(new String[]{"OSX 10.8", "6", "safari", null, null});
+
+        // OS X 10.9, Safari 7
+        browsers.add(new String[]{"OSX 10.9", "7", "safari", null, null});
+
+        // OS X 10.10, Safari 7
+        browsers.add(new String[]{"OSX 10.10", "8", "safari", null, null});
+
+        // Linux, Firefox 37
+        browsers.add(new String[]{"Linux", "37", "firefox", null, null});
 
         return browsers;
     }
