@@ -30,9 +30,7 @@
             <version>2.1.20</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -46,9 +44,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
                 <configuration>
-                	<parallel>method</parallel>
+                    <parallel>both</parallel>
                     <threadCount>20</threadCount>
                     <properties>
                         <property>
@@ -58,10 +55,10 @@
                     </properties>
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
                 </configuration>
+                <version>2.12.4</version>
             </plugin>
         </plugins>
     </build>
-
     <repositories>
             <repository>
                     <id>saucelabs-repository</id>

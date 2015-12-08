@@ -4,7 +4,7 @@
 
 >This code is presented as an example only, since your tests and testing environments may require specialized scripting. This information should be taken only as an
 >illustration of how one would set up tests with Sauce Labs, and any modifications will not be supported. For questions regarding Sauce Labs integration, please see 
->our documentation at https://wiki.saucelabs.com/.
+>our documentation at [https://wiki.saucelabs.com/](https://wiki.saucelabs.com/).
 
 ### Environment Setup
 
@@ -21,14 +21,13 @@ $ brew install maven
     * In the terminal export your Sauce Labs Credentials as environmental variables: <br>
 ```$ export SAUCE_USERNAME=<your Sauce Labs username>``` <br>
 ```$ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>```
-    ####Optional:
+    * Optional: Automated Build will show on the [Sauce Labs Dashboard]((https://saucelabs.com/beta/dashboard/))<br>
 ```$ export BUILD_TAG=<your build tag>```    
 3. Project Dependencies
-	* Check that Packages are available by compiling your test code.
-	```
-	$ cd Java-Junit-Selenium
-	$ mvn test-compile
-	```
+	* Check that Packages are available by compiling your test code.<br>
+```	$ cd Java-Junit-Selenium ```<br>
+``` $ mvn test-compile ```
+
 ### Running Tests
 Tests in Parallel:<br>
 ```
@@ -50,4 +49,3 @@ $ mvn test
 * [Java Documentation](https://docs.oracle.com/javase/7/docs/api/)
 
 * [Stack Overflow](http://stackoverflow.com/): A great resource to search for issues not explicitly covered by documentation.
-
