@@ -9,10 +9,8 @@
 ### Environment Setup
 
 1. Global Dependencies
-    * Install Maven
-        https://maven.apache.org/install.html
-    * Or Install Maven with Homebrew (Easier)
-        http://brew.sh/
+    * [Install Maven](https://maven.apache.org/install.html)
+    * Or Install Maven with [Homebrew](http://brew.sh/) (Easier)
     ```
     $ brew install maven
     ```
@@ -28,37 +26,36 @@
     $ cd Java-Junit-Selenium
     $ mvn test-compile
     ```
+    * You may also want to run the command below to check for outdated dependencies. Please be sure to verify and review updates before editing your pom.xml file They may or may not be compatible with your code.
+	```
+	$ mvn versions:display-dependency-updates
+	```
 ### Running Tests
 
 #####Tests in Parallel:
 ```
 $ mvn test
 ```
-Sauce Labs Dashboard:
-https://saucelabs.com/beta/dashboard/
+[Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard/)
 
 ### Advice/Troubleshooting
 1. It may be useful to use a Java IDE such as IntelliJ or Eclipse to help troubleshoot potential issues. 
 2. There may be additional latency when using a remote webdriver to run tests on Sauce Labs. Timeouts may need to be increased.
-    * https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Explicit+Waits
+    * [Selenim tips regarding explivit waits](https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Explicit+Waits)
 
 ### Resources
-##### Sauce Labs Documentation: 
-* https://wiki.saucelabs.com/
+##### [Sauce Labs Documentation](https://wiki.saucelabs.com/)
 
-##### SeleniumHQ Documentation:
-* http://www.seleniumhq.org/docs/
+##### [SeleniumHQ Documentation](http://www.seleniumhq.org/docs/)
 
-##### Junit Documentation: 
-* http://junit.org/javadoc/latest/index.html
+##### [Junit Documentation](http://junit.org/javadoc/latest/index.html)
 
-##### Java Documentation: 
-* https://docs.oracle.com/javase/7/docs/api/
+##### [Java Documentation](https://docs.oracle.com/javase/7/docs/api/)
 
-##### Stack Overflow:
+##### [Stack Overflow](http://stackoverflow.com/)
 * A great resource to search for issues not explicitly covered by documentation.
-* http://stackoverflow.com/
 
 ### Contributors
 * Neil Manvar
 * Kevin Berg
+* Mehmet Gerceker
