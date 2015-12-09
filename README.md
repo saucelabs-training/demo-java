@@ -9,7 +9,7 @@
 ### Environment Setup
 
 1. Global Dependencies
-    * [Install Maven](https://maven.apache.org/install.html)
+    * Install [Maven](https://maven.apache.org/install.html)
     * Or Install Maven with [Homebrew](http://brew.sh/) (Easier)
     ```
     $ brew install maven
@@ -41,7 +41,7 @@ $ mvn test
 ### Advice/Troubleshooting
 1. It may be useful to use a Java IDE such as IntelliJ or Eclipse to help troubleshoot potential issues. 
 2. There may be additional latency when using a remote webdriver to run tests on Sauce Labs. Timeouts may need to be increased.
-    * [Selenim tips regarding explicit waits](https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Explicit+Waits)
+    * [Selenium tips regarding explicit waits](https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Explicit+Waits)
 
 ### Resources
 ##### [Sauce Labs Documentation](https://wiki.saucelabs.com/)
