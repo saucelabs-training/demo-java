@@ -10,9 +10,9 @@
 
 1. Global Dependencies
     * Install Maven
-    	https://maven.apache.org/install.html
-    * Or Install Maven with Homebrew
-    	http://brew.sh/
+        https://maven.apache.org/install.html
+    * Or Install Maven with Homebrew (Easier)
+        http://brew.sh/
     ```
     $ brew install maven
     ```
@@ -20,25 +20,27 @@
     * In the terminal export your Sauce Labs Credentials as environmental variables:
     ```
     $ export SAUCE_USERNAME=<your Sauce Labs username>
-	$ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>
+    $ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>
     ```
 3. Project Dependencies
-	* Check that Packages are Availalbe
-	```
-	$ cd Java-Junit-Selenium
-	$ mvn test-compile
-	```
+    * Check that Packages are Availalbe
+    ```
+    $ cd Java-Junit-Selenium
+    $ mvn test-compile
+    ```
 ### Running Tests
 
-Tests in Parallel:
-	```
-	$ mvn test
-	```
+#####Tests in Parallel:
+```
+$ mvn test
+```
 Sauce Labs Dashboard:
 https://saucelabs.com/beta/dashboard/
 
 ### Advice/Troubleshooting
 1. It may be useful to use a Java IDE such as IntelliJ or Eclipse to help troubleshoot potential issues. 
+2. There may be additional latency when using a remote webdriver to run tests on Sauce Labs. Timeouts may need to be increased.
+    * https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Explicit+Waits
 
 ### Resources
 ##### Sauce Labs Documentation: 
@@ -57,3 +59,6 @@ https://saucelabs.com/beta/dashboard/
 * A great resource to search for issues not explicitly covered by documentation.
 * http://stackoverflow.com/
 
+### Contributors
+* Neil Manvar
+* Kevin Berg
