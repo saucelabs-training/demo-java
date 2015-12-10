@@ -11,7 +11,7 @@ This code is provided on an "AS-IS” basis. Your tests and testing environments
     $ brew install maven
     ```
 2. Sauce Labs Credentials
-    * In the terminal export your Sauce Labs credentials as environmental variables:
+    * In the terminal, export your Sauce Labs credentials as environmental variables:
     ```
     $ export SAUCE_USERNAME=<your Sauce Labs username>
     $ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>
