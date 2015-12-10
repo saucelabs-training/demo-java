@@ -28,7 +28,7 @@ This code is provided on an "AS-IS” basis. Your tests and testing environments
     ```
 ### Running Tests
 
-#####Tests in Parallel:
+#####Testing in Parallel:
 ```
 $ mvn test
 ```
