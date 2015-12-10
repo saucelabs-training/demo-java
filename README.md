@@ -1,6 +1,6 @@
 ## Java-Junit-Selenium
 
-This code is provided on an "AS-IS” basis.  Your tests and testing environments may require you to modify this framework. Issues regarding this framework should be submitted through GitHub. For questions regarding Sauce Labs integration, please see Sauce Labs documentation at https://wiki.saucelabs.com/. this framework is not maintained by Sauce Labs Support. 
+This code is provided on an "AS-IS” basis.  Your tests and testing environments may require you to modify this framework. Issues regarding this framework should be submitted through GitHub. For questions regarding Sauce Labs integration, please see the Sauce Labs documentation at https://wiki.saucelabs.com/. this framework is not maintained by Sauce Labs Support. 
 
 ### Environment Setup
 
