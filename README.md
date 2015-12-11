@@ -23,7 +23,7 @@
 	$ export SAUCE_ACCESS_KEY=<your Sauce Labs access key>
     ```
 3. Project Dependencies
-	* Check that Packages are Availalbe
+	* Check that Packages are available
 	```
 	$ cd Java-Junit-Selenium
 	$ mvn test-compile
