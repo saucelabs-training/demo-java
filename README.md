@@ -1,5 +1,3 @@
-![alt](https://saucelabs.com/images/sauce-labs-logo.png)
-
 ## Java-TestNg-Selenium
 
 >This code is presented as an example only, since your tests and testing environments may require specialized scripting. This information should be taken only as an
