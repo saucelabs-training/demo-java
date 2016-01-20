@@ -3,6 +3,7 @@ package com.yourcompany.Tests;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
 import com.yourcompany.TestRules.RetryRule;
+import com.yourcompany.Utils.SauceHelpers;
 import org.junit.*;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
@@ -36,6 +37,9 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     public String username = System.getenv("SAUCE_USERNAME");
     public String accesskey = System.getenv("SAUCE_ACCESS_KEY");
 
+    public static String seleniumURI;
+
+    public static String buildTag;
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
@@ -173,17 +177,14 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
 
         //Getting the build name.
         //Using the Jenkins ENV var. You can use your own. If it is not set test will run without a build id.
-        String buildName = System.getenv("BUILD_TAG");
-        if (buildName != null) {
-            capabilities.setCapability("build", buildName);
+        if (buildTag != null) {
+            capabilities.setCapability("build", buildTag);
         }
 
-
-
         this.driver = new RemoteWebDriver(
-                new URL("http://" + authentication.getUsername() + ":" + authentication.getAccessKey() +
-                        "@ondemand.saucelabs.com:80/wd/hub"),
+                new URL("http://" + username+ ":" + accesskey + seleniumURI +"/wd/hub"),
                 capabilities);
+
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
 
         String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", this.sessionId, methodName);
@@ -202,5 +203,14 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     @Override
     public String getSessionId() {
         return sessionId;
+    }
+
+    @BeforeClass
+    public static void setupClass(){
+        //get the uri to send the commands to.
+        seleniumURI = SauceHelpers.buildSauceUri();
+        //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
+        //You can set this manually on manual runs.
+        buildTag = System.getenv("BUILD_TAG");
     }
 }
