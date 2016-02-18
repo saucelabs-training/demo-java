@@ -150,6 +150,11 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
         // Linux, Firefox 37
         browsers.add(new String[]{"Linux", "37", "firefox", null, null});
 
+        //emus
+        browsers.add(new String[]{"Linux", "4.4", "android", "Android Emulator", "portrait"});
+
+        browsers.add(new String[]{"Mac 10.10", "9.2", "iPhone", "iPhone 6", "portrait"});
+
         return browsers;
     }
 
