@@ -29,7 +29,10 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
     public void verifyEmailInputTest(String browser, String version, String os, Method method)
             throws MalformedURLException, InvalidElementStateException, UnexpectedException {
         String emailInputText = "abc@gmail.com";
-        WebDriver driver = createDriver(browser, version, os, method.getName());
+
+        this.createDriver(browser, version, os, method.getName());
+        WebDriver driver = this.getWebDriver();
+
         // Navigate to the page
         driver.get("https://saucelabs.com/test/guinea-pig");
 
@@ -59,7 +62,8 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
             throws MalformedURLException, InvalidElementStateException, UnexpectedException {
         String commentInputText = UUID.randomUUID().toString();
 
-        WebDriver driver = createDriver(browser, version, os, method.getName());
+        this.createDriver(browser, version, os, method.getName());
+        WebDriver driver = this.getWebDriver();
 
         driver.get("https://saucelabs.com/test/guinea-pig");
 
