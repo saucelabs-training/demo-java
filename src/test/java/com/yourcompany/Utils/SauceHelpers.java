@@ -28,7 +28,10 @@ public class SauceHelpers {
     public static String buildSauceUri(boolean doNotUseSauceConnectCmdRelay) {
         String seleniumURI = "@ondemand.saucelabs.com:80";
         String seleniumPort = System.getenv("SELENIUM_PORT");
-        if (!doNotUseSauceConnectCmdRelay && seleniumPort != null) {
+        String seleniumHost = System.getenv("SELENIUM_HOST");
+        if (!doNotUseSauceConnectCmdRelay &&
+                seleniumPort != null &&
+                !seleniumHost.equalsIgnoreCase("ondemand.saucelabs.com")) {
             //While running in CI, if Sauce Connect is running the SELENIUM_PORT env var will be set.
             //use SC relay port
             seleniumURI = String.format("@localhost:%s", seleniumPort);

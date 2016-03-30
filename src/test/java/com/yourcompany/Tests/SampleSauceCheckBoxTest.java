@@ -27,6 +27,7 @@ public class SampleSauceCheckBoxTest extends SampleSauceTestBase {
 
     /**
      * Runs a simple test verifying the checked checkbox state
+     *
      * @throws InvalidElementStateException
      */
     @Test(dataProvider = "hardCodedBrowsers")
@@ -34,7 +35,8 @@ public class SampleSauceCheckBoxTest extends SampleSauceTestBase {
             throws MalformedURLException, InvalidElementStateException, UnexpectedException {
 
         //create webdriver session
-        WebDriver driver = createDriver(browser, version, os, method.getName());
+        this.createDriver(browser, version, os, method.getName());
+        WebDriver driver = this.getWebDriver();
 
         //Navigate to the page
         driver.get("https://saucelabs.com/test/guinea-pig");
@@ -58,6 +60,7 @@ public class SampleSauceCheckBoxTest extends SampleSauceTestBase {
 
     /**
      * Runs a simple test verifying the checked checkbox state
+     *
      * @throws InvalidElementStateException
      */
     @Test(dataProvider = "hardCodedBrowsers", retryAnalyzer = RetryAnalyzer.class)
@@ -65,7 +68,8 @@ public class SampleSauceCheckBoxTest extends SampleSauceTestBase {
             throws MalformedURLException, InvalidElementStateException, UnexpectedException {
 
         //create webdriver session
-        WebDriver driver = createDriver(browser, version, os, method.getName());
+        this.createDriver(browser, version, os, method.getName());
+        WebDriver driver = this.getWebDriver();
 
         driver.get("https://saucelabs.com/test/guinea-pig");
 
