@@ -73,7 +73,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider, Sauc
                 new Object[]{"chrome", "41", "Windows XP"},
                 new Object[]{"safari", "7", "OS X 10.9"},
                 new Object[]{"firefox", "35", "Windows 7"},
-                new Object[]{"opera", "12.12", "Windows 7"}
         };
     }
 
