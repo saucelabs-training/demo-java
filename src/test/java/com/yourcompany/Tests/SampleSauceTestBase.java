@@ -187,7 +187,7 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
         }
         SauceHelpers.addSauceConnectTunnelId(capabilities);
         this.driver = new RemoteWebDriver(
-                new URL("http://" + username+ ":" + accesskey + seleniumURI +"/wd/hub"),
+                new URL("https://" + username+ ":" + accesskey + seleniumURI +"/wd/hub"),
                 capabilities);
 
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
