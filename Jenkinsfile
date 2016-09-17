@@ -1,4 +1,6 @@
 node {
+    def mvnHome = tool 'Maven'
+    
     // Mark the code checkout 'stage'....
     stage 'Checkout'
     // Get some code from a GitHub repository
@@ -8,7 +10,7 @@ node {
     stage 'Test'
     sauce('saucelabs') {
         sauceconnect(useGeneratedTunnelIdentifier: true, verboseLogging: true) {
-            sh 'mvn test'
+            sh "${mvnHome}/bin/mvn test"
         }
     }
     stage 'Collect Results'
