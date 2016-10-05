@@ -26,7 +26,7 @@ public class SauceHelpers {
      * @return String formatted uri for Sauce Se commands.
      */
     public static String buildSauceUri(boolean doNotUseSauceConnectCmdRelay) {
-        String seleniumURI = "@ondemand.saucelabs.com:80";
+        String seleniumURI = "@ondemand.saucelabs.com:443";
         String seleniumPort = System.getenv("SELENIUM_PORT");
         String seleniumHost = System.getenv("SELENIUM_HOST");
         if (!doNotUseSauceConnectCmdRelay &&
