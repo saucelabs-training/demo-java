@@ -3,8 +3,8 @@ package com.yourcompany.Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by mehmetgerceker on 12/7/15.
@@ -12,37 +12,37 @@ import org.openqa.selenium.support.PageFactory;
 
 public class GuineaPigPage extends PageBase {
 
-    @FindBy(linkText="i am a link")
+    @FindBy(linkText = "i am a link")
     private WebElement theActiveLink;
 
-    @FindBy(id="your_comments")
+    @FindBy(id = "your_comments")
     private WebElement yourCommentsSpan;
 
-    @FindBy(id="comments")
+    @FindBy(id = "comments")
     private WebElement commentsTextAreaInput;
 
-    @FindBy(id="submit")
+    @FindBy(id = "submit")
     private WebElement submitButton;
 
-    public static GuineaPigPage visitPage(WebDriver driver) {
+    public GuineaPigPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void visitPage() {
         driver.get("https://saucelabs.com/test/guinea-pig");
-        return PageFactory.initElements(driver, GuineaPigPage.class);
     }
 
     public void followLink() {
         clickLink(this.theActiveLink);
     }
 
-    public void submitComment(String text){
+    public void submitComment(String text) {
         setTextAreaInputValue(this.commentsTextAreaInput, text);
         clickButton(this.submitButton);
 
         // Race condition for time to populate yourCommentsSpan
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
+        WebDriverWait wait = new WebDriverWait(this.driver, 15);
+        wait.until(ExpectedConditions.textToBePresentInElement(yourCommentsSpan, text));
     }
 
     public String getSubmittedCommentText() {

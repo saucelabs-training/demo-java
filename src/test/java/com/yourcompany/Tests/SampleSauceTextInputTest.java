@@ -6,6 +6,7 @@ import com.yourcompany.Tests.SampleSauceTestBase;
 import org.junit.Test;
 import org.openqa.selenium.InvalidElementStateException;
 import static org.hamcrest.CoreMatchers.containsString;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.UUID;
 
@@ -31,25 +32,11 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
     public void verifyCommentInputTest() throws InvalidElementStateException {
         String commentInputText = UUID.randomUUID().toString();
 
-        GuineaPigPage page = GuineaPigPage.visitPage(driver);
+        GuineaPigPage page = PageFactory.initElements(driver, GuineaPigPage.class);
+        page.visitPage();
         page.submitComment(commentInputText);
 
         assertThat(page.getSubmittedCommentText(), containsString(commentInputText));
-
-    }
-
-    /**
-     * Runs a simple test verifying link can be followed.
-     * @throws InvalidElementStateException
-     */
-    @Test
-    public void verifyLinkTest() throws InvalidElementStateException {
-        GuineaPigPage gpage = GuineaPigPage.visitPage(driver);
-        gpage.followLink();
-
-        AnotherPage apage = AnotherPage.onPage(driver);
-
-        assertEquals(apage.title, apage.getTitle(driver));
 
     }
 }
