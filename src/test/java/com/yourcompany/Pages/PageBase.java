@@ -6,30 +6,6 @@ import org.openqa.selenium.WebElement;
  */
 public class PageBase {
 
-    protected static void setCheckCheckBoxState(WebElement checkBox, boolean checked)
-            throws InvalidElementStateException {
-        if (!checkBox.getAttribute("type").contentEquals("checkbox") || !checkBox.getTagName().contentEquals("input")){
-            throw new InvalidElementStateException("This web element is not a checkbox!");
-        }
-        //we may wanna check if it is displayed and enabled, when performing actions.
-        if ( checkBox.isDisplayed() && checkBox.isEnabled()){
-            if (checkBox.isSelected() != checked) {
-                checkBox.click();
-            }
-        } else {
-            throw new InvalidElementStateException("Checkbox by "
-                    + checkBox.getAttribute("id")
-                    + " is disabled!");
-        }
-
-    }
-
-    protected static void setTextInputValue(WebElement textInput, String value)
-            throws InvalidElementStateException {
-        setTextElementText(textInput, "text", "input", value);
-
-    }
-
     protected static void setTextAreaInputValue(WebElement textArea, String value)
             throws InvalidElementStateException{
         setTextElementText(textArea, "textarea", "textarea", value);

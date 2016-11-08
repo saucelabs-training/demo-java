@@ -12,23 +12,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class GuineaPigPage extends PageBase {
 
-    @FindBy(id="unchecked_checkbox")
-    private WebElement uncheckedCheckbox;
-
-    @FindBy(id="checked_checkbox")
-    private WebElement checkedCheckbox;
-
     @FindBy(id="i am a link")
     private WebElement theActiveLink;
 
-    @FindBy(id="i_am_a_textbox")
-    private WebElement textInput;
-
     @FindBy(id="your_comments")
     private WebElement yourCommentsSpan;
-
-    @FindBy(id="fbemail")
-    private WebElement emailTextInput;
 
     @FindBy(id="comments")
     private WebElement commentsTextAreaInput;
@@ -37,49 +25,23 @@ public class GuineaPigPage extends PageBase {
     private WebElement submitButton;
 
     public static GuineaPigPage getPage(WebDriver driver) {
-    	return PageFactory.initElements(driver, GuineaPigPage.class);
+        driver.get("https://saucelabs.com/test/guinea-pig");
+        return PageFactory.initElements(driver, GuineaPigPage.class);
     }
 
-    public void checkUncheckedCheckBox() {
-        setCheckCheckBoxState(this.uncheckedCheckbox, true);
-    }
-
-    public boolean getUncheckedCheckBoxState() {
-        return this.uncheckedCheckbox.isSelected();
-    }
-
-    public void uncheckCheckedCheckBox() {
-        setCheckCheckBoxState(this.checkedCheckbox, false);
-    }
-
-    public boolean getCheckedCheckBoxState() {
-        return this.checkedCheckbox.isSelected();
-    }
-
-    public void enterCommentText(String text){
-        this.commentsTextAreaInput.click();
+    public void submitComment(String text){
         setTextAreaInputValue(this.commentsTextAreaInput, text);
-    }
-
-    public String getCommentText() {
-        return this.commentsTextAreaInput.getAttribute("value");
-    }
-
-    public void submitForm() {
         clickButton(this.submitButton);
+
+        // Race condition for time to populate yourCommentsSpan
+        try {
+            Thread.sleep(1000);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public String getSubmittedCommentText() {
         return this.yourCommentsSpan.getText();
     }
-
-    public void enterEmailText(String email) {
-        setTextInputValue(this.emailTextInput, email);
-    }
-
-    public String getEmailText() {
-        return this.emailTextInput.getAttribute("value");
-    }
-
 }
-
