@@ -31,10 +31,25 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
     public void verifyCommentInputTest() throws InvalidElementStateException {
         String commentInputText = UUID.randomUUID().toString();
 
-        GuineaPigPage page = GuineaPigPage.getPage(driver);
+        GuineaPigPage page = GuineaPigPage.visitPage(driver);
         page.submitComment(commentInputText);
 
         assertThat(page.getSubmittedCommentText(), containsString(commentInputText));
+
+    }
+
+    /**
+     * Runs a simple test verifying link can be followed.
+     * @throws InvalidElementStateException
+     */
+    @Test
+    public void verifyLinkTest() throws InvalidElementStateException {
+        GuineaPigPage gpage = GuineaPigPage.visitPage(driver);
+        gpage.followLink();
+
+        AnotherPage apage = AnotherPage.onPage(driver);
+
+        assertEquals(apage.title, apage.getTitle(driver));
 
     }
 }

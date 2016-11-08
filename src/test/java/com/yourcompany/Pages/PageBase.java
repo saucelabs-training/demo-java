@@ -7,39 +7,20 @@ import org.openqa.selenium.WebElement;
 public class PageBase {
 
     protected static void setTextAreaInputValue(WebElement textArea, String value)
-            throws InvalidElementStateException{
+            throws InvalidElementStateException {
         setTextElementText(textArea, "textarea", "textarea", value);
     }
 
-    protected static void clickButton(WebElement button) throws InvalidElementStateException{
-        if (!button.getAttribute("type").contentEquals("submit") || !button.getTagName().contentEquals("input")){
-            throw new InvalidElementStateException("This web element is not a button input!");
-        }
-        //we may wanna check if it is displayed and enabled, when performing actions.
-        if (button.isDisplayed() && button.isEnabled()){
-            button.click();
-        } else {
-            throw new InvalidElementStateException("Button by "
-                    + button.getAttribute("id")
-                    + " is disabled or not displayed!");
-        }
+    protected static void clickButton(WebElement button) throws InvalidElementStateException {
+        button.click();
+    }
+
+    protected static void clickLink(WebElement link) throws InvalidElementStateException {
+        link.click();
     }
 
     private static void setTextElementText(WebElement textElement, String textInputType, String tag, String value)
             throws InvalidElementStateException {
-        if (!textElement.getAttribute("type").contentEquals(textInputType) ||
-                !textElement.getTagName().contentEquals(tag)){
-            throw new InvalidElementStateException("This web element is not a text input!");
-        }
-        //we may wanna check if it is displayed and enabled, when performing actions.
-        if (textElement.isDisplayed() && textElement.isEnabled()){
-            textElement.click();
-            textElement.clear();
-            textElement.sendKeys(value);
-        } else {
-            throw new InvalidElementStateException("Text input by "
-                    + textElement.getAttribute("id")
-                    + " is disabled or not displayed!");
-        }
+        textElement.sendKeys(value);
     }
 }

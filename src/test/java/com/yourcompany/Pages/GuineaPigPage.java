@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class GuineaPigPage extends PageBase {
 
-    @FindBy(id="i am a link")
+    @FindBy(linkText="i am a link")
     private WebElement theActiveLink;
 
     @FindBy(id="your_comments")
@@ -24,9 +24,13 @@ public class GuineaPigPage extends PageBase {
     @FindBy(id="submit")
     private WebElement submitButton;
 
-    public static GuineaPigPage getPage(WebDriver driver) {
+    public static GuineaPigPage visitPage(WebDriver driver) {
         driver.get("https://saucelabs.com/test/guinea-pig");
         return PageFactory.initElements(driver, GuineaPigPage.class);
+    }
+
+    public void followLink() {
+        clickLink(this.theActiveLink);
     }
 
     public void submitComment(String text){
