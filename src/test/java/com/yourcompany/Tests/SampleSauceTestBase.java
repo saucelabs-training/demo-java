@@ -2,8 +2,6 @@ package com.yourcompany.Tests;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
-import com.yourcompany.TestRules.RetryRule;
-import com.yourcompany.Utils.SauceHelpers;
 import org.junit.*;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
@@ -58,12 +56,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
         		return String.format("%s", super.getMethodName());
         }
     };
-
-    /**
-     * Test decorated with @Retry will be run 3 times in case they fail using this rule.
-     */
-    @Rule
-    public RetryRule rule = new RetryRule(3);
 
     /**
      * Represents the browser to be used as part of the test run.
@@ -158,7 +150,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
         if (buildTag != null) {
             capabilities.setCapability("build", buildTag);
         }
-        SauceHelpers.addSauceConnectTunnelId(capabilities);
         this.driver = new RemoteWebDriver(
                 new URL("https://" + username+ ":" + accesskey + seleniumURI +"/wd/hub"),
                 capabilities);
@@ -186,7 +177,7 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     @BeforeClass
     public static void setupClass(){
         //get the uri to send the commands to.
-        seleniumURI = SauceHelpers.buildSauceUri();
+        seleniumURI = "@ondemand.saucelabs.com:443";
         //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
         //You can set this manually on manual runs.
         buildTag = System.getenv("BUILD_TAG");
