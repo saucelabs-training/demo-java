@@ -1,35 +1,34 @@
 package com.yourcompany.Tests;
 
-
+import com.yourcompany.Pages.AnotherPage;
 import com.yourcompany.Pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.rmi.UnexpectedException;
-import java.util.UUID;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
-
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by mehmetgerceker on 12/7/15.
  */
 
-public class SampleSauceTextInputTest extends SampleSauceTestBase {
+public class SampleSauceFollowLinkTest extends SampleSauceTestBase {
 
     /**
-     * Runs a simple test verifying if the email input is functional.
+     * Runs a simple test verifying the checked checkbox state
+     *
      * @throws InvalidElementStateException
      */
-    @org.testng.annotations.Test(dataProvider = "hardCodedBrowsers")
-    public void verifyEmailInputTest(String browser, String version, String os, Method method)
+    @Test(dataProvider = "hardCodedBrowsers")
+    public void verifyUncheckedCheckBoxInputTest(String browser, String version, String os, Method method)
             throws MalformedURLException, InvalidElementStateException, UnexpectedException {
-        String commentInputText = UUID.randomUUID().toString();
 
+        //create webdriver session
         this.createDriver(browser, version, os, method.getName());
         WebDriver driver = this.getWebDriver();
 
@@ -37,11 +36,11 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
         GuineaPigPage gpage = PageFactory.initElements(driver, GuineaPigPage.class);
 
         gpage.visitPage();
+        gpage.followLink();
 
-        gpage.submitComment(commentInputText);
+        AnotherPage apage = PageFactory.initElements(driver, AnotherPage.class);
 
-        assertThat(gpage.getSubmittedCommentText(), containsString(commentInputText));
-
+        assertEquals(apage.title, apage.getTitle(driver));
 
     }
 

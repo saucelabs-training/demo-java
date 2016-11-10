@@ -1,27 +1,26 @@
 package com.yourcompany.Tests;
 
 // import Sauce TestNG helper libraries
+
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 import com.saucelabs.testng.SauceOnDemandTestListener;
-
-import com.yourcompany.Utils.SauceHelpers;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 
-// import testng annotations
-import org.testng.annotations.*;
-
-// import java libraries
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.UnexpectedException;
-import java.util.logging.Level;
+
+// import testng annotations
+// import java libraries
 
 /**
  * Simple TestNG test which demonstrates being instantiated via a DataProvider in order to supply multiple browser combinations.
@@ -31,17 +30,12 @@ import java.util.logging.Level;
 @Listeners({SauceOnDemandTestListener.class})
 public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider  {
 
-    // Selenium URI -- static same for everyone.
-    public static String seleniumURI = null;
+    public String seleniumURI = "@ondemand.saucelabs.com:443";
 
-    // Selenium URI -- static same for everyone
-    public static String buildTag = null;
+    public String buildTag = System.getenv("BUILD_TAG");
 
-
-    // Sauce username
     public String username = System.getenv("SAUCE_USERNAME");
 
-    // Sauce access key
     public String accesskey = System.getenv("SAUCE_ACCESS_KEY");
 
     /**
@@ -69,10 +63,11 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider, Sauc
     @DataProvider(name = "hardCodedBrowsers", parallel = true)
     public static Object[][] sauceBrowserDataProvider(Method testMethod) {
         return new Object[][]{
-                new Object[]{"internet explorer", "11", "Windows 8.1"},
-                new Object[]{"chrome", "41", "Windows XP"},
-                new Object[]{"safari", "7", "OS X 10.9"},
-                new Object[]{"firefox", "35", "Windows 7"},
+                new Object[]{"MicrosoftEdge", "14.14393", "Windows 10"},
+                new Object[]{"firefox", "49.0", "Windows 10"},
+                new Object[]{"internet explorer", "11.0", "Windows 7"},
+                new Object[]{"safari", "10.0", "OS X 10.11"},
+                new Object[]{"chrome", "54.0", "OS X 10.10"},
         };
     }
 
@@ -126,8 +121,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider, Sauc
             capabilities.setCapability("build", buildTag);
         }
 
-        SauceHelpers.addSauceConnectTunnelId(capabilities);
-
         // Launch remote browser and set it as the current thread
         webDriver.set(new RemoteWebDriver(
                 new URL("https://" + authentication.getUsername() + ":" + authentication.getAccessKey() + seleniumURI +"/wd/hub"),
@@ -148,14 +141,5 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider, Sauc
 
         //Gets browser logs if available.
         webDriver.get().quit();
-    }
-
-    @BeforeSuite
-    public void setupSuite(){
-        //get the uri to send the commands to.
-        seleniumURI = SauceHelpers.buildSauceUri();
-        //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
-        //You can set this manually on manual runs.
-        buildTag = System.getenv("BUILD_TAG");
     }
 }
