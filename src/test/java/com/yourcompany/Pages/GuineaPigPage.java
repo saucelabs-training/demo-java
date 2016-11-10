@@ -3,8 +3,8 @@ package com.yourcompany.Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by mehmetgerceker on 12/7/15.
@@ -12,74 +12,40 @@ import org.openqa.selenium.support.PageFactory;
 
 public class GuineaPigPage extends PageBase {
 
-	@FindBy(id="unchecked_checkbox")
-	private WebElement uncheckedCheckbox;
+    @FindBy(linkText = "i am a link")
+    private WebElement theActiveLink;
 
-	@FindBy(id="checked_checkbox")
-	private WebElement checkedCheckbox;
+    @FindBy(id = "your_comments")
+    private WebElement yourCommentsSpan;
 
-	@FindBy(id="i am a link")
-	private WebElement theActiveLink;
+    @FindBy(id = "comments")
+    private WebElement commentsTextAreaInput;
 
-	@FindBy(id="i_am_a_textbox")
-	private WebElement textInput;
+    @FindBy(id = "submit")
+    private WebElement submitButton;
 
-	@FindBy(id="your_comments")
-	private WebElement yourCommentsSpan;
+    public GuineaPigPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
-	@FindBy(id="fbemail")
-	private WebElement emailTextInput;
+    public void visitPage() {
+        driver.get("https://saucelabs.com/test/guinea-pig");
+    }
 
-	@FindBy(id="comments")
-	private WebElement commentsTextAreaInput;
+    public void followLink() {
+        clickLink(this.theActiveLink);
+    }
 
-	@FindBy(id="submit")
-	private WebElement submitButton;
+    public void submitComment(String text) {
+        setTextAreaInputValue(this.commentsTextAreaInput, text);
+        clickButton(this.submitButton);
 
-	public static GuineaPigPage getPage(WebDriver driver) {
-		return PageFactory.initElements(driver, GuineaPigPage.class);
-	}
+        // Race condition for time to populate yourCommentsSpan
+        WebDriverWait wait = new WebDriverWait(this.driver, 15);
+        wait.until(ExpectedConditions.textToBePresentInElement(yourCommentsSpan, text));
+    }
 
-	public void checkUncheckedCheckBox() {
-		setCheckCheckBoxState(this.uncheckedCheckbox, true);
-	}
-
-	public boolean getUncheckedCheckBoxState() {
-		return this.uncheckedCheckbox.isSelected();
-	}
-
-	public void uncheckCheckedCheckBox() {
-		setCheckCheckBoxState(this.checkedCheckbox, false);
-	}
-
-	public boolean getCheckedCheckBoxState() {
-		return this.checkedCheckbox.isSelected();
-	}
-
-	public void enterCommentText(String text){
-		this.commentsTextAreaInput.click();
-		setTextAreaInputValue(this.commentsTextAreaInput, text);
-	}
-
-	public String getCommentText() {
-		return this.commentsTextAreaInput.getAttribute("value");
-	}
-
-	public void submitForm() {
-		clickButton(this.submitButton);
-	}
-
-	public String getSubmittedCommentText() {
-		return this.yourCommentsSpan.getText();
-	}
-
-	public void enterEmailText(String email) {
-		setTextInputValue(this.emailTextInput, email);
-	}
-
-	public String getEmailText() {
-		return this.emailTextInput.getAttribute("value");
-	}
-
+    public String getSubmittedCommentText() {
+        return this.yourCommentsSpan.getText();
+    }
 }
-
