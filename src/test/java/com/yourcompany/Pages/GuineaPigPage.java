@@ -7,11 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-/**
- * Created by mehmetgerceker on 12/7/15.
- */
-
-public class GuineaPigPage extends PageBase {
+public class GuineaPigPage {
 
     @FindBy(linkText = "i am a link")
     private WebElement theActiveLink;
@@ -37,12 +33,12 @@ public class GuineaPigPage extends PageBase {
     }
 
     public void followLink() {
-        clickLink(this.theActiveLink);
+        this.theActiveLink.click();
     }
 
     public void submitComment(String text) {
-        setTextAreaInputValue(this.commentsTextAreaInput, text);
-        clickButton(this.submitButton);
+        this.commentsTextAreaInput.sendKeys(text);
+        this.submitButton.click();
 
         // Race condition for time to populate yourCommentsSpan
         WebDriverWait wait = new WebDriverWait(this.driver, 15);
