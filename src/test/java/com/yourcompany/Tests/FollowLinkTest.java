@@ -1,17 +1,11 @@
 package com.yourcompany.Tests;
 
-
-import com.yourcompany.Pages.AnotherPage;
-import com.yourcompany.Pages.GuineaPigPage;
+import com.yourcompany.Pages.*;
 import org.junit.Test;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.UUID;
-
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 
 /**
@@ -31,13 +25,11 @@ public class FollowLinkTest extends TestBase {
      */
     @Test
     public void verifyLinkTest() throws InvalidElementStateException {
-        GuineaPigPage gpage = PageFactory.initElements(driver, GuineaPigPage.class);
-        gpage.visitPage();
-        gpage.followLink();
+        GuineaPigPage page = PageFactory.initElements(driver, GuineaPigPage.class);
 
-        AnotherPage apage = PageFactory.initElements(driver, AnotherPage.class);
+        page.visitPage();
+        page.followLink();
 
-        assertEquals(apage.title, apage.getTitle(driver));
-
+        assertFalse(page.isOnPage(driver));
     }
 }

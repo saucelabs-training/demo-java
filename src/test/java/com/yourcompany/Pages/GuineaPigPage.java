@@ -48,4 +48,10 @@ public class GuineaPigPage extends PageBase {
     public String getSubmittedCommentText() {
         return this.yourCommentsSpan.getText();
     }
+
+    public boolean isOnPage(WebDriver driver) {
+        String title = "I am a page title - Sauce Labs";
+        return driver.getTitle() == title;
+    }
+
 }
