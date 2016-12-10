@@ -3,6 +3,7 @@ package com.yourcompany.Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -24,12 +25,15 @@ public class GuineaPigPage extends PageBase {
     @FindBy(id = "submit")
     private WebElement submitButton;
 
-    public GuineaPigPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    public WebDriver driver;
 
     public void visitPage() {
-        driver.get("https://saucelabs.com/test/guinea-pig");
+        this.driver.get("https://saucelabs.com/test/guinea-pig");
+    }
+
+    public GuineaPigPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void followLink() {
@@ -49,9 +53,9 @@ public class GuineaPigPage extends PageBase {
         return this.yourCommentsSpan.getText();
     }
 
-    public boolean isOnPage(WebDriver driver) {
+    public boolean isOnPage() {
         String title = "I am a page title - Sauce Labs";
-        return driver.getTitle() == title;
+        return this.driver.getTitle() == title;
     }
 
 }

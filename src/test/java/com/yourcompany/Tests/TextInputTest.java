@@ -1,20 +1,13 @@
 package com.yourcompany.Tests;
 
-
 import com.yourcompany.Pages.*;
 import org.junit.Test;
 import org.openqa.selenium.InvalidElementStateException;
 import static org.hamcrest.CoreMatchers.containsString;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.UUID;
 
 import static org.junit.Assert.*;
-
-
-/**
- * Created by mehmetgerceker on 12/7/15.
- */
 
 public class TextInputTest extends TestBase {
 
@@ -31,11 +24,10 @@ public class TextInputTest extends TestBase {
     public void verifyCommentInputTest() throws InvalidElementStateException {
         String commentInputText = UUID.randomUUID().toString();
 
-        GuineaPigPage page = PageFactory.initElements(driver, GuineaPigPage.class);
+        GuineaPigPage page = new GuineaPigPage(driver);
         page.visitPage();
         page.submitComment(commentInputText);
 
         assertThat(page.getSubmittedCommentText(), containsString(commentInputText));
-
     }
 }

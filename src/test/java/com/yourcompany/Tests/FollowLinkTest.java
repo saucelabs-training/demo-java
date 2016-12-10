@@ -3,14 +3,8 @@ package com.yourcompany.Tests;
 import com.yourcompany.Pages.*;
 import org.junit.Test;
 import org.openqa.selenium.InvalidElementStateException;
-import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.Assert.*;
-
-
-/**
- * Created by mehmetgerceker on 12/7/15.
- */
 
 public class FollowLinkTest extends TestBase {
 
@@ -25,11 +19,11 @@ public class FollowLinkTest extends TestBase {
      */
     @Test
     public void verifyLinkTest() throws InvalidElementStateException {
-        GuineaPigPage page = PageFactory.initElements(driver, GuineaPigPage.class);
+        GuineaPigPage page = new GuineaPigPage(driver);
 
         page.visitPage();
         page.followLink();
 
-        assertFalse(page.isOnPage(driver));
+        assertFalse(page.isOnPage());
     }
 }
