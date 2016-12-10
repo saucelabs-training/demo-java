@@ -2,7 +2,6 @@ package com.yourcompany.Tests;
 
 
 import com.yourcompany.Pages.*;
-import com.yourcompany.Tests.SampleSauceTestBase;
 import org.junit.Test;
 import org.openqa.selenium.InvalidElementStateException;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -17,10 +16,10 @@ import static org.junit.Assert.*;
  * Created by mehmetgerceker on 12/7/15.
  */
 
-public class SampleSauceTextInputTest extends SampleSauceTestBase {
+public class TextInputTest extends TestBase {
 
-    public SampleSauceTextInputTest(String os,
-                                    String version, String browser, String deviceName, String deviceOrientation) {
+    public TextInputTest(String os,
+                         String version, String browser, String deviceName, String deviceOrientation) {
             super(os, version, browser, deviceName, deviceOrientation);
     }
 

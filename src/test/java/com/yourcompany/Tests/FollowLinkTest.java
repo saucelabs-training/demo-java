@@ -18,10 +18,10 @@ import static org.junit.Assert.assertThat;
  * Created by mehmetgerceker on 12/7/15.
  */
 
-public class SampleSauceFollowLinkTest extends SampleSauceTestBase {
+public class FollowLinkTest extends TestBase {
 
-    public SampleSauceFollowLinkTest(String os,
-                                     String version, String browser, String deviceName, String deviceOrientation) {
+    public FollowLinkTest(String os,
+                          String version, String browser, String deviceName, String deviceOrientation) {
             super(os, version, browser, deviceName, deviceOrientation);
     }
 
