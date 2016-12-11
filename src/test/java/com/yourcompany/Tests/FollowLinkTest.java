@@ -19,9 +19,8 @@ public class FollowLinkTest extends TestBase {
      */
     @Test
     public void verifyLinkTest() throws InvalidElementStateException {
-        GuineaPigPage page = new GuineaPigPage(driver);
+        GuineaPigPage page = GuineaPigPage.visitPage(driver);
 
-        page.visitPage();
         page.followLink();
 
         assertFalse(page.isOnPage());

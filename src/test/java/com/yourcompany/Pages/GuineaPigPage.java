@@ -22,14 +22,21 @@ public class GuineaPigPage {
     private WebElement submitButton;
 
     public WebDriver driver;
+    public static String url = "https://saucelabs.com/test/guinea-pig";
 
-    public void visitPage() {
-        this.driver.get("https://saucelabs.com/test/guinea-pig");
+    public static GuineaPigPage visitPage(WebDriver driver) {
+        GuineaPigPage page = new GuineaPigPage(driver);
+        page.visitPage();
+        return page;
     }
 
     public GuineaPigPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    public void visitPage() {
+        this.driver.get(url);
     }
 
     public void followLink() {
