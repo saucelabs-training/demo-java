@@ -3,6 +3,7 @@ jdk:
   - oraclejdk8
 before_install:
   - export | grep SAUCE_
+script: mvn clean install
 env:
   global:
     - SAUCE_USERNAME=sauce_examples

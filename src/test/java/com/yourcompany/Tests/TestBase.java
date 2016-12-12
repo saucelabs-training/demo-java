@@ -28,7 +28,7 @@ import java.rmi.UnexpectedException;
  * @author Neil Manvar
  */
 @Listeners({SauceOnDemandTestListener.class})
-public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider  {
+public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider  {
 
     public String seleniumURI = "@ondemand.saucelabs.com:443";
 
