@@ -51,38 +51,16 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
     @Rule
     public TestName name = new TestName() {
         public String getMethodName() {
-        		return String.format("%s", super.getMethodName());
+            return String.format("%s", super.getMethodName());
         }
     };
 
-    /**
-     * Represents the browser to be used as part of the test run.
-     */
     protected String browser;
-    /**
-     * Represents the operating system to be used as part of the test run.
-     */
     protected String os;
-    /**
-     * Represents the version of the browser to be used as part of the test run.
-     */
     protected String version;
-    /**
-     * Represents the deviceName of mobile device
-     */
     protected String deviceName;
-    /**
-     * Represents the device-orientation of mobile device
-     */
     protected String deviceOrientation;
-    /**
-     * Instance variable which contains the Sauce Job Id.
-     */
     protected String sessionId;
-
-    /**
-     * The {@link WebDriver} instance which is used to perform browser interactions with.
-     */
     protected WebDriver driver;
 
     /**
@@ -121,7 +99,6 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         return browsers;
     }
 
-
     /**
      * Constructs a new {@link RemoteWebDriver} instance which is configured to use the capabilities defined by the {@link #browser},
      * {@link #version} and {@link #os} instance variables, and which is configured to run against ondemand.saucelabs.com, using
@@ -133,11 +110,10 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
     public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (browser != null) capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
-        if (version != null) capabilities.setCapability(CapabilityType.VERSION, version);
-        if (deviceName != null) capabilities.setCapability("deviceName", deviceName);
-        if (deviceOrientation != null) capabilities.setCapability("device-orientation", deviceOrientation);
-
+        capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
+        capabilities.setCapability(CapabilityType.VERSION, version);
+        capabilities.setCapability("deviceName", deviceName);
+        capabilities.setCapability("device-orientation", deviceOrientation);
         capabilities.setCapability(CapabilityType.PLATFORM, os);
 
         String methodName = name.getMethodName();
@@ -153,9 +129,6 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
                 capabilities);
 
         this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
-
-        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", this.sessionId, methodName);
-        System.out.println(message);
     }
 
     @After
@@ -164,7 +137,6 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
     }
 
     /**
-     *
      * @return the value of the Sauce Job id.
      */
     @Override
@@ -173,7 +145,7 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
     }
 
     @BeforeClass
-    public static void setupClass(){
+    public static void setupClass() {
         //get the uri to send the commands to.
         seleniumURI = "@ondemand.saucelabs.com:443";
         //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
