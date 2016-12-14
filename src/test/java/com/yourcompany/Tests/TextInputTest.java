@@ -1,17 +1,14 @@
 package com.yourcompany.Tests;
 
-
 import com.yourcompany.Pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.rmi.UnexpectedException;
 import java.util.UUID;
-
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
 
 
 /**
@@ -33,11 +30,10 @@ public class TextInputTest extends TestBase {
         String commentInputText = UUID.randomUUID().toString();
 
         GuineaPigPage page = GuineaPigPage.visitPage(driver);
-        page.visitPage();
+
         page.submitComment(commentInputText);
 
-        assertThat(page.getSubmittedCommentText(), containsString(commentInputText));
-
+        Assert.assertTrue(page.getSubmittedCommentText().contains(commentInputText));
     }
 
 }

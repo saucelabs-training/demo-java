@@ -40,25 +40,25 @@ public class GuineaPigPage {
     }
 
     public void followLink() {
-        this.theActiveLink.click();
+        theActiveLink.click();
     }
 
     public void submitComment(String text) {
-        this.commentsTextAreaInput.sendKeys(text);
-        this.submitButton.click();
+        commentsTextAreaInput.sendKeys(text);
+        submitButton.click();
 
         // Race condition for time to populate yourCommentsSpan
-        WebDriverWait wait = new WebDriverWait(this.driver, 15);
+        WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.textToBePresentInElement(yourCommentsSpan, text));
     }
 
     public String getSubmittedCommentText() {
-        return this.yourCommentsSpan.getText();
+        return yourCommentsSpan.getText();
     }
 
     public boolean isOnPage() {
         String title = "I am a page title - Sauce Labs";
-        return this.driver.getTitle() == title;
+        return driver.getTitle() == title;
     }
 
 }
