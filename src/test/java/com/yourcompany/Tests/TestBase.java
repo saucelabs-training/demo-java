@@ -151,5 +151,8 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
         //You can set this manually on manual runs.
         buildTag = System.getenv("BUILD_TAG");
+        if (buildTag == null) {
+            buildTag = System.getenv("SAUCE_BUILD_NAME");
+        }
     }
 }
