@@ -29,10 +29,13 @@ public class FollowLinkTest extends TestBase {
         this.createDriver(browser, version, os, method.getName());
         WebDriver driver = this.getWebDriver();
 
+        this.annotate("Visiting GuineaPig page...");
         GuineaPigPage page = GuineaPigPage.visitPage(driver);
 
+        this.annotate("Clicking on link...");
         page.followLink();
 
+        this.annotate("Asserting that we are on a new page...");
         Assert.assertFalse(page.isOnPage());
     }
 

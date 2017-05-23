@@ -6,6 +6,7 @@ import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 import com.saucelabs.testng.SauceOnDemandTestListener;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -141,5 +142,9 @@ public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAu
 
         //Gets browser logs if available.
         webDriver.get().quit();
+    }
+
+    protected void annotate(String text) {
+        ((JavascriptExecutor) webDriver.get()).executeScript("sauce:context=" + text);
     }
 }
