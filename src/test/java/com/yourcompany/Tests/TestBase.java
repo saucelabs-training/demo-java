@@ -1,7 +1,5 @@
 package com.yourcompany.Tests;
 
-// import Sauce TestNG helper libraries
-
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
@@ -11,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
@@ -20,30 +19,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.UnexpectedException;
 
-// import testng annotations
-// import java libraries
-
 /**
  * Simple TestNG test which demonstrates being instantiated via a DataProvider in order to supply multiple browser combinations.
  *
  * @author Neil Manvar
  */
-@Listeners({SauceOnDemandTestListener.class})
-public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider  {
-
-    public String seleniumURI = "@ondemand.saucelabs.com:443";
+public class TestBase  {
 
     public String buildTag = System.getenv("BUILD_TAG");
 
     public String username = System.getenv("SAUCE_USERNAME");
 
     public String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-
-    /**
-     * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
-     * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
-     */
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(username, accesskey);
 
     /**
      * ThreadLocal variable which contains the  {@link WebDriver} instance which is used to perform browser interactions with.
@@ -69,6 +56,7 @@ public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAu
                 new Object[]{"internet explorer", "11.0", "Windows 7"},
                 new Object[]{"safari", "10.0", "OS X 10.11"},
                 new Object[]{"chrome", "54.0", "OS X 10.10"},
+                new Object[]{"firefox", "latest-1", "Windows 7"},
         };
     }
 
@@ -85,15 +73,6 @@ public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAu
      */
     public String getSessionId() {
         return sessionId.get();
-    }
-
-    /**
-     *
-     * @return the {@link SauceOnDemandAuthentication} instance containing the Sauce username/access key
-     */
-    @Override
-    public SauceOnDemandAuthentication getAuthentication() {
-        return authentication;
     }
 
     /**
@@ -124,7 +103,7 @@ public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAu
 
         // Launch remote browser and set it as the current thread
         webDriver.set(new RemoteWebDriver(
-                new URL("https://" + authentication.getUsername() + ":" + authentication.getAccessKey() + seleniumURI +"/wd/hub"),
+                new URL("https://" + username + ":" + accesskey + "@ondemand.saucelabs.com:443/wd/hub"),
                 capabilities));
 
         // set current sessionId
@@ -138,9 +117,8 @@ public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAu
      * Closes the browser
      */
     @AfterMethod
-    public void tearDown() throws Exception {
-
-        //Gets browser logs if available.
+    public void tearDown(ITestResult result) throws Exception {
+        ((JavascriptExecutor) webDriver.get()).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
         webDriver.get().quit();
     }
 
