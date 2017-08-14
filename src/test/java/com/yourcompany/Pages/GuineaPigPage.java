@@ -57,7 +57,7 @@ public class GuineaPigPage {
     }
 
     public boolean isOnPage() {
-        String title = "I am a page title - Sauce Labs";
+        String title = "I am a page title - Sauce";
         return driver.getTitle() == title;
     }
 
