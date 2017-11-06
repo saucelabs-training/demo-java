@@ -14,7 +14,7 @@ import java.rmi.UnexpectedException;
  * Created by mehmetgerceker on 12/7/15.
  */
 
-public class FollowLinkTest extends TestBase {
+public class FailFollowLinkTest extends TestBase {
 
     /**
      * Runs a simple test verifying link can be followed.
@@ -22,7 +22,7 @@ public class FollowLinkTest extends TestBase {
      * @throws InvalidElementStateException
      */
     @Test(dataProvider = "hardCodedBrowsers")
-    public void verifyLinkTest(String browser, String version, String os, Method method)
+    public void verifyLinkTest2(String browser, String version, String os, Method method)
             throws MalformedURLException, InvalidElementStateException, UnexpectedException {
 
         //create webdriver session
@@ -36,6 +36,7 @@ public class FollowLinkTest extends TestBase {
         page.followLink();
 
         this.annotate("Asserting that we are on a new page...");
-        Assert.assertFalse(page.isOnPage());
+        Assert.assertFalse(true);
     }
+
 }
