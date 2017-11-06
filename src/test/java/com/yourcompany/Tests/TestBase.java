@@ -116,7 +116,7 @@ public class TestBase  {
      * Dumps browser log and
      * Closes the browser
      */
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) throws Exception {
         ((JavascriptExecutor) webDriver.get()).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
         webDriver.get().quit();
