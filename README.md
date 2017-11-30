@@ -34,7 +34,7 @@ Tests in Parallel:
 	$ mvn test
 	```
 
-[Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard/)
+[Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard)
 
 ### Advice/Troubleshooting
 1. It may be useful to use a Java IDE such as IntelliJ or Eclipse to help troubleshoot potential issues. 
