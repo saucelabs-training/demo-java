@@ -1,8 +1,8 @@
 run_all_in_parallel:
-	make -j test_LG_Nexus_4_E960_real test_Motorola_Moto_G_2nd_gen_real
+	make -j test_Android test_iOS
 	
-test_LG_Nexus_4_E960_real:
-	deviceName=LG_Nexus_4_E960_real mvn test
+test_Android:
+	platformName=Android mvn test
 
-test_Motorola_Moto_G_2nd_gen_real:
-	deviceName=Motorola_Moto_G_2nd_gen_real mvn test
+test_iOS:
+	platformName=ios mvn test
