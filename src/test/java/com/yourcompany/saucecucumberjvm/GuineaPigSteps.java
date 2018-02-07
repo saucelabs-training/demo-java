@@ -25,7 +25,7 @@ public class GuineaPigSteps {
 	@Before
 	public void setUp(Scenario scenario) throws Throwable {
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("testobject_api_key", "DAF3E0D7CE9644679CB0CA3433201BE2");
+        caps.setCapability("testobject_api_key", System.getenv("RDC_API_KEY"));
 		caps.setCapability("platformName", System.getenv("platformName"));
 		
 	    driver = new RemoteWebDriver(new URL("https://us1.appium.testobject.com/wd/hub"), caps);
