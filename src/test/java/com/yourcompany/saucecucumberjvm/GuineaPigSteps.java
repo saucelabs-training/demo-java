@@ -25,10 +25,10 @@ public class GuineaPigSteps {
 	@Before
 	public void setUp(Scenario scenario) throws Throwable {
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("testobject_api_key", System.getenv("RDC_API_KEY"));
-		caps.setCapability("platformName", System.getenv("platformName"));
-		
-	    driver = new RemoteWebDriver(new URL("https://us1.appium.testobject.com/wd/hub"), caps);
+        caps.setCapability("testobject_api_key", System.getenv("TESTOBJECT_API_KEY"));
+        caps.setCapability("platformName", "Android");
+
+	    driver = new RemoteWebDriver(new URL(System.getenv("APPIUM_URL")), caps);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		resultReporter = new ResultReporter();
