@@ -3,4 +3,5 @@ jdk:
   - oraclejdk8
 before_install:
   - export | grep SAUCE_
+  - echo "Testing"
 
