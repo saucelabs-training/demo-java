@@ -49,7 +49,7 @@ public class GuineaPigPage {
 
         // Race condition for time to populate yourCommentsSpan
         WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.textToBePresentInElement(yourCommentsSpan, text));
+        //wait.until(ExpectedConditions.textToBePresentInElement(yourCommentsSpan, text));
     }
 
     public String getSubmittedCommentText() {
