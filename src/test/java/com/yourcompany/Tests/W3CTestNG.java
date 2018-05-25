@@ -1,21 +1,15 @@
 package com.yourcompany.Tests;
 
 import com.yourcompany.Pages.GuineaPigPage;
-import org.junit.After;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.ITest;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
@@ -27,43 +21,39 @@ import java.net.URL;
 public class W3CTestNG {
 
     private WebDriver driver;
+    private MutableCapabilities options;
 
     /**
      * Parameters used here represent options for W3C compliant
      * browsers (Chrome is currently not compliant)
      * @return
      */
-    @DataProvider
-    public static Object[][]  data() {
+    @DataProvider(parallel = true)
+    public static Object[][] data() {
      return new Object[][] {
-                //{new ChromeOptions()},
-                {new FirefoxOptions()},
-                {new EdgeOptions()},
-                {new SafariOptions()},
-                {new InternetExplorerOptions()}
+             //{new ChromeOptions()},
+             {new FirefoxOptions(), "latest", "Windows 10"},
+             {new FirefoxOptions(), "58.0", "OS X 10.12"},
+             {new EdgeOptions(), "latest", "Windows 10"},
+             {new SafariOptions(), "latest", "OS X 10.12"},
+             {new InternetExplorerOptions(), "latest", "Windows 7"},
         };
     }
 
-    @AfterMethod
-    public void teardown(ITestResult result){
-        //((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
-        driver.quit();
-    }
-
-    @Test(dataProvider = "data")
-    public void simple(MutableCapabilities options) throws MalformedURLException {
+    /**
+     * Utility function that makes use of W3C Options classes.
+     *
+     * @param options
+     * @param browserVersion
+     * @param platformName
+     * @throws MalformedURLException
+     */
+    public void createDriverOptions(MutableCapabilities options, String browserVersion, String platformName) throws MalformedURLException{
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
 
-        // condition particular capabilities as needed
-        options.setCapability("browserVersion", "latest");
-        if (options instanceof SafariOptions){
-            options.setCapability("platformName", "OS X 10.12");
-        } else if (options instanceof InternetExplorerOptions) {
-            options.setCapability("platformName", "Windows 7");
-        } else {
-            options.setCapability("platformName", "Windows 10");
-        }
+        options.setCapability("browserVersion", browserVersion);
+        options.setCapability("platformName", platformName);
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("seleniumVersion", "3.11.0");
@@ -73,6 +63,16 @@ public class W3CTestNG {
         options.setCapability("sauce:options", sauceOptions);
 
         driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + "@ondemand.saucelabs.com/wd/hub"), options);
+    }
+
+    @AfterMethod
+    public void teardown(ITestResult result){
+        driver.quit();
+    }
+
+    @Test(dataProvider = "data")
+    public void simpleCase(MutableCapabilities options, String browserVersion, String platformName) throws MalformedURLException {
+        this.createDriverOptions(options, browserVersion, platformName);
 
         GuineaPigPage page = GuineaPigPage.visitPage(driver);
         String title = page.driver.getTitle();
