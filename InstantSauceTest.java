@@ -25,8 +25,8 @@ public class InstantJavaTestNGTest {
          * Not sure how to use env variables, follow this -
          * https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Environment+Variables+for+Authentication+Credentials
          */
-        String sauceUserName = System.getenv("SAUCE_USERNAME");
-        String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+        String sauceUserName = "SAUCE_USERNAME";
+        String sauceAccessKey = "SAUCE_ACCESS_KEY";
 
 
         /**
