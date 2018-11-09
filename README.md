@@ -1,7 +1,9 @@
 # demonstration-scripts-java
+
 This directory contains example scripts and dependencies for running automated Selenium tests on Sauce Labs using Java. You can use these scripts to test your Sauce Labs authentication credentials, the setup of your automated testing environment, and try out Sauce Labs features, like cross-browser testing. Feel free to copy these files or clone the entire directory to your local environment to experiment with creating your own automated Selenium tests!
 
 **For Demonstration Purposes Only**
+
 The code in these scripts is provided on an "AS-IS” basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are provided for educational and demonstration purposes only, and should not be used in production. Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by the Technical Services team at Sauce Labs.
 
 ## Setting Up a Java Selenium Environment
@@ -365,8 +367,8 @@ String sauceAccessKey = "SAUCE_ACCESS_KEY";]]></ac:plain-text-body>
     </p>
   </li>
   <li style="list-style-type: decimal;">
-    <p>
       In IntelliJ, you’ll see a green check mark next to the message, 
-      <code>“Tests passed: 1”</code>.  Congratulations, you've run your first test on Sauce! Now you can use our Platform Configurator to change the desired capabilities in your test to try it on different combinations of platforms, operating systems, and browsers.</p>
+      <code>“Tests passed: 1”</code>.   
   </li>
 </ol>
+<p>Congratulations, you've run your first test on Sauce! Now you can use our <a href="https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/">Platform Configurator</a> to change the desired capabilities in your test to try it on different combinations of platforms, operating systems, and browsers.</p>
