@@ -54,7 +54,7 @@ public class TestBase  {
             new Object[]{"MicrosoftEdge", "16.16299", "Windows 10"},
             new Object[]{"firefox", "63.0", "Windows 10"},
             new Object[]{"internet explorer", "11.0", "Windows 7"},
-            new Object[]{"Jafari", "12.0", "OS X 10.13"},
+            new Object[]{"safari", "12.0", "OS X 10.13"},
             new Object[]{"chrome", "70.0", "OS X 10.13"},
             new Object[]{"firefox", "latest-1", "Windows 7"},
         };
