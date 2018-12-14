@@ -226,7 +226,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     <p>
       Name the class 
       <code>
-        InstantJavaTestNGTest
+        InstantSauceTestNGTest1
       </code>
        and click 
       <strong>
@@ -237,7 +237,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
   </li>
   <li style="list-style-type: decimal;">
     <p>
-      Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/InstantSauceTest.java">https://github.com/saucelabs-training/demo-java/blob/master/InstantSauceTest.java</a>.
+      Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/SauceExamples/testng/InstantSauceTestNGTest1.java</a>.
     </p>
   </li>
   <li style="list-style-type: decimal;">
@@ -303,7 +303,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
   Updating Your Test Script
 </h3>
 <p>
-  You need to enter your Sauce Labs user name and access key into the test script. In IntelliJ, in the InstantJavaTestNGTest class, scroll down until you see:<br/>
+  You need to enter your Sauce Labs user name and access key into the test script. In IntelliJ, in the InstantSauceTestNGTest1 class, scroll down until you see:<br/>
   
 </p>
 <ac:structured-macro ac:macro-id="72b32d9d-4db3-40c4-8599-71862bab2099" ac:name="code" ac:schema-version="1">
@@ -323,7 +323,7 @@ String sauceAccessKey = "SAUCE_ACCESS_KEY";]]></ac:plain-text-body>
 <ol>
   <li style="list-style-type: decimal;">
     <p>
-      In IntelliJ, right click anywhere in the <code>InstantJavaTestNGTest</code> code, then select 
+      In IntelliJ, right click anywhere in the <code>InstantSauceTestNGTest1</code> code, then select 
       <code>
         Run shouldOpenSafari()
       </code>
@@ -341,7 +341,7 @@ String sauceAccessKey = "SAUCE_ACCESS_KEY";]]></ac:plain-text-body>
   </li>
   <li style="list-style-type: decimal;">
     <p>
-      You'll see that the test s<strong>houldOpenSafari</strong>
+      You'll see that the test <strong>shouldOpenSafari</strong>
        is running.
     </p>
   </li>
