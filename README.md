@@ -169,9 +169,9 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     <p>Expand <strong>External Libraries</strong>. <br/>You’ll see that the Selenium Standalone Server <code>.jar</code> file is there.</p>
   </li>
 </ol>
-<h3>Adding the TestNG Framework</h3>
+<h3>Adding the SauceExamplesTestNG Framework</h3>
 <p>
-  The test script you’ll run relies on the TestNG framework. This plugin comes with IntelliJ but you’ll need to add it to your project.
+  The test script you’ll run relies on the SauceExamplesTestNG framework. This plugin comes with IntelliJ but you’ll need to add it to your project.
 </p>
 <ol>
   <li style="list-style-type: decimal;">
@@ -194,7 +194,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
   </li>
   <li style="list-style-type: decimal;">
     <p>Click <strong>Apply</strong> and then click <strong>OK</strong>.<br/>
-      <span style="letter-spacing: 0.0px;">The TestNG <code>.jar</code> files appear in <strong>External Libraries</strong>.
+      <span style="letter-spacing: 0.0px;">The SauceExamplesTestNG <code>.jar</code> files appear in <strong>External Libraries</strong>.
     </p>
   </li>
 </ol>
