@@ -1,7 +1,9 @@
-# demonstration-scripts-java
+# Java Demonstration Scripts
+
 This directory contains example scripts and dependencies for running automated Selenium tests on Sauce Labs using Java. You can use these scripts to test your Sauce Labs authentication credentials, the setup of your automated testing environment, and try out Sauce Labs features, like cross-browser testing. Feel free to copy these files or clone the entire directory to your local environment to experiment with creating your own automated Selenium tests!
 
 **For Demonstration Purposes Only**
+
 The code in these scripts is provided on an "AS-IS” basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are provided for educational and demonstration purposes only, and should not be used in production. Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by the Technical Services team at Sauce Labs.
 
 ## Setting Up a Java Selenium Environment
@@ -167,9 +169,9 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     <p>Expand <strong>External Libraries</strong>. <br/>You’ll see that the Selenium Standalone Server <code>.jar</code> file is there.</p>
   </li>
 </ol>
-<h3>Adding the TestNG Framework</h3>
+<h3>Adding the SauceExamplesTestNG Framework</h3>
 <p>
-  The test script you’ll run relies on the TestNG framework. This plugin comes with IntelliJ but you’ll need to add it to your project.
+  The test script you’ll run relies on the SauceExamplesTestNG framework. This plugin comes with IntelliJ but you’ll need to add it to your project.
 </p>
 <ol>
   <li style="list-style-type: decimal;">
@@ -192,7 +194,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
   </li>
   <li style="list-style-type: decimal;">
     <p>Click <strong>Apply</strong> and then click <strong>OK</strong>.<br/>
-      <span style="letter-spacing: 0.0px;">The TestNG <code>.jar</code> files appear in <strong>External Libraries</strong>.
+      <span style="letter-spacing: 0.0px;">The SauceExamplesTestNG <code>.jar</code> files appear in <strong>External Libraries</strong>.
     </p>
   </li>
 </ol>
@@ -235,7 +237,11 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
   </li>
   <li style="list-style-type: decimal;">
     <p>
+<<<<<<< HEAD
       Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/InstantSauceTestNGTest1.java">https://github.com/saucelabs-training/demo-java/blob/master/InstantSauceTestNGTest1.java</a>.
+=======
+      Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/SauceExamples/testng/InstantSauceTestNGTest1.java</a>.
+>>>>>>> 113df62278e88bdd57c0989afeca9d200c7ec433
     </p>
   </li>
   <li style="list-style-type: decimal;">
@@ -339,7 +345,7 @@ String sauceAccessKey = "SAUCE_ACCESS_KEY";]]></ac:plain-text-body>
   </li>
   <li style="list-style-type: decimal;">
     <p>
-      You'll see that the test s<strong>houldOpenSafari</strong>
+      You'll see that the test <strong>shouldOpenSafari</strong>
        is running.
     </p>
   </li>
@@ -365,8 +371,8 @@ String sauceAccessKey = "SAUCE_ACCESS_KEY";]]></ac:plain-text-body>
     </p>
   </li>
   <li style="list-style-type: decimal;">
-    <p>
       In IntelliJ, you’ll see a green check mark next to the message, 
-      <code>“Tests passed: 1”</code>.  Congratulations, you've run your first test on Sauce! Now you can use our Platform Configurator to change the desired capabilities in your test to try it on different combinations of platforms, operating systems, and browsers.</p>
+      <code>“Tests passed: 1”</code>.   
   </li>
 </ol>
+<p>Congratulations, you've run your first test on Sauce! Now you can use our <a href="https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/">Platform Configurator</a> to change the desired capabilities in your test to try it on different combinations of platforms, operating systems, and browsers.</p>
