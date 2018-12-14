@@ -236,14 +236,8 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     </p>
   </li>
   <li style="list-style-type: decimal;">
-    <p>
-<<<<<<< HEAD
-      Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/InstantSauceTestNGTest1.java">https://github.com/saucelabs-training/demo-java/blob/master/InstantSauceTestNGTest1.java</a>.
-=======
-      Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/SauceExamples/testng/InstantSauceTestNGTest1.java</a>.
->>>>>>> 113df62278e88bdd57c0989afeca9d200c7ec433
-    </p>
-  </li>
+    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/sauce-examples/testng/InstantSauceTestNGTest1.java">https://github.com/saucelabs-training/demo-java/blob/master/sauce-examples/testng/InstantSauceTestNGTest1.java</a>.
+</li>
   <li style="list-style-type: decimal;">
     <p>
       In IntelliJ, delete any text that’s in the new class and paste in the test script.
