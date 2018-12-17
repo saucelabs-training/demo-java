@@ -1,4 +1,4 @@
-package SauceExamples.testng;
+package testng.web.tests;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -7,14 +7,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InstantSauceTestNGTest2 {
-
+public class InstantSauceTestNGTest3 {
     private WebDriver driver;
 
     @Test
@@ -29,40 +29,41 @@ public class InstantSauceTestNGTest2 {
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
 
         /**
-         * In this section, we will configure our test to run on some specific
-         * browser/os combination in Sauce Labs.*/
+         * In this exercise use the Platform Configurator, located here:
+         * https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
+         * in order to replace the following DesiredCapabilities: browserName, platform, and version
+         * For example, I chose to use Windows 10 with Chrom version 59.
+         * Note: If you use Chrome version 61+ you must use the sauce:options capability.
+         * More info here: https://wiki.saucelabs.com/display/DOCS/Selenium+W3C+Capabilities+Support+-+Beta
+         */
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("username", sauceUserName);
         capabilities.setCapability("accessKey", sauceAccessKey);
-        capabilities.setCapability("browserName", "Safari");
-        capabilities.setCapability("platform", "macOS 10.13");
-        capabilities.setCapability("version", "11.1");
+        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("platform", "Windows 10");
+        capabilities.setCapability("version", "59.0");
         capabilities.setCapability("name", method.getName());
 
         /**
-         * In this section, we set the Remote WebDriver to run on Sauce Labs, and pass the capabilities.
-         * Then we perform some actions on an application.
-         * For this script, enter in your application's URL in place of 'https://www.saucedemo.com'. */
+         * Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
 
         driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
 
         /**
-         * Synchronize on the next page and make sure it loads.
-         * In this section, we confirm the test ran correctly by checking the page title.
          * Change the value 'Swag Labs' of pageTitle to the value in your application's html page */
-
-        /** Not sure how to grab the page title? Use a browser developer tools; for example in Chrome it's:
-         *  View > Developer > Developer Tools. Then you can view the page title in the right column */
-
         String actualPageTitle = driver.getTitle();
         String pageTitle = "Swag Labs";
         assertEquals(pageTitle, actualPageTitle);
 
+        /** Not sure how to grab the page title? Use a browser developer tools; for example in Chrome it's:
+         *  View > Developer > Developer Tools. Then you can view the page title in the right column */
+
     }
     /**
      * Below we are performing 2 critical actions. Quitting the driver and passing
-     * the test result to Sauce Labs user interface. */
+     * the test result to Sauce Labs user interface.
+     */
     @AfterMethod
     public void cleanUpAfterTestMethod(ITestResult result) {
         ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));

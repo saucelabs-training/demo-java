@@ -1,4 +1,4 @@
-package sauce-examples.junit;
+package junit.web.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,14 +11,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InstantSauceTestJunit2 {
+public class InstantSauceJunitTest3 {
     private WebDriver driver;
 
     @Test
     @DisplayName("shouldOpenChrome()")
-    public void shouldOpenSafari(TestInfo testInfo) throws MalformedURLException {
+    public void shouldOpenChrome(TestInfo testInfo) throws MalformedURLException {
         /** Here we set environment variables from your local machine, or IntelliJ run configuration,
          *  and store these values in the variables below. Doing this is a best practice in terms of test execution
          *  and security. If you're not sure how to use env variables, refer to this guide -
@@ -26,22 +26,24 @@ public class InstantSauceTestJunit2 {
          * or check junit5-README.md */
         String sauceUserName = System.getenv("SAUCE_USERNAME");
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
-
         /**
-         * In this section, we will configure our test to run on some specific
-         * browser/os combination in Sauce Labs.*/
+         * In this exercise use the Platform Configurator, located here:
+         * https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
+         * in order to replace the following DesiredCapabilities: browserName, platform, and version
+         * For example, I chose to use Windows 10 with Chrom version 59.
+         * Note: If you use Chrome version 61+ you must use the sauce:options capability.
+         * More info here: https://wiki.saucelabs.com/display/DOCS/Selenium+W3C+Capabilities+Support+-+Beta
+         */
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("username", sauceUserName);
         capabilities.setCapability("accessKey", sauceAccessKey);
-        capabilities.setCapability("browserName", "Safari");
-        capabilities.setCapability("platform", "macOS 10.13");
-        capabilities.setCapability("version", "11.1");
+        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("platform", "Windows 10");
+        capabilities.setCapability("version", "59.0");
         capabilities.setCapability("name", testInfo.getDisplayName());
 
         /**
-         * In this section, we set the Remote WebDriver to run on Sauce Labs, and pass the capabilities.
-         * Then we perform some actions on an application.
-         * For this script, enter in your application's URL in place of 'https://www.saucedemo.com'. */
+         * Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
 
         driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
@@ -51,22 +53,25 @@ public class InstantSauceTestJunit2 {
          * In this section, we confirm the test ran correctly by checking the page title.
          * Change the value 'Swag Labs' of pageTitle to the value in your application's html page */
 
-        /** Not sure how to grab the page title? Use a browser developer tools; for example in Chrome it's:
-         *  View > Developer > Developer Tools. Then you can view the page title in the right column */
+        /**
+         * Change the value 'Swag Labs' of pageTitle to the value in your application's html page */
 
         String actualPageTitle = driver.getTitle();
         String pageTitle = "Swag Labs";
         assertEquals(pageTitle, actualPageTitle);
 
-        /**
-         * Below we are performing 2 critical actions. Quitting the driver and passing
-         * the test result to Sauce Labs user interface. */
+        /** Not sure how to grab the page title? Use a browser developer tools; for example in Chrome it's:
+         *  View > Developer > Developer Tools. Then you can view the page title in the right column */
 
-        if (pageTitle == "Swag Labs"){
-            ((JavascriptExecutor)driver).executeScript("sauce:job-result=passed");
-        }
-        else {
-            ((JavascriptExecutor)driver).executeScript("sauce:job-result=failed");
+        /**
+         * * Below we are performing 2 critical actions. Quitting the driver and passing
+         * the test result to Sauce Labs user interface.
+         * Again, make sure you change the conditional in the if statement
+         */
+        if (pageTitle == "Swag Labs") {
+            ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+        } else {
+            ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
         }
         driver.quit();
     }

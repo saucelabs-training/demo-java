@@ -1,26 +1,23 @@
-package SauceExamples.junit;
-
-import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package testng.web.tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+import org.testng.Assert;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
-public class InstantSauceTestJunit1 {
+public class InstantSauceTestNGTest1 {
     private WebDriver driver;
 
     @Test
-    @DisplayName("shouldOpenChrome()")
-    public void shouldOpenSafari(TestInfo testInfo) throws MalformedURLException {
+    public void shouldOpenSafari(Method method) throws MalformedURLException {
+
         /**
          * In this section, we will configure our SauceLabs credentials in order to run our tests on saucelabs.com
          */
@@ -28,9 +25,10 @@ public class InstantSauceTestJunit1 {
         String sauceAccessKey = "SAUCE_ACCESS_KEY";
 
         /**
-         * In this section, we will configure our test to run on some specific
+         * In this section, we will configure our test to run a specific
          * browser/os combination in Sauce Labs
          */
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         //set your user name and access key to run tests in Sauce
@@ -49,8 +47,15 @@ public class InstantSauceTestJunit1 {
         capabilities.setCapability("version", "11.1");
 
         //set your test case name so that it shows up in Sauce Labs
-        capabilities.setCapability("name", testInfo.getDisplayName());
+        capabilities.setCapability("name", method.getName());
 
+        /**
+         * In this section, we will set the WebDriver to a Remote driver to run on sauce, and pass the capabilities
+         * we just set. Then we perform som actions on the page before quitting the driver.
+         */
+
+        //create a new Remote driver that will allow your test to send
+        // commands to the Sauce Labs grid so that Sauce can execute your tests
         driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
 
         //navigate to the url of the Sauce Labs Sample app
@@ -76,21 +81,13 @@ public class InstantSauceTestJunit1 {
         By inventoryPageLocator = By.id("inventory_container");
         wait.until(ExpectedConditions.visibilityOfElementLocated(inventoryPageLocator));
 
-        //Assert that the inventory page displayed appropriately
-        Boolean result = driver.findElements(inventoryPageLocator).size() > 0;
-        assertTrue(result);
-
         /**
-         * Here we teardown the driver session and send the results to Sauce Labs
+         * In this section, we confirm the test ran correctly, howerver we don't post the results to saucelabs.com
          */
-        if (result){
-            ((JavascriptExecutor)driver).executeScript("sauce:job-result=passed");
-        }
-        else {
-            ((JavascriptExecutor)driver).executeScript("sauce:job-result=failed");
-        }
+        //Assert that the inventory page displayed appropriately
+        Assert.assertTrue(driver.findElement(inventoryPageLocator).isDisplayed());
+
+        //Here we tear down the WebDriver session
         driver.quit();
-
     }
-
 }
