@@ -1,4 +1,4 @@
-package SauceExamples.junit;
+package webexamples.junit;
 
 import org.junit.jupiter.api.*;
 
@@ -15,11 +15,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class InstantSauceTestJunit1 {
+public class InstantSauceJunitTest1 {
     private WebDriver driver;
 
     @Test
-    @DisplayName("shouldOpenChrome()")
+    @DisplayName("shouldOpenSafari()")
     public void shouldOpenSafari(TestInfo testInfo) throws MalformedURLException {
         /**
          * In this section, we will configure our SauceLabs credentials in order to run our tests on saucelabs.com

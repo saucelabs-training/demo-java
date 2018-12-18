@@ -1,4 +1,4 @@
-package SauceExamples.testng;
+package webexamples.testng;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
