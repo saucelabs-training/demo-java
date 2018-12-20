@@ -51,12 +51,12 @@ public class TestBase  {
     @DataProvider(name = "hardCodedBrowsers", parallel = true)
     public static Object[][] sauceBrowserDataProvider(Method testMethod) {
         return new Object[][]{
-            new Object[]{"MicrosoftEdge", "16.16299", "Windows 10"},
-            new Object[]{"firefox", "63.0", "Windows 10"},
-            new Object[]{"internet explorer", "11.0", "Windows 7"},
-            new Object[]{"safari", "12.0", "OS X 10.13"},
-            new Object[]{"chrome", "70.0", "OS X 10.13"},
-            new Object[]{"firefox", "latest-1", "Windows 7"},
+                new Object[]{"MicrosoftEdge", "14.14393", "Windows 10"},
+                new Object[]{"firefox", "49.0", "Windows 10"},
+                new Object[]{"internet explorer", "11.0", "Windows 7"},
+                new Object[]{"safari", "10.0", "OS X 10.11"},
+                new Object[]{"chrome", "54.0", "OS X 10.10"},
+                new Object[]{"firefox", "latest-1", "Windows 7"},
         };
     }
 
@@ -116,7 +116,7 @@ public class TestBase  {
      * Dumps browser log and
      * Closes the browser
      */
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod
     public void tearDown(ITestResult result) throws Exception {
         ((JavascriptExecutor) webDriver.get()).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
         webDriver.get().quit();

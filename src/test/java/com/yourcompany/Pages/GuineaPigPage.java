@@ -57,12 +57,7 @@ public class GuineaPigPage {
     }
 
     public boolean isOnPage() {
-        String title = "I am a page title - Sauce";
-        return driver.getTitle() == title;
-    }
-    public boolean isOnPageFail() {
-        String title = "I am not a page title - Sauce";
-        System.out.println(driver.getTitle() == title);
+        String title = "I am a page title - Sauce Labs";
         return driver.getTitle() == title;
     }
 

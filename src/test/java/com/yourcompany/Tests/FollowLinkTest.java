@@ -38,4 +38,5 @@ public class FollowLinkTest extends TestBase {
         this.annotate("Asserting that we are on a new page...");
         Assert.assertFalse(page.isOnPage());
     }
+
 }
