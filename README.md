@@ -236,7 +236,7 @@ The code in these scripts is provided on an "AS-IS” basis without warranty of 
     </p>
   </li>
   <li style="list-style-type: decimal;">
-    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/sauce-examples/testng/InstantSauceTestNGTest1.java">https://github.com/saucelabs-training/demo-java/blob/master/sauce-examples/testng/InstantSauceTestNGTest1.java</a>.
+    <p>Download the test script from <a href="https://github.com/saucelabs-training/demo-java/blob/master/intstant-web-tests/testng/InstantSauceTestNGTest1.java">https://github.com/saucelabs-training/demo-java/blob/master/intstant-web-tests/testng/InstantSauceTestNGTest1.java</a>.
 </li>
   <li style="list-style-type: decimal;">
     <p>
