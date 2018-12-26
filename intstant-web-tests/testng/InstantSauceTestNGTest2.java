@@ -5,11 +5,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InstantSauceTestNGTest2 {
 
