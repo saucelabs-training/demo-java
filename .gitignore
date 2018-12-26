@@ -1,9 +1,6 @@
 # Compiled files
 /out
 
-# IML file
-*.iml
-
 # Log file
 *.log
 
