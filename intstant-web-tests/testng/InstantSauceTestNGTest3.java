@@ -2,6 +2,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -9,9 +10,6 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InstantSauceTestNGTest3 {
     private WebDriver driver;
@@ -31,7 +29,7 @@ public class InstantSauceTestNGTest3 {
          * In this exercise use the Platform Configurator, located here:
          * https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
          * in order to replace the following DesiredCapabilities: browserName, platform, and version
-         * For example, I chose to use Windows 10 with Chrom version 59.
+         * For example, I chose to use Windows 10 with Chrome version 59.
          * Note: If you use Chrome version 61+ you must use the sauce:options capability.
          * More info here: https://wiki.saucelabs.com/display/DOCS/Selenium+W3C+Capabilities+Support+-+Beta
          */
@@ -48,7 +46,7 @@ public class InstantSauceTestNGTest3 {
 
         driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
-        assertTrue(true);
+        Assert.assertTrue(true);
 
     }
     /**

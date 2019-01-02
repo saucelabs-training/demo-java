@@ -2,6 +2,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -11,12 +12,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-
-<<<<<<< HEAD
-import static org.junit.jupiter.api.Assertions.*;
-=======
-import static org.junit.jupiter.api.Assertions.assertTrue;
->>>>>>> dev
 
 public class InstantSauceTestNGTest4 {
 
@@ -70,7 +65,7 @@ public class InstantSauceTestNGTest4 {
         /** Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
         driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
-        assertTrue(true);
+        Assert.assertTrue(true);
 
     }
     /**

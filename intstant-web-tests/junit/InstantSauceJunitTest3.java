@@ -10,7 +10,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InstantSauceJunitTest3 {
@@ -30,7 +29,7 @@ public class InstantSauceJunitTest3 {
          * In this exercise use the Platform Configurator, located here:
          * https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
          * in order to replace the following DesiredCapabilities: browserName, platform, and version
-         * For example, I chose to use Windows 10 with Chrom version 59.
+         * For example, I chose to use Windows 10 with Chrome version 59.
          * Note: If you use Chrome version 61+ you must use the sauce:options capability.
          * More info here: https://wiki.saucelabs.com/display/DOCS/Selenium+W3C+Capabilities+Support+-+Beta
          */
@@ -44,7 +43,7 @@ public class InstantSauceJunitTest3 {
 
         /**
          * Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
-        driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("https://ondemand.saucelabs.com:443/wd/hub"), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
         assertTrue(true);
     }

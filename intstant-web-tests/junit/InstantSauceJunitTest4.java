@@ -40,7 +40,7 @@ public class InstantSauceJunitTest4 {
         /** Tags are an excellent way to control and filter your test automation
          * in Sauce Analytics. Get a better view into your test automation.
          */
-        List<String> tags = Arrays.asList("sauceDemo", "demoTest", "module4");
+        List<String> tags = Arrays.asList("sauceDemo", "demoTest", "module4", "javaTest");
         capabilities.setCapability("tags", tags);
         /** Another of the most important things that you can do to get started
          * is to set timeout capabilities for Sauce based on your organizations needs. For example:
@@ -59,7 +59,7 @@ public class InstantSauceJunitTest4 {
         capabilities.setCapability("build", "SauceDemo");
         /** Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
 
-        driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("https://ondemand.saucelabs.com:443/wd/hub"), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
         assertTrue(true);
     }
