@@ -49,6 +49,9 @@ public class InstantSauceJunitTest1 {
         //set your test case name so that it shows up in Sauce Labs
         capabilities.setCapability("name", testInfo.getDisplayName());
 
+        /** If you're accessing the EU data center, use the following endpoint:.
+         * https://ondemand.eu-central-1.saucelabs.com/wd/hub
+         * */
         driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
 
         //navigate to the url of the Sauce Labs Sample app

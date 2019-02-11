@@ -24,6 +24,7 @@ public class InstantSauceTestNGTest3 {
 
         String sauceUserName = System.getenv("SAUCE_USERNAME");
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+        String sauceURL = System.getenv("SAUCE_URL");
 
         /**
          * In this exercise use the Platform Configurator, located here:
@@ -41,10 +42,11 @@ public class InstantSauceTestNGTest3 {
         capabilities.setCapability("version", "59.0");
         capabilities.setCapability("name", method.getName());
 
-        /**
-         * Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
-
-        driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
+        /** If you're accessing the EU data center, use the following endpoint:.
+         * https://ondemand.eu-central-1.saucelabs.com/wd/hub
+         * */
+        driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
+        /** Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
         driver.navigate().to("https://www.saucedemo.com");
         Assert.assertTrue(true);
 

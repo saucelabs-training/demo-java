@@ -27,6 +27,7 @@ public class InstantSauceTestNGTest4 {
 
         String sauceUserName = System.getenv("SAUCE_USERNAME");
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+        String sauceURL = System.getenv("SAUCE_URL");
 
         /**
          * Here we set DesiredCapabilities, in this exercise we set additional capabilities below that align with
@@ -62,8 +63,11 @@ public class InstantSauceTestNGTest4 {
          * It's a best practice to always group your tests into builds. */
         capabilities.setCapability("build", "SauceDemo");
 
+        /** If you're accessing the EU data center, use the following endpoint:.
+         * https://ondemand.eu-central-1.saucelabs.com/wd/hub
+         * */
+        driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
         /** Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
-        driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
         Assert.assertTrue(true);
 

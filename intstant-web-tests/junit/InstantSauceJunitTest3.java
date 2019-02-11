@@ -25,6 +25,7 @@ public class InstantSauceJunitTest3 {
          * or check junit5-README.md */
         String sauceUserName = System.getenv("SAUCE_USERNAME");
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+        String sauceURL = System.getenv("SAUCE_URL");
         /**
          * In this exercise use the Platform Configurator, located here:
          * https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
@@ -41,9 +42,11 @@ public class InstantSauceJunitTest3 {
         capabilities.setCapability("version", "59.0");
         capabilities.setCapability("name", testInfo.getDisplayName());
 
-        /**
-         * Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
-        driver = new RemoteWebDriver(new URL("https://ondemand.saucelabs.com:443/wd/hub"), capabilities);
+        /** If you're accessing the EU data center, use the following endpoint:.
+         * https://ondemand.eu-central-1.saucelabs.com/wd/hub
+         * */
+        driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
+        /** Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
         driver.navigate().to("https://www.saucedemo.com");
         assertTrue(true);
     }

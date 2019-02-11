@@ -54,6 +54,9 @@ public class InstantSauceTestNGTest1 {
 
         //create a new Remote driver that will allow your test to send
         // commands to the Sauce Labs grid so that Sauce can execute your tests
+        /** If you're accessing the EU data center, use the following endpoint:.
+         * https://ondemand.eu-central-1.saucelabs.com/wd/hub
+         * */
         driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
 
         //navigate to the url of the Sauce Labs Sample app

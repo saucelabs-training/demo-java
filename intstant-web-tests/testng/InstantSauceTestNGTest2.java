@@ -25,6 +25,7 @@ public class InstantSauceTestNGTest2 {
 
         String sauceUserName = System.getenv("SAUCE_USERNAME");
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+        String sauceURL = System.getenv("SAUCE_URL");
 
         /**
          * In this section, we will configure our test to run on some specific
@@ -41,7 +42,11 @@ public class InstantSauceTestNGTest2 {
          * In this section, we set the Remote WebDriver to run on Sauce Labs, and pass the capabilities.
          * Then we perform some actions on an application.
          * For this script, enter in your application's URL in place of 'https://www.saucedemo.com'. */
-        driver = new RemoteWebDriver(new URL("http://ondemand.saucelabs.com:80/wd/hub"), capabilities);
+
+        /** If you're accessing the EU data center, use the following endpoint:.
+         * https://ondemand.eu-central-1.saucelabs.com/wd/hub
+         * */
+        driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
         Assert.assertTrue(true);
 

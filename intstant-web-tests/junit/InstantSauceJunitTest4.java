@@ -25,6 +25,7 @@ public class InstantSauceJunitTest4 {
          * or check junit5-README.md */
         String sauceUserName = System.getenv("SAUCE_USERNAME");
         String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+        String sauceURL = System.getenv("SAUCE_URL");
         /**
          * * Here we set DesiredCapabilities, in this exercise we set additional capabilities below that align with
          * * testing best practices such as timeouts, tags, and build numbers
@@ -57,9 +58,12 @@ public class InstantSauceJunitTest4 {
          * 'test suite' that you can analyze for results.
          * It's a best practice to always group your tests into builds. */
         capabilities.setCapability("build", "SauceDemo");
-        /** Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
 
-        driver = new RemoteWebDriver(new URL("https://ondemand.saucelabs.com:443/wd/hub"), capabilities);
+        /** If you're accessing the EU data center, use the following endpoint:.
+         * https://ondemand.eu-central-1.saucelabs.com/wd/hub
+         * */
+        driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
+        /** Don't forget to enter in your application's URL in place of 'https://www.saucedemo.com'. */
         driver.navigate().to("https://www.saucedemo.com");
         assertTrue(true);
     }
