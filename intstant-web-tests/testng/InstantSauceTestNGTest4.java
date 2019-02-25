@@ -18,7 +18,7 @@ public class InstantSauceTestNGTest4 {
     private WebDriver driver;
 
     @Test
-    public void shouldOpenChrome(Method method) throws MalformedURLException {
+    public void shouldOpenChrome() throws MalformedURLException {
         /** Here we set environment variables from your local machine, or IntelliJ run configuration,
          *  and store these values in the variables below. Doing this is a best practice in terms of test execution
          *  and security. If you're not sure how to use env variables, refer to this guide -
@@ -39,7 +39,7 @@ public class InstantSauceTestNGTest4 {
         capabilities.setCapability("browserName", "Chrome");
         capabilities.setCapability("platform", "Windows 10");
         capabilities.setCapability("version", "59.0");
-        capabilities.setCapability("name", method.getName());
+        capabilities.setCapability("name", "4-best-practices");
 
         /** Tags are an excellent way to control and filter your test automation
          * in Sauce Analytics. Get a better view into your test automation.

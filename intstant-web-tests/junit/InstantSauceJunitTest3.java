@@ -16,8 +16,7 @@ public class InstantSauceJunitTest3 {
     private WebDriver driver;
 
     @Test
-    @DisplayName("shouldOpenChrome()")
-    public void shouldOpenChrome(TestInfo testInfo) throws MalformedURLException {
+    public void shouldOpenChrome() throws MalformedURLException {
         /** Here we set environment variables from your local machine, or IntelliJ run configuration,
          *  and store these values in the variables below. Doing this is a best practice in terms of test execution
          *  and security. If you're not sure how to use env variables, refer to this guide -
@@ -40,7 +39,8 @@ public class InstantSauceJunitTest3 {
         capabilities.setCapability("browserName", "Chrome");
         capabilities.setCapability("platform", "Windows 10");
         capabilities.setCapability("version", "59.0");
-        capabilities.setCapability("name", testInfo.getDisplayName());
+        capabilities.setCapability("build", "Onboarding Sample App - Java");
+        capabilities.setCapability("name", "3-cross-browser");
 
         /** If you're accessing the EU data center, use the following endpoint:.
          * https://ondemand.eu-central-1.saucelabs.com/wd/hub

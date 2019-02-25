@@ -14,7 +14,7 @@ public class InstantSauceTestNGTest1 {
     private WebDriver driver;
 
     @Test
-    public void shouldOpenSafari(Method method) throws MalformedURLException {
+    public void shouldOpenSafari() throws MalformedURLException {
 
         /**
          * In this section, we will configure our SauceLabs credentials in order to run our tests on saucelabs.com
@@ -44,8 +44,11 @@ public class InstantSauceTestNGTest1 {
         //set the browser version to 11.1
         capabilities.setCapability("version", "11.1");
 
+        //set the build name of the application
+        capabilities.setCapability("build", "Onboarding Sample App - Java");
+
         //set your test case name so that it shows up in Sauce Labs
-        capabilities.setCapability("name", method.getName());
+        capabilities.setCapability("name", "1-first-test");
 
         /**
          * In this section, we will set the WebDriver to a Remote driver to run on sauce, and pass the capabilities

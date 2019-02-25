@@ -17,8 +17,7 @@ public class InstantSauceJunitTest1 {
     private WebDriver driver;
 
     @Test
-    @DisplayName("shouldOpenSafari()")
-    public void shouldOpenSafari(TestInfo testInfo) throws MalformedURLException {
+    public void shouldOpenSafari() throws MalformedURLException {
         /**
          * In this section, we will configure our SauceLabs credentials in order to run our tests on saucelabs.com
          */
@@ -46,8 +45,11 @@ public class InstantSauceJunitTest1 {
         //set the browser version to 11.1
         capabilities.setCapability("version", "11.1");
 
+        //set the build name of the application
+        capabilities.setCapability("build", "Onboarding Sample App - Java");
+
         //set your test case name so that it shows up in Sauce Labs
-        capabilities.setCapability("name", testInfo.getDisplayName());
+        capabilities.setCapability("name", "1-first-test");
 
         /** If you're accessing the EU data center, use the following endpoint:.
          * https://ondemand.eu-central-1.saucelabs.com/wd/hub

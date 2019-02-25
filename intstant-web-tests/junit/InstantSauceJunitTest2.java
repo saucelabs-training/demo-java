@@ -16,8 +16,7 @@ public class InstantSauceJunitTest2 {
     private WebDriver driver;
 
     @Test
-    @DisplayName("shouldOpenSafari()")
-    public void shouldOpenSafari(TestInfo testInfo) throws MalformedURLException {
+    public void shouldOpenSafari() throws MalformedURLException {
         /** Here we set environment variables from your local machine, or IntelliJ run configuration,
          *  and store these values in the variables below. Doing this is a best practice in terms of test execution
          *  and security. If you're not sure how to use env variables, refer to this guide -
@@ -36,8 +35,8 @@ public class InstantSauceJunitTest2 {
         capabilities.setCapability("browserName", "Safari");
         capabilities.setCapability("platform", "macOS 10.13");
         capabilities.setCapability("version", "11.1");
-        capabilities.setCapability("name", testInfo.getDisplayName());
-
+        capabilities.setCapability("build", "Onboarding Sample App - Java");
+        capabilities.setCapability("name", "2-user-site");
         /**
          * In this section, we set the Remote WebDriver to run on Sauce Labs, and pass the capabilities.
          * Then we perform some actions on an application.
