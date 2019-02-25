@@ -3,6 +3,7 @@
 
 # Log file
 *.log
+**/target
 
 # DS_Store
 *.DS_Store
@@ -26,3 +27,4 @@
 hs_err_pid*
 
 **/.idea
+*.iml
