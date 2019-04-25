@@ -36,7 +36,7 @@ public class Module2TestNGTest {
         capabilities.setCapability("browserName", "Safari");
         capabilities.setCapability("platform", "macOS 10.13");
         capabilities.setCapability("version", "11.1");
-        capabilities.setCapability("build", "Onboarding Sample App - Java");
+        capabilities.setCapability("build", "Onboarding Sample App - Java-TestNG");
         capabilities.setCapability("name", "2-user-site");
 
         /**
