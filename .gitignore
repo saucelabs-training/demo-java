@@ -5,6 +5,9 @@
 *.log
 **/target
 
+junit/.gitignore
+testng/.gitignore
+
 # DS_Store
 *.DS_Store
 
@@ -27,4 +30,4 @@
 hs_err_pid*
 
 **/.idea
-*.iml
+**.iml

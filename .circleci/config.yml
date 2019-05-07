@@ -1,22 +1,24 @@
-version: 2.1
+version: 2
 jobs:
-    build:
-      working_directory: ~/demo-java/testng
+  build:
     docker:
       - image: circleci/openjdk:8-jdk-browsers
+    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
-          key: demo-java/testng-{{ checksum "pom.xml" }}
-      - run: 
-          name: "Setup Maven Dependencies"
-          command: mvn dependency:go-offline # gets the project dependencies
-      - save_cache: # saves the project dependencies
           paths:
-            - ~/.m2
-          key: demo-java/testng-{{ checksum "pom.xml" }}
+            - ~/repo/demo-java/testng/
+          keys:
+            - demo-java-testng-{{ checksum "pom.xml" }}
+            - demo-java-testng
       - run:
-          name: "Install Sauce Labs and Set Up Tunnel"
+          name: "Setup Maven Dependencies"
+          command: |
+            mvn clean install
+            mvn dependency:go-offline
+      - run:
+          name: "Install and Launch Sauce Connect Tunnel"
           background: true
           command: |
             curl https://saucelabs.com/downloads/sc-4.4.12-linux.tar.gz -o saucelabs.tar.gz
@@ -24,14 +26,19 @@ jobs:
             cd sc-*
             bin/sc -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY}
             wget --retry-connrefused --no-check-certificate -T 60 localhost:4445  # wait for app to be ready
-      - run: 
-          name: "Run Maven Tests"
-          command: mvn package # run the actual tests\
-      - store_test_results:
-          path: target/surefire-reports
-      - store_artifacts: 
-          path: target/demo-java-testng-0.0.1-SNAPSHOT.jar
+  test:
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    steps:
+      - checkout
       - run:
-          name: "Shut Down Sauce Connect Tunnel"
-          command: |
-            kill -9 `cat /tmp/sc_client.pid
+        name: "Run Maven Tests"
+        command: |
+          mvn test-compile
+          mvn clean test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
