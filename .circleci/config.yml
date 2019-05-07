@@ -15,7 +15,6 @@ jobs:
       - run:
           name: "Setup Maven Dependencies"
           command: |
-            cd ~/repo/demo-java/testng
             mvn clean install
             mvn dependency:go-offline
       - run:
@@ -35,7 +34,6 @@ jobs:
       - run:
         name: "Run Maven Tests"
         command: |
-          cd ~/repo/demo-java/testng
           mvn test-compile
           mvn clean test
 workflows:
