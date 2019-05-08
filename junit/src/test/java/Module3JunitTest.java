@@ -57,7 +57,7 @@ public class Module3JunitTest {
      */
     @AfterEach
     public void cleanUpAfterTestMethod () {
-        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (true ? "passed" : "failed"));
+        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + ("passed"));
         driver.quit();
     }
 }

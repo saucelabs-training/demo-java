@@ -45,7 +45,7 @@ public class Module2JunitTest {
          * */
         driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
-        //assertTrue(true);
+        assertTrue(true);
     }
 
     /**
@@ -54,7 +54,7 @@ public class Module2JunitTest {
      */
     @AfterEach
     public void cleanUpAfterTestMethod () {
-        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (true ? "passed" : "failed"));
+        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + ("passed"));
         driver.quit();
     }
 }
