@@ -86,7 +86,7 @@ public class Module1TestNGTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(inventoryPageLocator));
 
         /**
-         * In this section, we confirm the test ran correctly, howerver we don't post the results to saucelabs.com
+         * In this section, we confirm the test ran correctly, however we don't post the results to saucelabs.com
          */
         //Assert that the inventory page displayed appropriately
         Assert.assertTrue(driver.findElement(inventoryPageLocator).isDisplayed());
