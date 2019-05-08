@@ -40,6 +40,7 @@ public class Module4TestNGTest {
         capabilities.setCapability("platform", "Windows 10");
         capabilities.setCapability("version", "59.0");
         capabilities.setCapability("name", "4-best-practices");
+        capabilities.setCapability("tunnelIdentifier", "demo-java-tunnel");
 
         /** Tags are an excellent way to control and filter your test automation
          * in Sauce Analytics. Get a better view into your test automation.

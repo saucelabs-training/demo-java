@@ -34,6 +34,7 @@ public class Module2JunitTest {
         capabilities.setCapability("platform", "macOS 10.13");
         capabilities.setCapability("version", "11.1");
         capabilities.setCapability("build", "Onboarding Sample App - Java-Junit5");
+        capabilities.setCapability("tunnelIdentifier", "demo-java-tunnel");
         capabilities.setCapability("name", "2-user-site");
         /**
          * In this section, we set the Remote WebDriver to run on Sauce Labs, and pass the capabilities.
@@ -45,7 +46,7 @@ public class Module2JunitTest {
          * */
         driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
         driver.navigate().to("https://www.saucedemo.com");
-        assertTrue(true);
+        //assertTrue(true);
     }
 
     /**
