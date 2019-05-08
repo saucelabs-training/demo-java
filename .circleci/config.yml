@@ -32,10 +32,10 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "Run Maven Tests"
-        command: |
-          mvn test-compile
-          mvn clean test
+          name: "Run Maven Tests"
+          command: |
+            mvn test-compile
+            mvn clean test
 workflows:
   version: 2
   build_and_test:
