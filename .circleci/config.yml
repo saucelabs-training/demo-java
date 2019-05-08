@@ -13,14 +13,29 @@ jobs:
             - demo-java-{{ checksum "pom.xml" }}
             - demo-java-
       - run:
-          name: "Install and Launch Sauce Connect Tunnel"
-          background: true
+          name: "Install Sauce Connect Client"
           command: |
             sudo apt-get install lsof
             curl https://saucelabs.com/downloads/sc-4.4.12-linux.tar.gz -o saucelabs.tar.gz
             tar -xzf saucelabs.tar.gz
+      - run:
+          name: "Launch Tunnel 1"
+          background: true
+          command: |
             cd sc-*
-            bin/sc --pidfile /tmp/sc.pid -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -i demo-java-tunnel --no-remove-colliding-tunnels
+            bin/sc --pidfile /tmp/sc.pid1 -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -i demo-java-tunnel --no-remove-colliding-tunnels --se-port 4445
+      - run:
+          name: "Launch Tunnel 2"
+          background: true
+          command: |
+            cd sc-*
+            bin/sc --pidfile /tmp/sc.pid2 -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -i demo-java-tunnel --no-remove-colliding-tunnels --se-port 4446
+      - run:
+          name: "Launch Tunnel 3"
+          background: true
+          command: |
+            cd sc-*
+            bin/sc --pidfile /tmp/sc.pid3 -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -i demo-java-tunnel --no-remove-colliding-tunnels --se-port 4447
       - run:
           name: "Setup Maven Dependencies"
           command: |
@@ -33,11 +48,15 @@ jobs:
           name: "Run Maven Tests"
           command: |
             while ! lsof -i:4445 -t; do sleep 3; done
+            while ! lsof -i:4446 -t; do sleep 3; done
+            while ! lsof -i:4447 -t; do sleep 3; done
             mvn clean test
       - run:
           name: "Shut Down Sauce Connect Tunnel"
           command: |
-            kill -9 `cat /tmp/sc.pid`
+            kill -9 `cat /tmp/sc.pid1`
+            kill -9 `cat /tmp/sc.pid2`
+            kill -9 `cat /tmp/sc.pid3`
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
