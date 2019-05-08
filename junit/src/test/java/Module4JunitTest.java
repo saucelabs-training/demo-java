@@ -36,6 +36,7 @@ public class Module4JunitTest {
         capabilities.setCapability("platform", "Windows 10");
         capabilities.setCapability("version", "59.0");
         capabilities.setCapability("name", "4-best-practices");
+        capabilities.setCapability("tunnelIdentifier", "demo-java-tunnel");
 
         /** Tags are an excellent way to control and filter your test automation
          * in Sauce Analytics. Get a better view into your test automation.
@@ -73,7 +74,7 @@ public class Module4JunitTest {
      */
     @AfterEach
     public void cleanUpAfterTestMethod() {
-        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (true ? "passed" : "failed"));
+        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + ("passed"));
         driver.quit();
     }
 }

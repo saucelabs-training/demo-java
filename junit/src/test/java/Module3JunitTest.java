@@ -40,6 +40,7 @@ public class Module3JunitTest {
         capabilities.setCapability("platform", "Windows 10");
         capabilities.setCapability("version", "59.0");
         capabilities.setCapability("build", "Onboarding Sample App - Java-Junit5");
+        capabilities.setCapability("tunnelIdentifier", "demo-java-tunnel");
         capabilities.setCapability("name", "3-cross-browser");
 
         /** If you're accessing the EU data center, use the following endpoint:.
@@ -57,7 +58,7 @@ public class Module3JunitTest {
      */
     @AfterEach
     public void cleanUpAfterTestMethod () {
-        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (true ? "passed" : "failed"));
+        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + ("passed"));
         driver.quit();
     }
 }
