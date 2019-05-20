@@ -2,10 +2,10 @@
 
 [![CircleCI](https://circleci.com/gh/saucelabs-training/demo-java/tree/master.svg?style=svg)](https://circleci.com/gh/saucelabs-training/demo-java/tree/master)
 
-The scripts in this repository allow you run simple automated tests to validate your Java Selenium environment and your [saucelabs.com](https://app.saucelabs.com/login) account credentials.
+The demo scripts in [this repository](https://github.com/saucelabs-training/demo-java) allow you to run simple automated tests in order to validate your Java Selenium environment and your [saucelabs.com](https://app.saucelabs.com/login) account credentials.
 
 > ###### Disclaimer:
-> The code in these scripts is provided on an "AS-IS” basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are provided for educational and demonstration purposes only, and should not be used in production. Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by the Technical Services team at Sauce Labs.
+> The code in these scripts is provided on an "AS-IS" basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are provided for educational and demonstration purposes only, and should not be used in production. Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by the Technical Services team at Sauce Labs.
 
 <br />
 
@@ -38,7 +38,7 @@ The scripts in this repository allow you run simple automated tests to validate 
     ```
 2. Import the project into your IntelliJ (or IDE of your choice) as a **Maven Project**.
 3. Click through the prompts, and confirm when it asks to **Import from Sources**
-4. Choose the **saucedemo-parallel** directory as the **root** directory of the project.
+4. Choose the **demo-java** directory as the **root** directory of the project.
 
 #### Set Your Sauce Labs Credentials
 1. Copy your Sauce Labs **username** and **accessKey** in the [User Settings](https://app.saucelabs.com/user-settings) section of the [Sauce Labs Dashboard](https://app.saucelabs.com/dashboard/builds).
