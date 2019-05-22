@@ -22,9 +22,6 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * [Import the Project](#import-the-project)
 * [Set Your Sauce Labs Credentials](#set-your-sauce-labs-credentials)
 * [Run a Maven Test](#run-a-maven-test)
-
-#### Optional Setup
-* [Launch a Sauce Connect Tunnel](#launch-a-sauce-connect-tunnel)
  
 <br />
 
@@ -76,19 +73,6 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
     > echo %SAUCE_USERNAME%
     > echo %SAUCE_ACCESS_KEY%
     ```
-
-<br />
-
-#### Launch a Sauce Connect Tunnel
-If you're test code isn't publicly available, or you're testing from behind a network firewall, you need to use [Sauce Connect Proxy](https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy). 
-
-For installation and user guides for Sauce Connect Proxy, refer to [this documentation](https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect+Proxy).
-
-If you don't require Sauce Connect Proxy, **comment out the following line in each test**:
- 
-```
-capabilities.setCapability("tunnelIdentifier", "demo-java-tunnel");
-```
 
 <br />
 
