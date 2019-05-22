@@ -25,6 +25,18 @@ jobs:
             cd sc-*
             bin/sc --pidfile /tmp/sc.pid1 -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -i demo-java-tunnel --no-remove-colliding-tunnels --se-port 4445
       - run:
+          name: "Launch Tunnel 2"
+          background: true
+          command: |
+            cd sc-*
+            bin/sc --pidfile /tmp/sc.pid2 -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -i demo-java-tunnel --no-remove-colliding-tunnels --se-port 4446
+      - run:
+          name: "Launch Tunnel 3"
+          background: true
+          command: |
+            cd sc-*
+            bin/sc --pidfile /tmp/sc.pid3 -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -i demo-java-tunnel --no-remove-colliding-tunnels --se-port 4447
+      - run:
           name: "Setup Maven Dependencies"
           command: |
             mvn dependency:go-offline
@@ -36,11 +48,15 @@ jobs:
           name: "Run Maven Tests"
           command: |
             while ! lsof -i:4445 -t; do sleep 3; done
+            while ! lsof -i:4446 -t; do sleep 3; done
+            while ! lsof -i:4447 -t; do sleep 3; done
             mvn clean test
       - run:
           name: "Shut Down Sauce Connect Tunnel"
           command: |
             kill -9 `cat /tmp/sc.pid1`
+            kill -9 `cat /tmp/sc.pid2`
+            kill -9 `cat /tmp/sc.pid3`
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
