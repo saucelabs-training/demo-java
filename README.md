@@ -31,7 +31,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 1. Create a directory on your machine.
 2. Clone this repository into said directory.
     ```
-    $ git clone https://github.com/saucelabs-training/saucecon19-parallel-workshop.git
+    $ git clone https://github.com/saucelabs-training/demo-java.git
     ```
 2. Import the project into your IntelliJ (or IDE of your choice) as a **Maven Project**.
 3. Click through the prompts, and confirm when it asks to **Import from Sources**
