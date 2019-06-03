@@ -30,9 +30,7 @@ public class BaseWebDriverTest {
     /**
      * @return the {@link WebDriver} for the current thread
      */
-    protected WebDriver getWebDriver() {
-        return webDriver.get();
-    }
+    protected WebDriver getWebDriver() { return webDriver.get(); }
 
     private void createSauceDriver(MutableCapabilities capabilities, String methodName) {
         String username = System.getenv("SAUCE_USERNAME");
