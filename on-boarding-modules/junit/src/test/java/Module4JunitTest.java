@@ -37,7 +37,7 @@ public class Module4JunitTest {
         /** In order to use w3c you must set the seleniumVersion **/
         sauceOpts.setCapability("seleniumVersion", "3.141.59");
         sauceOpts.setCapability("name", "4-best-practices");
-        sauceOpts.setCapability("public", "public");
+
         /**
          * in this exercise we set additional capabilities below that align with
          * testing best practices such as tags, timeouts, and build name/numbers.

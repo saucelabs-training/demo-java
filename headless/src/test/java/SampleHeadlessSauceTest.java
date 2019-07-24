@@ -29,7 +29,6 @@ public class SampleHeadlessSauceTest {
         sauceOptions.setCapability("seleniumVersion", "3.141.59");
         sauceOptions.setCapability("name", "headless-chrome-test-java");
         sauceOptions.setCapability("build", "Sample Headless Tests");
-        sauceOptions.setCapability("public", "public");
 
         MutableCapabilities caps = new MutableCapabilities();
         caps.setCapability("goog:chromeOptions", chromeOpts);

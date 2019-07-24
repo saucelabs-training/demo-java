@@ -51,7 +51,6 @@ public class BaseWebDriverTest {
         sauceOptions.setCapability("seleniumVersion", "3.141.59");
         sauceOptions.setCapability("name", methodName);
         sauceOptions.setCapability("build", "parallel-TestNG-single-browser-demo");
-        sauceOptions.setCapability("public", "public");
 
         //Assign the Sauce Options to the base capabilities
         capabilities.setCapability("sauce:options", sauceOptions);

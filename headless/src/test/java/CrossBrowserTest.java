@@ -36,7 +36,6 @@ public class CrossBrowserTest {
         sauceOptions.setCapability("seleniumVersion", "3.141.59");
         sauceOptions.setCapability("name", methodName);
         sauceOptions.setCapability("build", "Sample Headless Tests");
-        sauceOptions.setCapability("public", "public");
 
         //Assign the Sauce Options to the base capabilities
         capabilities.setCapability("sauce:options", sauceOptions);

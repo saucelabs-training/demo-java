@@ -41,7 +41,6 @@ public class Module4TestNGTest {
         /** In order to use w3c you must set the seleniumVersion **/
         sauceOpts.setCapability("seleniumVersion", "3.141.59");
         sauceOpts.setCapability("name", "4-best-practices");
-        sauceOpts.setCapability("public", "public");
 
         /**
          * in this exercise we set additional capabilities below that align with
