@@ -42,6 +42,7 @@ public class Module3TestNGTest {
         capabilities.setCapability("version", "59.0");
         capabilities.setCapability("build", "Onboarding Sample App - Java-TestNG");
         capabilities.setCapability("name", "3-cross-browser");
+        capabilities.setCapability("public", "public");
 
         /** If you're accessing the EU data center, use the following endpoint:.
          * https://ondemand.eu-central-1.saucelabs.com/wd/hub
