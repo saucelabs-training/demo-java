@@ -1,6 +1,6 @@
 # Java Demonstration Scripts
 
-[![CircleCI](https://circleci.com/gh/saucelabs-training/demo-java/tree/master.svg?style=svg)](https://circleci.com/gh/saucelabs-training/demo-java/tree/master)
+[![CircleCI](https://circleci.com/gh/saucelabs-training/demo-java/tree/master.svg?style=svg)](https://circleci.com/gh/saucelabs-training/demo-java/tree/master) [![Sauce Test Status](https://saucelabs.com/buildstatus/jtack4970)](https://app.saucelabs.com/u/jtack4970)
 
 The demo scripts in [this repository](https://github.com/saucelabs-training/demo-java) allow you to run simple automated tests in order to validate your Java Selenium environment and your [saucelabs.com](https://app.saucelabs.com/login) account credentials.
 
