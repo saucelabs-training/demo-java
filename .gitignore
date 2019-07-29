@@ -1,6 +1,12 @@
 ### Java template
 *.class
 
+## Docker Stuff
+**/.devcontainer
+*Dockerfile
+*.dockerfile
+*.env
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -21,3 +27,9 @@ hs_err_pid*
 **.iml
 **.idea
 **/.idea
+
+**/.settings
+*.settings
+*.classpath
+**/.vscode
+*.project
