@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: circleci/openjdk:8-jdk-stretch
     working_directory: ~/repo
     steps:
       - checkout
@@ -15,6 +15,7 @@ jobs:
       - run:
           name: "Install Sauce Connect Client"
           command: |
+            sudo apt-get update
             sudo apt-get install lsof
             curl https://saucelabs.com/downloads/sc-4.4.12-linux.tar.gz -o saucelabs.tar.gz
             tar -xzf saucelabs.tar.gz
