@@ -9,12 +9,18 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 <br />
 
+> Click the button below to try this demo in [Gitpod](https://www.gitpod.io/)
+
+>   [![Open in Gitpod](assets/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/saucelabs-training/demo-java)
+
+> [Click here](assets/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
+
 ## Prerequisites
 
-* Install [Git](prerequisites.md#install-git)
-* Install [IntelliJ (or another IDE)](prerequisites.md#install-intellij)
-* Install [JDK](prerequisites.md#install-the-jdk)
-* Install [Maven](prerequisites.md#install-maven)
+* Install [Git](assets/prerequisites.md#install-git)
+* Install [IntelliJ (or another IDE)](assets/prerequisites.md#install-intellij)
+* Install [JDK](assets/prerequisites.md#install-the-jdk)
+* Install [Maven](assets/prerequisites.md#install-maven)
 
 <br />
 
@@ -89,4 +95,12 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 3. Finally, run the following test:
     ```
     $ mvn clean test
+    ```
+
+    If you wish to run a specific test/sub-module in this example use the following command:
+    ```
+    # for running a specific test:
+    mvn test -Dtest=testname 
+    # for running a specific sub-module
+    mvn test -pl subproject/
     ```
