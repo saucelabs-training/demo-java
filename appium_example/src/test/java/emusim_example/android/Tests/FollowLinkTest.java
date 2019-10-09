@@ -1,6 +1,6 @@
-package example.ios.Tests;
+package emusim_example.android.Tests;
 
-import example.ios.Pages.GuineaPigPage;
+import emusim_example.android.Pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -12,6 +12,7 @@ import java.rmi.UnexpectedException;
 
 /**
  * Created by mehmetgerceker on 12/7/15.
+ * Updated by spider@saucelabs.com on 10/8/19.
  */
 
 public class FollowLinkTest extends TestBase {
@@ -32,7 +33,7 @@ public class FollowLinkTest extends TestBase {
 
         //create webdriver session
         this.createDriver(platformName, deviceName, platformVersion, appiumVersion, deviceOrientation, method.getName());
-        WebDriver driver = this.getiosDriver();
+        WebDriver driver = this.getAndroidDriver();
 
         GuineaPigPage page = new GuineaPigPage(driver);
 

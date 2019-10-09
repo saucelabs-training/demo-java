@@ -1,6 +1,6 @@
-package example.android.Tests;
+package realdevice_example.android.Tests;
 
-import example.android.Pages.GuineaPigPage;
+import emusim_example.android.Pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -23,16 +23,14 @@ public class FollowLinkTest extends TestBase {
      * @throws InvalidElementStateException
      */
     @Test(dataProvider = "hardCodedBrowsers")
-    public void verifyLinkTest(String platformName,
+    public void verifyLinkTest(String platformVersion,
                                String deviceName,
-                               String platformVersion,
-                               String appiumVersion,
                                String deviceOrientation,
                                Method method)
             throws MalformedURLException, InvalidElementStateException, UnexpectedException {
 
         //create webdriver session
-        this.createDriver(platformName, deviceName, platformVersion, appiumVersion, deviceOrientation, method.getName());
+        this.createDriver(platformVersion, deviceName, deviceOrientation, method.getName());
         WebDriver driver = this.getAndroidDriver();
 
         GuineaPigPage page = new GuineaPigPage(driver);

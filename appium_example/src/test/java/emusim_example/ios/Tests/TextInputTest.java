@@ -1,6 +1,6 @@
-package example.ios.Tests;
+package emusim_example.ios.Tests;
 
-import example.ios.Pages.GuineaPigPage;
+import emusim_example.ios.Pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

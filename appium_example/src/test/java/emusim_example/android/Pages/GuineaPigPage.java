@@ -1,4 +1,4 @@
-package example.android.Pages;
+package emusim_example.android.Pages;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;

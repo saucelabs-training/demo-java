@@ -1,6 +1,6 @@
-package example.android.Tests;
+package realdevice_example.android.Tests;
 
-import example.android.Pages.GuineaPigPage;
+import emusim_example.android.Pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -22,15 +22,11 @@ public class TextInputTest extends TestBase {
      * @throws InvalidElementStateException
      */
     @org.testng.annotations.Test(dataProvider = "hardCodedBrowsers")
-    public void verifyCommentInputTest(String platformName,
-                                       String deviceName,
-                                       String platformVersion,
-                                       String appiumVersion,
-                                       String deviceOrientation,
+    public void verifyCommentInputTest(String platformVersion, String deviceName, String deviceOrientation,
                                        Method method)
             throws MalformedURLException, InvalidElementStateException, UnexpectedException {
 
-        this.createDriver(platformName, deviceName, platformVersion, appiumVersion, deviceOrientation, method.getName());
+        this.createDriver(platformVersion, deviceName, deviceOrientation, method.getName());
         WebDriver driver = this.getAndroidDriver();
 
         String commentInputText = UUID.randomUUID().toString();

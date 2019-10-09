@@ -1,4 +1,4 @@
-package example.android.Tests;
+package emusim_example.android.Tests;
 
 // import Sauce TestNG helper libraries
 

@@ -97,7 +97,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
     $ mvn clean test
     ```
 
-    If you wish to run a specific test/sub-module in this example use the following command:
+    If you wish to run a specific test/sub-module in this emusim_example use the following command:
     ```
     # for running a specific test:
     mvn test -Dtest=testname 
