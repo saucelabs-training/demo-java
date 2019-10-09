@@ -10,9 +10,9 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 <br />
 
 > Click the button below to try this demo in [Gitpod](https://www.gitpod.io/)
-
+>
 >   [![Open in Gitpod](assets/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/saucelabs-training/demo-java)
-
+>
 > [Click here](assets/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
 
 ## Prerequisites
