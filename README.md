@@ -11,16 +11,16 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 > Click the button below to try this demo in [Gitpod](https://www.gitpod.io/)
 >
->   [![Open in Gitpod](assets/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/saucelabs-training/demo-java)
+>   [![Open in Gitpod](https://github.com/saucelabs-training/demo-java/blob/master/assets/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/saucelabs-training/demo-java)
 >
-> [Click here](assets/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
+> [Click here](https://github.com/saucelabs-training/demo-java/blob/master/assets/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
 
 ## Prerequisites
 
-* Install [Git](assets/prerequisites.md#install-git)
-* Install [IntelliJ (or another IDE)](assets/prerequisites.md#install-intellij)
-* Install [JDK](assets/prerequisites.md#install-the-jdk)
-* Install [Maven](assets/prerequisites.md#install-maven)
+* Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-git)
+* Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-intellij)
+* Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-the-jdk)
+* Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-maven)
 
 <br />
 
