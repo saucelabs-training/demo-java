@@ -112,7 +112,7 @@ Maven is a build automation and project management tool use for managing project
 #### Windows:
 
 1. Go to Maven Apache website and [download](https://maven.apache.org/install.html) the following package: `apache-maven-<version>-bin.zip`
-2. Unpack the archive using an archive tool (for emusim_example WinZip)
+2. Unpack the archive using an archive tool (for emusim_testng WinZip)
 3. Add the unpacked distribution’s `bin` directory to your user `PATH` environment variable by:
     1. Open up the system properties (WinKey + Pause) 
     2. Select the **Advanced** tab, and the **Environment Variables** button

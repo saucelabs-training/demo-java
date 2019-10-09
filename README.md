@@ -92,15 +92,17 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
     ```
     $ mvn test-compile
     ```
-3. Finally, run the following test:
+3. Finally, run the following test to see if you've properly configured the test environment:
     ```
-    $ mvn clean test
+    $ mvn test -Dtest=Module2TestNGTest -pl on-boarding-scripts/testng
+
     ```
 
-    If you wish to run a specific test/sub-module in this emusim_example use the following command:
-    ```
-    # for running a specific test:
-    mvn test -Dtest=testname 
-    # for running a specific sub-module
-    mvn test -pl subproject/
-    ```
+    > If you wish to run a specific test/sub-module in this emusim_testng use the following command:
+    >   ```
+    >   # for running a specific test:
+    >   mvn test -Dtest=testname
+    > 
+    >   # for running a specific sub-module
+    >   mvn test -pl subproject/
+    >   ```
