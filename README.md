@@ -94,7 +94,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
     ```
 3. Finally, run the following test to see if you've properly configured the test environment:
     ```
-    $ mvn test -Dtest=Module2TestNGTest -pl on-boarding-scripts/testng
+    $ mvn test -Dtest=Module2TestNGTest -pl on-boarding-modules/testng
 
     ```
 
