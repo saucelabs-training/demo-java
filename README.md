@@ -16,7 +16,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-the-jdk)
 * Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-maven)
 
-> Click the button below to try this demo in [Gitpod](https://www.gitpod.io/)
+> Select the button below to try this demo in [Gitpod](https://www.gitpod.io/)
 >
 >   [![Open in Gitpod](https://github.com/saucelabs-training/demo-java/blob/master/assets/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/saucelabs-training/demo-java)
 >
