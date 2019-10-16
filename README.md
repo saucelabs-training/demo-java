@@ -9,18 +9,18 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 <br />
 
-> Click the button below to try this demo in [Gitpod](https://www.gitpod.io/)
->
->   [![Open in Gitpod](https://github.com/saucelabs-training/demo-java/blob/master/assets/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/saucelabs-training/demo-java)
->
-> [Click here](https://github.com/saucelabs-training/demo-java/blob/master/assets/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
-
 ## Prerequisites
 
 * Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-git)
 * Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-intellij)
 * Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-the-jdk)
 * Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-maven)
+
+> Click the button below to try this demo in [Gitpod](https://www.gitpod.io/)
+>
+>   [![Open in Gitpod](https://github.com/saucelabs-training/demo-java/blob/master/assets/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/saucelabs-training/demo-java)
+>
+> [Click here](https://github.com/saucelabs-training/demo-java/blob/master/assets/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
 
 <br />
 
