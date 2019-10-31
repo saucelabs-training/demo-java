@@ -9,7 +9,7 @@ eval $(gp env -e SAUCE_USERNAME=******)
 eval $(gp env -e SAUCE_ACCESS_KEY=******)
 ```
 
-> If you start a new terminal in gitpod, you have to use the following command to re-apply envrionment variables:
+> If you start a new terminal in gitpod, you have to use the following command to re-apply environment variables:
 > ```
 > eval $(gp env -e)
 > ```
