@@ -11,8 +11,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.saucelabs</groupId>
-    <artifactId>appium_example</artifactId>
-    <name>appium_example</name>
+    <artifactId>appium-example</artifactId>
+    <name>appium-example</name>
     <description>Sauce Labs Mobile Example</description>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
