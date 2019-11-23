@@ -14,7 +14,7 @@
         <module>parallel-testing/cross-browser-and-platform-config</module>
         <module>parallel-testing/single-browser-config</module>
         <module>headless</module>
-        <module>appium_example</module>
+        <module>appium-example</module>
     </modules>
     <dependencies>
         <dependency>

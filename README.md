@@ -11,16 +11,16 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 ## Prerequisites
 
-* Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-git)
-* Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-intellij)
-* Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-the-jdk)
-* Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/assets/prerequisites.md#install-maven)
+* Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-git)
+* Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-intellij)
+* Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-the-jdk)
+* Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-maven)
 
 > Select the button below to try this demo in [Gitpod](https://www.gitpod.io/)
 >
-> <a href="https://gitpod.io/#https://github.com/saucelabs-training/demo-java"><img src="https://github.com/saucelabs-training/demo-java/blob/master/assets/open-in-gitpod.png" title="Open in Gitpod"></a>
+> <a href="https://gitpod.io/#https://github.com/saucelabs-training/demo-java"><img src="https://github.com/saucelabs-training/demo-java/blob/master/docs/open-in-gitpod.png" title="Open in Gitpod"></a>
 >
-> [Click here](assets/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
+> [Click here](docs/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
 
 <br />
 
