@@ -5,14 +5,9 @@ package example.ios.Tests;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.AppiumDriver;
-
-
 import com.saucelabs.testng.SauceOnDemandTestListener;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
@@ -38,8 +33,8 @@ public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAu
     public String buildTag = System.getenv("BUILD_TAG");
     public String username = System.getenv("SAUCE_USERNAME");
     public String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-    public String app = "https://github.com/saucelabs-sample-test-frameworks/Java-Junit-Appium-iOS/blob/master/resources/SauceGuineaPig-sim-debug.app.zip?raw=true";
-
+    public String app = "https://github.com/saucelabs-training/demo-java/blob/master/resources/ios/SauceGuineaPig-sim-debug.app.zip?raw=true";
+    //public String app = "../../../../../../resources/ios/SauceGuineaPig-sim-debug.app.zip";
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
      * supplied by environment variables or from an external file, use the no-arg {@link SauceOnDemandAuthentication} constructor.
