@@ -79,7 +79,7 @@ public class JUnit5W3CChromeTest {
     For more information visit the docs: https://junit.org/junit5/docs/5.0.2/api/org/junit/jupiter/api/DisplayName.html
 
      */
-    @DisplayName("w3cChromeTest()")
+    @DisplayName("Junit5W3CChromeTest()")
     /**
      * @Test is a JUnit 5 annotation that defines the actual test case, along with the test execution commands.
     In the example below we:

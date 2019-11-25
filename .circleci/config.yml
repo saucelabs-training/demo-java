@@ -58,10 +58,10 @@ jobs:
           name: "Run Headless Tests"
           command: |
             mvn test -pl headless/
-#      - run:
-#          name: "Run Appium Tests"
-#          command: |
-#            mvn test -pl appium-example/
+      - run:
+          name: "Run Appium Tests"
+          command: |
+            mvn test -pl appium-example/
       - run:
           name: "Run W3C JUnit Tests"
           command: |

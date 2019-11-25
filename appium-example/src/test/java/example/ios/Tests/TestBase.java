@@ -33,7 +33,7 @@ public class TestBase implements SauceOnDemandSessionIdProvider, SauceOnDemandAu
     public String buildTag = System.getenv("BUILD_TAG");
     public String username = System.getenv("SAUCE_USERNAME");
     public String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-    public String app = "https://github.com/saucelabs-training/demo-java/blob/master/resources/ios/SauceGuineaPig-sim-debug.app.zip?raw=true";
+    public String app = "https://github.com/saucelabs-training/demo-java/blob/master/appium-example/resources/ios/SauceGuineaPig-sim-debug.app.zip?raw=true";
     //public String app = "../../../../../../resources/ios/SauceGuineaPig-sim-debug.app.zip";
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access key.  To use the authentication
