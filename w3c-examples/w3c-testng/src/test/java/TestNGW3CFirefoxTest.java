@@ -49,6 +49,7 @@ public class TestNGW3CFirefoxTest {
 
         MutableCapabilities sauceOpts = new MutableCapabilities();
         sauceOpts.setCapability("name", methodName);
+        sauceOpts.setCapability("build", "Java-W3C-Examples");
         sauceOpts.setCapability("seleniumVersion", "3.141.59");
         sauceOpts.setCapability("username", username);
         sauceOpts.setCapability("accessKey", accessKey);
