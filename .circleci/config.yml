@@ -34,10 +34,42 @@ jobs:
             - ~/.m2
           key: demo-java-{{ checksum "pom.xml" }}
       - run:
-          name: "Run Maven Tests"
+          name: "Run On-Boarding JUnit Tests"
           command: |
             while ! lsof -i:4445 -t; do sleep 3; done
-            mvn clean test
+            mvn test -pl on-boarding-modules/junit/
+      - run:
+          name: "Run On-Boarding TestNG Tests"
+          command: |
+            mvn test -pl on-boarding-modules/testng/
+      - run:
+          name: "Run On-Boarding JUnit Tests"
+          command: |
+            mvn test -pl on-boarding-modules/junit/
+      - run:
+          name: "Run Cross Browser/Platform Tests"
+          command: |
+            mvn test -pl parallel-testing/cross-browser-and-platform-config/
+      - run:
+          name: "Run Single Browser Config Tests"
+          command: |
+            mvn test -pl parallel-testing/single-browser-config/
+      - run:
+          name: "Run Headless Tests"
+          command: |
+            mvn test -pl headless/
+#      - run:
+#          name: "Run Appium Tests"
+#          command: |
+#            mvn test -pl appium-example/
+      - run:
+          name: "Run W3C JUnit Tests"
+          command: |
+            mvn test -pl w3c-examples/w3c-junit5/
+      - run:
+          name: "Run W3C TestNG Tests"
+          command: |
+            mvn test -pl w3c-examples/w3c-testng/
       - run:
           name: "Shut Down Sauce Connect Tunnel"
           command: |
