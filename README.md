@@ -9,6 +9,13 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 <br />
 
+## Solution Outline
+* [Tests that can help you quickly and easily get started with Sauce Labs](on-boarding-modules)
+* [Advanced tests that use test automation best practices on Sauce Labs](parallel-testing)
+* [W3C examples using Sauce Labs](w3c-examples)
+* [Tests the use the Headless feature of Sauce Labs](headless)
+* [Mobile Examples using Appium on Sauce Labs](appium-example)
+
 ## Prerequisites
 
 * Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-git)
