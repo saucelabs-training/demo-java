@@ -2,8 +2,11 @@ package com.yourcompany.Tests;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
+import com.saucelabs.simplesauce.SauceOptions;
+import com.saucelabs.simplesauce.SauceSession;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 import com.saucelabs.testng.SauceOnDemandTestListener;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
@@ -35,12 +38,15 @@ public class TestBase  {
     /**
      * ThreadLocal variable which contains the  {@link WebDriver} instance which is used to perform browser interactions with.
      */
-    private ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
+    private ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
     /**
      * ThreadLocal variable which contains the Sauce Job Id.
      */
-    private ThreadLocal<String> sessionId = new ThreadLocal<String>();
+    private ThreadLocal<String> sessionId = new ThreadLocal<>();
+    //TODO no idea if this will work with TestNG for parallelization
+    private SauceSession sauce;
+
 
     /**
      * DataProvider that explicitly sets the browser combinations to be used.
@@ -76,39 +82,27 @@ public class TestBase  {
     }
 
     /**
-     * Constructs a new {@link RemoteWebDriver} instance which is configured to use the capabilities defined by the browser,
-     * version and os parameters, and which is configured to run against ondemand.saucelabs.com, using
-     * the username and access key populated by the {@link #authentication} instance.
-     *
      * @param browser Represents the browser to be used as part of the test run.
      * @param version Represents the version of the browser to be used as part of the test run.
      * @param os Represents the operating system to be used as part of the test run.
      * @param methodName Represents the name of the test case that will be used to identify the test on Sauce.
      * @return
-     * @throws MalformedURLException if an error occurs parsing the url
      */
-    protected void createDriver(String browser, String version, String os, String methodName)
-            throws MalformedURLException, UnexpectedException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+    protected void createDriver(String browser, String version, String os, String methodName) {
+        SauceOptions options = new SauceOptions();
+        options.setBrowser(browser);
+        options.setBrowserVersion(version);
+        options.setOperatingSystem(os);
+        //options.setTestName(methodName);
+        //options.setBuildName(buildTag);
 
-        // set desired capabilities to launch appropriate browser on Sauce
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
-        capabilities.setCapability(CapabilityType.VERSION, version);
-        capabilities.setCapability(CapabilityType.PLATFORM, os);
-        capabilities.setCapability("name", methodName);
+        sauce = new SauceSession(options);
+        //TODO dunno if this is right, but TestNG sucks
+        webDriver =  (ThreadLocal<WebDriver>) sauce.start();
 
-        if (buildTag != null) {
-            capabilities.setCapability("build", buildTag);
-        }
-
-        // Launch remote browser and set it as the current thread
-        webDriver.set(new RemoteWebDriver(
-                new URL("https://" + username + ":" + accesskey + "@ondemand.saucelabs.com/wd/hub"),
-                capabilities));
-
-        // set current sessionId
-        String id = ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
-        sessionId.set(id);
+        //String id = sauce.getSessionId();
+        //String id = ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
+        //sessionId.set(id);
     }
 
     /**
@@ -117,9 +111,11 @@ public class TestBase  {
      * Closes the browser
      */
     @AfterMethod
-    public void tearDown(ITestResult result) throws Exception {
-        ((JavascriptExecutor) webDriver.get()).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
-        webDriver.get().quit();
+    public void tearDown(ITestResult result) {
+        String isPassed = result.isSuccess() ? "passed" : "failed";
+        //sauce.setTestStatus(isPassed);
+        //TODO was not able to make this work correctly, but this is something that we would want
+        //sauce.stop(webDriver);
     }
 
     protected void annotate(String text) {
