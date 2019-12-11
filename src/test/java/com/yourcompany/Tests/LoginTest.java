@@ -25,4 +25,14 @@ public class LoginTest extends TestBase {
 
         Assert.assertTrue(driver.findElements(By.className("error-button")).size() > 0);
     }
+
+    @Test
+    public void validCredentials() {
+        driver.get("https://www.saucedemo.com");
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.className("btn_action")).click();
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("inventory"));
+    }
 }
