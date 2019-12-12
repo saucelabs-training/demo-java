@@ -102,7 +102,7 @@ Maven is a build automation and project management tool use for managing project
     $ export M2=$M2_HOME/bin
     $ export PATH=$M2:$JAVA_HOME/bin:$PATH
     ```
-    > ***WARNING!***: Make sure you've set `JAVA_HOME` othewise `mvn` commands won't run. For instructions on how to set `JAVA_HOME`, visit this [link](https://docs.oracle.com/cd/E19182-01/821-0917/inst_jdk_javahome_t/index.html)
+    > ***WARNING!***: Make sure you've set `JAVA_HOME` othewise `mvn` commands won't run. For instructions on how to set `JAVA_HOME`, visit this [link](https://docs.oracle.com/cd/E21454_01/html/821-2532/inst_cli_jdk_javahome_t.html)
 
 4. Check to see if maven installed correctly:
     ```
