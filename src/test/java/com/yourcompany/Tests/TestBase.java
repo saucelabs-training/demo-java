@@ -21,17 +21,15 @@ import java.util.LinkedList;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 
 
-
-/**
- * Demonstrates how to write a JUnit test that runs tests against Sauce Labs using multiple browsers in parallel.
- * <p/>
- * The test also includes the {@link SauceOnDemandTestWatcher} which will invoke the Sauce REST API to mark
- * the test as passed or failed.
- *
- * @author Neil Manvar
- */
 @Ignore
+@RunWith(ConcurrentParameterized.class)
 public class TestBase implements SauceOnDemandSessionIdProvider {
+
+    private SauceOptions options;
+    private SauceSession sauce;
+    private String sessionId;
+
+    protected WebDriver driver;
 
     @Rule
     public TestName name = new TestName() {
@@ -40,10 +38,22 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         }
     };
 
-    protected SauceOptions options;
-    protected SauceSession sauce;
-    protected String sessionId;
-    protected WebDriver driver;
+    public TestBase(SauceOptions options){
+        super();
+        this.options = options;
+    }
+
+    @ConcurrentParameterized.Parameters
+    public static LinkedList optionsList() {
+        LinkedList platforms = new LinkedList();
+
+        platforms.add(new SauceOptions[]{new SauceOptions()});
+        platforms.add(new SauceOptions[]{new SauceOptions().withFirefox()});
+        platforms.add(new SauceOptions[]{new SauceOptions().withEdge()});
+        platforms.add(new SauceOptions[]{new SauceOptions().withIE()});
+
+        return platforms;
+    }
 
 
     /**

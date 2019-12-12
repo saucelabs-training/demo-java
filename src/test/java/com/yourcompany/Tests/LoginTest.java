@@ -1,10 +1,15 @@
 package com.yourcompany.Tests;
 
+import com.saucelabs.simplesauce.SauceOptions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
 public class LoginTest extends TestBase {
+
+    public LoginTest(SauceOptions options){
+        super(options);
+    }
 
     @Test
     public void invalidCredentials() {
