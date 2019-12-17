@@ -29,9 +29,9 @@ These demonstration scripts allow you to run an automated Appium tests on Sauce 
     ```
     $ git clone https://github.com/saucelabs-training/demo-java.git
     ```
-    * Navigate to the `demo-java/appium-example`, and choose your desired framework + the`wdio` project version, for example:
+    * Navigate to the `demo-java/appium-example`, for example:
     ```
-    $ cd demo-js/appium-example
+    $ cd demo-java/appium-example
     ```
 
 2. Set Sauce Credentials
@@ -51,7 +51,7 @@ These demonstration scripts allow you to run an automated Appium tests on Sauce 
 	```
 2. Run the following command to run tests:
 	```
-	$ mvn clean test
+	$ mvn clean test -pl appium-example
 	```
 3. Visit the [Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard/) to see the results.
 
