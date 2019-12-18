@@ -1,6 +1,6 @@
-## Java Appium Example Scripts
+## Java Headless Example Scripts
 
-These demonstration scripts allow you to run an automated Appium tests on Sauce Labs platforms.
+These demonstration scripts allow you to run an automated Headless browser tests on the Sauce Labs platforms.
 
 > ###### Disclaimer:
 >
@@ -11,10 +11,13 @@ These demonstration scripts allow you to run an automated Appium tests on Sauce 
 <br />
 
 ### Prerequisites
+
 * Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * Install [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac) (or another IDE)
 * Install [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * Install [Maven](https://maven.apache.org/install.html)
+
+<br />
 
 ### Environment Setup
 
@@ -30,9 +33,9 @@ These demonstration scripts allow you to run an automated Appium tests on Sauce 
     ```
     $ git clone https://github.com/saucelabs-training/demo-java.git
     ```
-    * Navigate to the `demo-java/appium-example`, for example:
+    * Navigate to the `demo-java/headless`, for example:
     ```
-    $ cd demo-java/appium-example
+    $ cd demo-java/headless
     ```
 
 2. Set Sauce Credentials
@@ -52,7 +55,7 @@ These demonstration scripts allow you to run an automated Appium tests on Sauce 
 	```
 2. Run the following command to run tests:
 	```
-	$ mvn clean test -pl appium-example
+	$ mvn clean test -pl headless
 	```
 3. Visit the [Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard/) to see the results.
 
@@ -66,6 +69,6 @@ There may be additional latency when using a remote webdriver to run tests on Sa
 
 ##### More Information
 * [Sauce Labs Documentation](https://wiki.saucelabs.com/)
-* [Appium Documentation](http://appium.io/slate/en/master/)
+* [Getting Started with Sauce Headless](https://wiki.saucelabs.com/display/DOCS/Getting+Started+with+Sauce+Headless)
 * [JDK Tutorials and Documentation](https://blogs.oracle.com/thejavatutorials/)
 * [Maven Documentation](https://maven.apache.org/guides/)
