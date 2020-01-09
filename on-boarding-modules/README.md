@@ -88,7 +88,7 @@ In this example, we move our setup tasks (setting test capability options) and o
 
 ### Module 4: Adjusting timeouts, delays, and build tags
 
-Open the script `Module4-<framework_name>Test.java`. Please notice that the following lines contain some specific `driver` capabilities:
+Open the script `Module4<framework_name>Test.java`. Please notice that the following lines contain some specific `driver` capabilities:
 
 ```
 sauceOpts.setCapability("maxDuration", 3600);
