@@ -1,8 +1,25 @@
-run_all_in_parallel:
-	make -j test_Windows8.1_firefox_40 test_Windows7_chrome_45
-	
-test_Windows8.1_firefox_40:
-	browserName=firefox version=40.0 platform="Windows 8.1" mvn test
+export START_TIME = $(shell date +%FT%T%Z)
 
-test_Windows7_chrome_45:
-	browserName=chrome version=45.0 platform="Windows 7" mvn test
+clean_it:
+	mvn clean
+
+test_parallel:
+	make -j windows_10_edge mac_sierra_chrome windows_7_ff windows_8_ie mac_mojave_safari
+
+sauce_demo:
+	make clean_it test_parallel
+
+windows_10_edge:
+	mvn clean test -Dplatform=$@
+
+mac_sierra_chrome:
+	mvn clean test -Dplatform=$@
+
+windows_7_ff:
+	mvn clean test -Dplatform=$@
+
+windows_8_ie:
+	mvn clean test -Dplatform=$@
+
+mac_mojave_safari:
+	mvn clean test -Dplatform=$@
