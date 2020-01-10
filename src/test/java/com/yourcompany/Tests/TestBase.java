@@ -1,124 +1,84 @@
 package com.yourcompany.Tests;
 
-import com.saucelabs.common.SauceOnDemandAuthentication;
-import com.saucelabs.common.SauceOnDemandSessionIdProvider;
+import com.saucelabs.simplesauce.Browser;
 import com.saucelabs.simplesauce.SauceOptions;
+import com.saucelabs.simplesauce.SaucePlatform;
 import com.saucelabs.simplesauce.SauceSession;
-import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
-import com.saucelabs.testng.SauceOnDemandTestListener;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.BeforeMethod;
 
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.rmi.UnexpectedException;
 
-/**
- * Simple TestNG test which demonstrates being instantiated via a DataProvider in order to supply multiple browser combinations.
- *
- * @author Neil Manvar
- */
 public class TestBase  {
 
-    public String buildTag = System.getenv("BUILD_TAG");
+    protected static ThreadLocal<SauceSession> session = new ThreadLocal<>();
+    protected static ThreadLocal<SauceOptions> options = new ThreadLocal<>();
 
-    public String username = System.getenv("SAUCE_USERNAME");
-
-    public String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-
-    /**
-     * ThreadLocal variable which contains the  {@link WebDriver} instance which is used to perform browser interactions with.
-     */
-    private ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
-
-    /**
-     * ThreadLocal variable which contains the Sauce Job Id.
-     */
-    private ThreadLocal<String> sessionId = new ThreadLocal<>();
-    //TODO no idea if this will work with TestNG for parallelization
-    private SauceSession sauce;
-
-
-    /**
-     * DataProvider that explicitly sets the browser combinations to be used.
-     *
-     * @param testMethod
-     * @return Two dimensional array of objects with browser, version, and platform information
-     */
-    @DataProvider(name = "hardCodedBrowsers", parallel = true)
-    public static Object[][] sauceBrowserDataProvider(Method testMethod) {
-        return new Object[][]{
-                new Object[]{"MicrosoftEdge", "18.17763", "Windows 10"},
-                new Object[]{"firefox", "latest", "Windows 10"},
-                new Object[]{"internet explorer", "11.0", "Windows 8.1"},
-                new Object[]{"safari", "12", "macOS 10.13"},
-                new Object[]{"chrome", "latest", "macOS 10.13"},
-                new Object[]{"firefox", "latest-1", "Windows 10"},
-        };
+    public SauceSession getSession() {
+        return session.get();
     }
 
-    /**
-     * @return the {@link WebDriver} for the current thread
-     */
-    public WebDriver getWebDriver() {
-        return webDriver.get();
+    public WebDriver getDriver() {
+        return getSession().getDriver();
     }
 
-    /**
-     *
-     * @return the Sauce Job id for the current thread
-     */
-    public String getSessionId() {
-        return sessionId.get();
+    @BeforeMethod
+    public void setup (Method method) {
+        options.set(new SauceOptions());
+        options.get().setName(method.getName());
+
+        if (System.getenv("START_TIME") != null) {
+            options.get().setBuild("Build Time: " + System.getenv("START_TIME"));
+        }
+
+        String platform;
+        if (System.getProperty("platform") != null) {
+            platform = System.getProperty("platform");
+        } else {
+            platform = "default";
+        }
+
+        switch(platform) {
+            case "windows_10_edge":
+                options.get().setPlatformName(SaucePlatform.WINDOWS_10);
+                options.get().setBrowserName(Browser.EDGE);
+                break;
+            case "mac_sierra_chrome":
+                options.get().setPlatformName(SaucePlatform.MAC_SIERRA);
+                options.get().setBrowserName(Browser.CHROME);
+                break;
+            case "windows_8_ff":
+                options.get().setPlatformName(SaucePlatform.WINDOWS_8);
+                options.get().setBrowserName(Browser.FIREFOX);
+                break;
+            case "windows_8_1_ie":
+                options.get().setPlatformName(SaucePlatform.WINDOWS_8_1);
+                options.get().setBrowserName(Browser.INTERNET_EXPLORER);
+                break;
+            case "mac_mojave_safari":
+                options.get().setPlatformName(SaucePlatform.MAC_MOJAVE);
+                options.get().setBrowserName(Browser.SAFARI);
+                break;
+            default:
+                // accept Sauce defaults
+                break;
+        }
+
+        session.set(new SauceSession(options.get()));
+
+        getSession().start();
     }
 
-    /**
-     * @param browser Represents the browser to be used as part of the test run.
-     * @param version Represents the version of the browser to be used as part of the test run.
-     * @param os Represents the operating system to be used as part of the test run.
-     * @param methodName Represents the name of the test case that will be used to identify the test on Sauce.
-     * @return
-     */
-    protected void createDriver(String browser, String version, String os, String methodName) {
-        SauceOptions options = new SauceOptions();
-        options.setBrowser(browser);
-        options.setBrowserVersion(version);
-        options.setOperatingSystem(os);
-        //options.setTestName(methodName);
-        //options.setBuildName(buildTag);
-
-        sauce = new SauceSession(options);
-        //TODO dunno if this is right, but TestNG sucks
-        webDriver =  (ThreadLocal<WebDriver>) sauce.start();
-
-        //String id = sauce.getSessionId();
-        //String id = ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
-        //sessionId.set(id);
-    }
-
-    /**
-     * Method that gets invoked after test.
-     * Dumps browser log and
-     * Closes the browser
-     */
     @AfterMethod
     public void tearDown(ITestResult result) {
-        String isPassed = result.isSuccess() ? "passed" : "failed";
-        //sauce.setTestStatus(isPassed);
-        //TODO was not able to make this work correctly, but this is something that we would want
-        //sauce.stop(webDriver);
+        getSession().stop(result.isSuccess());
     }
 
-    protected void annotate(String text) {
-        ((JavascriptExecutor) webDriver.get()).executeScript("sauce:context=" + text);
+    @AfterClass
+    void terminate () {
+        session.remove();
     }
 }
