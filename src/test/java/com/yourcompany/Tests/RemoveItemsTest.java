@@ -1,15 +1,10 @@
 package com.yourcompany.Tests;
 
-import com.saucelabs.simplesauce.SauceOptions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
 public class RemoveItemsTest extends TestBase {
-
-    public RemoveItemsTest(SauceOptions options){
-        super(options);
-    }
 
     @Test
     public void removeOneItemFromCart(){

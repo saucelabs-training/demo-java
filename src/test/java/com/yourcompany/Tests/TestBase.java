@@ -1,28 +1,23 @@
 package com.yourcompany.Tests;
 
-import com.saucelabs.common.SauceOnDemandSessionIdProvider;
-import com.saucelabs.junit.ConcurrentParameterized;
+import com.saucelabs.simplesauce.Browser;
 import com.saucelabs.simplesauce.SauceOptions;
+import com.saucelabs.simplesauce.SaucePlatform;
 import com.saucelabs.simplesauce.SauceSession;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.rules.TestName;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-import java.util.LinkedList;
-
 
 @Ignore
-@RunWith(ConcurrentParameterized.class)
-public class TestBase implements SauceOnDemandSessionIdProvider {
+public class TestBase implements SessionManager {
 
-    private SauceOptions options;
-    private SauceSession sauce;
-    private String sessionId;
+    @Rule
+    public SauceTestWatcher testWatcher = new SauceTestWatcher(this);
+
+    private SauceSession session;
+    private String platform;
 
     protected WebDriver driver;
 
@@ -33,49 +28,54 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         }
     };
 
-    public TestBase(SauceOptions options){
-        super();
-        this.options = options;
-    }
-
-    @ConcurrentParameterized.Parameters
-    public static LinkedList optionsList() {
-        LinkedList platforms = new LinkedList();
-
-        platforms.add(new SauceOptions[]{new SauceOptions()});
-        platforms.add(new SauceOptions[]{new SauceOptions().withFirefox()});
-        platforms.add(new SauceOptions[]{new SauceOptions().withEdge()});
-        platforms.add(new SauceOptions[]{new SauceOptions().withIE()});
-
-        return platforms;
-    }
-
-
-    /**
-     * Construct a new session using the Sauce Java bindings
-     *
-     */
     @Before
     public void setUp() {
-        options = new SauceOptions();
-        sauce = new SauceSession(options);
+        SauceOptions options = new SauceOptions();
+        options.setName(name.getMethodName());
 
-        driver = sauce.start();
+        if (System.getenv("START_TIME") != null) {
+            options.setBuild("Build Time: " + System.getenv("START_TIME"));
+        }
 
-        this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
+        if (System.getProperty("platform") != null) {
+            platform = System.getProperty("platform");
+        } else {
+            platform = "default";
+        }
+
+        switch(platform) {
+            case "windows_10_edge":
+                options.setPlatformName(SaucePlatform.WINDOWS_10);
+                options.setBrowserName(Browser.EDGE);
+                break;
+            case "mac_sierra_chrome":
+                options.setPlatformName(SaucePlatform.MAC_SIERRA);
+                options.setBrowserName(Browser.CHROME);
+                break;
+            case "windows_8_ff":
+                options.setPlatformName(SaucePlatform.WINDOWS_8);
+                options.setBrowserName(Browser.FIREFOX);
+                break;
+            case "windows_8_1_ie":
+                options.setPlatformName(SaucePlatform.WINDOWS_8_1);
+                options.setBrowserName(Browser.INTERNET_EXPLORER);
+                break;
+            case "mac_mojave_safari":
+                options.setPlatformName(SaucePlatform.MAC_MOJAVE);
+                options.setBrowserName(Browser.SAFARI);
+                break;
+            default:
+                // accept Sauce defaults
+                break;
+        }
+
+        session = new SauceSession(options);
+
+        driver = session.start();
     }
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
-
-    /**
-     * @return the value of the Sauce Job id.
-     */
     @Override
-    public String getSessionId() {
-        return sessionId;
+    public SauceSession getSession() {
+        return session;
     }
-
 }
