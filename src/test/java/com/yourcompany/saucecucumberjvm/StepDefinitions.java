@@ -1,9 +1,9 @@
 package com.yourcompany.saucecucumberjvm;
 
-import com.saucelabs.simplesauce.Browser;
-import com.saucelabs.simplesauce.SauceOptions;
-import com.saucelabs.simplesauce.SaucePlatform;
-import com.saucelabs.simplesauce.SauceSession;
+import com.saucelabs.saucebindings.Browser;
+import com.saucelabs.saucebindings.SauceOptions;
+import com.saucelabs.saucebindings.SaucePlatform;
+import com.saucelabs.saucebindings.SauceSession;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
