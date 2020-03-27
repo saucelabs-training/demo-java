@@ -1,6 +1,6 @@
 package com.yourcompany.Tests;
 
-import com.saucelabs.simplesauce.SauceSession;
+import com.saucelabs.saucebindings.SauceSession;
 
 public interface SessionManager {
     SauceSession getSession();
