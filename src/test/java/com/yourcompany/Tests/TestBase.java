@@ -11,15 +11,12 @@ import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 
 @Ignore
-public class TestBase implements SessionManager {
+public class TestBase {
+    public SauceSession session;
+    protected WebDriver driver;
 
     @Rule
-    public SauceTestWatcher testWatcher = new SauceTestWatcher(this);
-
-    private SauceSession session;
-    private String platform;
-
-    protected WebDriver driver;
+    public SauceTestWatcher testWatcher = new SauceTestWatcher();
 
     @Rule
     public TestName name = new TestName() {
@@ -37,6 +34,7 @@ public class TestBase implements SessionManager {
             options.setBuild("Build Time: " + System.getenv("START_TIME"));
         }
 
+        String platform;
         if (System.getProperty("platform") != null) {
             platform = System.getProperty("platform");
         } else {
@@ -70,12 +68,8 @@ public class TestBase implements SessionManager {
         }
 
         session = new SauceSession(options);
+        testWatcher.setSession(session);
 
         driver = session.start();
-    }
-
-    @Override
-    public SauceSession getSession() {
-        return session;
     }
 }

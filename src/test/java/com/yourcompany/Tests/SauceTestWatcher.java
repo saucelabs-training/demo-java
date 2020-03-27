@@ -1,25 +1,21 @@
 package com.yourcompany.Tests;
 
-import com.saucelabs.simplesauce.SauceSession;
+import com.saucelabs.saucebindings.SauceSession;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
 public class SauceTestWatcher extends TestWatcher {
-    private final SessionManager sessionManager;
+    private SauceSession sauceSession;
 
-    public SauceTestWatcher(SessionManager sessionManager) {
-        this.sessionManager = sessionManager;
-    }
-
-    private SauceSession getSession() {
-        return sessionManager.getSession();
+    public void setSession(SauceSession session) {
+        sauceSession = session;
     }
 
     protected void succeeded(Description description) {
-        getSession().stop("passed");
+        sauceSession.stop("passed");
     }
 
     protected void failed(Description description) {
-        getSession().stop("failed");
+        sauceSession.stop("failed");
     }
 }
