@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - oraclejdk8
+before_install:
+  - export | grep SAUCE_
+script: mvn clean install
+env:
+  global:
+    - SAUCE_USERNAME=sauce_examples
+addons:
+  jwt:
+    secure: U+Jj1AtsbfuQU4u9vKjDuXX8Q1CiGv8mNONk2xSF7f9cMBOBru1KsW+uOlc/6CnfNBpgll8dD4qBDIn8tbp6e4+XglG/8Fwds5vRED+Wdtgav4UH8OEg7p4tW/Gg3dYCrcKdTdydQ5uHKPWgONZ4Pdxsf5LqDuo995gXpF0UJudhj+72URYY9Wyk5AT0tkFGsGHFE7DhisqTFmjlXVM6jxONJdrlRMImIIYApFddWDJQr+h+H0ty8/NYevcedFu4hgjp4O1HgkAilj/LJ1sd5YQtNk5oaJDdr1w1lT8/3D5TOkzcQB1DMUuBwVd907lOUfdElOKpDwryTXkijPwTLwQqGLVXoOD2qK0FB4p0sUHCSrkGOza/VWdnrbMBS0RIUQwWBT5M5NOYgl7rZVK/BAPrrVFIDdGcjScZvwnp0Z1IVfer3YVt8D7b1B5LJklOupRIekwzpX4X2uKQ1iTfFxr8EgrZKFPGkwWpNEOPt/m0d9zRjwmBOHYBBEJJtfGIo40JHckOiH6gfYqYfxGTIEdO2Cz6cOaQWNsNdb2Tfe7dv33/5OMm9cXY5UAk2DKXuMujim9dl3tI1TCc1YjoqNJ8i91/+W6UGsKSc0kf6cztSd7DSB6N/BUs/lN8YFipN9HzCKGRReIZShCWTxuW+lH4AyG+mzCgyr/h81xnGvs=
