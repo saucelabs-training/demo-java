@@ -1,35 +1,12 @@
 package com.yourcompany.Tests;
 
 import com.saucelabs.saucebindings.Browser;
-import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SaucePlatform;
-import com.saucelabs.saucebindings.SauceSession;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.rules.TestName;
-import org.openqa.selenium.WebDriver;
 
-@Ignore
-public class TestBase {
-    public SauceSession session;
-    protected WebDriver driver;
+public class TestBase extends JUnitBase {
 
-    @Rule
-    public SauceTestWatcher testWatcher = new SauceTestWatcher();
-
-    @Rule
-    public TestName name = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
-
-    @Before
-    public void setUp() {
-        SauceOptions options = new SauceOptions();
-        options.setName(name.getMethodName());
-
+    @Override
+    public void updateOptions() {
         if (System.getenv("START_TIME") != null) {
             options.setBuild("Build Time: " + System.getenv("START_TIME"));
         }
@@ -66,10 +43,5 @@ public class TestBase {
                 // accept Sauce defaults
                 break;
         }
-
-        session = new SauceSession(options);
-        testWatcher.setSession(session);
-
-        driver = session.start();
     }
 }

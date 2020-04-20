@@ -3,35 +3,13 @@ package com.yourcompany.Tests;
 import com.saucelabs.saucebindings.Browser;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SaucePlatform;
-import com.saucelabs.saucebindings.SauceSession;
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
-import java.lang.reflect.Method;
+public class TestBase  extends TestNGBase {
 
-public class TestBase  {
-
-    protected static ThreadLocal<SauceSession> session = new ThreadLocal<>();
-    protected static ThreadLocal<SauceOptions> options = new ThreadLocal<>();
-
-    public SauceSession getSession() {
-        return session.get();
-    }
-
-    public WebDriver getDriver() {
-        return getSession().getDriver();
-    }
-
-    @BeforeMethod
-    public void setup (Method method) {
-        options.set(new SauceOptions());
-        options.get().setName(method.getName());
-
+    @Override
+    public SauceOptions updateOptions(SauceOptions options) {
         if (System.getenv("START_TIME") != null) {
-            options.get().setBuild("Build Time: " + System.getenv("START_TIME"));
+            options.setBuild("Build Time: " + System.getenv("START_TIME"));
         }
 
         String platform;
@@ -43,42 +21,30 @@ public class TestBase  {
 
         switch(platform) {
             case "windows_10_edge":
-                options.get().setPlatformName(SaucePlatform.WINDOWS_10);
-                options.get().setBrowserName(Browser.EDGE);
+                options.setPlatformName(SaucePlatform.WINDOWS_10);
+                options.setBrowserName(Browser.EDGE);
                 break;
             case "mac_sierra_chrome":
-                options.get().setPlatformName(SaucePlatform.MAC_SIERRA);
-                options.get().setBrowserName(Browser.CHROME);
+                options.setPlatformName(SaucePlatform.MAC_SIERRA);
+                options.setBrowserName(Browser.CHROME);
                 break;
             case "windows_8_ff":
-                options.get().setPlatformName(SaucePlatform.WINDOWS_8);
-                options.get().setBrowserName(Browser.FIREFOX);
+                options.setPlatformName(SaucePlatform.WINDOWS_8);
+                options.setBrowserName(Browser.FIREFOX);
                 break;
             case "windows_8_1_ie":
-                options.get().setPlatformName(SaucePlatform.WINDOWS_8_1);
-                options.get().setBrowserName(Browser.INTERNET_EXPLORER);
+                options.setPlatformName(SaucePlatform.WINDOWS_8_1);
+                options.setBrowserName(Browser.INTERNET_EXPLORER);
                 break;
             case "mac_mojave_safari":
-                options.get().setPlatformName(SaucePlatform.MAC_MOJAVE);
-                options.get().setBrowserName(Browser.SAFARI);
+                options.setPlatformName(SaucePlatform.MAC_MOJAVE);
+                options.setBrowserName(Browser.SAFARI);
                 break;
             default:
                 // accept Sauce defaults
                 break;
         }
 
-        session.set(new SauceSession(options.get()));
-
-        getSession().start();
-    }
-
-    @AfterMethod
-    public void tearDown(ITestResult result) {
-        getSession().stop(result.isSuccess());
-    }
-
-    @AfterClass
-    void terminate () {
-        session.remove();
+        return options;
     }
 }

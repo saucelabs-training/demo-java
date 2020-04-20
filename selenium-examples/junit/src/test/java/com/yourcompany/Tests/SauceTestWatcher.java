@@ -18,4 +18,9 @@ public class SauceTestWatcher extends TestWatcher {
     protected void failed(Description description) {
         sauceSession.stop("failed");
     }
+
+    protected void finished(Description description) {
+        // Implement an `isFinished()` method and use API to ensure that session is stopped
+    }
+
 }
