@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 
 public class SauceExecutionTest {
+
     @Test
     public void sauceExecution() throws MalformedURLException {
         // 1. Specify the 3 basic parameters of a SauceOptions instance

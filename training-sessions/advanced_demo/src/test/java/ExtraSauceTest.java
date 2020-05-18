@@ -5,16 +5,13 @@ import com.saucelabs.saucebindings.SauceSession;
 import org.junit.Test;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class ExtraSauceTest {
 
     @Test
-    public void extraSauce() throws MalformedURLException {
-
+    public void extraSauce() {
         // https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
-
         SauceOptions sauceOptions = new SauceOptions();
 
         // Primary Options
