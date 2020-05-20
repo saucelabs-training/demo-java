@@ -4,6 +4,8 @@ This code is provided on an "AS-IS” basis without warranty of any kind, either
 
 ### Training Plan
 
+Start by showing http://watir.com/examples/wait.html
+
 1. NoSynchTest will not pass because it needs to be synchronized
 
 2. SynchExplicitTest shows the industry standard recommendation to get a test to pass

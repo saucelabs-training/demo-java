@@ -51,7 +51,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <parallel>all</parallel>
-                    <threadCountMethods>100</threadCountMethods>
+                    <threadCountMethods>30</threadCountMethods>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
