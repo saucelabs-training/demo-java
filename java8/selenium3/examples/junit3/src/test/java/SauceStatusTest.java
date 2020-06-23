@@ -1,5 +1,4 @@
 import junit.framework.TestCase;
-import junit.framework.TestResult;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +11,8 @@ import java.net.URL;
 
 public class SauceStatusTest extends TestCase {
     private WebDriver driver;
+    private boolean isTestPassed = false;
 
-    @Override
     public void setUp() throws MalformedURLException {
         String username = System.getenv("SAUCE_USERNAME");
         String accessKey = System.getenv("SAUCE_ACCESS_KEY");
@@ -22,8 +21,6 @@ public class SauceStatusTest extends TestCase {
         chromeOpts.setExperimentalOption("w3c", true);
 
         MutableCapabilities sauceOpts = new MutableCapabilities();
-        sauceOpts.setCapability("build", "Java-W3C-Examples");
-        sauceOpts.setCapability("seleniumVersion", "3.141.59");
         sauceOpts.setCapability("username", username);
         sauceOpts.setCapability("accessKey", accessKey);
 
@@ -38,15 +35,68 @@ public class SauceStatusTest extends TestCase {
         URL url = new URL(sauceUrl);
         driver = new RemoteWebDriver(url, caps);
     }
-    @Override
     public void tearDown() {
-//        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" +
-//                (result.wasSuccessful() ? "passed" : "failed"));
+        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + isTestPassed);
         driver.quit();
     }
-    public void testStatus() {
+    public void testSauceStatus() {
         driver.navigate().to("https://www.saucedemo.com");
         String getTitle = driver.getTitle();
         assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus2() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus3() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus4() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus5() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus6() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus7() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus8() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus9() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
+    }
+    public void testSauceStatus10() {
+        driver.navigate().to("https://www.saucedemo.com");
+        String getTitle = driver.getTitle();
+        assertEquals(getTitle, "Swag Labs");
+        isTestPassed = true;
     }
 }
