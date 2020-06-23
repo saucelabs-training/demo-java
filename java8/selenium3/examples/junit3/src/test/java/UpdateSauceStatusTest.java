@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class UpdateTestStatus extends TestCase {
+public class UpdateSauceStatusTest extends TestCase {
     private WebDriver driver;
     private boolean isTestPassed = false;
 

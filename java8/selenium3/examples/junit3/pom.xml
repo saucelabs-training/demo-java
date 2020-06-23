@@ -11,9 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.saucelabs</groupId>
-    <artifactId>junit-3</artifactId>
-    <name>java8-selenium3-examples</name>
-    <description>A sample Maven project that demonstrates Sauce Labs Selenium tests using w3c-examples with Junit5 (Junit-Jupiter).</description>
+    <artifactId>junit3</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
