@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Web Demo Suite" verbose="0" >
+	<listeners>
+		<listener class-name="com.yourcompany.listeners.SauceTestListener"/>
+	</listeners>
+
+	<test name="Web Scenarios Chrome Mac Test Local " enabled="true">
+		<parameter name="API" value="local"></parameter>
+		<parameter name="webdriver.chrome.driver" value="/Users/eyalyovel/Documents/github/demo-java/parallel-testing/testng/cross-browsers-xml/src/test/resources/drivers/chromedriver_80"></parameter>
+		<parameter name="browser" value="chrome"></parameter>
+		<groups>
+			<run>
+				<include name="@Web1" />
+			</run>
+		</groups>
+		<packages>
+			<package name="com.yourcompany.tests"></package>
+		</packages>
+	</test>
+
+</suite>
