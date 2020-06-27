@@ -10,8 +10,8 @@
 		<parameter name="cap:browserName" value="chrome"></parameter>
 		<parameter name="cap:version" value="latest"></parameter>
 		<parameter name="cap:platform" value="macOS 10.14"></parameter>
-		<parameter name="cap:extendedDebugging" value="true"></parameter>
-		<parameter name="cap:capturePerformance" value="true"></parameter>
+<!--		<parameter name="cap:extendedDebugging" value="true"></parameter>-->
+<!--		<parameter name="cap:capturePerformance" value="true"></parameter>-->
 		<parameter name="cap:build" value="parallel-TestNG-cross-browser-and-platform-demo-6"></parameter>
 		<parameter name="cap:screenResolution" value="1152x864"></parameter>
 		<groups>
@@ -59,13 +59,13 @@
 		</packages>
 	</test>
 
-	<test name="Web Scenarios W3C Chrome Mac Test" enabled="false">
+	<test name="Web Scenarios W3C Chrome Mac Test" enabled="true">
 		<parameter name="API" value="W3C"></parameter>
 		<parameter name="browser" value="chrome"></parameter>
-		<parameter name="cap:browserVersion" value="71"></parameter>
-		<parameter name="cap:platformName" value="macOS 10.12"></parameter>
+		<parameter name="cap:browserVersion" value="latest-1"></parameter>
+		<parameter name="cap:platformName" value="macOS 10.14"></parameter>
 		<parameter name="sauce:screenResolution" value="1152x864"></parameter>
-		<parameter name="cap:build" value="parallel-TestNG-cross-browser-and-platform-demo"></parameter>
+		<parameter name="cap:build" value="parallel-TestNG-cross-browser-and-platform-demo-6"></parameter>
 		<groups>
 			<run>
 				<include name="@Web1" />
@@ -76,7 +76,7 @@
 		</packages>
 	</test>
 
-	<test name="Web Scenarios firefox Test" enabled="false">
+	<test name="Web Scenarios firefox Test" enabled="true">
 		<parameter name="API" value="W3C"></parameter>
 		<parameter name="browser" value="firefox"></parameter>
 		<parameter name="cap:browserVersion" value="66.0"></parameter>
@@ -92,10 +92,10 @@
 		</packages>
 	</test>
 
-	<test name="Web Scenarios safari Test" enabled="false">
+	<test name="Web Scenarios safari Test" enabled="true">
 		<parameter name="API" value="W3C"></parameter>
 		<parameter name="browser" value="safari"></parameter>
-		<parameter name="cap:browserVersion" value="13.0"></parameter>
+		<parameter name="cap:browserVersion" value="13.1"></parameter>
 		<parameter name="cap:platformName" value="macOS 10.15"></parameter>
 		<parameter name="cap:build" value="parallel-TestNG-cross-browser-and-platform-demo"></parameter>
 		<groups>

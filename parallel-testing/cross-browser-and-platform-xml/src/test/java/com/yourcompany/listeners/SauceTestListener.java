@@ -43,9 +43,9 @@ public class SauceTestListener implements ITestListener {
         Map<String, String> allParameters = iTestResult.getTestContext().getCurrentXmlTest().getAllParameters();
 
         MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("name", testName);
+
         // Add the parameters to the capabilities
-        addDriverCapabilities(capabilities,allParameters);
+        capabilities = addDriverCapabilities(capabilities,allParameters);
 
         switch(runType) {
             case LOCAL:
@@ -59,7 +59,7 @@ public class SauceTestListener implements ITestListener {
         // update test name and tags
         try {
             if (runType.equals(RunType.SAUCE)) {
-          //      ((JavascriptExecutor) getDriver()).executeScript("sauce:job-name=" + iTestResult.getName());
+                ((JavascriptExecutor) getDriver()).executeScript("sauce:job-name=" + iTestResult.getName());
                 String[] tags = iTestResult.getTestContext().getAllTestMethods()[0].getGroups();
                 String strTags = String.join(",", tags);
                 ((JavascriptExecutor) getDriver()).executeScript("sauce:job-tags=" + strTags);
@@ -165,12 +165,12 @@ public class SauceTestListener implements ITestListener {
     }
 
 
-    public void addDriverCapabilities(MutableCapabilities capabilities,Map<String, String> driverParams){
+    public MutableCapabilities addDriverCapabilities(MutableCapabilities capabilities,Map<String, String> driverParams){
         String api = driverParams.get("API").toLowerCase();
         switch (api.toLowerCase()) {
             case "w3c":
                 runType = RunType.SAUCE;
-                addW3CCap(capabilities, driverParams);
+                capabilities = addW3CCap(capabilities, driverParams);
                 break;
             case "legacy":
                 runType = RunType.SAUCE;
@@ -181,6 +181,8 @@ public class SauceTestListener implements ITestListener {
                 addLocalCap(capabilities, driverParams);
                 break;
         }
+
+        return capabilities;
     }
 
     private void addLegacyCap(MutableCapabilities capabilities, Map<String, String> driverParams) {
@@ -198,7 +200,7 @@ public class SauceTestListener implements ITestListener {
         }
     }
 
-    private  void addW3CCap(MutableCapabilities capabilities, Map<String, String> driverParams) {
+    private  MutableCapabilities addW3CCap(MutableCapabilities capabilities, Map<String, String> driverParams) {
 
         String browser = driverParams.get("browser").toLowerCase();
         if (browser.equals("chrome")) {
@@ -229,6 +231,8 @@ public class SauceTestListener implements ITestListener {
             });
             capabilities.setCapability("sauce:options", sauceOptions);
         }
+
+        return capabilities;
     }
 
     private  void setDriverCapabilities(MutableCapabilities capabilities, Map<String, String> driverParams) {

@@ -62,7 +62,7 @@ public class LoginTest extends SauceTestListener {
         Assert.assertTrue(loginPage.isOnPage());
     }
 
-    @Test(groups = { "@Web" })
+    @Test(groups = { "@Web1" })
     public void loginTestInvalidPassword() {
 
         LoginPage loginPage = new LoginPage(this.getDriver());
