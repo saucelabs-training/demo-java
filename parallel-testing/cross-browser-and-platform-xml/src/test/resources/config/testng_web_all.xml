@@ -62,9 +62,9 @@
 	<test name="Web Scenarios W3C Chrome Mac Test" enabled="true">
 		<parameter name="API" value="W3C"></parameter>
 		<parameter name="browser" value="chrome"></parameter>
+		<parameter name="sauce:screenResolution" value="1152x864"></parameter>
 		<parameter name="cap:browserVersion" value="latest-1"></parameter>
 		<parameter name="cap:platformName" value="macOS 10.14"></parameter>
-		<parameter name="sauce:screenResolution" value="1152x864"></parameter>
 		<parameter name="cap:build" value="parallel-TestNG-cross-browser-and-platform-demo-6"></parameter>
 		<groups>
 			<run>
