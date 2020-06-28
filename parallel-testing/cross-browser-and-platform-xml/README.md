@@ -88,7 +88,7 @@ $ mvn clean install -DtestngXmlFile=<the testng xml file>
 ```
 Example:
 ```
-$ mvn clean install -DtestngXmlFile=testng_web_all.xm
+$ mvn clean install -DtestngXmlFile=testng_web_all.xml
 ```
 
 [Sauce Labs Dashboard](https://saucelabs.com/beta/dashboard)
