@@ -79,7 +79,7 @@ Using the framework, you can define tags as part of the tests and distinguish an
 * You should use tags that are meaningful and valuable to your teams. For example: using tags for test types ( @Regression, @Smoke) or using tags for team names ( @UI_Team, @Android_Team)
 * The tags will be added to the test result
 ![](sauce_Metadata.png)
- And you can use the Insights / Trends to filter using the tags
+* You can use the Insights / Trends to filter using the tags
  ![](sauce_Trends.png)
 ### Running Tests
 
