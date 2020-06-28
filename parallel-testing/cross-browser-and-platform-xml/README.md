@@ -29,22 +29,25 @@ Using the framework, you can define tags as part of the tests and distinguish an
 * The testng xml files are located in "src/test/resources/config"
 * Each  < test >  is configured to run your tests on specific browser and platform
 * There are 3 types of API you can use: 
-	* 
-```
-<parameter name="API" value="Legacy"></parameter>
-``` . 
-Legacy (JSON Wire Protocol) is a protocol previously used by Selenium for automating web browsers. 
-The tests will run on Sauce platform
-	* 
-```
-<parameter name="API" value="W3C"></parameter>
-```. 
-WebDriver (W3C) is an automation standard used by tools like Selenium or Webdriver.io for automating web browsers.
-The tests will run on Sauce platform. 
-	* ``` 
-<parameter name="API" value="local"></parameter>
-``` . 
-The tests will run on your local machine (in this example - local chrome). 
+    * Legacy - Legacy (JSON Wire Protocol) is a protocol previously used by Selenium for automating web browsers. 
+      The tests will run on Sauce platform
+    ```
+    <parameter name="API" value="Legacy"></parameter>
+    ``` 
+
+	* W3C - WebDriver (W3C) is an automation standard used by tools like Selenium or Webdriver.io for automating web browsers.
+      The tests will run on Sauce platform. 
+      
+    ```
+    <parameter name="API" value="W3C"></parameter>
+    ```
+
+    * local - The tests will run on your local machine (in this example - local chrome). 
+  
+    ``` 
+    <parameter name="API" value="local"></parameter>
+    ```
+
 
 * Parameters that start with 'cap' will be added to the driver capabilities
 ```
