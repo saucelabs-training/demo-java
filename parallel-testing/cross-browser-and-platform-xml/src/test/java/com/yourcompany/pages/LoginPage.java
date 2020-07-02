@@ -1,5 +1,6 @@
 package com.yourcompany.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,28 +14,17 @@ public class LoginPage extends BasePO {
         return url;
     }
 
-    @FindBy(id = "user-name")
-    private WebElement usernameInput;
-
-    @FindBy(id = "password")
-    private WebElement passwordInput;
-
-    @FindBy(className = "btn_action")
-    private WebElement submitButton;
-
-    @FindBy(id = "login_credentials")
-    private WebElement credentialsInfo;
-
-    @FindBy(className = "svg-inline--fa")
-    private WebElement epicSadFace;
+    By usernameInput = By.id("user-name");
+    By passwordInput = By.id("password");
+    By submitButton = By.className("btn_action");
+    By credentialsInfo = By.id("login_credentials");
+    By epicSadFace = By.className("svg-inline--fa");
 
     public LoginPage() {
         super();
     }
     public LoginPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
-
     }
 
     public void navigate(){
@@ -42,22 +32,23 @@ public class LoginPage extends BasePO {
     }
 
     public boolean isOnPage() {
-        return credentialsInfo.isDisplayed();
+        return driver.findElement(credentialsInfo).isDisplayed();
     }
 
     public void login(String username, String password) {
         JavascriptExecutor js = (JavascriptExecutor)driver;
 
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
+        driver.findElement(usernameInput).sendKeys(username);
+        driver.findElement(passwordInput).sendKeys(password);
 
         // The click doesn't wotk on Safari 13
-        //submitButton.click();
-        js.executeScript("arguments[0].click()", submitButton);
-     //   js.executeScript("arguments[0].dispatchEvent(new Event(\"click\"))", submitButton);
+        //driver.findElement(submitButton).click();
+        js.executeScript("arguments[0].click()", driver.findElement(submitButton));
+        // This is an example of click by using dispatch event
+     //   js.executeScript("arguments[0].dispatchEvent(new Event(\"click\"))", driver.findElement(submitButton));
     }
 
     public boolean epicSadFaceDisplayed() {
-        return epicSadFace.isDisplayed();
+        return driver.findElement(epicSadFace).isDisplayed();
     }
 }

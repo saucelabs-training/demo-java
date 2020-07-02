@@ -7,26 +7,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class InventoryPage extends BasePO {
-    InventoryPage() {}
+
+    By inventoryContainer = By.className("inventory_container");
+    By inventoryList = By.className("inventory_list");
+    By inventoryHeader = By.className("header_secondary_container");
+    By productTitle = By.className("product_label");
+
+    InventoryPage() {super();}
 
     public InventoryPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
-
     }
-
-    @FindBy(className = "inventory_container")
-    private WebElement inventoryContainer;
-
-    @FindBy(className = "inventory_list")
-    private WebElement inventoryList;
-
-    @FindBy(className = "header_secondary_container")
-    private WebElement inventoryHeader;
-
-
-    @FindBy(className = "product_label")
-    private WebElement productTitle;
 
     /**
      * Returns the Div containing the item specified (zero-indexed)
@@ -34,7 +25,7 @@ public class InventoryPage extends BasePO {
      * @return
      */
     private WebElement getItemNumber(int itemNumber) {
-        return inventoryList.findElement(By.cssSelector(String.format("div.inventory_item:nth-of-type(%d)", itemNumber)));
+        return driver.findElement(inventoryList).findElement(By.cssSelector(String.format("div.inventory_item:nth-of-type(%d)", itemNumber)));
     }
 
     public String getItemName(int itemNumber) {
@@ -59,7 +50,7 @@ public class InventoryPage extends BasePO {
 
     public boolean isOnPage() {
         //return inventoryHeader.isDisplayed();
-        return productTitle.isDisplayed();
+        return driver.findElement(productTitle).isDisplayed();
     }
 
     public boolean itemAddedToCart(int itemNumber) {
