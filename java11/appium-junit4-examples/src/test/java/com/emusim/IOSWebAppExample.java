@@ -1,8 +1,5 @@
 package com.emusim;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.ios.IOSDriver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -37,7 +34,7 @@ public class IOSWebAppExample {
         capabilities.setCapability("appiumVersion", "1.17.1");
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("platformVersion", "13.2");
-        capabilities.setCapability("deviceName","iPhone XS Max Simulator");
+        capabilities.setCapability("deviceName", "iPhone XS Max Simulator");
         capabilities.setCapability("browserName", "Safari");
         capabilities.setCapability("name", name.getMethodName());
 
@@ -63,6 +60,7 @@ public class IOSWebAppExample {
         getDriver().navigate().to("https://www.saucedemo.com");
         assertTrue(getDriver().findElement(By.id("user-name")).isDisplayed());
     }
+
     @Test
     public void shouldLogin() {
         getDriver().navigate().to("https://www.saucedemo.com");
