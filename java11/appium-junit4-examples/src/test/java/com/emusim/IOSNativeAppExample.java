@@ -17,16 +17,17 @@ import java.net.URL;
 import static org.junit.Assert.assertTrue;
 
 public class IOSNativeAppExample {
-    private AppiumDriver<MobileElement> driver;
-    public AppiumDriver<MobileElement> getDriver() {
-        return driver;
-    }
     @Rule
     public TestName name = new TestName() {
         public String getMethodName() {
             return String.format("%s", super.getMethodName());
         }
     };
+    private AppiumDriver<MobileElement> driver;
+
+    public AppiumDriver<MobileElement> getDriver() {
+        return driver;
+    }
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -50,15 +51,16 @@ public class IOSNativeAppExample {
                         "@ondemand.saucelabs.com:443" + "/wd/hub"),
                 capabilities);
     }
+
     @After
-    public void tearDown(){
-        if(getDriver() != null)
-        {
+    public void tearDown() {
+        if (getDriver() != null) {
             getDriver().quit();
         }
     }
+
     @Test
-    public void shouldOpenApp(){
+    public void shouldOpenApp() {
         assertTrue(getDriver().findElement(By.id("test-LOGIN")).isDisplayed());
     }
 }
