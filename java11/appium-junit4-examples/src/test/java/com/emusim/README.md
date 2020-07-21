@@ -9,3 +9,4 @@ This repository is NOT based on best practices and you should not use it as a ba
 ## Examples
 
 * [iOS Native App running on iOS Simulator] ()
+* [iOS Web App running on iOS Simulator] ()
