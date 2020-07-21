@@ -71,6 +71,10 @@ jobs:
           command: |
             mvn test -pl w3c-examples/w3c-testng/
       - run:
+          name: "Run iOS Emusim Safari"
+          command: |
+            mvn -Dtest=IOSWebAppExample test -pl java11/appium-junit4-examples/
+      - run:
           name: "Shut Down Sauce Connect Tunnel"
           command: |
             kill -9 `cat /tmp/sc.pid1`
