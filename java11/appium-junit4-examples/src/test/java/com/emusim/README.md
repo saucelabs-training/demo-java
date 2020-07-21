@@ -8,5 +8,5 @@ This repository is NOT based on best practices and you should not use it as a ba
 
 ## Examples
 
-* [iOS Native App running on iOS Simulator] ()
-* [iOS Web App running on iOS Simulator] ()
+* [iOS Native App running on iOS Simulator] (https://github.com/saucelabs-training/demo-java/blob/master/java11/appium-junit4-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
+* [iOS Web App running on iOS Simulator] (https://github.com/saucelabs-training/demo-java/blob/master/java11/appium-junit4-examples/src/test/java/com/emusim/IOSWebAppExample.java)
