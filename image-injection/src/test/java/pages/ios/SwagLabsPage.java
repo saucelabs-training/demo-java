@@ -15,11 +15,11 @@ public class SwagLabsPage {
     By usernameID = By.id("test-Username");
     By passwordID = By.id("test-Password");
     By submitButton = By.id("test-LOGIN");
-    By ProductTitle = By.xpath("//XCUIElementTypeStaticText[@name=\"PRODUCTS\"]\n");
+    String ProductTitleSelector = "type==\"XCUIElementTypeStaticText\" && name==\"PRODUCTS\"";
     By testMenu = By.name("test-Menu");
     By testMenuItemWebView = By.name("test-WEBVIEW");
     By testMenuItemQRCode = By.name("test-QR CODE SCANNER");
-    By acceptCameraButton = By.xpath("//XCUIElementTypeButton[@name=\"OK\"]\n");
+    By acceptCameraButton = By.name("OK");
 
     public IOSDriver driver;
 
@@ -30,6 +30,7 @@ public class SwagLabsPage {
 
     public void login(String user, String pass) {
         try {
+
             WebElement usernameEdit = driver.findElement(usernameID);
             usernameEdit.click();
             usernameEdit.sendKeys(user);
@@ -46,7 +47,7 @@ public class SwagLabsPage {
     }
 
     public boolean isOnProductsPage() {
-        return driver.findElement(ProductTitle).isDisplayed();
+        return driver.findElementByIosNsPredicate(ProductTitleSelector).isDisplayed();
     }
 
     public void clickMenu() {
