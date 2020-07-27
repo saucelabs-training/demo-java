@@ -1,4 +1,4 @@
-package pages.ios;
+package ios.pages;
 
 import helpers.utils;
 import io.appium.java_client.AppiumDriver;

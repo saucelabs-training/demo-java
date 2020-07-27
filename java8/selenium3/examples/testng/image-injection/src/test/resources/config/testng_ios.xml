@@ -3,7 +3,7 @@
 
 	<test name="Image Injection execution tests" enabled="true">
 		<packages>
-			<package name="tests.android"/>
+			<package name="ios.tests"/>
 		</packages>
 	</test>
 </suite>
