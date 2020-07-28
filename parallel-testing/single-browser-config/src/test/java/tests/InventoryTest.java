@@ -1,6 +1,6 @@
 package tests;
 
-import pages.InventoryPage;
+import com.saucedemo.pages.InventoryPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

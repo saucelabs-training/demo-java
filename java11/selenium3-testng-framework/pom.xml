@@ -2,25 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>demo-java</artifactId>
+        <groupId>com.saucelabs</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.saucelabs</groupId>
-    <artifactId>demo-java</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>on-boarding-modules/junit</module>
-        <module>on-boarding-modules/testng</module>
-        <module>parallel-testing/cross-browser-and-platform-config</module>
-        <module>parallel-testing/single-browser-config</module>
-        <module>headless</module>
-        <module>appium-example</module>
-        <module>w3c-examples/w3c-junit5</module>
-        <module>w3c-examples/w3c-testng</module>
-        <module>java8/selenium3/examples/junit3</module>
-        <module>java11/appium-junit4-examples</module>
-        <module>java11/selenium3-testng-framework</module>
-    </modules>
+    <artifactId>selenium3.testng.framework</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -29,22 +20,27 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.10</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.17.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>sauce_bindings</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
     <build>
         <defaultGoal>test</defaultGoal>
@@ -66,6 +62,9 @@
                     <!-- CircleCI build workaround -->
                     <argLine>-Xms1024m -Xmx2048m</argLine>
                     <useSystemClassLoader>false</useSystemClassLoader>
+                    <parallel>methods</parallel>
+                    <threadCount>100</threadCount>
+                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
             </plugin>
         </plugins>

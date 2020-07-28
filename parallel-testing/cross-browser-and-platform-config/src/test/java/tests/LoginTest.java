@@ -1,8 +1,8 @@
 package tests;
 
-import pages.SauceDemoNavigation;
-import pages.InventoryPage;
-import pages.LoginPage;
+import com.saucedemo.pages.SauceDemoNavigation;
+import com.saucedemo.pages.InventoryPage;
+import com.saucedemo.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
