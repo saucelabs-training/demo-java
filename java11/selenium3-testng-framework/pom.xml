@@ -35,6 +35,11 @@
             <artifactId>javafaker</artifactId>
             <version>0.17.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>sauce_bindings</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
     <build>
