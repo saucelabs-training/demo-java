@@ -58,7 +58,7 @@
                     <argLine>-Xms1024m -Xmx2048m</argLine>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <parallel>methods</parallel>
-                    <threadCount>10</threadCount>
+                    <threadCount>100</threadCount>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
             </plugin>

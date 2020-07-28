@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class CheckoutFeatureTest extends BaseTest {
 
     @Test
-    public void ShouldBeAbleToCheckoutWithItems() {
+    public void shouldBeAbleToCheckoutWithItems() {
         ConfirmationPage confirmationPage = new ConfirmationPage(getDriver());
         confirmationPage.visit();
         Assert.assertTrue(confirmationPage.isLoaded());
@@ -19,5 +19,48 @@ public class CheckoutFeatureTest extends BaseTest {
         CheckoutCompletePage completePage = confirmationPage.finishCheckout();
         Assert.assertTrue(completePage.isLoaded());
     }
+    @Test
+    public void shouldBeAbleToCheckoutWithItems2() {
+        ConfirmationPage confirmationPage = new ConfirmationPage(getDriver());
+        confirmationPage.visit();
+        Assert.assertTrue(confirmationPage.isLoaded());
 
+        confirmationPage.setPageState();
+        Assert.assertTrue(confirmationPage.hasItems());
+        CheckoutCompletePage completePage = confirmationPage.finishCheckout();
+        Assert.assertTrue(completePage.isLoaded());
+    }
+    @Test
+    public void shouldBeAbleToCheckoutWithItems3() {
+        ConfirmationPage confirmationPage = new ConfirmationPage(getDriver());
+        confirmationPage.visit();
+        Assert.assertTrue(confirmationPage.isLoaded());
+
+        confirmationPage.setPageState();
+        Assert.assertTrue(confirmationPage.hasItems());
+        CheckoutCompletePage completePage = confirmationPage.finishCheckout();
+        Assert.assertTrue(completePage.isLoaded());
+    }
+    @Test
+    public void shouldBeAbleToCheckoutWithItems4() {
+        ConfirmationPage confirmationPage = new ConfirmationPage(getDriver());
+        confirmationPage.visit();
+        Assert.assertTrue(confirmationPage.isLoaded());
+
+        confirmationPage.setPageState();
+        Assert.assertTrue(confirmationPage.hasItems());
+        CheckoutCompletePage completePage = confirmationPage.finishCheckout();
+        Assert.assertTrue(completePage.isLoaded());
+    }
+    @Test
+    public void shouldBeAbleToCheckoutWithItems5() {
+        ConfirmationPage confirmationPage = new ConfirmationPage(getDriver());
+        confirmationPage.visit();
+        Assert.assertTrue(confirmationPage.isLoaded());
+
+        confirmationPage.setPageState();
+        Assert.assertTrue(confirmationPage.hasItems());
+        CheckoutCompletePage completePage = confirmationPage.finishCheckout();
+        Assert.assertTrue(completePage.isLoaded());
+    }
 }
