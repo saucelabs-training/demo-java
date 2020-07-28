@@ -47,6 +47,10 @@ jobs:
           command: |
             mvn test -pl on-boarding-modules/junit/
       - run:
+          name: "Run TestNg Framework"
+          command: |
+            mvn test -pl java11/selenium3-testng-framework/
+      - run:
           name: "Run Cross Browser/Platform Tests"
           command: |
             mvn test -pl parallel-testing/cross-browser-and-platform-config/
