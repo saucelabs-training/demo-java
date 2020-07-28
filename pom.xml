@@ -18,7 +18,8 @@
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
         <module>java8/selenium3/examples/junit3</module>
-        <module>java11/selenium3/framework/com.selenium3.testng</module>
+        <module>java11/appium-junit4-examples</module>
+        <module>java11/selenium3-testng-framework</module>
     </modules>
     <dependencies>
         <dependency>

@@ -1,3 +1,5 @@
+package com.saucedemo;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -13,9 +15,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BaseTest {
-    protected WebDriver driver;
+    public WebDriver driver;
 
-    //TODO Switch away from Test NG and into JUnit
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
         String sauceUsername = System.getenv("SAUCE_USERNAME");

@@ -1,3 +1,7 @@
+package com.saucedemo;
+
+import com.saucedemo.pages.CheckoutCompletePage;
+import com.saucedemo.pages.ConfirmationPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

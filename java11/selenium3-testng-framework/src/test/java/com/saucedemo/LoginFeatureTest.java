@@ -1,3 +1,7 @@
+package com.saucedemo;
+
+import com.saucedemo.pages.InventoryPage;
+import com.saucedemo.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
