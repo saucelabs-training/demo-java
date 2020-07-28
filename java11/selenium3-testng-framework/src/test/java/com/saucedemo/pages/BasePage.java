@@ -4,13 +4,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-    public final WebDriver driver;
+    //We need to create a ThreadLocal object to be accessed by a specific thread
+    private ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
+
+    public WebDriver getDriver(){
+        return threadLocalDriver.get();
+    }
+
     public String baseUrl;
     public WebDriverWait pageWait;
 
     public BasePage(WebDriver driver) {
-        this.driver = driver;
-        pageWait = new WebDriverWait(this.driver, 10);
+        threadLocalDriver.set(driver);
+        pageWait = new WebDriverWait(getDriver(), 10);
         baseUrl = "https://www.saucedemo.com";
     }
 }

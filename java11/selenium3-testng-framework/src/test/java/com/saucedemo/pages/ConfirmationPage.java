@@ -14,26 +14,26 @@ public class ConfirmationPage extends BasePage {
     //TODO the back part of the URL is being duplicated and can probably be extracted into
     //a property that keeps track of checkout-step-two.html
     public void visit() {
-        driver.navigate().to(baseUrl + "/checkout-step-two.html");
+        getDriver().navigate().to(baseUrl + "/checkout-step-two.html");
     }
 
     public void setPageState() {
         //TODO what are you going to do with the JS executor duplication
-        ((JavascriptExecutor) driver).executeScript("window.sessionStorage.setItem('standard-username', 'standard-user')");
-        ((JavascriptExecutor) driver).executeScript("window.sessionStorage.setItem('cart-contents', '[4,1]')");
-        driver.navigate().refresh();
+        ((JavascriptExecutor) getDriver()).executeScript("window.sessionStorage.setItem('standard-username', 'standard-user')");
+        ((JavascriptExecutor) getDriver()).executeScript("window.sessionStorage.setItem('cart-contents', '[4,1]')");
+        getDriver().navigate().refresh();
     }
 
     public Boolean hasItems() {
         String cartBadge = "shopping_cart_badge";
-        return Integer.parseInt(driver.findElement(By.className(cartBadge)).getText()) > 0;
+        return Integer.parseInt(getDriver().findElement(By.className(cartBadge)).getText()) > 0;
     }
 
     public CheckoutCompletePage finishCheckout() {
         String finishedCheckoutLocator = ".btn_action.cart_button";
-        WebElement finishButton = driver.findElement(By.cssSelector(finishedCheckoutLocator));
+        WebElement finishButton = getDriver().findElement(By.cssSelector(finishedCheckoutLocator));
         finishButton.click();
-        return new CheckoutCompletePage(driver);
+        return new CheckoutCompletePage(getDriver());
     }
 
     public boolean isLoaded() {

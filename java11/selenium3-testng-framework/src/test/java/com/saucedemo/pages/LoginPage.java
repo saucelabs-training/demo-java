@@ -12,7 +12,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage visit() {
-        driver.get(baseUrl);
+        getDriver().get(baseUrl);
         return this;
     }
 
@@ -21,14 +21,14 @@ public class LoginPage extends BasePage {
         String passField = "[data-test='password']";
         String loginBtn = "[value='LOGIN']";
 
-        driver.findElement(By.cssSelector(userField)).sendKeys(username);
-        driver.findElement(By.cssSelector(passField)).sendKeys(password);
-        driver.findElement(By.cssSelector(loginBtn)).click();
-        return new InventoryPage(driver);
+        getDriver().findElement(By.cssSelector(userField)).sendKeys(username);
+        getDriver().findElement(By.cssSelector(passField)).sendKeys(password);
+        getDriver().findElement(By.cssSelector(loginBtn)).click();
+        return new InventoryPage(getDriver());
     }
 
     public boolean isLoaded() {
-        WebElement sauceBot = driver.findElement(By.className("bot_column"));
+        WebElement sauceBot = getDriver().findElement(By.className("bot_column"));
         return pageWait.until(ExpectedConditions.visibilityOf(sauceBot)).isDisplayed();
     }
 }

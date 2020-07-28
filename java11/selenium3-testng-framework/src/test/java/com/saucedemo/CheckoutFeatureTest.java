@@ -10,7 +10,7 @@ public class CheckoutFeatureTest extends BaseTest {
 
     @Test
     public void ShouldBeAbleToCheckoutWithItems() {
-        ConfirmationPage confirmationPage = new ConfirmationPage(driver);
+        ConfirmationPage confirmationPage = new ConfirmationPage(getDriver());
         confirmationPage.visit();
         Assert.assertTrue(confirmationPage.isLoaded());
 

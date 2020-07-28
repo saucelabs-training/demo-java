@@ -15,7 +15,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BaseTest {
-    public WebDriver driver;
+    //We need to create a ThreadLocal object to be accessed by a specific thread
+    private ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
+
+    public WebDriver getDriver(){
+        return threadLocalDriver.get();
+    }
 
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
@@ -39,13 +44,13 @@ public class BaseTest {
 
         String sauceUrl = "https://ondemand.saucelabs.com/wd/hub";
         URL url = new URL(sauceUrl);
-        driver = new RemoteWebDriver(url, capabilities);
+        threadLocalDriver.set(new RemoteWebDriver(url, capabilities));
     }
 
     @AfterMethod
     public void teardown(ITestResult result) {
-        ((JavascriptExecutor) driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
-        driver.quit();
+        ((JavascriptExecutor) getDriver()).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
+        getDriver().quit();
     }
 }
 

@@ -57,7 +57,7 @@
                     <!-- CircleCI build workaround -->
                     <argLine>-Xms1024m -Xmx2048m</argLine>
                     <useSystemClassLoader>false</useSystemClassLoader>
-                    <parallel>classes</parallel>
+                    <parallel>methods</parallel>
                     <threadCount>10</threadCount>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
