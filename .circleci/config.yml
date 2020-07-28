@@ -55,10 +55,6 @@ jobs:
           command: |
             mvn test -pl parallel-testing/single-browser-config/
       - run:
-          name: "Run Headless Tests"
-          command: |
-            mvn test -pl headless/
-      - run:
           name: "Run Appium Tests"
           command: |
             mvn test -pl appium-example/
