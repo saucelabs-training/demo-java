@@ -34,10 +34,13 @@ public class SwagLabsTest {
         String methodName = method.getName();
 
         String sauceUrl;
+        String appID ="";
         if (region.equalsIgnoreCase("eu")) {
             sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
+            appID ="e7fdaa5f-36d6-40c7-9a51-0bb71acf44c3";
         } else {
             sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
+            appID = "198a3d97-6d78-4ad9-895e-1f3f94974a2c";
         }
 
         String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl +"/wd/hub";
@@ -49,7 +52,7 @@ public class SwagLabsTest {
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("automationName", "XCUITEST");
         capabilities.setCapability("name", methodName);
-        capabilities.setCapability("app", "sauce-storage:sample-app-ios-real.ipa");
+        capabilities.setCapability("app", "storage:" +appID);
         capabilities.setCapability("noReset", true);
         capabilities.setCapability("sauceLabsImageInjectionEnabled", true);
         capabilities.setCapability("autoAcceptAlerts", true);

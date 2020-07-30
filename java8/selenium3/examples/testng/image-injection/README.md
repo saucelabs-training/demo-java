@@ -21,19 +21,10 @@ Be aware of the fact that you need the build for the iOS real device. So please 
 > The advice is to download the files to an `apps` folder in the root of this folder.
 
 ### Upload apps to Sauce Storage
-If you want to use iOS real devices and Android real devices in the New Sauce Labs UI you need to upload the apps to the Sauce Storage.
-You can find a script to upload them to, or the US, or EU DC in [this](./src/test/java/scripts)-folder. You can push the files to the 
-storage by doing the following from the root of this folder:
-
-    cd scripts
-    ./push_apps_to_storage.sh
-    
-When you've done that you will see for example the following logs
-
-    ➜  scripts git:(master) ✗ ./push_apps_to_storage.sh 
-    {"username":"eyalyovel","filename":"sample-app-android.apk","size":24874172,"md5":"e46219548268d3e89ada443e1ed6e351","etag":"8b037c2ad1dc2b241e605ed97569d6dd"}
-    {"username":"eyalyovel","filename":"sample-app-ios-real.ipa","size":4597084,"md5":"33f82765909e4ac7fc9dd5e925b6d2ae","etag":"86e63c580c15530db573833371830323"}
- 
+* If you want to use iOS real devices and Android real devices in the New Sauce Labs UI you need to upload the apps to the Sauce Storage.
+For more information on this step please visit: [Application Storage](https://wiki.saucelabs.com/display/DOCS/Application+Storage).
+* In the app capability you must use storage:<app-id>. For more information on this step please visit: [Using Application Storage with Automated Test Builds](https://wiki.saucelabs.com/display/DOCSDEV/Application+Storage#ApplicationStorage-UsingApplicationStoragewithAutomatedTestBuilds) section of [Application Storage](https://wiki.saucelabs.com/display/DOCS/Application+Storage)
+* Change the value of appID parameter in SwagLabsTest.java for Android and iOS according to your app-id.
 ## Run tests on Sauce Labs Android real devices in the New Sauce Labs UI
 If you want to run the tests on Sauce Labs real devices in the **New Sauce Labs UI** then you can run the Android test with
 
