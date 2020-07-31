@@ -1,6 +1,6 @@
 package tests;
 
-import pages.SauceDemoNavigation;
+import com.saucedemo.pages.SauceDemoNavigation;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;

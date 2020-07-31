@@ -47,6 +47,10 @@ jobs:
           command: |
             mvn test -pl on-boarding-modules/junit/
       - run:
+          name: "Run TestNg Framework"
+          command: |
+            mvn test -pl java11/selenium3-testng-framework/
+      - run:
           name: "Run Cross Browser/Platform Tests"
           command: |
             mvn test -pl parallel-testing/cross-browser-and-platform-config/
@@ -54,10 +58,6 @@ jobs:
           name: "Run Single Browser Config Tests"
           command: |
             mvn test -pl parallel-testing/single-browser-config/
-      - run:
-          name: "Run Headless Tests"
-          command: |
-            mvn test -pl headless/
       - run:
           name: "Run Appium Tests"
           command: |
@@ -70,6 +70,10 @@ jobs:
           name: "Run W3C TestNG Tests"
           command: |
             mvn test -pl w3c-examples/w3c-testng/
+      - run:
+          name: "Run iOS Emusim Safari"
+          command: |
+            mvn -Dtest=IOSWebAppExample test -pl java11/appium-junit4-examples/
       - run:
           name: "Shut Down Sauce Connect Tunnel"
           command: |
