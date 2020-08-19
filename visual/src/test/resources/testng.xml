@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="My first TestNG test suite" verbose="1" configfailurepolicy="continue" parallel="methods">
+    <test name="com.eot">
+        <packages>
+            <package name="sample"/>
+        </packages>
+    </test>
+</suite>
