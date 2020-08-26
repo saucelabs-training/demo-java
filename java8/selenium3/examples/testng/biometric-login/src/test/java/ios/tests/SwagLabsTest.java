@@ -1,10 +1,10 @@
 package ios.tests;
 
 import io.appium.java_client.ios.IOSDriver;
-import ios.pages.SwagLabsPage;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import static helpers.utils.getProperty;
 
@@ -22,7 +23,9 @@ public class SwagLabsTest {
     protected IOSDriver driver;
     String sessionId;
     Boolean rdc;
-    Boolean sauce;
+
+    By biometryButton = By.id("test-biometry");
+    String ProductTitleSelector = "type==\"XCUIElementTypeStaticText\" && name==\"PRODUCTS\"";
 
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
@@ -81,11 +84,8 @@ public class SwagLabsTest {
     public void Biometric_login_with_matching_touch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with matching touch");
 
-        // init
-        SwagLabsPage page = new SwagLabsPage(driver);
-
         // If the biometry is not shown on iOS, enable it on the phone
-        if (page.isBiometryDisplayed() == false){
+        if (this.isBiometryDisplayed() == false){
             System.out.println("Sauce - Need to enable the biometry and restart the device");
             driver.toggleTouchIDEnrollment(true);
             driver.resetApp();
@@ -93,10 +93,10 @@ public class SwagLabsTest {
         }
 
         // Login with biometric auth
-        page.login(true);
+        this.login(true);
 
         // Verificsation
-        Assert.assertTrue(page.isOnProductsPage());
+        Assert.assertTrue(this.isOnProductsPage());
 
     }
 
@@ -104,11 +104,8 @@ public class SwagLabsTest {
     public void Biometric_login_with_non_matching_touch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with a non matching touch");
 
-        // init
-        SwagLabsPage page = new SwagLabsPage(driver);
-
         // If the biometry is not shown on iOS, enable it on the phone
-        if (page.isBiometryDisplayed() == false){
+        if (this.isBiometryDisplayed() == false){
             System.out.println("Sauce - Need to enable the biometry and restart the device");
             driver.toggleTouchIDEnrollment(true);
             driver.resetApp();
@@ -116,10 +113,10 @@ public class SwagLabsTest {
         }
 
         // Login with biometric auth
-        page.login(false);
+        this.login(false);
 
         // Verificsation
-        Assert.assertTrue(page.isRetryBiometryDisplay(rdc));
+        Assert.assertTrue(this.isRetryBiometryDisplay(rdc));
 
     }
 
@@ -129,5 +126,56 @@ public class SwagLabsTest {
         ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
         driver.quit();
     }
+
+
+    public boolean isBiometryDisplayed(){
+        try {
+            return driver.findElement(biometryButton).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+    public void login(boolean successful) {
+        try {
+
+            WebElement biometryBtn = driver.findElement(biometryButton);
+            biometryBtn.click();
+
+            driver.performTouchID(successful);
+
+        } catch (Exception e) {
+            System.out.println("*** Problem to login: " + e.getMessage());
+        }
+    }
+
+    public boolean isOnProductsPage() {
+
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        boolean isDisplay =  driver.findElementByIosNsPredicate(ProductTitleSelector).isDisplayed();
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        return isDisplay;
+    }
+
+
+    public boolean isRetryBiometryDisplay(boolean rdc){
+        String elementText;
+
+        try {
+            if (rdc) {
+                elementText = "Cancel";
+            } else {
+                elementText = "Try Again";
+            }
+
+            WebDriverWait wait = new WebDriverWait(driver, 5);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elementText)));
+
+        } catch (TimeoutException e){
+            return false;
+        }
+        return true;
+    }
+
 
 }
