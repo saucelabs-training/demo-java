@@ -1,13 +1,12 @@
 package android.tests;
 
-import android.pages.SwagLabsPage;
 import helpers.AndroidSettings;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -17,8 +16,6 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 import static helpers.utils.getProperty;
 
@@ -27,6 +24,13 @@ public class SwagLabsTest{
 
     protected AndroidDriver driver;
     String sessionId;
+
+    String biometryID = "test-biometry";
+
+    By ProductTitle = By.xpath("//android.widget.TextView[@text='PRODUCTS']");
+
+    private final int DEFAULT_PIN = 1234;
+    private final int INCORRECT_PIN = 4321;
 
     @BeforeMethod
     public void setup(Method method) throws IOException {
@@ -67,20 +71,17 @@ public class SwagLabsTest{
     public void Biometric_login_with_matching_touch() throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with matching touch");
 
-        // init
-        SwagLabsPage page = new SwagLabsPage(driver);
-
         // If the biometry is not shown on iOS, enable it on the phone
-        if (page.isBiometryDisplayed() == false){
+        if (this.isBiometryDisplayed() == false){
             AndroidSettings androidSettings = new AndroidSettings(driver);
             androidSettings.enableBiometricLogin();
         }
 
         // Login with biometric auth
-        page.login(true);
+        this.login(true);
 
         // Verificsation
-        Assert.assertTrue(page.isOnProductsPage());
+        Assert.assertTrue(this.isOnProductsPage());
 
     }
 
@@ -88,20 +89,17 @@ public class SwagLabsTest{
     public void Biometric_login_with_non_matching_touch() throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with a non matching touch");
 
-        // init
-        SwagLabsPage page = new SwagLabsPage(driver);
-
         // If the biometry is not shown on iOS, enable it on the phone
-        if (page.isBiometryDisplayed() == false){
+        if (this.isBiometryDisplayed() == false){
             AndroidSettings androidSettings = new AndroidSettings(driver);
             androidSettings.enableBiometricLogin();
         }
 
         // Login with biometric auth
-        page.login(false);
+        this.login(false);
 
         // Verificsation
-        Assert.assertTrue(page.isRetryBiometryDisplay(),"Retry is not shown");
+        Assert.assertTrue(this.isRetryBiometryDisplay(),"Retry is not shown");
 
     }
 
@@ -110,6 +108,59 @@ public class SwagLabsTest{
         System.out.println("Sauce - AfterMethod hook");
         ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
         driver.quit();
+    }
+
+    public void login(boolean successful) {
+        try {
+
+            WebElement biometryButton = (WebElement) driver.findElementByAccessibilityId(biometryID);
+            biometryButton.click();
+
+            if (successful){
+                driver.fingerPrint(DEFAULT_PIN);
+            } else {
+                driver.fingerPrint(INCORRECT_PIN);
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("*** Problem to login: " + e.getMessage());
+        }
+    }
+
+    public boolean isOnProductsPage() {
+
+        //Create an instance of a Selenium explicit wait so that we can dynamically wait for an element
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+
+        //wait for the product field to be visible and store that element into a variable
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ProductTitle));
+        } catch (TimeoutException e){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isRetryBiometryDisplay(){
+
+        try {
+            WebElement fingerprintLink = driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Not recognized\")"));
+            return fingerprintLink.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isBiometryDisplayed() {
+        try {
+
+            WebElement biometryButton = (WebElement) driver.findElementByAccessibilityId(biometryID);
+            return biometryButton.isDisplayed();
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }
