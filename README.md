@@ -1,5 +1,6 @@
 # Java Demonstration Scripts
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/564ddfb012db40048781b7b6c954d099)](https://app.codacy.com/gh/saucelabs-training/demo-java?utm_source=github.com&utm_medium=referral&utm_content=saucelabs-training/demo-java&utm_campaign=Badge_Grade_Dashboard)
 [![CircleCI](https://circleci.com/gh/saucelabs-training/demo-java/tree/master.svg?style=svg)](https://circleci.com/gh/saucelabs-training/demo-java/tree/master)
 
 The demo scripts in [this repository](https://github.com/saucelabs-training/demo-java) allow you to run simple automated tests in order to validate your Java Selenium environment and your [saucelabs.com](https://app.saucelabs.com/login) account credentials.
