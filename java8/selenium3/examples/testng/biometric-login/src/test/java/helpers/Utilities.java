@@ -3,7 +3,7 @@ package helpers;
 import java.io.*;
 import java.util.Properties;
 
-public class Utils {
+public class Utilities {
 
 
     public static String getProperty(String propertyName, String defaultVal){
