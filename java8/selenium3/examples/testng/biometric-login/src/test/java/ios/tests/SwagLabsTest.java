@@ -25,11 +25,11 @@ import static helpers.utils.getProperty;
 public class SwagLabsTest {
 
     protected IOSDriver driver;
-    String sessionId;
-    Boolean rdc;
+    protected String sessionId;
+    private Boolean rdc;
 
-    By biometryButton = By.id("test-biometry");
-    String ProductTitleSelector = "type==\"XCUIElementTypeStaticText\" && name==\"PRODUCTS\"";
+    private By biometryButton = By.id("test-biometry");
+    private String ProductTitleSelector = "type==\"XCUIElementTypeStaticText\" && name==\"PRODUCTS\"";
 
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
@@ -85,7 +85,7 @@ public class SwagLabsTest {
 
 
     @Test
-    public void BiometricLoginWithMatchingTouch () throws InterruptedException {
+    public void biometricLoginWithMatchingTouch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
@@ -105,7 +105,7 @@ public class SwagLabsTest {
     }
 
     @Test
-    public void BiometricLoginWithNonMatchingTouch () throws InterruptedException {
+    public void biometricLoginWithNonMatchingTouch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with a non matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
