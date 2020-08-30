@@ -20,7 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import static helpers.utils.getProperty;
+import static helpers.Utils.getProperty;
 
 public class SwagLabsTest {
 
