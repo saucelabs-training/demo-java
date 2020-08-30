@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 
-import static helpers.Utilities.getProperty;
+import static helpers.HelperMethods.getProperty;
 
 
 public class SwagLabsTest{
