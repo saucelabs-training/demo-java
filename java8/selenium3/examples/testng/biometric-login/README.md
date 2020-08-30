@@ -1,7 +1,7 @@
 # Using Biometric login on Sauce Labs
 This folder contains examples for using Biometric login on real devices for:
 -   [iOS simulators on the Sauce Labs Simulator Cloud](#sauce-labs-ios-simulator)
--   [iOS real devices on the new Sauce Labs UI](#Run tests on Sauce Labs iOS real devices)
+-   [iOS real devices on the new Sauce Labs UI](#run-tests-on-sauce-labs-ios-real-devices)
 -   [Android emulators on the Sauce Labs Emulator Cloud](#sauce-labs-android-emulator)
 
 > Note: Android real devices are currently not supported
@@ -27,8 +27,8 @@ For more information on this step **for Real Devices** please visit: [Applicatio
 -   **for Android emulators and iOS simulators**, You can find a script to upload the apps to, or the US, or EU DC in [this](./helpers)-folder. You can push the files to the 
   storage by doing the following from the root of this folder:
   
-      cd helpers
-      ./push_apps_to_storage.sh
+    cd helpers
+    ./push_apps_to_storage.sh
       
   When you've done that you will see for example the following logs
   
