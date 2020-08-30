@@ -3,7 +3,7 @@ package helpers;
 import java.io.*;
 import java.util.Properties;
 
-public class HelperMethods {
+public class HelperUtil {
 
     public static String getProperty(String propertyName, String defaultVal){
         String propertyValue = defaultVal;
