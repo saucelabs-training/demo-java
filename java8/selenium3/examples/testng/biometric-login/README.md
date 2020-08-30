@@ -20,13 +20,14 @@ Be aware of the fact that iOS simulator uses a different build than a real iOS d
 > The advice is to download the files to an `apps` folder in the root of this folder.
 
 ### Upload apps to Sauce Storage
--	If you want to use Android emulators, iOS simulators or iOS real devices in the New Sauce Labs UI you need to upload the apps to the Sauce Storage.
+-   If you want to use Android emulators, iOS simulators or iOS real devices in the New Sauce Labs UI you need to upload the apps to the Sauce Storage.
 For more information on this step **for Real Devices** please visit: [Application Storage](https://wiki.saucelabs.com/display/DOCS/Application+Storage).
 
--	In the example for iOS real devices, for the app capability we use storage:filename=<app-name>.ipa. For more information on this step please visit: [Using Application Storage with Automated Test Builds](https://wiki.saucelabs.com/display/DOCSDEV/Application+Storage#ApplicationStorage-UsingApplicationStoragewithAutomatedTestBuilds) section of [Application Storage](https://wiki.saucelabs.com/display/DOCS/Application+Storage)
+-   In the example for iOS real devices, for the app capability we use storage:filename=<app-name>.ipa. For more information on this step please visit: [Using Application Storage with Automated Test Builds](https://wiki.saucelabs.com/display/DOCSDEV/Application+Storage#ApplicationStorage-UsingApplicationStoragewithAutomatedTestBuilds) section of [Application Storage](https://wiki.saucelabs.com/display/DOCS/Application+Storage)
 
--	Change the value of appName parameter in SwagLabsTest.java for Android and iOS according to your app name.
-- **For Android emulators and iOS simulators**, You can find a script to upload the apps to, or the US, or EU DC in [this](./helpers)-folder. You can push the files to the 
+-   Change the value of appName parameter in SwagLabsTest.java for Android and iOS according to your app name.
+
+-   **For Android emulators and iOS simulators**, You can find a script to upload the apps to, or the US, or EU DC in [this](./helpers)-folder. You can push the files to the 
   storage by doing the following from the root of this folder:
   
 
@@ -80,7 +81,6 @@ If you want to run the tests on Sauce Labs iOS simulators then you can run the i
     
 The tests will be executed on a iPhone 8.
 > NOTE: Make sure you are in the folder `biometric-login` when you execute this command
-
 
 ## Run tests on Sauce Labs Android emulators
 If you want to run the tests on Sauce Labs Android emulators then you can run the Android test with
