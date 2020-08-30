@@ -3,7 +3,11 @@ package android.tests;
 import helpers.AndroidSettings;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.*;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,11 +27,11 @@ import static helpers.utils.getProperty;
 public class SwagLabsTest{
 
     protected AndroidDriver driver;
-    String sessionId;
+    protected String sessionId;
 
-    String biometryID = "test-biometry";
+    private String biometryID = "test-biometry";
 
-    By ProductTitle = By.xpath("//android.widget.TextView[@text='PRODUCTS']");
+    private By ProductTitle = By.xpath("//android.widget.TextView[@text='PRODUCTS']");
 
     private final int DEFAULT_PIN = 1234;
     private final int INCORRECT_PIN = 4321;
@@ -68,11 +72,11 @@ public class SwagLabsTest{
     }
 
     @Test
-    public void Biometric_login_with_matching_touch() throws InterruptedException {
+    public void BiometricLoginWithMatchingTouch() throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
-        if (this.isBiometryDisplayed() == false){
+        if (!this.isBiometryDisplayed()){
             AndroidSettings androidSettings = new AndroidSettings(driver);
             androidSettings.enableBiometricLogin();
         }
@@ -86,7 +90,7 @@ public class SwagLabsTest{
     }
 
     @Test
-    public void Biometric_login_with_non_matching_touch() throws InterruptedException {
+    public void BiometricLoginWithNonMatchingTouch() throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with a non matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
