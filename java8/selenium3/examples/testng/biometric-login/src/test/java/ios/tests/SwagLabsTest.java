@@ -1,7 +1,11 @@
 package ios.tests;
 
 import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -54,7 +58,7 @@ public class SwagLabsTest {
         URL url = new URL(SAUCE_REMOTE_URL);
 
 
-        if (rdc == true) {
+        if (rdc) {
             String appName ="iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa";
             System.out.println("Sauce - Run on real device");
             capabilities.setCapability("deviceName", "iPhone 8*");
@@ -81,11 +85,11 @@ public class SwagLabsTest {
 
 
     @Test
-    public void Biometric_login_with_matching_touch () throws InterruptedException {
+    public void BiometricLoginWithMatchingTouch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
-        if (this.isBiometryDisplayed() == false){
+        if (!this.isBiometryDisplayed()){
             System.out.println("Sauce - Need to enable the biometry and restart the device");
             driver.toggleTouchIDEnrollment(true);
             driver.resetApp();
@@ -101,11 +105,11 @@ public class SwagLabsTest {
     }
 
     @Test
-    public void Biometric_login_with_non_matching_touch () throws InterruptedException {
+    public void BiometricLoginWithNonMatchingTouch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with a non matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
-        if (this.isBiometryDisplayed() == false){
+        if (!this.isBiometryDisplayed()){
             System.out.println("Sauce - Need to enable the biometry and restart the device");
             driver.toggleTouchIDEnrollment(true);
             driver.resetApp();

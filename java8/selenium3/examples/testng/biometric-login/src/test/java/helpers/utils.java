@@ -1,14 +1,6 @@
 package helpers;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.JavascriptExecutor;
-
 import java.io.*;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 public class utils {
