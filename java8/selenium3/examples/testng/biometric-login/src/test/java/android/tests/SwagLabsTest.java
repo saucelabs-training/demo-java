@@ -72,7 +72,7 @@ public class SwagLabsTest{
     }
 
     @Test
-    public void BiometricLoginWithMatchingTouch() throws InterruptedException {
+    public void biometricLoginWithMatchingTouch() throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
@@ -90,11 +90,11 @@ public class SwagLabsTest{
     }
 
     @Test
-    public void BiometricLoginWithNonMatchingTouch() throws InterruptedException {
+    public void biometricLoginWithNonMatchingTouch() throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with a non matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
-        if (this.isBiometryDisplayed() == false){
+        if (!this.isBiometryDisplayed()){
             AndroidSettings androidSettings = new AndroidSettings(driver);
             androidSettings.enableBiometricLogin();
         }
