@@ -4,8 +4,7 @@ import java.io.*;
 import java.util.Properties;
 
 public class Utilities {
-
-
+    
     public static String getProperty(String propertyName, String defaultVal){
         String propertyValue = defaultVal;
         try {
