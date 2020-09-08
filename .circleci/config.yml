@@ -47,6 +47,10 @@ jobs:
           command: |
             mvn test -pl on-boarding-modules/junit/
       - run:
+          name: "Run JUnit5 Web Tests"
+          command: |
+            mvn test -pl java11/selenium3-junit5-examples/
+      - run:
           name: "Run TestNg Framework"
           command: |
             mvn test -pl java11/selenium3-testng-framework/
