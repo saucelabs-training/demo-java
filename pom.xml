@@ -21,6 +21,7 @@
         <module>java8/selenium3/examples/testng/image-injection</module>
         <module>java11/appium-junit4-examples</module>
         <module>java11/selenium3-testng-framework</module>
+        <module>java11/selenium3-junit5-examples</module>
         <module>java8/selenium3/examples/testng/biometric-login</module>
     </modules>
     <dependencies>
