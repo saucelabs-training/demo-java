@@ -11,7 +11,6 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 >
 > Some examples in this repository, such as `appium-example`, `parallel-testing`, and `headless`, may require a different account tier beyond free trial. Please contact the [Sauce Labs Sales Team](https://saucelabs.com/contact) for support and information.
 
-<br />
 
 ## Solution Outline
 * [Tests that can help you quickly and easily get started with Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/on-boarding-modules)
@@ -21,7 +20,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * [Mobile Examples using Appium on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/appium-example)
 
 ### Web
-* [JUnit 5 web test, simple](java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
+* [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 
 ### Mobile
 * [iOS Simulator, Web app, Junit](https://github.com/saucelabs-training/demo-java/blob/master/java11/appium-junit4-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
