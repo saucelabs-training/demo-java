@@ -41,9 +41,17 @@ public class IOSNativeAppExample {
         capabilities.setCapability("platformVersion", "13.2");
         capabilities.setCapability("deviceName", "iPhone 11 Pro Max");
         capabilities.setCapability("name", name.getMethodName());
-        //You need to upload your own Native Mobile App to Sauce Storage!
-        //https://wiki.saucelabs.com/display/DOCS/Uploading+your+Application+to+Sauce+Storage
-        capabilities.setCapability("app", "sauce-storage:" + "SwagLabsMobileApp");
+
+        /**
+         * You need to upload your own Native Mobile App to Sauce Storage!
+         * https://wiki.saucelabs.com/display/DOCS/Uploading+your+Application+to+Sauce+Storage
+         *
+         * You can use either storage:<app-id> or storage:filename=
+         * */
+        //
+        //
+        //capabilities.setCapability("app", "storage:" + "bc21cdfc-0920-4288-9713-6a119c2f3b4d");
+        capabilities.setCapability("app", "storage:filename=" + "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa");
 
         driver = new IOSDriver(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
