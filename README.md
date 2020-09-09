@@ -23,6 +23,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 
 ### Mobile
+* [iOS real device, native app, Junit4, Unified Platform](/java11/appium-junit4-examples/src/test/java/com/realdevice.unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
 * [iOS Simulator, Web app, Junit](https://github.com/saucelabs-training/demo-java/blob/master/java11/appium-junit4-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
 
 ## Prerequisites
