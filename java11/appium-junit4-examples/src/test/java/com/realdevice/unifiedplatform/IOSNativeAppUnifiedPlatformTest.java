@@ -16,7 +16,7 @@ import java.net.URL;
 
 import static org.junit.Assert.assertTrue;
 
-public class IOSNativeAppExample {
+public class IOSNativeAppUnifiedPlatformTest {
     @Rule
     public TestName name = new TestName() {
         public String getMethodName() {
