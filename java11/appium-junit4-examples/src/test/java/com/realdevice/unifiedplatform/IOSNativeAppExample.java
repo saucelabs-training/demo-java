@@ -43,13 +43,12 @@ public class IOSNativeAppExample {
         capabilities.setCapability("name", name.getMethodName());
         //You need to upload your own Native Mobile App to Sauce Storage!
         //https://wiki.saucelabs.com/display/DOCS/Uploading+your+Application+to+Sauce+Storage
-//        capabilities.setCapability("app", "storage:filename=" + "SwagLabsMobileApp.ipa");
-        capabilities.setCapability("app", "storage:" + "1c17ee33-cdb4-405b-bc0c-050ef332cc1b");
+        capabilities.setCapability("app", "sauce-storage:" + "SwagLabsMobileApp");
 
         driver = new IOSDriver(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
                         System.getenv("SAUCE_ACCESS_KEY") +
-                        "@ondemand.saucelabs.com:443" + "/wd/hub"),
+                        "@ondemand.us-west-1.saucelabs.com/wd/hub"),
                 capabilities);
     }
 
