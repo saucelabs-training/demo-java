@@ -73,12 +73,6 @@ public class StepDefinitions {
         login("doesnt_exist", "secret_sauce");
     }
 
-    /**
-     * Use this method to send any number of login/password parameters, to test different edge cases or roles within
-     * the software. This method exists to show an example of how steps can call other parameterized methods.
-     * @param username The user name to login with
-     * @param password The password to use (for testing the password field
-     */
     private void login(String username, String password) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).sendKeys(username);
