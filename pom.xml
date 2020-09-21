@@ -23,6 +23,7 @@
         <module>java11/selenium3-testng-framework</module>
         <module>java11/selenium3-junit5-examples</module>
         <module>java8/selenium3/examples/testng/biometric-login</module>
+        <module>java8/selenium3.junit4.examples.cucumber</module>
     </modules>
     <dependencies>
         <dependency>
