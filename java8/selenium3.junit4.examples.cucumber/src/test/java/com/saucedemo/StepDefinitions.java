@@ -31,20 +31,19 @@ public class StepDefinitions {
 
         MutableCapabilities sauceOpts = new MutableCapabilities();
         sauceOpts.setCapability("name", scenario.getName());
-        sauceOpts.setCapability("build", "Java-W3C-Examples");
         sauceOpts.setCapability("username", username);
         sauceOpts.setCapability("accessKey", accessKey);
 
-        MutableCapabilities caps = new MutableCapabilities();
-        caps.setCapability(ChromeOptions.CAPABILITY,  chromeOpts);
-        caps.setCapability("sauce:options", sauceOpts);
-        caps.setCapability("browserName", "chrome");
-        caps.setCapability("browserVersion", "latest");
-        caps.setCapability("platformName", "windows 10");
+        MutableCapabilities browserOptions = new MutableCapabilities();
+        browserOptions.setCapability(ChromeOptions.CAPABILITY,  chromeOpts);
+        browserOptions.setCapability("sauce:options", sauceOpts);
+        browserOptions.setCapability("browserName", "chrome");
+        browserOptions.setCapability("browserVersion", "latest");
+        browserOptions.setCapability("platformName", "windows 10");
 
         String sauceUrl = "https://ondemand.saucelabs.com:443/wd/hub";
         URL url = new URL(sauceUrl);
-        driver = new RemoteWebDriver(url, caps);
+        driver = new RemoteWebDriver(url, browserOptions);
         wait = new WebDriverWait(driver, 10);
     }
 
