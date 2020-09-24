@@ -24,7 +24,7 @@ public class VisualE2ETest {
     @Before
     public void setUp() throws Exception {
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-        capabilities.setCapability(CapabilityType.BROWSER_VERSION, "80.0");
+        capabilities.setCapability(CapabilityType.BROWSER_VERSION, "latest");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Windows 10");
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
@@ -47,7 +47,7 @@ public class VisualE2ETest {
         webDriver.get("https://screener.io");
 
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("/*@visual.init*/", "My Visual Test");
+        js.executeScript("/*@visual.init*/", "My Visual Test 2");
         js.executeScript("/*@visual.snapshot*/", "Home");
         Map<String, Object> response = (Map<String, Object>) js.executeScript("/*@visual.end*/");
         assertEquals( true, response.get("passed"));
