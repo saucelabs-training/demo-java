@@ -19,7 +19,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * [Tests that use the Headless feature of Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/headless)
 * [Mobile Examples using Appium on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/appium-example)
 
-### Web
+### Web automation
 * [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 * [JUnit 4,Cucumber web test, simple](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
 
@@ -31,6 +31,9 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 #### Emulators and Simulators
 * [iOS Simulator, Web app, Junit4](/java11/appium-junit4-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
+
+### Visual E2E automation
+* [JUnit 4, Visual e2e](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/VisualE2ETest.java)
 
 ## Prerequisites
 
