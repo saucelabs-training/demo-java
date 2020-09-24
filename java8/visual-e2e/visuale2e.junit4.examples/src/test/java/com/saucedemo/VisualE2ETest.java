@@ -1,3 +1,5 @@
+package com.saucedemo;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.JavascriptExecutor;
@@ -21,18 +23,6 @@ public class VisualE2ETest {
 
     @Before
     public void setUp() throws Exception {
-        if (sauceUsername == null || sauceUsername.isEmpty()) {
-            throw new Exception("SAUCE_USERNAME environment variable needs to be defined");
-        }
-
-        if (sauceAccessKey == null || sauceAccessKey.isEmpty()) {
-            throw new Exception("SAUCE_ACCESS_KEY environment variable needs to be defined");
-        }
-
-        if (screenerApiKey == null || screenerApiKey.isEmpty()) {
-            throw new Exception("SCREENER_API_KEY environment variable needs to be defined");
-        }
-
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, "80.0");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Windows 10");
