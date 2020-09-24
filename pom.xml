@@ -26,6 +26,7 @@
         <module>java8/selenium3.junit4.examples.cucumber</module>
         <module>java11/appium7.junit4.examples.cucumber</module>
         <module>common</module>
+        <module>java8/visual-e2e/visuae2e.junit4.examples</module>
     </modules>
     <dependencies>
         <dependency>
