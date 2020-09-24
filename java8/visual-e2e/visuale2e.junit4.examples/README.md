@@ -4,4 +4,3 @@
 `cd visuae2e.junit4.examples/`
 
 `mvn test`
-
