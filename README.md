@@ -26,7 +26,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 ### Mobile automation
 
 #### Real Devices
-* [iOS real device, native app, Junit4, Unified Platform](./java11/appium-junit4-examples/src/test/java/com/realdevice.unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
+* [iOS real device, native app, Junit4, Unified Platform](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
 * [iOS real device, native app, Junit4, Cucumber](./java11/appium7.junit4.examples.cucumber/src/test/resources/LoginPage.feature)
 
 #### Emulators and Simulators
