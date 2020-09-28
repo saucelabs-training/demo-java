@@ -14,7 +14,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 ## Solution Outline
 
-* [Quick start test, Java 9+](./java11/selenium3.junit4.examples/src/test/java/com.onboarding/Module1JunitTest.java)
+* [Quick start test, Java 9+](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
 * [Quick start test, Java 8](https://github.com/saucelabs-training/demo-java/blob/master/on-boarding-modules)
 * [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
 * [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
