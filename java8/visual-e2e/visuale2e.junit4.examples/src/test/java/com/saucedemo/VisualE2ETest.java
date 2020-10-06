@@ -19,10 +19,10 @@ public class VisualE2ETest {
     public String sauceUsername = System.getenv("SAUCE_USERNAME");
     public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
     public String screenerApiKey = System.getenv("SCREENER_API_KEY");
-    public MutableCapabilities capabilities = new MutableCapabilities();
 
     @Before
     public void setUp() throws Exception {
+        MutableCapabilities capabilities = new MutableCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, "latest");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Windows 10");
