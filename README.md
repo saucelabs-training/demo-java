@@ -36,6 +36,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 ### Visual E2E automation
 * [JUnit 4, Visual e2e](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/VisualE2ETest.java)
+* [Visual tests on multiple platforms and resolutions](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/VisualCrossPlatformTests.java)
 
 ## Prerequisites
 
