@@ -76,7 +76,7 @@ public class VisualCrossPlatformTests {
 
         MutableCapabilities visualOptions = new MutableCapabilities();
         visualOptions.setCapability("apiKey", screenerApiKey);
-        visualOptions.setCapability("projectName", "visual-e2e-test");
+        visualOptions.setCapability("projectName", "Screener.io");
         visualOptions.setCapability("viewportSize", viewportSize);
         capabilities.setCapability("sauce:visual", visualOptions);
 
@@ -85,12 +85,20 @@ public class VisualCrossPlatformTests {
     }
 
     @Test()
-    public void homePageTest() {
+    public void mainJourneyTest() {
+        String deviceName = testName.getMethodName().split("\\[", -1)[1];
         webDriver.get("https://screener.io");
 
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("/*@visual.init*/", "Home Page");
-        js.executeScript("/*@visual.snapshot*/", testName.getMethodName());
+        js.executeScript("/*@visual.init*/", "Responsive Flows");
+        js.executeScript("/*@visual.snapshot*/", "Home Page" + ":" + deviceName);
+
+        webDriver.get("https://screener.io/v2/docs");
+        js.executeScript("/*@visual.snapshot*/", "Docs Page" + ":" + deviceName);
+
+        webDriver.get("https://screener.io/pricing");
+        js.executeScript("/*@visual.snapshot*/", "Components Pricing" + ":" + deviceName);
+
         Map<String, Object> response = (Map<String, Object>) js.executeScript("/*@visual.end*/");
         assertEquals( true, response.get("passed"));
     }
