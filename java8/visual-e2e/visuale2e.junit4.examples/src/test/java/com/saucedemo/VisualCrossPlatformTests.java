@@ -6,9 +6,7 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -86,10 +84,12 @@ public class VisualCrossPlatformTests {
 
     @Test()
     public void mainJourneyTest() {
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+
         String deviceName = testName.getMethodName().split("\\[", -1)[1];
         webDriver.get("https://screener.io");
+        updateElementText("oopsie doopsy", "btn-primary");
 
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("/*@visual.init*/", "Responsive Flows");
         js.executeScript("/*@visual.snapshot*/", "Home Page" + ":" + deviceName);
 
@@ -101,5 +101,11 @@ public class VisualCrossPlatformTests {
 
         Map<String, Object> response = (Map<String, Object>) js.executeScript("/*@visual.end*/");
         assertEquals( true, response.get("passed"));
+    }
+
+    private void updateElementText(String newText, String className) {
+        ((JavascriptExecutor) webDriver).executeScript(
+                "document.getElementsByClassName('" + className +
+                        "\"')[0].innerText = \'" + newText + "\';");
     }
 }
