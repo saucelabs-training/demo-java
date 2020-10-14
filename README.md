@@ -26,6 +26,8 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * [JUnit 4,Cucumber web test, simple](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
 
 ### Mobile automation
+[![Mobile Testing with Appium and iOS (Introduction)]()](https://www.youtube.com/playlist?list=PL67l1VPxOnT5FXKf5YvGoT9TuCdSmLhv_)
+
 
 #### Real Devices
 * [iOS real device, native app, Junit4, Unified Platform](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
