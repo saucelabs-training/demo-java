@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 public class PerformanceExampleTests {
     @Test
     public void simplePerformanceTest() {
+        //This is the easiest way to run a performance test in Sauce
         SauceOptions sauceOptions = new SauceOptions();
         sauceOptions.setExtendedDebugging(true);
         sauceOptions.setCapturePerformance(true);
@@ -15,5 +16,6 @@ public class PerformanceExampleTests {
         SauceSession session = new SauceSession(sauceOptions);
         WebDriver driver = session.start();
         driver.get("https://www.saucedemo.com");
+        session.stop(true);
     }
 }
