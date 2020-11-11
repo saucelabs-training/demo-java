@@ -3,11 +3,13 @@ package com.saucedemo;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class PerformanceExampleTests {
 
@@ -41,11 +43,13 @@ public class PerformanceExampleTests {
         sauceOptions.setCapturePerformance(true);
         session = new SauceSession(sauceOptions);
 
-        HashMap<Object, Object> metrics = new HashMap<>();
+        HashMap<String, Object> metrics = new HashMap<>();
         metrics.put("type", "sauce:performance");
         WebDriver driver = session.start();
         driver.get("https://www.saucedemo.com");
 
-        HashMap perfMetrics = (HashMap<Object, Object>) ((JavascriptExecutor)driver).executeScript("sauce:log", metrics);
+        Map<String, Object> perfMetrics = (Map<String, Object>) ((JavascriptExecutor)driver).executeScript("sauce:log", metrics);
+        Integer loadTime = Integer.parseInt(perfMetrics.get("load").toString());
+        Assert.assertTrue(loadTime < 1000);
     }
 }
