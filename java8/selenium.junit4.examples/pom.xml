@@ -11,4 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>selenium.junit4.examples</artifactId>
+
+    <!-- THERE ARE DEPENDENCIES IN THE ROOT POM.XML -->
+
 </project>
