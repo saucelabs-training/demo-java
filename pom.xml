@@ -29,8 +29,20 @@
         <module>java8/visual-e2e/visuale2e.junit4.examples</module>
         <module>java11/selenium3.junit4.examples</module>
         <module>java8/selenium.testng.examples</module>
+        <module>java8/selenium.junit4.examples</module>
     </modules>
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>sauce_bindings</artifactId>
+            <version>1.0.1</version>
+        </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
