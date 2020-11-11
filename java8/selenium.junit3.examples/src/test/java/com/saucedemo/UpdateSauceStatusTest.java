@@ -1,3 +1,5 @@
+package com.saucedemo;
+
 import junit.framework.TestCase;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
