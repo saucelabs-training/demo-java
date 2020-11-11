@@ -25,10 +25,10 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 ### Web automation
 * [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 * [JUnit 4,Cucumber web test, simple](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
+* [Front-end performance testing](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
 
 ### Mobile automation
 [![Mobile Testing with Appium and iOS Tutorial(Introduction)](http://img.youtube.com/vi/0P8mkguf2z8/0.jpg)](https://www.youtube.com/playlist?list=PL67l1VPxOnT5FXKf5YvGoT9TuCdSmLhv_ "Mobile Testing with Appium and iOS Tutorial - Click to Watch!")
-
 
 #### Real Devices
 * [iOS real device, native app, Junit4, Unified Platform](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
