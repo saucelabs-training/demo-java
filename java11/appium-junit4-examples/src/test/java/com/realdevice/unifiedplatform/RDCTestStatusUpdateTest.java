@@ -47,6 +47,7 @@ public class RDCTestStatusUpdateTest {
                         System.getenv("SAUCE_ACCESS_KEY") +
                         "@ondemand.us-west-1.saucelabs.com/wd/hub"),
                 capabilities);
+        resultReportingTestWatcher.setDriver(driver);
     }
 
     @Test
