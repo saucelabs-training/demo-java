@@ -15,12 +15,11 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 ## Solution Outline
 
-* [Quick start test, Java 9+](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
-* [Quick start test, Java 8](https://github.com/saucelabs-training/demo-java/blob/master/on-boarding-modules)
+* [Quick start test, Junit 4](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
 * [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
 * [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
-* [Tests that use the Headless feature of Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/headless)
-* [Mobile Examples using Appium on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/appium-example)
+* [iOS real device, native app, Junit4, Unified Platform](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
+* [Set test status using mobile](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
 
 ### Web automation
 * [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
@@ -33,6 +32,8 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 #### Real Devices
 * [iOS real device, native app, Junit4, Unified Platform](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
 * [iOS real device, native app, Junit4, Cucumber](./java11/appium7.junit4.examples.cucumber/src/test/resources/LoginPage.feature)
+* [Set test status on mobile, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
+
 
 #### Emulators and Simulators
 * [iOS Simulator, Web app, Junit4](/java11/appium-junit4-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
