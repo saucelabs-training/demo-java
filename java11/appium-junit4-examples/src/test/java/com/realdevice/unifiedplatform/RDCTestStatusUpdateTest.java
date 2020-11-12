@@ -9,6 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 
 import java.net.MalformedURLException;
@@ -16,14 +17,17 @@ import java.net.URL;
 
 import static org.junit.Assert.assertTrue;
 
-public class IOSNativeAppUnifiedPlatformTest {
+public class RDCTestStatusUpdateTest {
+    private AppiumDriver<MobileElement> driver;
+
     @Rule
     public TestName name = new TestName() {
         public String getMethodName() {
             return String.format("%s", super.getMethodName());
         }
     };
-    private AppiumDriver<MobileElement> driver;
+    @Rule
+    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
 
     public AppiumDriver<MobileElement> getDriver() {
         return driver;
@@ -32,16 +36,13 @@ public class IOSNativeAppUnifiedPlatformTest {
     @Before
     public void setUp() throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("appiumVersion", "1.17.1");
-        capabilities.setCapability("idleTimeout", "90");
-        capabilities.setCapability("noReset", "true");
-        capabilities.setCapability("newCommandTimeout", "90");
         capabilities.setCapability("language", "en");
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone 11 Pro Max");
         capabilities.setCapability("name", name.getMethodName());
 
-        capabilities.setCapability("app", "storage:filename=" + "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa");
+        capabilities.setCapability("app", "storage:filename=" +
+                "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.0.ipa");
 
         driver = new IOSDriver(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
@@ -54,12 +55,13 @@ public class IOSNativeAppUnifiedPlatformTest {
     @After
     public void tearDown() {
         if (getDriver() != null) {
+            ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
             getDriver().quit();
         }
     }
 
     @Test
-    public void shouldOpenApp() {
+    public void openAppAndSetTestStatus() {
         assertTrue(getDriver().findElement(By.id("test-LOGIN")).isDisplayed());
     }
 }
