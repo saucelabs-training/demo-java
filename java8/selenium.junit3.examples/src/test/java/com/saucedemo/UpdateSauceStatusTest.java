@@ -15,6 +15,7 @@ public class UpdateSauceStatusTest extends TestCase {
     private WebDriver driver;
     private boolean isTestPassed = false;
 
+    //without sauce bindings
     public void setUp() throws MalformedURLException {
         String username = System.getenv("SAUCE_USERNAME");
         String accessKey = System.getenv("SAUCE_ACCESS_KEY");
