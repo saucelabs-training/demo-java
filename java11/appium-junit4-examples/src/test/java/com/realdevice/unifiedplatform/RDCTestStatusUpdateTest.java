@@ -3,13 +3,11 @@ package com.realdevice.unifiedplatform;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 
 import java.net.MalformedURLException;
@@ -49,15 +47,6 @@ public class RDCTestStatusUpdateTest {
                         System.getenv("SAUCE_ACCESS_KEY") +
                         "@ondemand.us-west-1.saucelabs.com/wd/hub"),
                 capabilities);
-    }
-
-
-    @After
-    public void tearDown() {
-        if (getDriver() != null) {
-            ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
-            getDriver().quit();
-        }
     }
 
     @Test
