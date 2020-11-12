@@ -2,12 +2,13 @@ package com.asb;
 
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,18 +22,24 @@ public class WebTests {
             return String.format("%s", super.getMethodName());
         }
     };
+    @Rule
+    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
+    private RemoteWebDriver driver;
 
-    @Test
-    public void shouldOpenChrome() {
+    @Before
+    public void setUp() {
         SauceOptions sauceOptions = new SauceOptions();
         sauceOptions.setName(testName.getMethodName());
 
         SauceSession session = new SauceSession(sauceOptions);
-        WebDriver driver = session.start();
+        driver = session.start();
+        resultReportingTestWatcher.setDriver(driver);
+    }
 
+    @Test
+    public void shouldOpenChrome() {
         //navigate to the url of the Sauce Labs Sample app
         driver.navigate().to("https://www.saucedemo.com");
-
         //Create an instance of a Selenium explicit wait
         // so that we can dynamically wait for an element
         WebDriverWait wait = new WebDriverWait(driver, 5);
