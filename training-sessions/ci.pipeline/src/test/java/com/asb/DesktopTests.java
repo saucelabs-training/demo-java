@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertTrue;
 
-public class WebTests {
+public class DesktopTests {
 
     @Rule
     public TestName testName = new TestName() {
