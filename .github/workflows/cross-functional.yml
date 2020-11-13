@@ -5,7 +5,7 @@ name: Cross functional automation
 env:
   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
   SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-  SCREENER_API_KEY: ${{ secrets.SCREENER_API_KEY }}  
+  SCREENER_API_KEY: ${{ secrets.SCREENER_API_KEY }}
 
 on:
   push:
@@ -32,5 +32,5 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Test on desktop
+    - name: Test on Emusim
       run: mvn test -pl training-sessions/ci.pipeline -Dtest=EmusimWebAppTests
