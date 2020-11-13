@@ -9,7 +9,7 @@ env:
 
 on:
   push:
-    branches: [ asb_demo ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 

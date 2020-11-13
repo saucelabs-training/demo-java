@@ -108,6 +108,6 @@ public class VisualCrossPlatformTests {
     private void updateElementText(String newText, String tagName) {
         ((JavascriptExecutor) webDriver).executeScript(
                 "document.getElementsByTagName('" + tagName +
-                        "\"')[0].innerText = \'" + newText + "\';");
+                        "')[0].innerText = \'" + newText + "\';");
     }
 }
