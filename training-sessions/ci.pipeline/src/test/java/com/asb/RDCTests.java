@@ -58,8 +58,4 @@ public class RDCTests {
         getDriver().get("https://www.saucedemo.com");
         assertTrue(getDriver().findElement(By.cssSelector("[type='text']")).isDisplayed());
     }
-    @Test
-    public void nativeAppOpens() {
-        assertTrue(getDriver().findElement(By.id("test-LOGIN")).isDisplayed());
-    }
 }
