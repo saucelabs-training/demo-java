@@ -2,8 +2,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -33,30 +33,34 @@ public class JUnit5W3CFirefoxTest {
         String accessKey = System.getenv("SAUCE_ACCESS_KEY");
         String methodName = testInfo.getDisplayName();
 
-        /** FirefoxOptions allows us to set browser-specific behavior such as profile settings, headless capabilities, insecure tls certs,
-         and in this example--the W3C protocol
-         For more information see: https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/firefox/FirefoxOptions.html */
+        /** FirefoxOptions allows us to set browser-specific behavior such as profile settings, headless capabilities,
+         * log levels, etc.
+         * For additional options see: https://developer.mozilla.org/en-US/docs/Web/WebDriver/Capabilities/firefoxOptions
+         * */
 
         FirefoxOptions foxOpts = new FirefoxOptions();
-        foxOpts.setCapability("w3c", true);
+        foxOpts.setLogLevel(FirefoxDriverLogLevel.DEBUG);
 
-        /** The MutableCapabilities class  came into existence with Selenium 3.6.0 and acts as the parent class for
-         all browser implementations--including the FirefoxOptions class extension.
-         Fore more information see: https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/MutableCapabilities.html */
+        /** The MutableCapabilities class is now the superclass for handling all option & capabilities implementations,
+         * including Selenium Browser Options classes (like FirefoxOptions),
+         * and is required for Sauce Labs specific configurations
+         * */
 
         MutableCapabilities sauceOpts = new MutableCapabilities();
         sauceOpts.setCapability("name", methodName);
-        sauceOpts.setCapability("build", "Java-W3C-Examples");
-        sauceOpts.setCapability("seleniumVersion", "3.141.59");
         sauceOpts.setCapability("username", username);
         sauceOpts.setCapability("accessKey", accessKey);
         sauceOpts.setCapability("tags", testInfo.getTags());
 
 
-        /** Below we see the use of our other capability objects, 'foxOpts' and 'sauceOpts',
-         defined in 'moz:firefoxOptions' and sauce:options respectively.
+        /** DesiredCapabilities is no longer the recommended class to use, so to combine both FirefoxOptions and
+         * Sauce Configuration values into a capabilities instance that can be sent to
+         * the RemoteWebDriver, MutableCapabilities should be used here as well.
+         * With this approach it makes sense to add the w3c compliant top-level parameters here as well
+         * For more information, see: https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
          */
-        DesiredCapabilities caps = new DesiredCapabilities();
+
+        MutableCapabilities caps = new MutableCapabilities();
         caps.setCapability("moz:firefoxOptions",  foxOpts);
         caps.setCapability("sauce:options", sauceOpts);
         caps.setCapability("browserName", "firefox");
@@ -64,7 +68,7 @@ public class JUnit5W3CFirefoxTest {
         caps.setCapability("platformName", "windows 10");
 
         /** Finally, we pass our DesiredCapabilities object 'caps' as a parameter of our RemoteWebDriver instance */
-        String sauceUrl = "https://ondemand.saucelabs.com:443/wd/hub";
+        String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
         URL url = new URL(sauceUrl);
         driver = new RemoteWebDriver(url, caps);
     }
