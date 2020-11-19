@@ -35,18 +35,11 @@ public class TestNGW3CChromeTest {
         String accessKey = System.getenv("SAUCE_ACCESS_KEY");
         String methodName = method.getName();
 
-        /** ChomeOptions allows us to set browser-specific behavior such as profile settings, headless capabilities,
-         * insecure tls certs, etc.
-         * For additional options see: https://chromedriver.chromium.org/capabilities
-         * */
-
-        ChromeOptions chromeOpts = new ChromeOptions();
-        chromeOpts.addArguments("user-data-dir=/path/to/your/custom/profile");
-
         /** The MutableCapabilities class is now the superclass for handling all option & capabilities implementations,
          * including Selenium Browser Options classes (like ChromeOptions),
          * and is required for Sauce Labs specific configurations
-         * */
+         * For available options, see: https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
+         */
 
         MutableCapabilities sauceOpts = new MutableCapabilities();
         sauceOpts.setCapability("name", methodName);
@@ -54,24 +47,29 @@ public class TestNGW3CChromeTest {
         sauceOpts.setCapability("accessKey", accessKey);
         sauceOpts.setCapability("tags", "w3c-chrome-tests");
 
-        /** DesiredCapabilities is no longer the recommended class to use, so to combine both ChromeOptions and
-         * Sauce Configuration values into a capabilities instance that can be sent to
-         * the RemoteWebDriver, MutableCapabilities should be used here as well.
-         * With this approach it makes sense to add the w3c compliant top-level parameters here as well
-         * For more information, see: https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
+        /** DesiredCapabilities is being deprecated in favor of using Browser Options classes for everything.
+         * Browser Options support both standard w3c values (https://w3c.github.io/webdriver/#capabilities)
+         * as well as browser-specific values (https://chromedriver.chromium.org/capabilities)
+         * including behavior such as profile settings, mobile emulation, headless capabilities, insecure tls certs, etc.
+         *
+         * Sauce Configuration values can be addded directly to the browser options class
          */
 
-        MutableCapabilities caps = new MutableCapabilities();
-        caps.setCapability("goog:chromeOptions",  chromeOpts);
-        caps.setCapability("sauce:options", sauceOpts);
-        caps.setCapability("browserName", "googlechrome");
-        caps.setCapability("browserVersion", "latest");
-        caps.setCapability("platformName", "windows 10");
+        ChromeOptions chromeOpts = new ChromeOptions();
+        chromeOpts.addArguments("user-data-dir=/path/to/your/custom/profile");
 
-        /** Finally, we pass our DesiredCapabilities object 'caps' as a parameter of our RemoteWebDriver instance */
+        chromeOpts.setCapability("browserName", "googlechrome");
+        chromeOpts.setCapability("browserVersion", "latest");
+        chromeOpts.setCapability("platformName", "windows 10");
+
+        chromeOpts.setCapability("sauce:options", sauceOpts);
+
+        /**
+         * Finally, we pass our Browser Options instance as a parameter of our RemoteWebDriver constructor
+        */
         String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
         URL url = new URL(sauceUrl);
-        driver = new RemoteWebDriver(url, caps);
+        driver = new RemoteWebDriver(url, chromeOpts);
     }
 
     /**

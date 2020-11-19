@@ -33,18 +33,11 @@ public class JUnit5W3CFirefoxTest {
         String accessKey = System.getenv("SAUCE_ACCESS_KEY");
         String methodName = testInfo.getDisplayName();
 
-        /** FirefoxOptions allows us to set browser-specific behavior such as profile settings, headless capabilities,
-         * log levels, etc.
-         * For additional options see: https://developer.mozilla.org/en-US/docs/Web/WebDriver/Capabilities/firefoxOptions
-         * */
-
-        FirefoxOptions foxOpts = new FirefoxOptions();
-        foxOpts.setLogLevel(FirefoxDriverLogLevel.DEBUG);
-
         /** The MutableCapabilities class is now the superclass for handling all option & capabilities implementations,
          * including Selenium Browser Options classes (like FirefoxOptions),
          * and is required for Sauce Labs specific configurations
-         * */
+         * For available options, see: https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
+         */
 
         MutableCapabilities sauceOpts = new MutableCapabilities();
         sauceOpts.setCapability("name", methodName);
@@ -52,25 +45,29 @@ public class JUnit5W3CFirefoxTest {
         sauceOpts.setCapability("accessKey", accessKey);
         sauceOpts.setCapability("tags", testInfo.getTags());
 
-
-        /** DesiredCapabilities is no longer the recommended class to use, so to combine both FirefoxOptions and
-         * Sauce Configuration values into a capabilities instance that can be sent to
-         * the RemoteWebDriver, MutableCapabilities should be used here as well.
-         * With this approach it makes sense to add the w3c compliant top-level parameters here as well
-         * For more information, see: https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
+        /** DesiredCapabilities is being deprecated in favor of using Browser Options classes for everything.
+         * Browser Options support both standard w3c values (https://w3c.github.io/webdriver/#capabilities)
+         * as well as browser-specific values (https://firefoxdriver.chromium.org/capabilities)
+         * including behavior such as profile settings, mobile emulation, headless capabilities, insecure tls certs, etc.
+         *
+         * Sauce Configuration values can be addded directly to the browser options class
          */
 
-        MutableCapabilities caps = new MutableCapabilities();
-        caps.setCapability("moz:firefoxOptions",  foxOpts);
-        caps.setCapability("sauce:options", sauceOpts);
-        caps.setCapability("browserName", "firefox");
-        caps.setCapability("browserVersion", "latest");
-        caps.setCapability("platformName", "windows 10");
+        FirefoxOptions firefoxOpts = new FirefoxOptions();
+        firefoxOpts.setLogLevel(FirefoxDriverLogLevel.DEBUG);
 
-        /** Finally, we pass our DesiredCapabilities object 'caps' as a parameter of our RemoteWebDriver instance */
+        firefoxOpts.setCapability("browserName", "firefox");
+        firefoxOpts.setCapability("browserVersion", "latest");
+        firefoxOpts.setCapability("platformName", "windows 10");
+
+        firefoxOpts.setCapability("sauce:options", sauceOpts);
+
+        /**
+         * Finally, we pass our Browser Options instance as a parameter of our RemoteWebDriver constructor
+         */
         String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
         URL url = new URL(sauceUrl);
-        driver = new RemoteWebDriver(url, caps);
+        driver = new RemoteWebDriver(url, firefoxOpts);
     }
     /**
      * @Tag is a JUnit 5 annotation that defines test method tags that aid in reporting and filtering tests.
@@ -83,7 +80,7 @@ public class JUnit5W3CFirefoxTest {
     For more information visit the docs: https://junit.org/junit5/docs/5.0.2/api/org/junit/jupiter/api/DisplayName.html
 
      */
-    @DisplayName("JUnit5W3CFirefoxTest()")
+    @DisplayName("Junit5W3CFirefoxTest()")
     /**
      * @Test is a JUnit 5 annotation that defines the actual test case, along with the test execution commands.
     In the example below we:
@@ -94,7 +91,7 @@ public class JUnit5W3CFirefoxTest {
     For more information visit the docs: https://junit.org/junit5/docs/5.0.2/api/org/junit/jupiter/api/Test.html
      */
     @Test
-    public void Junit5w3cFirefoxTest() throws AssertionError {
+    public void JUnit5w3cFirefoxTest() throws AssertionError {
         driver.navigate().to("https://www.saucedemo.com");
         String getTitle = driver.getTitle();
         Assertions.assertEquals(getTitle, "Swag Labs");
