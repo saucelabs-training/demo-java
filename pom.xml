@@ -31,6 +31,7 @@
         <module>java8/selenium.junit4.examples</module>
         <module>java8/selenium.junit3.examples</module>
         <module>training-sessions/ci.pipeline</module>
+        <module>java8/selenium4.junit4.examples</module>
     </modules>
     <dependencies>
         <dependency>
