@@ -7,14 +7,14 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
 
-public class TestBase {
+public class SauceTestBase {
     public RemoteWebDriver driver;
 
     @Rule
@@ -39,16 +39,15 @@ public class TestBase {
         sauceOpts.setCapability("accessKey", accessKey);
         sauceOpts.setCapability("screenResolution", "1920x1200");
 
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setLogLevel(FirefoxDriverLogLevel.INFO);
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setExperimentalOption("excludeSwitches",
+                Collections.singletonList("disable-popup-blocking"));
 
-        firefoxOptions.setCapability("sauce:options", sauceOpts);
-        firefoxOptions.setCapability("browserVersion", "latest");
-        firefoxOptions.setCapability("platformName", "Windows 10");
+        chromeOptions.setCapability("sauce:options", sauceOpts);
 
         String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
         URL url = new URL(sauceUrl);
-        driver = new RemoteWebDriver(url, firefoxOptions);
+        driver = new RemoteWebDriver(url, chromeOptions);
         watcher.setDriver(driver);
     }
 

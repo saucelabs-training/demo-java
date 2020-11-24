@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.openqa.selenium.support.locators.RelativeLocator.withTagName;
 
-public class LocatorTest extends TestBase {
+public class LocatorSauceTest extends SauceTestBase {
 
     @Test
     public void relativeLocatorsBad() {

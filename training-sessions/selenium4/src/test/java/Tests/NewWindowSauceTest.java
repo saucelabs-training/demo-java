@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WindowType;
 
-public class NewWindowTest extends TestBase {
+public class NewWindowSauceTest extends SauceTestBase {
 
     @Test
     public void secondWindow() {

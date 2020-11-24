@@ -1,20 +1,33 @@
 package Tests;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collections;
 
 public class MSEdgeTest {
 
     @Test
-    public void edgeExecution() {
+    public void edgeExecution() throws MalformedURLException {
+        MutableCapabilities sauceOpts = new MutableCapabilities();
+        sauceOpts.setCapability("username", System.getenv("SAUCE_USERNAME"));
+        sauceOpts.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+
         EdgeOptions edgeOptions = new EdgeOptions();
-        EdgeDriver driver = new EdgeDriver(edgeOptions);
+        edgeOptions.setExperimentalOption("excludeSwitches",
+                Collections.singletonList("disable-popup-blocking"));
 
-        driver.navigate().to("https://www.saucedemo.com");
-        Assert.assertTrue(driver.getTitle().equals("Swag Labs"));
+        edgeOptions.setCapability("sauce:options", sauceOpts);
 
+        String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
+        URL url = new URL(sauceUrl);
+        RemoteWebDriver driver = new RemoteWebDriver(url, edgeOptions);
+
+        driver.get("http://www.popuptest.com/popuptest1.html");
         driver.quit();
     }
 }
