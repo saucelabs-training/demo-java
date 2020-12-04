@@ -5,8 +5,10 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
@@ -79,19 +81,14 @@ public class BaseWebDriverTest {
         RunType runType = RunType.SAUCE;
         return new Object[][]{
                 /** Uncomment the other data providers ONLY if you have the relevant Sauce VM concurrency **/
-                new Object[]{"chrome", "73.0", "macOS 10.14", runType},
-                /*new Object[]{"chrome", "72.0", "Windows 10", runType},
-                new Object[]{"chrome", "71.0", "Windows 7", runType},
-                new Object[]{"chrome", "70.0", "macOS 10.14", runType},
-                new Object[]{"chrome", "70.0", "macOS 10.14", runType},
-                new Object[]{"chrome", "71.0", "Windows 10", runType},
-                new Object[]{"chrome", "72.0", "Windows 7", runType},
-                new Object[]{"chrome", "73.0", "macOS 10.14", runType},
-                new Object[]{"chrome", "72.0", "macOS 10.14", runType},
-                new Object[]{"chrome", "73.0", "Windows 10", runType},
-                new Object[]{"chrome", "70.0", "Windows 7", runType},
-                new Object[]{"chrome", "71.0", "macOS 10.14", runType},*/
-                new Object[]{"firefox", "66.0", "Windows 7", runType},
+                new Object[]{"chrome", "latest", "macOS 10.14", runType},
+                new Object[]{"firefox", "latest", "MacOS 10.14", runType},
+                new Object[]{"chrome", "latest", "Windows 10", runType},
+                new Object[]{"firefox", "latest", "Windows 10", runType},
+                new Object[]{"chrome", "latest-1", "Windows 10", runType},
+                new Object[]{"firefox", "latest-1", "Windows 10", runType},
+                new Object[]{"safari", "12.0", "MacOS 10.14", runType},
+                new Object[]{"MicrosoftEdge", "latest", "Windows 10", runType},
                 /*new Object[]{"firefox", "65.0", "Windows 10", runType},
                 new Object[]{"firefox", "64.0", "macOS 10.14", runType},
                 new Object[]{"firefox", "63.0", "macOS 10.13", runType},
@@ -130,6 +127,12 @@ public class BaseWebDriverTest {
         }
         else if (browser.equals("firefox")) {
             capabilities = new FirefoxOptions();
+        }
+        else if (browser.equals("safari")) {
+            capabilities = new SafariOptions();
+        }
+        else if (browser.toLowerCase().equals("microsoftedge")) {
+            capabilities = new EdgeOptions();
         }
 
         capabilities.setCapability("browserVersion", browserVersion);

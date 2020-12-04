@@ -41,7 +41,7 @@ public class IOSNativeAppUnifiedPlatformTest {
         capabilities.setCapability("deviceName", "iPhone 11 Pro Max");
         capabilities.setCapability("name", name.getMethodName());
 
-        capabilities.setCapability("app", "storage:filename=" + "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa");
+        capabilities.setCapability("app", "storage:filename=" + "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.2.1.ipa");
 
         driver = new IOSDriver(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
