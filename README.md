@@ -26,6 +26,9 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * [JUnit 4,Cucumber web test, simple](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
 * [Front-end performance testing](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
 
+#### Simple Examples
+* [Windows authentication](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
+
 ### Mobile automation
 [Mobile Testing Training Tutorials](./TRAINING.md)
 
