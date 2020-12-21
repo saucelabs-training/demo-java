@@ -22,12 +22,15 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 *  [Set test status using mobile](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
 
 ### Web automation
+
+#### Simple Examples
+* [Windows authentication](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
 * [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 * [JUnit 4,Cucumber web test, simple](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
 * [Front-end performance testing](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
 
-#### Simple Examples
-* [Windows authentication](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
+#### Automation Best Practices
+*  [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
 
 ### Mobile automation
 [Mobile Testing Training Tutorials](./TRAINING.md)
