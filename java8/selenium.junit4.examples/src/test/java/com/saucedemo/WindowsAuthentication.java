@@ -37,6 +37,7 @@ public class WindowsAuthentication {
     @Test
     @Ignore("doesn't work")
     public void autoItScriptTest() {
+        //Good AutoIt docs: https://support.saucelabs.com/hc/en-us/articles/360049978374-Sample-AutoIT-Example-to-Handle-Integrated-Windows-Authentication-Dialog-IWA-
         sauceOptions = new SauceOptions();
         sauceOptions.setPlatformName(SaucePlatform.WINDOWS_10);
 
