@@ -75,7 +75,7 @@ public class BaseWebDriverTest {
 
         return new Object[][]{
                 /** Uncomment the other data providers ONLY if you have the relevant Sauce VM concurrency **/
-                new Object[]{"Chrome", "Android", "11.0", "Portrait", "Google Pixel 3 GoogleAPI Emulator"},
+                new Object[]{"Chrome", "Android", "10.0", "Portrait", "Google Pixel 3 GoogleAPI Emulator"},
                 new Object[]{"Safari", "iOS", "14.0", "Portrait", "iPhone 11 Pro Simulator"}
 
         };
@@ -97,10 +97,9 @@ public class BaseWebDriverTest {
 
         capabilities.setCapability("browserName", browser);
         capabilities.setCapability("platformName", platformName);
-        capabilities.setCapability("olatformVersion", platformVersion);
+        capabilities.setCapability("platformVersion", platformVersion);
         capabilities.setCapability("deviceOrientation", deviceOrientation);
         capabilities.setCapability("deviceName", deviceName);
-
 
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
