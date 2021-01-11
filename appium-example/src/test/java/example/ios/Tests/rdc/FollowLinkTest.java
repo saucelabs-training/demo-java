@@ -1,4 +1,4 @@
-package example.ios.Tests;
+package example.ios.Tests.rdc;
 
 import example.ios.Pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;

@@ -1,4 +1,4 @@
-package example.android.Tests;
+package example.android.Tests.rdc;
 
 import example.android.Pages.GuineaPigPage;
 import org.openqa.selenium.InvalidElementStateException;
