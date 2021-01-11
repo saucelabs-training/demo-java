@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseWebDriverTest {
     @Test(dataProvider = "sauceBrowsers")
-    public void loginTestValid(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "loginTestValid", runType);
+    public void loginTestValid(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "loginTestValid");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         LoginPage loginPage = navigation.goToLoginPage();
@@ -19,8 +19,8 @@ public class LoginTest extends BaseWebDriverTest {
     }
 
     @Test(dataProvider = "sauceBrowsers")
-    public void loginTestValidPerfGlitch(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "loginTestValidPerfGlitch", runType);
+    public void loginTestPeformanceGlitch(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "loginTestPeformanceGlitch");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         LoginPage loginPage = navigation.goToLoginPage();
@@ -30,8 +30,8 @@ public class LoginTest extends BaseWebDriverTest {
     }
 
     @Test(dataProvider = "sauceBrowsers")
-    public void loginTestValidLockedOut(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "loginTestValidLockedOut", runType);
+    public void loginTestLockedOut(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "loginTestLockedOut");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         LoginPage loginPage = navigation.goToLoginPage();
@@ -40,8 +40,8 @@ public class LoginTest extends BaseWebDriverTest {
     }
 
     @Test(dataProvider = "sauceBrowsers")
-    public void loginTestValidProblem(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "loginTestValidProblem", runType);
+    public void loginTestProblemUser(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "loginTestProblemUser");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         LoginPage loginPage = navigation.goToLoginPage();
@@ -51,8 +51,8 @@ public class LoginTest extends BaseWebDriverTest {
     }
 
     @Test(dataProvider = "sauceBrowsers")
-    public void loginTestInvalidUsername(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "loginTestInvalidUsername", runType);
+    public void loginTestInvalid(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "loginTestInvalidUser");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         LoginPage loginPage = navigation.goToLoginPage();
@@ -61,8 +61,8 @@ public class LoginTest extends BaseWebDriverTest {
     }
 
     @Test(dataProvider = "sauceBrowsers")
-    public void loginTestInvalidPassword(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "loginTestInvalidPassword", runType);
+    public void loginTestInvalidPassword(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "loginTestInvalidPassword");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         LoginPage loginPage = navigation.goToLoginPage();

@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 
 public class InventoryTest extends BaseWebDriverTest {
     @Test(dataProvider = "sauceBrowsers")
-    public void testItem3Label(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "testItem3Label", runType);
+    public void testItem3Label(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "testItem3Label");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
 
@@ -18,8 +18,8 @@ public class InventoryTest extends BaseWebDriverTest {
     }
 
     @Test(dataProvider = "sauceBrowsers")
-    public void testItem3Price(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "testItem3Price", runType);
+    public void testItem3Price(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "testItem3Price");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         navigation.goToLoginPage().login("standard_user", "secret_sauce");
@@ -28,8 +28,8 @@ public class InventoryTest extends BaseWebDriverTest {
     }
 
     @Test(dataProvider = "sauceBrowsers")
-    public void testItem3Description(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "testItem3Description", runType);
+    public void testItem3Description(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "testItem3Description");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         navigation.goToLoginPage().login("standard_user", "secret_sauce");
@@ -38,8 +38,8 @@ public class InventoryTest extends BaseWebDriverTest {
     }
 
     @Test(dataProvider = "sauceBrowsers")
-    public void testAddOneItem(String browser, String browserVersion, String platformName, RunType runType) {
-        this.createDriver(browser, browserVersion, platformName, "testAddOneItem", runType);
+    public void testAddItem(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName) {
+        this.createDriver(browser, platformName, platformVersion, deviceOrientation, deviceName, "testAddItem");
 
         SauceDemoNavigation navigation = new SauceDemoNavigation(getWebDriver());
         navigation.goToLoginPage().login("standard_user", "secret_sauce");

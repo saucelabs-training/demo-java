@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.testng.ITestResult;
@@ -36,21 +37,18 @@ public class BaseWebDriverTest {
         return webDriver.get();
     }
 
-    private void createSauceDriver(MutableCapabilities capabilities, String methodName) {
+    private void createSauceDriver(DesiredCapabilities capabilities, String methodName) {
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
 
         //Create a map of capabilities called "sauce:options", which contain the info necessary to run on Sauce
         // Labs, using the credentials stored in the environment variables. Also runs using the new W3C standard.
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", username);
-        sauceOptions.setCapability("accessKey", accesskey);
-        sauceOptions.setCapability("seleniumVersion", "3.141.59");
-        sauceOptions.setCapability("name", methodName);
-        sauceOptions.setCapability("build", "parallel-TestNG-cross-browser-and-platform-demo");
 
-        //Assign the Sauce Options to the base capabilities
-        capabilities.setCapability("sauce:options", sauceOptions);
+        capabilities.setCapability("username", username);
+        capabilities.setCapability("accessKey", accesskey);
+        capabilities.setCapability("name", methodName);
+        capabilities.setCapability("build", "parallel-emusim-demo");
+
 
         //Create a new RemoteWebDriver, which will initialize the test execution on Sauce Labs servers
         String SAUCE_REMOTE_URL = "https://ondemand.saucelabs.com/wd/hub";
@@ -66,10 +64,6 @@ public class BaseWebDriverTest {
         sessionId.set(id);
     }
 
-    private void createLocalDriver(MutableCapabilities capabilities) {
-        webDriver.set(new ChromeDriver((ChromeOptions) capabilities));
-    }
-
     /**
      * DataProvider that sets the browser combinations to be used.
      *
@@ -78,30 +72,12 @@ public class BaseWebDriverTest {
      */
     @DataProvider(name = "sauceBrowsers", parallel = true)
     public static Object[][] sauceBrowserDataProvider(Method beforeMethod) {
-        RunType runType = RunType.SAUCE;
+
         return new Object[][]{
                 /** Uncomment the other data providers ONLY if you have the relevant Sauce VM concurrency **/
-                new Object[]{"chrome", "latest", "macOS 10.14", runType},
-                new Object[]{"firefox", "latest", "MacOS 10.14", runType},
-                new Object[]{"chrome", "latest", "Windows 10", runType},
-                new Object[]{"firefox", "latest", "Windows 10", runType},
-                new Object[]{"chrome", "latest-1", "Windows 10", runType},
-                new Object[]{"firefox", "latest-1", "Windows 10", runType},
-                new Object[]{"safari", "12.0", "MacOS 10.14", runType},
-                new Object[]{"MicrosoftEdge", "latest", "Windows 10", runType},
-                /*new Object[]{"firefox", "65.0", "Windows 10", runType},
-                new Object[]{"firefox", "64.0", "macOS 10.14", runType},
-                new Object[]{"firefox", "63.0", "macOS 10.13", runType},
-                new Object[]{"firefox", "62.0", "macOS 10.12", runType},
-                new Object[]{"firefox", "61.0", "macOS 10.13", runType},*/
-        };
-    }
+                new Object[]{"Chrome", "Android", "11.0", "Portrait", "Google Pixel 3 GoogleAPI Emulator"},
+                new Object[]{"Safari", "iOS", "14.0", "Portrait", "iPhone 11 Pro Simulator"}
 
-    @DataProvider(name = "localBrowsers")
-    public static Object[][] localBrowserDataProvider(Method beforeMethod) {
-        RunType runType = RunType.LOCAL;
-        return new Object[][]{
-                new Object[]{"chrome", "latest-1", "Windows 10", runType},
         };
     }
 
@@ -115,37 +91,36 @@ public class BaseWebDriverTest {
      * @param platformName Represents the operating system to be used as part of the test run.
      * @param methodName Represents the name of the test case that will be used to identify the test on Sauce.
      */
-    protected void createDriver(String browser, String browserVersion, String platformName, String methodName, RunType runType) {
-        this.runType = runType;
-        //Set up the ChromeOptions object, which will store the capabilities
-        MutableCapabilities capabilities = new MutableCapabilities();
+    protected void createDriver(String browser, String platformName, String platformVersion, String deviceOrientation, String deviceName, String methodName) {
+        this.runType = RunType.SAUCE;
+        DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (browser.equals("chrome")) {
-            ChromeOptions caps = new ChromeOptions();
-            caps.setExperimentalOption("w3c", true);
-            capabilities = caps;
-        }
-        else if (browser.equals("firefox")) {
-            capabilities = new FirefoxOptions();
-        }
-        else if (browser.equals("safari")) {
-            capabilities = new SafariOptions();
-        }
-        else if (browser.toLowerCase().equals("microsoftedge")) {
-            capabilities = new EdgeOptions();
-        }
-
-        capabilities.setCapability("browserVersion", browserVersion);
+        capabilities.setCapability("browserName", browser);
         capabilities.setCapability("platformName", platformName);
+        capabilities.setCapability("olatformVersion", platformVersion);
+        capabilities.setCapability("deviceOrientation", deviceOrientation);
+        capabilities.setCapability("deviceName", deviceName);
 
-        switch(runType) {
-            case LOCAL:
-                createLocalDriver(capabilities);
-                break;
-            case SAUCE:
-                createSauceDriver(capabilities, methodName);
-                break;
+
+        String username = System.getenv("SAUCE_USERNAME");
+        String accesskey = System.getenv("SAUCE_ACCESS_KEY");
+
+        capabilities.setCapability("name", methodName);
+        capabilities.setCapability("build", "parallel-emusim-demo");
+
+
+        //Create a new RemoteWebDriver, which will initialize the test execution on Sauce Labs servers
+        String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + "@ondemand.saucelabs.com/wd/hub";
+        try {
+            webDriver.set(new RemoteWebDriver(new URL(SAUCE_REMOTE_URL), capabilities));
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
         }
+        sessionId.set(((RemoteWebDriver)webDriver.get()).getSessionId().toString());
+
+        // set current sessionId
+        String id = ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
+        sessionId.set(id);
     }
 
     //Method that gets invoked after test
@@ -158,12 +133,6 @@ public class BaseWebDriverTest {
         }
         finally {
             webDriver.get().quit();
-        }
-    }
-
-    void annotate(String text) {
-        if (runType.equals(RunType.SAUCE)) {
-            ((JavascriptExecutor) webDriver.get()).executeScript("sauce:context=" + text);
         }
     }
 }
