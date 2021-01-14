@@ -15,7 +15,7 @@
         <module>parallel-testing/single-browser-config</module>
         <module>headless</module>
         <module>appium-example</module>
-        <module>appium.junit4.examples</module>
+        <module>appium-junit4-examples</module>
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
         <module>java8/selenium3/examples/junit3</module>
