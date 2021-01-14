@@ -11,6 +11,8 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>appium-junit4-examples</artifactId>
 
+    <!--    You will find Junit and Appium configration in the project level pom.xml -->
+
     <build>
         <plugins>
             <plugin>
