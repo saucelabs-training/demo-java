@@ -15,10 +15,10 @@
         <module>parallel-testing/single-browser-config</module>
         <module>headless</module>
         <module>appium-example</module>
+        <module>appium-junit4-examples</module>
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
         <module>java8/selenium3/examples/testng/image-injection</module>
-        <module>java11/appium-junit4-examples</module>
         <module>java11/selenium3-testng-framework</module>
         <module>java11/selenium3-junit5-examples</module>
         <module>java8/selenium3/examples/testng/biometric-login</module>
@@ -67,6 +67,18 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>7.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
