@@ -30,20 +30,20 @@ Followed by testRunnerVersion(which really only applies for Junit)
 Then it's either an example (most common) or a best-practice aka framework
 
 |-- demo-java
-    |-- selenium.testRunnerVersion.examples (Java module)
-    |-- selenium.testRunnerVersion.best-practice (Java module)
-    |-- selenium.testRunnerVersion.examples.cucumber (Java module)
-    |-- selenium.testRunnerVersion.best-practice.cucumber (Java module)
-    |-- visuale2e.testRunnerVersion.examples (Java module)
-    |-- visuale2e.testRunnerVersion.best-practice (Java module)
-    |-- appium.testRunnerVersion.examples (Java module)
-    |-- appiumVersion.testRunnerVersion.best-practice (Java module)
+    |-- selenium-testRunnerVersion-examples (Java module)
+    |-- selenium-testRunnerVersion-best-practice (Java module)
+    |-- selenium-testRunnerVersion-cucumber-examples (Java module)
+    |-- selenium-testRunnerVersion-cucumber-best-practice (Java module)
+    |-- visuale2e-testRunnerVersion-examples (Java module)
+    |-- visuale2e-testRunnerVersion-best-practice (Java module)
+    |-- appium-testRunnerVersion-examples (Java module)
+    |-- appiumVersion-testRunnerVersion-best-practice (Java module)
 ```
 
 ```text
 Specific Structure With Examples
 |-- demo-java
-    |-- selenium.junit4.examples (Java module)
+    |-- selenium-junit4-examples (Java module)
         |-- src
             |-- main
             |-- test
@@ -53,7 +53,7 @@ Specific Structure With Examples
                         |-- Junit4TestStatusUpdate.java
                         |-- Junit4DataDriven.java
                         |-- PerformanceTesting.java
-        |-- selenium.junit4.best-practice (Java module)
+        |-- selenium-junit4-best-practice (Java module)
             |-- src
                 |-- main
                     |-- java
@@ -66,8 +66,8 @@ Specific Structure With Examples
                             |-- ShoppingCartTests.java
                             |-- LoginTests.java
                             |-- LoginAPITests.java
-        |-- selenium.testng.examples.cucumber (Java module)
-        |-- selenium.testng.best-practice.cucumber (Java module)
+        |-- selenium-testng-cucumber-examples (Java module)
+        |-- selenium-testng-cucumber-best-practice (Java module)
         |-- ...
 ```
 
