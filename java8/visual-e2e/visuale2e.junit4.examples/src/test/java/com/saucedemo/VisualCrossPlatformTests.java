@@ -62,24 +62,24 @@ public class VisualCrossPlatformTests {
 
     @Before
     public void setUp() throws Exception {
-        MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, browserName);
-        capabilities.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
-        capabilities.setCapability(CapabilityType.PLATFORM_NAME, platform);
+        MutableCapabilities browserOptions = new MutableCapabilities();
+        browserOptions.setCapability(CapabilityType.BROWSER_NAME, browserName);
+        browserOptions.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
+        browserOptions.setCapability(CapabilityType.PLATFORM_NAME, platform);
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", sauceUsername);
         sauceOptions.setCapability("accesskey", sauceAccessKey);
-        capabilities.setCapability("sauce:options", sauceOptions);
+        browserOptions.setCapability("sauce:options", sauceOptions);
 
         MutableCapabilities visualOptions = new MutableCapabilities();
         visualOptions.setCapability("apiKey", screenerApiKey);
         visualOptions.setCapability("projectName", "Screener.io");
         visualOptions.setCapability("viewportSize", viewportSize);
-        capabilities.setCapability("sauce:visual", visualOptions);
+        browserOptions.setCapability("sauce:visual", visualOptions);
 
         URL url = new URL("https://hub.screener.io/wd/hub");
-        webDriver = new RemoteWebDriver(url, capabilities);
+        webDriver = new RemoteWebDriver(url, browserOptions);
     }
 
     @Test()

@@ -18,7 +18,6 @@
         <module>appium-junit4-examples</module>
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
-        <module>java8/selenium3/examples/junit3</module>
         <module>java8/selenium3/examples/testng/image-injection</module>
         <module>java11/selenium3-testng-framework</module>
         <module>java11/selenium3-junit5-examples</module>
@@ -28,8 +27,24 @@
         <module>common</module>
         <module>java8/visual-e2e/visuale2e.junit4.examples</module>
         <module>java11/selenium3.junit4.examples</module>
+        <module>java8/selenium.testng.examples</module>
+        <module>java8/selenium.junit4.examples</module>
+        <module>java8/selenium.junit3.examples</module>
+        <module>training-sessions/ci.pipeline</module>
+        <module>java8/selenium4.junit4.examples</module>
     </modules>
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>sauce_bindings</artifactId>
+            <version>1.0.1</version>
+        </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>

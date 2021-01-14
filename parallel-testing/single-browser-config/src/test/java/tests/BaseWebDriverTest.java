@@ -76,7 +76,7 @@ public class BaseWebDriverTest {
     @BeforeMethod
     protected void createDriver(Method method) {
         String browserName = System.getProperty("browserName") == null ? "chrome" : System.getProperty("browserName");
-        String browserVersion = System.getProperty("browserVersion") == null ? "73.0" : System.getProperty("browserVersion");
+        String browserVersion = System.getProperty("browserVersion") == null ? "latest" : System.getProperty("browserVersion");
         String platformName = System.getProperty("platformName") == null ? "macOS 10.14" : System.getProperty("platformName");
         String methodName = method.getName();
         RunType runType = System.getProperty("runType") == null ? RunType.SAUCE : RunType.valueOf(System.getProperty("runType"));
