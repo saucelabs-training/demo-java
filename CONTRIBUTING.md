@@ -37,7 +37,7 @@ Then it's either an example (most common) or a best-practice aka framework
     |-- visuale2e-testRunnerVersion-examples (Java module)
     |-- visuale2e-testRunnerVersion-best-practice (Java module)
     |-- appium-testRunnerVersion-examples (Java module)
-    |-- appiumVersion-testRunnerVersion-best-practice (Java module)
+    |-- appium-testRunnerVersion-best-practice (Java module)
 ```
 
 ```text
