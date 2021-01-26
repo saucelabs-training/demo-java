@@ -42,7 +42,7 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 
 
 #### Emulators and Simulators
-* [iOS Simulator, Web app, Junit4](/java11/appium-junit4-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
+* [iOS Simulator, Web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
 
 ### Visual E2E automation
 * [JUnit 4, Visual e2e](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/VisualE2ETest.java)
