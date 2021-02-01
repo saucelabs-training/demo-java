@@ -36,9 +36,8 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 [Mobile Testing Training Tutorials](./TRAINING.md)
 
 #### Real Devices
-* [iOS real device, native app, Junit4, Unified Platform](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
-* [iOS real device, native app, Junit4, Cucumber](./java11/appium7.junit4.examples.cucumber/src/test/resources/LoginPage.feature)
-* [Set test status on mobile, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
+* [iOS real device, native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
+* [Set test status on mobile, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
 
 
 #### Emulators and Simulators
