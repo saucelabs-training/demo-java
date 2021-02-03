@@ -14,4 +14,10 @@ public class Endpoints {
     public static URL getScreenerHub() throws MalformedURLException {
         return new URL("https://hub.screener.io/wd/hub");
     }
+
+    public static URL getRealDevicesHub() throws MalformedURLException {
+        return new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
+                System.getenv("SAUCE_ACCESS_KEY") +
+                "@ondemand.us-west-1.saucelabs.com/wd/hub");
+    }
 }
