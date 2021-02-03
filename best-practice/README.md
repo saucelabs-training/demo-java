@@ -1,4 +1,17 @@
 # Best Practices 
+This is a repository that contains a suite of tests entended to
+test SauceDemo application.
+
+The suite is built using a combination of testing techniques for
+the most efficient test coverage. This suite combines
+techniques such as:
+* Functional browser automation on Desktop
+* Functional mobile web automation
+* Visual testing
+* Front-end performance tests
+* API testing
+
+![visualTesting](/assets/visualTesting.gif)
 
 ## Executing tests
 
