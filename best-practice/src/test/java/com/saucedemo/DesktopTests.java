@@ -1,16 +1,14 @@
 package com.saucedemo;
 
+import com.pages.LoginPage;
+import com.pages.ProductsPage;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertTrue;
 
@@ -37,18 +35,10 @@ public class DesktopTests {
     }
 
     @Test
-    public void shouldOpenChrome() {
-        //navigate to the url of the Sauce Labs Sample app
-        driver.navigate().to("https://www.saucedemo.com");
-        //Create an instance of a Selenium explicit wait
-        // so that we can dynamically wait for an element
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-
-        //wait for the user name field to be visible and store that element into a variable
-        By userNameFieldLocator = By.cssSelector("[type='text']");
-        WebElement userNameField =
-                wait.until(
-                        ExpectedConditions.visibilityOfElementLocated(userNameFieldLocator));
-        assertTrue(userNameField.isDisplayed());
+    public void loginWorks() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.visit();
+        loginPage.login("standard_user");
+        assertTrue(new ProductsPage(driver).isDisplayed());
     }
 }
