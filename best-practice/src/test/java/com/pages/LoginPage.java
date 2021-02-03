@@ -6,16 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
-    private WebDriver driver;
-
+public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    public void visit() {
-        //navigate to the url of the Sauce Labs Sample app
-        driver.navigate().to("https://www.saucedemo.com");
+    @Override
+    public String getPagePart() {
+        return "";
     }
 
     public void login(String userName) {
@@ -32,4 +30,6 @@ public class LoginPage {
         driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
         driver.findElement(By.cssSelector("#login-button")).click();
     }
+
+
 }

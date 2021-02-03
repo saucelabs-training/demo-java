@@ -5,11 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProductsPage {
-    private WebDriver driver;
+public class ProductsPage extends BasePage {
 
     public ProductsPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+    }
+
+    @Override
+    public String getPagePart() {
+        return "inventory.html";
     }
 
     public boolean isDisplayed() {

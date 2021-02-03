@@ -1,5 +1,9 @@
 package com.saucedemo;
 
+import com.pages.CheckoutStepOnePage;
+import com.pages.LoginPage;
+import com.pages.ProductsPage;
+import com.pages.ShoppingCartPage;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -48,10 +52,8 @@ public class VisualCrossPlatformTests {
                 { "Chrome", "Windows 10", "latest", "412x732", "Pixel" },
                 { "Chrome", "Windows 10", "latest", "412x869", "Galaxy Note 10+" },
                 { "Chrome", "Windows 10", "latest", "412x869", "Pixel 4 XL" },
-                { "Chrome", "Windows 10", "latest", "412x869", "Pixel 4" },
                 { "Safari", "macOS 10.15", "latest", "375x812", "iPhone X" },
                 { "Safari", "macOS 10.15", "latest", "414x736", "iPhone 8 Plus" },
-                { "Safari", "macOS 10.15", "latest", "375x667", "iPhone 8" },
         });
     }
 
@@ -76,7 +78,7 @@ public class VisualCrossPlatformTests {
 
         MutableCapabilities visualOptions = new MutableCapabilities();
         visualOptions.setCapability("apiKey", screenerApiKey);
-        visualOptions.setCapability("projectName", "Screener.io");
+        visualOptions.setCapability("projectName", "Sauce Demo");
         visualOptions.setCapability("viewportSize", viewportSize);
         browserOptions.setCapability("sauce:visual", visualOptions);
 
@@ -85,29 +87,28 @@ public class VisualCrossPlatformTests {
     }
 
     @Test()
-    public void mainJourneyTest() {
+    public void pagesRenderCorrectly() {
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
 
         String deviceName = testName.getMethodName().split("\\[", -1)[1];
-        webDriver.get("https://screener.io");
-        updateElementText("oopsie doopsy", "h1");
 
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.visit();
         js.executeScript("/*@visual.init*/", "Responsive Flows");
-        js.executeScript("/*@visual.snapshot*/", "Home Page" + ":" + deviceName);
+        loginPage.takeSnapshot(deviceName);
 
-        webDriver.get("https://screener.io/v2/docs");
-        js.executeScript("/*@visual.snapshot*/", "Docs Page" + ":" + deviceName);
+        loginPage.login("standard_user");
+        new ProductsPage(webDriver).takeSnapshot(deviceName);
 
-        webDriver.get("https://screener.io/pricing");
-        js.executeScript("/*@visual.snapshot*/", "Components Pricing" + ":" + deviceName);
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
+        shoppingCartPage.visit();
+        shoppingCartPage.takeSnapshot(deviceName);
+
+        CheckoutStepOnePage stepOne = new CheckoutStepOnePage(webDriver);
+        stepOne.visit();
+        stepOne.takeSnapshot(deviceName);
 
         Map<String, Object> response = (Map<String, Object>) js.executeScript("/*@visual.end*/");
         assertEquals( true, response.get("passed"));
-    }
-
-    private void updateElementText(String newText, String tagName) {
-        ((JavascriptExecutor) webDriver).executeScript(
-                "document.getElementsByTagName('" + tagName +
-                        "')[0].innerText = \'" + newText + "\';");
     }
 }
