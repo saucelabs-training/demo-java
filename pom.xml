@@ -30,8 +30,8 @@
         <module>java8/selenium.testng.examples</module>
         <module>java8/selenium.junit4.examples</module>
         <module>java8/selenium.junit3.examples</module>
-        <module>training-sessions/ci.pipeline</module>
         <module>java8/selenium4.junit4.examples</module>
+        <module>best-practice</module>
     </modules>
     <dependencies>
         <dependency>

@@ -1,4 +1,4 @@
-package com.asb;
+package com.saucedemo;
 
 import org.junit.Before;
 import org.junit.Rule;

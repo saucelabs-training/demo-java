@@ -1,4 +1,4 @@
-package com.asb;
+package com.saucedemo;
 
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
