@@ -10,9 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -25,11 +23,10 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class VisualCrossPlatformTests extends WebTestsBase {
-
-    protected WebDriver webDriver;
     public String sauceUsername = System.getenv("SAUCE_USERNAME");
     public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
     public String screenerApiKey = System.getenv("SCREENER_API_KEY");
+    String deviceNameValue;
 
     /*
     * Configure our data driven parameters
@@ -56,6 +53,8 @@ public class VisualCrossPlatformTests extends WebTestsBase {
 
     @Before
     public void setUp() throws Exception {
+        deviceNameValue = testName.getMethodName().split("\\[", -1)[1];
+
         MutableCapabilities browserOptions = new MutableCapabilities();
         browserOptions.setCapability(CapabilityType.BROWSER_NAME, browserName);
         browserOptions.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
@@ -73,32 +72,28 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         browserOptions.setCapability("sauce:visual", visualOptions);
 
         URL url = Endpoints.getScreenerHub();
-        webDriver = new RemoteWebDriver(url, browserOptions);
+        driver = new RemoteWebDriver(url, browserOptions);
     }
 
     @Test()
     public void pagesRenderCorrectly() {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-
-        String deviceName = testName.getMethodName().split("\\[", -1)[1];
-
-        LoginPage loginPage = new LoginPage(webDriver);
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
-        js.executeScript("/*@visual.init*/", "Responsive Flows");
-        loginPage.takeSnapshot(deviceName);
+        getJSExecutor().executeScript("/*@visual.init*/", "Responsive Flows");
+        loginPage.takeSnapshot(deviceNameValue);
 
         loginPage.login("standard_user");
-        new ProductsPage(webDriver).takeSnapshot(deviceName);
+        new ProductsPage(driver).takeSnapshot(deviceNameValue);
 
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(webDriver);
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
         shoppingCartPage.visit();
-        shoppingCartPage.takeSnapshot(deviceName);
+        shoppingCartPage.takeSnapshot(deviceNameValue);
 
-        CheckoutStepOnePage stepOne = new CheckoutStepOnePage(webDriver);
+        CheckoutStepOnePage stepOne = new CheckoutStepOnePage(driver);
         stepOne.visit();
-        stepOne.takeSnapshot(deviceName);
+        stepOne.takeSnapshot(deviceNameValue);
 
-        Map<String, Object> response = (Map<String, Object>) js.executeScript("/*@visual.end*/");
+        Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
         assertEquals( true, response.get("passed"));
     }
 }
