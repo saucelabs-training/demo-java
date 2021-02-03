@@ -11,6 +11,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>selenium.junit4.examples</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20171018</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <!-- THERE ARE DEPENDENCIES IN THE ROOT POM.XML -->
 

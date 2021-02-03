@@ -22,25 +22,27 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 *  [Set test status using mobile](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
 
 ### Web automation
+
+#### Simple Examples
+* [Windows authentication](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
 * [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 * [JUnit 4,Cucumber web test, simple](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
 * [Front-end performance testing](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
-
-### Mobile automation
-[![Mobile Testing with Appium and iOS Tutorial(Introduction)](http://img.youtube.com/vi/0P8mkguf2z8/0.jpg)](https://www.youtube.com/playlist?list=PL67l1VPxOnT5FXKf5YvGoT9TuCdSmLhv_ "Mobile Testing with Appium and iOS Tutorial - Click to Watch!")
-
-#### Real Devices
-* [iOS real device, native app, Junit4, Unified Platform](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
-* [iOS real device, native app, Junit4, Cucumber](./java11/appium7.junit4.examples.cucumber/src/test/resources/LoginPage.feature)
-* [Set test status on mobile, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
-
-
-#### Emulators and Simulators
-* [iOS Simulator, Web app, Junit4](/java11/appium-junit4-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
-
-### Visual E2E automation
 * [JUnit 4, Visual e2e](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/VisualE2ETest.java)
 * [Visual tests on multiple platforms and resolutions](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/VisualCrossPlatformTests.java)
+
+#### Automation Best Practices
+*  [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
+
+### Mobile automation
+[Mobile Testing Training Tutorials](./TRAINING.md)
+
+#### Real Devices
+ * [iOS real device, native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
+ * [Set test status on mobile, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
+
+#### Emulators and Simulators
+ * [iOS Simulator, Web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
 
 ## Prerequisites
 
