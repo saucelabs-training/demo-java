@@ -1,32 +1,22 @@
-package com.saucedemo;
+package com.saucedemo.tests;
 
 import com.pages.LoginPage;
 import com.pages.ProductsPage;
+import com.saucedemo.Endpoints;
+import com.saucedemo.TestBase;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 import org.openqa.selenium.MutableCapabilities;
 
 import java.net.MalformedURLException;
 
 import static org.junit.Assert.assertTrue;
 
-public class RealDeviceWebTests {
+public class RealDeviceWebTests extends TestBase {
     private AppiumDriver<MobileElement> driver;
-
-    @Rule
-    public TestName name = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
-    @Rule
-    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
-
     public AppiumDriver<MobileElement> getDriver() {
         return driver;
     }
@@ -44,7 +34,7 @@ public class RealDeviceWebTests {
             if you have a hybrid app and set autoWebview  => always starts with webview
         * */
         capabilities.setCapability("browserName", "Safari");
-        capabilities.setCapability("name", name.getMethodName());
+        capabilities.setCapability("name", testName.getMethodName());
 
         driver = new IOSDriver(Endpoints.getRealDevicesHub(), capabilities);
         resultReportingTestWatcher.setDriver(driver);

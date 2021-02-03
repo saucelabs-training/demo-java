@@ -1,13 +1,13 @@
-package com.saucedemo;
+package com.saucedemo.tests;
 
 import com.pages.CheckoutStepOnePage;
 import com.pages.LoginPage;
 import com.pages.ProductsPage;
 import com.pages.ShoppingCartPage;
+import com.saucedemo.Endpoints;
+import com.saucedemo.WebTestsBase;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.JavascriptExecutor;
@@ -24,7 +24,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class VisualCrossPlatformTests {
+public class VisualCrossPlatformTests extends WebTestsBase {
 
     protected WebDriver webDriver;
     public String sauceUsername = System.getenv("SAUCE_USERNAME");
@@ -53,13 +53,6 @@ public class VisualCrossPlatformTests {
                 { "Safari", "macOS 10.15", "latest", "375x812", "iPhone X" }
         });
     }
-
-    @Rule
-    public TestName testName = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
 
     @Before
     public void setUp() throws Exception {

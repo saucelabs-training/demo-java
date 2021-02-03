@@ -1,12 +1,11 @@
-package com.saucedemo;
+package com.saucedemo.tests;
 
 import com.pages.LoginPage;
 import com.pages.ProductsPage;
-import org.junit.After;
+import com.saucedemo.Endpoints;
+import com.saucedemo.WebTestsBase;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,13 +14,6 @@ import java.net.MalformedURLException;
 import static org.junit.Assert.assertTrue;
 
 public class EmusimWebAppTests extends WebTestsBase {
-    @Rule
-    public TestName name = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
-
     @Before
     public void setUp() throws MalformedURLException {
         //Configure these using Platform Configurator:
@@ -30,7 +22,7 @@ public class EmusimWebAppTests extends WebTestsBase {
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("platformVersion", "13.4");
         capabilities.setCapability("browserName", "Safari");
-        capabilities.setCapability("name", name.getMethodName());
+        capabilities.setCapability("name", testName.getMethodName());
 
         capabilities.setCapability("idleTimeout", "90");
         capabilities.setCapability("newCommandTimeout", "90");
@@ -39,13 +31,7 @@ public class EmusimWebAppTests extends WebTestsBase {
 
         driver = new RemoteWebDriver(Endpoints.getEmusimHub(),
                 capabilities);
-    }
-
-    @After
-    public void tearDown() {
-        if (getDriver() != null) {
-            getDriver().quit();
-        }
+        resultReportingTestWatcher.setDriver(driver);
     }
 
     @Test

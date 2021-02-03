@@ -1,26 +1,16 @@
-package com.saucedemo;
+package com.saucedemo.tests;
 
 import com.pages.LoginPage;
 import com.pages.ProductsPage;
+import com.saucedemo.WebTestsBase;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 import static org.junit.Assert.assertTrue;
 
 public class DesktopTests extends WebTestsBase {
-    @Rule
-    public TestName testName = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
-    @Rule
-    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
-
     @Before
     public void setUp() {
         SauceOptions sauceOptions = new SauceOptions();

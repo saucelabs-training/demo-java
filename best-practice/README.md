@@ -22,11 +22,11 @@ mvn clean test
 ```
 The output will look like this:
 ```text
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 140.32 s - in com.saucedemo.VisualCrossPlatformTests
-[INFO] Running com.saucedemo.EmusimWebAppTests
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 140.32 s - in com.saucedemo.tests.VisualCrossPlatformTests
+[INFO] Running com.saucedemo.tests.EmusimWebAppTests
 Feb 03, 2021 3:17:44 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: OSS
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 60.017 s - in com.saucedemo.EmusimWebAppTests
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 60.017 s - in com.saucedemo.tests.EmusimWebAppTests
 [INFO] 
 [INFO] Results:
 [INFO] 
