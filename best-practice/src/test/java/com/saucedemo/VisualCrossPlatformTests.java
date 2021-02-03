@@ -49,11 +49,8 @@ public class VisualCrossPlatformTests {
     public static Collection<Object[]> crossBrowserData() {
         return Arrays.asList(new Object[][] {
                 { "Chrome", "Windows 10", "latest", "412x732", "Pixel XL" },
-                { "Chrome", "Windows 10", "latest", "412x732", "Pixel" },
                 { "Chrome", "Windows 10", "latest", "412x869", "Galaxy Note 10+" },
-                { "Chrome", "Windows 10", "latest", "412x869", "Pixel 4 XL" },
-                { "Safari", "macOS 10.15", "latest", "375x812", "iPhone X" },
-                { "Safari", "macOS 10.15", "latest", "414x736", "iPhone 8 Plus" },
+                { "Safari", "macOS 10.15", "latest", "375x812", "iPhone X" }
         });
     }
 
@@ -82,7 +79,7 @@ public class VisualCrossPlatformTests {
         visualOptions.setCapability("viewportSize", viewportSize);
         browserOptions.setCapability("sauce:visual", visualOptions);
 
-        URL url = new URL("https://hub.screener.io/wd/hub");
+        URL url = Endpoints.getScreenerHub();
         webDriver = new RemoteWebDriver(url, browserOptions);
     }
 

@@ -12,7 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static org.junit.Assert.assertTrue;
 
-public class DesktopTests {
+public class DesktopTests extends WebTests {
 
     @Rule
     public TestName testName = new TestName() {

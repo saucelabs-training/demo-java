@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import static org.junit.Assert.assertTrue;
 
@@ -43,10 +42,7 @@ public class EmusimWebAppTests {
         //Emusim devices have Simulator/Emulator in the name
         capabilities.setCapability("deviceName", "iPhone XS Max Simulator");
 
-        driver = new RemoteWebDriver(
-                new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
-                        System.getenv("SAUCE_ACCESS_KEY") +
-                        "@ondemand.saucelabs.com:443" + "/wd/hub"),
+        driver = new RemoteWebDriver(Endpoints.getEmusimHub(),
                 capabilities);
     }
 
