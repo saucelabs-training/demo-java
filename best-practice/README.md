@@ -5,7 +5,7 @@
 1. Run full suite
 ```java
 cd best-practice
-mvn test
+mvn clean test
 ```
 2. Run visual tests
 ```java
