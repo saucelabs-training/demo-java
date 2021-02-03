@@ -24,25 +24,38 @@ TestNg.
 The correct repository structure is:
 
 ```text
-Generic Structure
-It's basically Selenium/Appium/API in the future
+Description
+-----------------
+It's basically Selenium/Appium/API... examples.
 Followed by testRunnerVersion(which really only applies for Junit)
-Then it's either an example (most common) or a best-practice aka framework
+Most of the code is an "example".
+There may be one or more "best-practice". Technically, there 
+should only be a single "best-practice" implementation per our team.
+However, we may choose to break this up into "best-practice" for web, mobile, api...
 
 |-- demo-java
+    |-- best-practice (Java module)
     |-- selenium-testRunnerVersion-examples (Java module)
-    |-- selenium-testRunnerVersion-best-practice (Java module)
     |-- selenium-testRunnerVersion-cucumber-examples (Java module)
-    |-- selenium-testRunnerVersion-cucumber-best-practice (Java module)
-    |-- visuale2e-testRunnerVersion-examples (Java module)
-    |-- visuale2e-testRunnerVersion-best-practice (Java module)
     |-- appium-testRunnerVersion-examples (Java module)
-    |-- appium-testRunnerVersion-best-practice (Java module)
+    |-- appium-testRunnerVersion-cucumber-examples (Java module)
 ```
 
 ```text
 Specific Structure With Examples
+--------------------------------
 |-- demo-java
+    |-- best-practice (Java module)
+            |-- src
+            |-- main
+            |-- test
+                |-- java
+                    |-- com.saucedemo
+                        |-- VisualTests.java
+                        |-- PerformanceTests.java
+                        |-- FunctionalWebTests.java
+                        |-- MobileWebTests.java
+                        |-- ...
     |-- selenium-junit4-examples (Java module)
         |-- src
             |-- main
@@ -53,25 +66,19 @@ Specific Structure With Examples
                         |-- Junit4TestStatusUpdate.java
                         |-- Junit4DataDriven.java
                         |-- PerformanceTesting.java
-        |-- selenium-junit4-best-practice (Java module)
-            |-- src
-                |-- main
-                    |-- java
-                        |-- com.saucedemo
-                            |-- ShoppingCartPage.java
-                            |-- LoginPage.java
-                |-- test
-                    |-- java
-                        |-- com.saucedemo
-                            |-- ShoppingCartTests.java
-                            |-- LoginTests.java
-                            |-- LoginAPITests.java
         |-- selenium-testng-cucumber-examples (Java module)
-        |-- selenium-testng-cucumber-best-practice (Java module)
         |-- ...
 ```
 
 ## FAQs
+
+### Why is there only one best-practice folder?
+
+With the evolution of Sauce, a true Best Practice is not only
+Selenium automation. A true Best Practice shows customers
+how to utilize all of the tools (Selenium, Appium, Visual, Performance, API...)
+that Sauce has to offer in a cohesive framework
+and test strategy.
 
 ### Why should I separate my code in this manner?
 
@@ -87,6 +94,17 @@ that desire a specific combination of technologies?
 But where would such code examples go? 
 
 In the above structure that's easy for everyone to understand.
+
+### Why does Cucumber get its own module?
+
+Because the organization of the Cucumber source code is
+different than the typical organization of a Maven project.
+As a result, Cucumber needs it's own module where everything
+is separated to meet Cucumber standards.
+
+Also, Cucumber doesn't have a Best Practice as we don't
+believe that it is one nor does our team have a Best Practice strategy
+developed.
 
 ### But I don't want to create a code example for 10 different technologies!
 
