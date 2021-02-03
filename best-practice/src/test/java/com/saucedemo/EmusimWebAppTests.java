@@ -1,31 +1,26 @@
 package com.saucedemo;
 
+import com.pages.LoginPage;
+import com.pages.ProductsPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
-import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 
 import static org.junit.Assert.assertTrue;
 
-public class EmusimWebAppTests {
+public class EmusimWebAppTests extends WebTestsBase {
     @Rule
     public TestName name = new TestName() {
         public String getMethodName() {
             return String.format("%s", super.getMethodName());
         }
     };
-    private WebDriver driver;
-
-    public WebDriver getDriver() {
-        return driver;
-    }
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -54,11 +49,10 @@ public class EmusimWebAppTests {
     }
 
     @Test
-    public void shouldLogin() {
-        getDriver().navigate().to("https://www.saucedemo.com");
-        getDriver().findElement(By.id("user-name")).sendKeys("standard_user");
-        getDriver().findElement(By.id("password")).sendKeys("secret_sauce");
-        getDriver().findElement(By.id("login-button")).click();
-        assertTrue(getDriver().findElement(By.id("inventory_filter_container")).isDisplayed());
+    public void loginWorks() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.visit();
+        loginPage.login("standard_user");
+        assertTrue(new ProductsPage(driver).isDisplayed());
     }
 }

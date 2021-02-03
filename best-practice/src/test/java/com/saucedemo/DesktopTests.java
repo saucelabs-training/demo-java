@@ -8,12 +8,10 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static org.junit.Assert.assertTrue;
 
-public class DesktopTests extends WebTests {
-
+public class DesktopTests extends WebTestsBase {
     @Rule
     public TestName testName = new TestName() {
         public String getMethodName() {
@@ -22,7 +20,6 @@ public class DesktopTests extends WebTests {
     };
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
-    private RemoteWebDriver driver;
 
     @Before
     public void setUp() {
