@@ -28,10 +28,10 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 * [JUnit 4,Cucumber web test, simple](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
 * [Front-end performance testing](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
-* [JUnit 4, Visual e2e](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/VisualE2ETest.java)
-* [Visual tests on multiple platforms and resolutions](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/com.saucedemo.VisualCrossPlatformTests.java)
+* [Visual tests on multiple platforms and resolutions](/best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
 
 #### Automation Best Practices
+*  [Automation best practices with multiple strategies](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
 
 ### Mobile automation
