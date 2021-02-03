@@ -10,8 +10,6 @@ env:
 on:
   push:
     branches: [ asb_demo ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   desktop_tests:
