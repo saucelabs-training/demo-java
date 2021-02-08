@@ -8,7 +8,7 @@
 ![Desktop Tests](https://github.com/saucelabs-training/demo-java/workflows/Desktop%20Tests/badge.svg)
 
 ## Most Popular
-*  [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
+*  [Web automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Quick start test, Junit 4](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
 *  [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
 *  [iOS real device, native app, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
