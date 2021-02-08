@@ -12,7 +12,7 @@ This code is provided on an "AS-IS” basis without warranty of any kind, either
 3. `ExtraSauceTest` shows all of the main Sauce Labs specific values that can be used
 
 4. `TestWatcherTest` shows sending passing & failing information to Sauce
-    a. This uses SalsaVerde's `SauceTestWatcher` class
+    a. This uses SalsaVerde's `com.saucedemo.SauceTestWatcher` class
 
 5. `SauceDemoTest` shows running an actual authentication test to look at commands list
     a. Note this is using SalsaVerde syntax

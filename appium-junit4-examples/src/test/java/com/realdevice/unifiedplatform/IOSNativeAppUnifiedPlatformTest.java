@@ -23,6 +23,7 @@ public class IOSNativeAppUnifiedPlatformTest {
             return String.format("%s", super.getMethodName());
         }
     };
+    @Rule
     private AppiumDriver<MobileElement> driver;
 
     public AppiumDriver<MobileElement> getDriver() {

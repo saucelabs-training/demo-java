@@ -1,7 +1,6 @@
 # Java Demonstration Scripts
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/564ddfb012db40048781b7b6c954d099)](https://app.codacy.com/gh/saucelabs-training/demo-java?utm_source=github.com&utm_medium=referral&utm_content=saucelabs-training/demo-java&utm_campaign=Badge_Grade_Dashboard)
-[![CircleCI](https://circleci.com/gh/saucelabs-training/demo-java/tree/master.svg?style=svg)](https://circleci.com/gh/saucelabs-training/demo-java/tree/master)
 ![Front-end performance](https://github.com/saucelabs-training/demo-java/workflows/Front-end%20performance/badge.svg)
 
 The demo scripts in [this repository](https://github.com/saucelabs-training/demo-java) allow you to run simple automated tests in order to validate your Java Selenium environment and your [saucelabs.com](https://app.saucelabs.com/login) account credentials.
@@ -28,10 +27,10 @@ The demo scripts in [this repository](https://github.com/saucelabs-training/demo
 * [JUnit 5 web test, simple](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 * [JUnit 4,Cucumber web test, simple](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
 * [Front-end performance testing](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
-* [JUnit 4, Visual e2e](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/VisualE2ETest.java)
-* [Visual tests on multiple platforms and resolutions](/java8/visual-e2e/visuale2e.junit4.examples/src/test/java/com/saucedemo/VisualCrossPlatformTests.java)
+* [Visual tests on multiple platforms and resolutions](/best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
 
 #### Automation Best Practices
+*  [Automation best practices with multiple strategies](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
 
 ### Mobile automation

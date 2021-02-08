@@ -29,6 +29,7 @@ public class PerformanceExampleTests {
         sauceOptions = new SauceOptions();
         sauceOptions.setExtendedDebugging(true);
         sauceOptions.setCapturePerformance(true);
+        sauceOptions.setName("simplePerformanceTest");
 
         session = new SauceSession(sauceOptions);
         WebDriver driver = session.start();
