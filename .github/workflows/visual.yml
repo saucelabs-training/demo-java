@@ -24,4 +24,5 @@ jobs:
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+        SCREENER_API_KEY: ${{ secrets.SCREENER_API_KEY }}
       run: mvn test -pl best-practice -Dtest=Visual*
