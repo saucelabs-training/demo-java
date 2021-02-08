@@ -1,4 +1,4 @@
-# Best Practices 
+# Web Automation Best Practices 
 This is a repository that contains a suite of tests entended to
 test SauceDemo application.
 
