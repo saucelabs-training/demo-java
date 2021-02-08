@@ -11,7 +11,7 @@ techniques such as:
 * Front-end performance tests
 * API testing
 
-![visualTesting](/assets/visualTesting.gif)
+![visualTesting](../assets/visualTesting.gif)
 
 ## Executing tests
 
