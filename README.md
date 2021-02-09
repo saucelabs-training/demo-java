@@ -13,7 +13,7 @@
 *  [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
 *  [iOS real device, native app, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
 
-### Web automation
+## Web automation
 
 #### Simple Examples
 * [Windows authentication](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
@@ -26,15 +26,16 @@
 *  [Automation best practices with multiple strategies](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
 
-### Mobile automation
+## Mobile automation
 [Mobile Testing Training Tutorials](./TRAINING.md)
 
-#### Real Devices
- * [iOS real device, native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
- * [Set test status on mobile, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
+- Real Devices
+   - [iOS native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
+   - [Android native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
+   - [Set test status on mobile, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/RDCTestStatusUpdateTest.java)
 
-#### Emulators and Simulators
- * [iOS Simulator, Web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
+- Emulators and Simulators
+   - [iOS web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
 
 ## Prerequisites
 
