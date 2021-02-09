@@ -1,6 +1,7 @@
 package com.realdevice.unifiedplatform;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.After;
@@ -8,24 +9,24 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
-import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import static org.junit.Assert.assertTrue;
 
-public class IOSNativeAppUnifiedPlatformTest {
+public class IOSNativeAppTest {
     @Rule
     public TestName name = new TestName() {
         public String getMethodName() {
             return String.format("%s", super.getMethodName());
         }
     };
-    @Rule
-    private AppiumDriver<MobileElement> driver;
-
+    public AppiumDriver<MobileElement> driver;
     public AppiumDriver<MobileElement> getDriver() {
         return driver;
     }
@@ -63,6 +64,8 @@ public class IOSNativeAppUnifiedPlatformTest {
 
     @Test
     public void shouldOpenApp() {
-        assertTrue(getDriver().findElement(By.id("test-LOGIN")).isDisplayed());
+        WebDriverWait wait = new WebDriverWait(getDriver(), 10000);
+        WebElement loginField = wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId("test-Username")));
+        assertTrue(loginField.isDisplayed());
     }
 }
