@@ -3,7 +3,7 @@ package com.realdevice.unifiedplatform;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -51,7 +51,7 @@ public class AndroidNativeAppTest {
         capabilities.setCapability("app", "storage:filename=" +
                 "Android.SauceLabs.Mobile.Sample.app.2.7.0.apk");
 
-        driver = new IOSDriver(
+        driver = new AndroidDriver<>(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
                         System.getenv("SAUCE_ACCESS_KEY") +
                         "@ondemand.us-west-1.saucelabs.com/wd/hub"),
