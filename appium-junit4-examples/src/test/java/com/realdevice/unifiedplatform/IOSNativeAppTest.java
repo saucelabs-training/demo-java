@@ -4,7 +4,6 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,6 +25,9 @@ public class IOSNativeAppTest {
             return String.format("%s", super.getMethodName());
         }
     };
+    //This rule allows us to set test status with Junit
+    @Rule
+    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
     public AppiumDriver<MobileElement> driver;
     public AppiumDriver<MobileElement> getDriver() {
         return driver;
@@ -52,14 +54,8 @@ public class IOSNativeAppTest {
                         System.getenv("SAUCE_ACCESS_KEY") +
                         "@ondemand.us-west-1.saucelabs.com/wd/hub"),
                 capabilities);
-    }
-
-
-    @After
-    public void tearDown() {
-        if (getDriver() != null) {
-            getDriver().quit();
-        }
+        //Setting the driver so that we can report results
+        resultReportingTestWatcher.setDriver(driver);
     }
 
     @Test
