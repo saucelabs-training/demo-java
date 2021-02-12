@@ -24,4 +24,4 @@ jobs:
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-      run: mvn test -pl best-practice -Dtest=Real*
+      run: mvn test -pl best-practice -Dtest=Real* -X
