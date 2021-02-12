@@ -1,5 +1,8 @@
 # Java Demonstration Scripts
 
+Welcome to Java Demo Scripts designed by Solution Architects to provide examples of how to use Sauce Labs technologies. This repository contains
+everything that you need to get started with web, mobile, visual, functional and all other types of automation using Java.
+
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/564ddfb012db40048781b7b6c954d099)](https://app.codacy.com/gh/saucelabs-training/demo-java?utm_source=github.com&utm_medium=referral&utm_content=saucelabs-training/demo-java&utm_campaign=Badge_Grade_Dashboard)
 ![Front-end performance](https://github.com/saucelabs-training/demo-java/workflows/Front-end%20performance/badge.svg)
