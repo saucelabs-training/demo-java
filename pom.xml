@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>common</module>
         <module>on-boarding-modules/junit</module>
         <module>on-boarding-modules/testng</module>
         <module>parallel-testing/cross-browser-and-platform-config</module>
@@ -23,8 +24,7 @@
         <module>java11/selenium3-junit5-examples</module>
         <module>java8/selenium3/examples/testng/biometric-login</module>
         <module>java8/selenium3.junit4.examples.cucumber</module>
-        <module>java11/appium7.junit4.examples.cucumber</module>
-        <module>common</module>
+        <module>appium-junit4-cucumber-examples</module>
         <module>java8/visual-e2e/visuale2e.junit4.examples</module>
         <module>java11/selenium3.junit4.examples</module>
         <module>java8/selenium.testng.examples</module>
@@ -96,11 +96,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
+                <version>2.22.0</version>
                 <configuration>
-                    <!-- CircleCI build workaround -->
-                    <argLine>-Xms1024m -Xmx2048m</argLine>
-                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <parallel>classes</parallel>
+                    <threadCountMethods>100</threadCountMethods>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
             </plugin>
         </plugins>
