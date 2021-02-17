@@ -20,12 +20,11 @@ import static helpers.utils.*;
 public class SwagLabsTest {
 
     protected IOSDriver driver;
-    String sessionId;
 
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
 
-        System.out.println("Sauce - BeforeMethod hook");
+        System.out.println("Sauce - BeforeMethod hook ");
 
         String region = getProperty("region", "eu");
 
@@ -33,14 +32,14 @@ public class SwagLabsTest {
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
         String methodName = method.getName();
 
+        System.out.println("Sauce - BeforeMethod hook " + username);
+
         String sauceUrl;
-        String appID ="";
+        String appName ="iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa";
         if (region.equalsIgnoreCase("eu")) {
             sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
-            appID ="e7fdaa5f-36d6-40c7-9a51-0bb71acf44c3";
         } else {
             sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
-            appID = "198a3d97-6d78-4ad9-895e-1f3f94974a2c";
         }
 
         String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl +"/wd/hub";
@@ -52,14 +51,16 @@ public class SwagLabsTest {
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("automationName", "XCUITEST");
         capabilities.setCapability("name", methodName);
-        capabilities.setCapability("app", "storage:" +appID);
+        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+//        capabilities.setCapability("app", "storage:filename=" +appName);
+        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
+
         capabilities.setCapability("noReset", true);
         capabilities.setCapability("sauceLabsImageInjectionEnabled", true);
         capabilities.setCapability("autoAcceptAlerts", true);
 
         // Launch remote browser and set it as the current thread
         driver = new IOSDriver(url, capabilities);
-        sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
     }
 
 

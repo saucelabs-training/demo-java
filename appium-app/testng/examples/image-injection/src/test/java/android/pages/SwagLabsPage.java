@@ -1,5 +1,6 @@
 package android.pages;
 
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -32,9 +33,12 @@ public class SwagLabsPage {
         try {
             driver.context("NATIVE_APP");
 
-            WebElement usernameEdit = (WebElement) driver.findElementByAccessibilityId(usernameID);
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            final WebElement usernameEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(new MobileBy.ByAccessibilityId(usernameID)));
+
             usernameEdit.click();
             usernameEdit.sendKeys(user);
+
 
             WebElement passwordEdit = (WebElement) driver.findElementByAccessibilityId(passwordID);
             passwordEdit.click();

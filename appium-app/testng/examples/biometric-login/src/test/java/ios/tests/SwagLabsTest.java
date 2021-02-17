@@ -64,13 +64,18 @@ public class SwagLabsTest {
             capabilities.setCapability("deviceName", "iPhone 8*");
             // Enable touchID
             capabilities.setCapability("allowTouchIdEnroll", true);
-            capabilities.setCapability("app", "storage:filename=" + appName);
-        } else { // Simulator and Emulator
+
+            //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+            //capabilities.setCapability("app", "storage:filename=" +appName);
+            capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
+        } else { // Simulator
             String appName = "iOS.Simulator.SauceLabs.Mobile.Sample.app.2.3.0.zip";
             System.out.println("Sauce - Run on virtual mobile device");
             capabilities.setCapability("deviceName", "iPhone 8 Simulator");
             capabilities.setCapability("platformVersion", "13.4");
-            capabilities.setCapability("app", "sauce-storage:" + appName);
+            //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+          //  capabilities.setCapability("app", "sauce-storage:" + appName);
+            capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.Simulator.SauceLabs.Mobile.Sample.app.2.7.1.zip");
         }
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("automationName", "XCUITEST");

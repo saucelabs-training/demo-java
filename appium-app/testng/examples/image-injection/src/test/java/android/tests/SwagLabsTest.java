@@ -20,7 +20,6 @@ import static helpers.utils.*;
 public class SwagLabsTest{
 
     protected AndroidDriver driver;
-    String sessionId;
 
     @BeforeMethod
     public void setup(Method method) throws IOException {
@@ -33,13 +32,11 @@ public class SwagLabsTest{
         String methodName = method.getName();
 
         String sauceUrl;
-        String appID="";
+        String appName ="Android.SauceLabs.Mobile.Sample.app.2.3.0.apk";
         if (region.equalsIgnoreCase("eu")) {
             sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
-            appID ="b0ce1ad7-e02f-429d-85f4-423fb4ee039f";
         } else {
             sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
-            appID ="74976f6d-3a0b-44f5-aff7-e06583c93772";
         }
         String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl +"/wd/hub";
         URL url = new URL(SAUCE_REMOTE_URL);
@@ -49,7 +46,9 @@ public class SwagLabsTest{
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("name", methodName);
-        capabilities.setCapability("app", "storage:" +appID);
+//      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+//        capabilities.setCapability("app", "storage:filename=" +appName);
+        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
         capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
 
         capabilities.setCapability("noReset", true);
@@ -57,7 +56,6 @@ public class SwagLabsTest{
 
         // Launch remote browser and set it as the current thread
         driver = new AndroidDriver(url, capabilities);
-        sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
     }
 
     @Test
