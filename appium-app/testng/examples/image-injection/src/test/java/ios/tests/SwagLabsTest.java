@@ -35,7 +35,6 @@ public class SwagLabsTest {
         System.out.println("Sauce - BeforeMethod hook " + username);
 
         String sauceUrl;
-        String appName ="iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa";
         if (region.equalsIgnoreCase("eu")) {
             sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
         } else {

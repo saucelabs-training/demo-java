@@ -32,7 +32,6 @@ public class SwagLabsTest{
         String methodName = method.getName();
 
         String sauceUrl;
-        String appName ="Android.SauceLabs.Mobile.Sample.app.2.3.0.apk";
         if (region.equalsIgnoreCase("eu")) {
             sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
         } else {
