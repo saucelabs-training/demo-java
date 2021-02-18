@@ -31,6 +31,7 @@
         <module>java8/selenium.junit3.examples</module>
         <module>java8/selenium4.junit4.examples</module>
         <module>best-practice</module>
+        <module>appium-testng-examples</module>
     </modules>
     <dependencies>
         <dependency>
