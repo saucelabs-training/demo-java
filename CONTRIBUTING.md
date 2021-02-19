@@ -68,7 +68,17 @@ Specific Structure With Examples
                         |-- Junit4TestStatusUpdate.java
                         |-- Junit4DataDriven.java
                         |-- PerformanceTesting.java
-        |-- selenium-testng-cucumber-examples (Java module)
+    |-- selenium-testng-examples (Java module)
+    |-- src
+        |-- main
+        |-- test
+            |-- java
+                |-- com.saucedemo
+                    |-- TestNgTest.java
+                    |-- W3CTest.java
+                    |-- ParallelTest.java
+                    |-- ...
+    |-- selenium-testng-cucumber-examples (Java module)
         |-- ...
 ```
 
