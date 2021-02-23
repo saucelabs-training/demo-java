@@ -29,7 +29,7 @@ everything that you need to get started with web, mobile, visual, functional and
 
 - Automation Best Practices
     -  [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
-    -  [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
+    -  [TestNg Sample Framework](/selenium-testng-best-practice/src/)
 
 ## Mobile automation
 [Mobile Testing Training Tutorials](./TRAINING.md)
