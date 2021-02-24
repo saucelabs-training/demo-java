@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class SimpleChromeTest {
+public class TestNgTest {
     protected WebDriver driver;
     private SauceSession session;
 
@@ -50,7 +50,7 @@ public class SimpleChromeTest {
     For more information visit the docs: http://static.javadoc.io/org.testng/testng/6.9.4/org/testng/annotations/Test.html
      */
     @Test
-    public void TestNGw3cChromeTest() throws AssertionError {
+    public void chromeWorks() throws AssertionError {
         driver.navigate().to("https://www.saucedemo.com");
         Assert.assertEquals(driver.getTitle(), "Swag Labs");
     }
