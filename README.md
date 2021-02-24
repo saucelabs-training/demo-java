@@ -9,6 +9,7 @@ everything that you need to get started with web, mobile, visual, functional and
 ![Visual E2E Tests](https://github.com/saucelabs-training/demo-java/workflows/Visual%20E2E%20Tests/badge.svg)
 ![Real Devices Web Tests](https://github.com/saucelabs-training/demo-java/workflows/Real%20Devices%20Web%20Tests/badge.svg)
 ![Desktop Tests](https://github.com/saucelabs-training/demo-java/workflows/Desktop%20Tests/badge.svg)
+[![TestNg Tests](https://github.com/saucelabs-training/demo-java/actions/workflows/testng.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/testng.yml)
 ![RDC iOS Native App](https://github.com/saucelabs-training/demo-java/workflows/RDC%20iOS%20Native%20App/badge.svg)
 ![RDC Android Native App](https://github.com/saucelabs-training/demo-java/workflows/RDC%20Android%20Native%20App/badge.svg)
 
