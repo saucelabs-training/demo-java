@@ -26,7 +26,6 @@
         <module>appium-junit4-cucumber-examples</module>
         <module>java8/visual-e2e/visuale2e.junit4.examples</module>
         <module>java11/selenium3.junit4.examples</module>
-        <module>java8/selenium.junit4.examples</module>
         <module>java8/selenium.junit3.examples</module>
         <module>java8/selenium4.junit4.examples</module>
         <module>selenium-testng-best-practice</module>
