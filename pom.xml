@@ -37,6 +37,7 @@
         <module>appium-testng-examples</module>
         <module>selenium-testng-best-practice</module>
         <module>selenium-testng-examples</module>
+        <module>selenium-junit4-examples</module>
     </modules>
     <dependencies>
         <dependency>
