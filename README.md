@@ -19,15 +19,16 @@ everything that you need to get started with web, mobile, visual, functional and
 *  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/TestNgTest.java)
 *  [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
 *  [iOS real device, native app, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
+*  [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
 
 ## Web automation
 
 - Popular Examples
     - [JUnit 5 web test](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
     - [JUnit 4,Cucumber web test](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
-    - [Front-end performance testing](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
+    - [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
     - [Visual tests on multiple platforms and resolutions](/best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
-    - [Windows authentication](/java8/selenium.junit4.examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
+    - [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
 
 - Automation Best Practices
     -  [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
