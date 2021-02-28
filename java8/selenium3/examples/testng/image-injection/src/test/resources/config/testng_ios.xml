@@ -1,9 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Android Demo Suite" verbose="0">
-
-	<test name="Image Injection execution tests" enabled="true">
-		<packages>
-			<package name="ios.tests"/>
-		</packages>
-	</test>
-</suite>
