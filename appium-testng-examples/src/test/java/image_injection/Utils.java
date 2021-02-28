@@ -1,4 +1,4 @@
-package helpers;
+package image_injection;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Utils {
 
-    public static String encoder(String imagePath) {
+    public String encoder(String imagePath) {
         String base64Image = "";
         File file = new File(imagePath);
         try (FileInputStream imageInFile = new FileInputStream(file)) {
@@ -31,7 +31,7 @@ public class Utils {
         return base64Image;
     }
 
-    public static boolean isAndroidBrowserOpened(AndroidDriver driver) throws InterruptedException {
+    public boolean isAndroidBrowserOpened(AndroidDriver driver) throws InterruptedException {
         int wait = 8;
         int counter = 0;
 
@@ -46,7 +46,7 @@ public class Utils {
         return false;
     }
 
-    public static long getIosAppState(IOSDriver driver, String bundleId) {
+    public long getIosAppState(IOSDriver driver, String bundleId) {
         Map<String, Object> params = new HashMap<>();
         params.put("bundleId", bundleId);
 
@@ -57,7 +57,7 @@ public class Utils {
         return res;
     }
 
-    public static boolean isIosApplicationRunning(IOSDriver driver, String bundleId) throws InterruptedException{
+    public boolean isIosApplicationRunning(IOSDriver driver, String bundleId) throws InterruptedException{
 
         int wait = 8;
         int counter = 0;
@@ -73,7 +73,7 @@ public class Utils {
         return false;
     }
 
-    public static boolean isIOS(AppiumDriver driver){
+    public boolean isIOS(AppiumDriver driver){
         if (driver.getPlatformName().toLowerCase().equals("ios")) {
             System.out.println("Sauce. iOS platform");
             return true;

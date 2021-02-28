@@ -1,5 +1,6 @@
 package image_injection;
 
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,8 +17,9 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
-import static helpers.Utils.*;
+import static image_injection.Utils.*;
 import static helpers.Config.region;
 
 public class Image_Injection_iOS_Test {
@@ -63,14 +65,14 @@ public class Image_Injection_iOS_Test {
 //        capabilities.setCapability("app", "storage:filename=" +appName);
         capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
 
-        capabilities.setCapability("noReset", true);
         capabilities.setCapability("sauceLabsImageInjectionEnabled", true);
         capabilities.setCapability("autoAcceptAlerts", true);
 
         // Launch remote browser and set it as the current thread
         driver = new IOSDriver(url, capabilities);
-    }
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
+    }
 
     @Test
     public void imageInjection_scan_QR_code() throws InterruptedException {
@@ -89,12 +91,23 @@ public class Image_Injection_iOS_Test {
         // Accept access if asked
         acceptCameraAccess();
 
+        Utils utils = new Utils();
         // inject the image - provide the transformed image to the device with this command
-        String qrCodeImage = encoder("src/test/java/image_injection/images/qr-code.png");
+        String qrCodeImage = utils.encoder("src/test/java/image_injection/images/qr-code.png");
         ((JavascriptExecutor)driver).executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
-        isIosApplicationRunning(driver, "com.apple.mobilesafari");
+        utils.isIosApplicationRunning(driver, "com.apple.mobilesafari");
+
+        // This is not need only for the video
+        try
+        {
+            Thread.sleep(5000);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 
 

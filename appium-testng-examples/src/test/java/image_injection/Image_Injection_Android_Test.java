@@ -1,5 +1,6 @@
 package image_injection;
 
+import biometric_login.AndroidSettings;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 
-import static helpers.Utils.*;
+import static image_injection.Utils.*;
 import static helpers.Config.region;
 
 
@@ -42,7 +43,7 @@ public class Image_Injection_Android_Test {
         String methodName = method.getName();
 
         String sauceUrl;
-        String appName ="Android.SauceLabs.Mobile.Sample.app.2.3.0.apk";
+        String appName ="Android.SauceLabs.Mobile.Sample.app.2.7.1.apk";
         if (region.equalsIgnoreCase("eu")) {
             sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
         } else {
@@ -53,6 +54,7 @@ public class Image_Injection_Android_Test {
 
         MutableCapabilities capabilities = new MutableCapabilities();
         capabilities.setCapability("deviceName", "Samsung Galaxy S10");
+
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("name", methodName);
@@ -61,8 +63,8 @@ public class Image_Injection_Android_Test {
         capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
         capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
 
-        capabilities.setCapability("noReset", true);
         capabilities.setCapability("sauceLabsImageInjectionEnabled", true);
+        capabilities.setCapability("autoGrantPermissions", true);
 
         // Launch remote browser and set it as the current thread
         driver = new AndroidDriver(url, capabilities);
@@ -83,11 +85,23 @@ public class Image_Injection_Android_Test {
         selecMenuQRCodeScanner();
 
         // inject the image - provide the transformed image to the device with this command
-        String qrCodeImage = encoder("src/test/java/image_injection/images/qr-code.png");
+        Utils utils = new Utils();
+        String qrCodeImage = utils.encoder("src/test/java/image_injection/images/qr-code.png");
         ((JavascriptExecutor)driver).executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
-        isAndroidBrowserOpened(driver);
+        utils.isAndroidBrowserOpened(driver);
+
+        // This is not need only for the video
+        try
+        {
+            Thread.sleep(5000);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+
     }
 
     @AfterMethod
