@@ -1,6 +1,5 @@
 package image_injection;
 
-import biometric_login.AndroidSettings;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.TimeoutException;
@@ -20,7 +19,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 
-import static image_injection.Utils.*;
 import static helpers.Config.region;
 
 
@@ -161,9 +159,5 @@ public class ImageInjectionAndroidTest {
         WebElement QCCodeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(testMenuItemQRCode));
         QCCodeMenu.click();
     }
-    private void selecMenuWebView() {
-        driver.findElement(testMenuItemWebView).click();
-    }
-
 
 }

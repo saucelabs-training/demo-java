@@ -1,6 +1,5 @@
 package image_injection;
 
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,7 +18,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import static image_injection.Utils.*;
 import static helpers.Config.region;
 
 public class ImageInjectionIosTest {
