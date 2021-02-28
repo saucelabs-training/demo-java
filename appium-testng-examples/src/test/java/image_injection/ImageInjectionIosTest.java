@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 import static image_injection.Utils.*;
 import static helpers.Config.region;
 
-public class Image_Injection_iOS_Test {
+public class ImageInjectionIosTest {
 
     By usernameID = By.id("test-Username");
     By passwordID = By.id("test-Password");

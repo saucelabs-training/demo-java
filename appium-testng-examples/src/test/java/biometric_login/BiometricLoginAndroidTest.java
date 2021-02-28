@@ -21,7 +21,7 @@ import java.net.URL;
 
 import static helpers.Config.region;
 
-public class Biometric_Login_Android_Test {
+public class BiometricLoginAndroidTest {
 
     protected AndroidDriver driver;
 

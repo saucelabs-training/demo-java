@@ -3,7 +3,7 @@
 
 	<test name="Image Injection execution tests" enabled="true">
 		<classes>
-			<class name="image_injection.Image_Injection_Android_Test"/>
+			<class name="image_injection.ImageInjectionAndroidTest"/>
 		</classes>
 	</test>
 </suite>

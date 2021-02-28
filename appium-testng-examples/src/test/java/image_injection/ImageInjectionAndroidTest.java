@@ -24,7 +24,7 @@ import static image_injection.Utils.*;
 import static helpers.Config.region;
 
 
-public class Image_Injection_Android_Test {
+public class ImageInjectionAndroidTest {
 
     String usernameID = "test-Username";
     String passwordID = "test-Password";

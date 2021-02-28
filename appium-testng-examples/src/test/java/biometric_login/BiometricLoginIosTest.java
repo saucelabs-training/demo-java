@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 import static helpers.Config.region;
 import static helpers.Config.rdc;
 
-public class Biometric_Login_iOS_Test {
+public class BiometricLoginIosTest {
 
     protected IOSDriver driver;
 

@@ -3,7 +3,7 @@
 
 	<test name="Image Injection execution tests" enabled="true">
 		<classes>
-			<class name="image_injection.Image_Injection_iOS_Test"/>
+			<class name="image_injection.ImageInjectionIosTest"/>
 		</classes>
 	</test>
 </suite>
