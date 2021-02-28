@@ -1,8 +1,11 @@
 package biometric_login;
 
 import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
