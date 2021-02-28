@@ -71,7 +71,7 @@ public class Image_Injection_Android_Test {
     }
 
     @Test
-    public void imageInjection_scan_QR_code() throws InterruptedException {
+    public void imageInjectionScanQRcode() throws InterruptedException {
         System.out.println("Sauce - start test imageInjection_scan_QR_code");
 
         // Login

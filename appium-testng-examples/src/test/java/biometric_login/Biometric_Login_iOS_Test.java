@@ -78,7 +78,7 @@ public class Biometric_Login_iOS_Test {
 
 
     @Test
-    public void biometricLogin_withMatchingTouch () throws InterruptedException {
+    public void biometricLoginWithMatchingTouch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
@@ -98,7 +98,7 @@ public class Biometric_Login_iOS_Test {
     }
 
     @Test
-    public void biometricLogin_withNonMatchingTouch () throws InterruptedException {
+    public void biometricLoginWithNonMatchingTouch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with a non matching touch");
 
         // If the biometry is not shown on iOS, enable it on the phone
