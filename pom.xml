@@ -8,6 +8,13 @@
     <artifactId>demo-java</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <selenium.version>3.141.59</selenium.version>
+        <sauce.version>1.0.1</sauce.version>
+        <appium.version>7.3.0</appium.version>
+    </properties>
+
     <modules>
         <module>common</module>
         <module>on-boarding-modules/junit</module>
@@ -41,7 +48,7 @@
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce_bindings</artifactId>
-            <version>1.0.1</version>
+            <version>${sauce.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -52,13 +59,13 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -69,7 +76,7 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>7.3.0</version>
+            <version>${appium.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
