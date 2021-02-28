@@ -1,4 +1,4 @@
-# Using Biometric login on Sauce Labs
+# Using biometric login on Sauce Labs
 This folder contains examples for using Biometric login on real devices for:
 -   [iOS real devices on the new Sauce Labs UI](#run-tests-on-sauce-labs-ios-real-devices)
 -   [iOS simulators on the Sauce Labs Simulator Cloud](#run-tests-on-sauce-labs-iOS-simulators)
