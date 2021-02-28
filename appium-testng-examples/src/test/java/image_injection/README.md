@@ -47,4 +47,4 @@ If you want to run the tests on Sauce Labs real devices in the **New Sauce Labs 
     mvn clean install -DtestngXmlFile=image_injection_ios_test.xml -Dfeature=image_injection -Dregion=eu
     
 The tests will be executed on a iPhone 8.
-> NOTE: Make sure you are in the folder `image-injection` when you execute this command
+> NOTE: Make sure you are in the folder `appium-testng-examples` when you execute this command

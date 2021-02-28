@@ -68,7 +68,7 @@ If you want to run the tests on Sauce Labs real devices then you can run the iOS
     mvn clean install -DtestngXmlFile=biometric_login_ios_test.xml -Dfeature=biometric_login -Dregion=eu -Drdc=true
     
 The tests will be executed on a iPhone 8.
-> NOTE: Make sure you are in the folder `biometric-login` when you execute this command
+> NOTE: Make sure you are in the folder `appium-testng-examples` when you execute this command
 
 ## Run tests on Sauce Labs iOS simulators
 If you want to run the tests on Sauce Labs iOS simulators then you can run the iOS test with
@@ -80,7 +80,7 @@ If you want to run the tests on Sauce Labs iOS simulators then you can run the i
     mvn clean install -DtestngXmlFile=biometric_login_ios_test.xml -Dfeature=biometric_login -Dregion=eu -Drdc=false
     
 The tests will be executed on a iPhone 8.
-> NOTE: Make sure you are in the folder `biometric-login` when you execute this command
+> NOTE: Make sure you are in the folder `appium-testng-examples` when you execute this command
 
 ## Run tests on Sauce Labs Android emulators
 If you want to run the tests on Sauce Labs Android emulators then you can run the Android test with
@@ -93,4 +93,4 @@ If you want to run the tests on Sauce Labs Android emulators then you can run th
     
 The tests will be executed on a Android 8
 
-> NOTE: Make sure you are in the folder `biometric-login` when you execute this command
+> NOTE: Make sure you are in the folder `appium-testng-examples` when you execute this command
