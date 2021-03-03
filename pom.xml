@@ -8,6 +8,13 @@
     <artifactId>demo-java</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <selenium.version>3.141.59</selenium.version>
+        <sauce.version>1.0.1</sauce.version>
+        <appium.version>7.3.0</appium.version>
+    </properties>
+
     <modules>
         <module>best-practice</module>
         <module>common</module>
@@ -19,9 +26,7 @@
         <module>appium-junit4-examples</module>
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
-        <module>java8/selenium3/examples/testng/image-injection</module>
         <module>java11/selenium3-junit5-examples</module>
-        <module>java8/selenium3/examples/testng/biometric-login</module>
         <module>java8/selenium3.junit4.examples.cucumber</module>
         <module>appium-junit4-cucumber-examples</module>
         <module>java8/visual-e2e/visuale2e.junit4.examples</module>
@@ -29,6 +34,7 @@
         <module>java8/selenium.junit4.examples</module>
         <module>java8/selenium.junit3.examples</module>
         <module>java8/selenium4.junit4.examples</module>
+        <module>appium-testng-examples</module>
         <module>selenium-testng-best-practice</module>
         <module>selenium-testng-examples</module>
     </modules>
@@ -42,7 +48,7 @@
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce_bindings</artifactId>
-            <version>1.0.1</version>
+            <version>${sauce.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -53,13 +59,13 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -70,7 +76,7 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>7.3.0</version>
+            <version>${appium.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
