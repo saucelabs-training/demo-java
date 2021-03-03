@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import static helpers.Config.region;
+import static helpers.Constants.region;
 
 public class ImageInjectionIosTest {
 

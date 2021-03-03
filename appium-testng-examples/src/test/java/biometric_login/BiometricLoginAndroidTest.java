@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 
-import static helpers.Config.region;
+import static helpers.Constants.region;
 
 public class BiometricLoginAndroidTest {
 

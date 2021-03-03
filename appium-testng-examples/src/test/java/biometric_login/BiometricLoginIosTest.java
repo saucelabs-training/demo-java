@@ -19,8 +19,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import static helpers.Config.region;
-import static helpers.Config.rdc;
+import static helpers.Constants.region;
+import static helpers.Constants.rdc;
 
 public class BiometricLoginIosTest {
 
