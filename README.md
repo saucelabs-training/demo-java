@@ -9,12 +9,14 @@ everything that you need to get started with web, mobile, visual, functional and
 ![Visual E2E Tests](https://github.com/saucelabs-training/demo-java/workflows/Visual%20E2E%20Tests/badge.svg)
 ![Real Devices Web Tests](https://github.com/saucelabs-training/demo-java/workflows/Real%20Devices%20Web%20Tests/badge.svg)
 ![Desktop Tests](https://github.com/saucelabs-training/demo-java/workflows/Desktop%20Tests/badge.svg)
+[![TestNg Tests](https://github.com/saucelabs-training/demo-java/actions/workflows/testng.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/testng.yml)
 ![RDC iOS Native App](https://github.com/saucelabs-training/demo-java/workflows/RDC%20iOS%20Native%20App/badge.svg)
 ![RDC Android Native App](https://github.com/saucelabs-training/demo-java/workflows/RDC%20Android%20Native%20App/badge.svg)
 
 ## Most Popular
 *  [Web automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Quick start test, Junit 4](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
+*  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/TestNgTest.java)
 *  [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
 *  [iOS real device, native app, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
 
@@ -29,7 +31,7 @@ everything that you need to get started with web, mobile, visual, functional and
 
 - Automation Best Practices
     -  [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
-    -  [Advanced tests that use test automation best practices on Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/parallel-testing)
+    -  [TestNg Sample Framework](/selenium-testng-best-practice/src/)
 
 ## Mobile automation
 [Mobile Testing Training Tutorials](./TRAINING.md)
