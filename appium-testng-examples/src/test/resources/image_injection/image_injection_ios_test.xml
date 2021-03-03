@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="iOS Image Injection Example" verbose="0">
+
+	<test name="Image Injection execution tests" enabled="true">
+		<classes>
+			<class name="image_injection.ImageInjectionIosTest"/>
+		</classes>
+	</test>
+</suite>

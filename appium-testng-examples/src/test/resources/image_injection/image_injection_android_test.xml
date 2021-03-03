@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Android Image Injection Example" verbose="0">
+
+	<test name="Image Injection execution tests" enabled="true">
+		<classes>
+			<class name="image_injection.ImageInjectionAndroidTest"/>
+		</classes>
+	</test>
+</suite>
