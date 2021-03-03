@@ -20,6 +20,7 @@ everything that you need to get started with web, mobile, visual, functional and
 *  [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
 *  [iOS real device, native app, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
 *  [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
+*  [Visual E2E test](./selenium-junit4-examples/src/test/java/com/saucedemo/SimpleVisualE2ETest.java)
 
 ## Web automation
 

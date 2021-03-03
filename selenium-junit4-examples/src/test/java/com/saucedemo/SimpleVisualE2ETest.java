@@ -13,7 +13,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class VisualE2ETest {
+public class SimpleVisualE2ETest {
 
     protected WebDriver webDriver;
     public String sauceUsername = System.getenv("SAUCE_USERNAME");
