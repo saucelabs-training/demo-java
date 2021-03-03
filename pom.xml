@@ -26,7 +26,6 @@
         <module>appium-junit4-examples</module>
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
-        <module>java11/selenium3-testng-framework</module>
         <module>java11/selenium3-junit5-examples</module>
         <module>java8/selenium3.junit4.examples.cucumber</module>
         <module>appium-junit4-cucumber-examples</module>
