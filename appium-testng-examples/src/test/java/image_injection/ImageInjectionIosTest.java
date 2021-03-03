@@ -43,7 +43,6 @@ public class ImageInjectionIosTest {
         String methodName = method.getName();
 
         String sauceUrl;
-        String appName ="iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa";
         if (region.equalsIgnoreCase("eu")) {
             sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
         } else {

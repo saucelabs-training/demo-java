@@ -50,7 +50,6 @@ public class BiometricLoginIosTest {
         URL url = new URL(SAUCE_REMOTE_URL);
 
         if (Boolean.valueOf(rdc)) {
-            String appName ="iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa";
             System.out.println("Sauce - Run on real device");
             capabilities.setCapability("deviceName", "iPhone 8*");
             // Enable touchID
@@ -60,7 +59,6 @@ public class BiometricLoginIosTest {
             //capabilities.setCapability("app", "storage:filename=" +appName);
             capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
         } else { // Simulator
-            String appName = "iOS.Simulator.SauceLabs.Mobile.Sample.app.2.3.0.zip";
             System.out.println("Sauce - Run on virtual mobile device");
             capabilities.setCapability("deviceName", "iPhone 8 Simulator");
             capabilities.setCapability("platformVersion", "13.4");

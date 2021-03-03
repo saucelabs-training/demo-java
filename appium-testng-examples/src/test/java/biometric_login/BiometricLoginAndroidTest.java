@@ -49,7 +49,6 @@ public class BiometricLoginAndroidTest {
         String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl +"/wd/hub";
         URL url = new URL(SAUCE_REMOTE_URL);
 
-        String appName ="sample-app-android.apk";
         MutableCapabilities capabilities = new MutableCapabilities();
         capabilities.setCapability("deviceName", "Android Emulator");
         capabilities.setCapability("platformVersion", "8.0");
