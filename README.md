@@ -21,6 +21,7 @@ everything that you need to get started with web, mobile, visual, functional and
 *  [iOS real device, native app, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
 *  [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
 *  [Visual E2E test](./selenium-junit4-examples/src/test/java/com/saucedemo/SimpleVisualE2ETest.java)
+*  [Sauce Connect usage](./selenium-junit4-examples/src/test/java/com/saucedemo/SauceConnectTest.java)
 
 ## Web automation
 
