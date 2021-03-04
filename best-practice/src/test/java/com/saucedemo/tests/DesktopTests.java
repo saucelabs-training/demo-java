@@ -19,6 +19,47 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class DesktopTests extends WebTestsBase {
+    /*
+     * Configure our data driven parameters
+     * */
+    @Parameterized.Parameter
+    public String browserName;
+    @Parameterized.Parameter(1)
+    public String browserVersion;
+    @Parameterized.Parameter(2)
+    public String platform;
+
+    @Parameterized.Parameters()
+    public static Collection<Object[]> crossBrowserData() {
+        return Arrays.asList(new Object[][]{
+                {"chrome", "latest", "Windows 10"},
+                {"chrome", "latest-1", "Windows 10"},
+                {"safari", "latest", "macOS 10.14"},
+                {"chrome", "latest", "macOS 10.14"},
+                // Duplication below for demo purposes of massive parallelization
+                {"chrome", "latest", "Windows 10"},
+                {"chrome", "latest-1", "Windows 10"},
+                {"safari", "latest", "macOS 10.14"},
+                {"chrome", "latest", "macOS 10.14"},
+                {"chrome", "latest", "Windows 10"},
+                {"chrome", "latest-1", "Windows 10"},
+                {"safari", "latest", "macOS 10.14"},
+                {"chrome", "latest", "macOS 10.14"},
+                {"chrome", "latest", "Windows 10"},
+                {"chrome", "latest-1", "Windows 10"},
+                {"safari", "latest", "macOS 10.14"},
+                {"chrome", "latest", "macOS 10.14"},
+                {"chrome", "latest", "Windows 10"},
+                {"chrome", "latest-1", "Windows 10"},
+                {"safari", "latest", "macOS 10.14"},
+                {"chrome", "latest", "macOS 10.14"},
+                {"chrome", "latest", "Windows 10"},
+                {"chrome", "latest-1", "Windows 10"},
+                {"safari", "latest", "macOS 10.14"},
+                {"chrome", "latest", "macOS 10.14"},
+        });
+    }
+
     @Before
     public void setUp() {
         SauceOptions sauceOptions = new SauceOptions();
@@ -40,6 +81,7 @@ public class DesktopTests extends WebTestsBase {
         loginPage.login("standard_user");
         assertTrue(new ProductsPage(driver).isDisplayed());
     }
+
     @Test(expected = TimeoutException.class)
     public void lockedOutUser() {
         LoginPage loginPage = new LoginPage(driver);
@@ -47,55 +89,12 @@ public class DesktopTests extends WebTestsBase {
         loginPage.login("locked_out_user");
         assertFalse(new ProductsPage(driver).isDisplayed());
     }
+
     @Test(expected = TimeoutException.class)
     public void invalidCredentials() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
         loginPage.login("foo_bar_user");
         assertFalse(new ProductsPage(driver).isDisplayed());
-    }
-
-    /*
-     * Configure our data driven parameters
-     * */
-    @Parameterized.Parameter
-    public String browserName;
-
-    @Parameterized.Parameter(1)
-    public String browserVersion;
-
-    @Parameterized.Parameter(2)
-    public String platform;
-
-
-    @Parameterized.Parameters()
-    public static Collection<Object[]> crossBrowserData() {
-        return Arrays.asList(new Object[][] {
-                { "chrome", "latest", "Windows 10" },
-                { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.14" },
-                { "chrome", "latest", "macOS 10.14" },
-                // Duplication below for demo purposes of massive parallelization
-                { "chrome", "latest", "Windows 10" },
-                { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.14" },
-                { "chrome", "latest", "macOS 10.14" },
-                { "chrome", "latest", "Windows 10" },
-                { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.14" },
-                { "chrome", "latest", "macOS 10.14" },
-                { "chrome", "latest", "Windows 10" },
-                { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.14" },
-                { "chrome", "latest", "macOS 10.14" },
-                { "chrome", "latest", "Windows 10" },
-                { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.14" },
-                { "chrome", "latest", "macOS 10.14" },
-                { "chrome", "latest", "Windows 10" },
-                { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.14" },
-                { "chrome", "latest", "macOS 10.14" },
-        });
     }
 }

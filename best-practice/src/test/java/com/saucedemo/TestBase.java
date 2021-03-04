@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TestBase {
+    public static String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     @Rule
     public TestName testName = new TestName() {
         public String getMethodName() {
@@ -15,8 +16,6 @@ public class TestBase {
     };
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
-
-    public static String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     public String sauceUsername = System.getenv("SAUCE_USERNAME");
     public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
     public String screenerApiKey = System.getenv("SCREENER_API_KEY");

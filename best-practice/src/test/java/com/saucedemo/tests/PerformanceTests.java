@@ -13,14 +13,14 @@ import org.openqa.selenium.WebDriver;
 
 public class PerformanceTests extends WebTestsBase {
 
-    private SauceSession session;
-    private SauceOptions sauceOptions;
     @Rule
     public TestName testName = new TestName() {
         public String getMethodName() {
             return String.format("%s", super.getMethodName());
         }
     };
+    private SauceSession session;
+    private SauceOptions sauceOptions;
 
     @After
     public void tearDown() {

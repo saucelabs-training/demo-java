@@ -23,11 +23,9 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class VisualCrossPlatformTests extends WebTestsBase {
-    String deviceNameValue;
-
     /*
-    * Configure our data driven parameters
-    * */
+     * Configure our data driven parameters
+     * */
     @Parameterized.Parameter
     public String browserName;
     @Parameterized.Parameter(2)
@@ -38,13 +36,14 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     public String viewportSize;
     @Parameterized.Parameter(4)
     public String deviceName;
+    String deviceNameValue;
 
     @Parameterized.Parameters(name = "{4}")
     public static Collection<Object[]> crossBrowserData() {
-        return Arrays.asList(new Object[][] {
-                { "Chrome", "Windows 10", "latest", "412x732", "Pixel XL" },
-                { "Chrome", "Windows 10", "latest", "412x869", "Galaxy Note 10+" },
-                { "Safari", "macOS 10.15", "latest", "375x812", "iPhone X" }
+        return Arrays.asList(new Object[][]{
+                {"Chrome", "Windows 10", "latest", "412x732", "Pixel XL"},
+                {"Chrome", "Windows 10", "latest", "412x869", "Galaxy Note 10+"},
+                {"Safari", "macOS 10.15", "latest", "375x812", "iPhone X"}
         });
     }
 
@@ -92,6 +91,6 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         stepOne.takeSnapshot(deviceNameValue);
 
         Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
-        assertEquals( true, response.get("passed"));
+        assertEquals(true, response.get("passed"));
     }
 }
