@@ -17,4 +17,7 @@ public class TestBase {
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
 
     public static String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    public String sauceUsername = System.getenv("SAUCE_USERNAME");
+    public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+    public String screenerApiKey = System.getenv("SCREENER_API_KEY");
 }

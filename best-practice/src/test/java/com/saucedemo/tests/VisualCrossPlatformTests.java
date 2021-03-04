@@ -23,9 +23,6 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class VisualCrossPlatformTests extends WebTestsBase {
-    public String sauceUsername = System.getenv("SAUCE_USERNAME");
-    public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
-    public String screenerApiKey = System.getenv("SCREENER_API_KEY");
     String deviceNameValue;
 
     /*
