@@ -35,6 +35,7 @@ public class RealDeviceWebTests extends TestBase {
         * */
         capabilities.setCapability("browserName", "Safari");
         capabilities.setCapability("name", testName.getMethodName());
+        capabilities.setCapability("build", buildName);
 
         driver = new IOSDriver(Endpoints.getRealDevicesHub(), capabilities);
         resultReportingTestWatcher.setDriver(driver);

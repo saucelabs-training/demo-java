@@ -15,6 +15,7 @@ public class DesktopTests extends WebTestsBase {
     public void setUp() {
         SauceOptions sauceOptions = new SauceOptions();
         sauceOptions.setName(testName.getMethodName());
+        sauceOptions.setBuild(buildName);
 
         SauceSession session = new SauceSession(sauceOptions);
         driver = session.start();

@@ -63,6 +63,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", sauceUsername);
         sauceOptions.setCapability("accesskey", sauceAccessKey);
+        sauceOptions.setCapability("build", buildName);
         browserOptions.setCapability("sauce:options", sauceOptions);
 
         MutableCapabilities visualOptions = new MutableCapabilities();
