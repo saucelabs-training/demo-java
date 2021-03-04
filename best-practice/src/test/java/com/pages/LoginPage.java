@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -31,5 +34,12 @@ public class LoginPage extends BasePage {
         driver.findElement(By.cssSelector("#login-button")).click();
     }
 
+    public Integer getPageLoadTime() {
+        HashMap<String, Object> metrics = new HashMap<>();
+        metrics.put("type", "sauce:performance");
+        Map<String, Object> perfMetrics = (Map<String, Object>) js.executeScript("sauce:log", metrics);
+        Integer loadTime = Integer.parseInt(perfMetrics.get("load").toString());
+        return loadTime;
+    }
 
 }
