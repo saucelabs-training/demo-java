@@ -31,7 +31,6 @@
                 <configuration>
                     <parallel>all</parallel>
                     <threadCountMethods>100</threadCountMethods>
-                    <useUnlimitedThreads>true</useUnlimitedThreads>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
             </plugin>
