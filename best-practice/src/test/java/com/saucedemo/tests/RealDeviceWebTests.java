@@ -9,14 +9,18 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.TimeoutException;
 
 import java.net.MalformedURLException;
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
+@RunWith(Parameterized.class)
 public class RealDeviceWebTests extends TestBase {
     private AppiumDriver<MobileElement> driver;
     public AppiumDriver<MobileElement> getDriver() {
@@ -28,7 +32,7 @@ public class RealDeviceWebTests extends TestBase {
         MutableCapabilities capabilities = new MutableCapabilities();
         capabilities.setCapability("language", "en");
         capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("deviceName", "iPhone 11.*");
+        capabilities.setCapability("deviceName", deviceName);
         /*
         * if you set the browserName => always starts with webcontext
             if you set the app => always starts with native context
@@ -62,5 +66,20 @@ public class RealDeviceWebTests extends TestBase {
         loginPage.visit();
         loginPage.login("foo_bar_user");
         assertFalse(new ProductsPage(driver).isDisplayed());
+    }
+
+    @Parameterized.Parameter
+    public String deviceName;
+
+    @Parameterized.Parameters()
+    public static Collection<Object[]> iosConfigurations() {
+        return Arrays.asList(new Object[][] {
+                { "iPhone 11.*" },
+                { "iPhone 12.*" },
+                { "iPad 10.*" },
+                { "iPad Air.*" },
+                { "iPad.*" },
+                // Duplication below for demo purposes of massive parallelization
+        });
     }
 }
