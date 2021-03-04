@@ -24,33 +24,33 @@ everything that you need to get started with web, mobile, visual, functional and
 
 ## Web automation
 
-- Popular Examples
-    - [JUnit 5 web test](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
-    - [JUnit 4,Cucumber web test](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
-    - [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
-    - [Visual tests on multiple platforms and resolutions](/best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
-    - [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
+* Popular Examples
+  * [JUnit 5 web test](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
+  * [JUnit 4,Cucumber web test](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
+  * [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
+  * [Visual tests on multiple platforms and resolutions](/best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
+  * [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
 
-- Automation Best Practices
-    -  [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
-    -  [TestNg Sample Framework](/selenium-testng-best-practice/src/)
+* Automation Best Practices
+  * [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
+  * [TestNg Sample Framework](/selenium-testng-best-practice/src/)
 
 ## Mobile automation
 [Mobile Testing Training Tutorials](./TRAINING.md)
 
-- Popular Examples
-    - Real Devices
-       - [iOS native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
-       - [Android native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
-       - [Set test status on mobile](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
-       - [Upload app to Sauce Storage](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/SauceStorage.sh)
+* Popular Examples
+  * Real Devices
+     * [iOS native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
+     * [Android native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
+     * [Set test status on mobile](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
+     * [Upload app to Sauce Storage](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/SauceStorage.sh)
     
-    - Emulators and Simulators
-       - [iOS web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
+  * Emulators and Simulators
+     * [iOS web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
 
-- Automation Best Practices
-    -  [Emusim web testing](/best-practice/src/test/java/com/saucedemo/tests/EmusimWebAppTests.java)
-    -  [Real devices web testing](/best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java)
+* Automation Best Practices
+  * [Emusim web testing](/best-practice/src/test/java/com/saucedemo/tests/EmusimWebAppTests.java)
+  * [Real devices web testing](/best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java)
 
 
 ## Prerequisites
