@@ -4,17 +4,9 @@ import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import org.junit.After;
 import org.junit.Test;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class SauceConnectTest {
     protected WebDriver driver;

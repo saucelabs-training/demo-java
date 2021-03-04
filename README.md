@@ -41,13 +41,13 @@ everything that you need to get started with web, mobile, visual, functional and
 
 * Popular Examples
   * Real Devices
-     * [iOS native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
-     * [Android native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
-     * [Set test status on mobile](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
-     * [Upload app to Sauce Storage](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/SauceStorage.sh)
+    * [iOS native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
+    * [Android native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
+    * [Set test status on mobile](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
+    * [Upload app to Sauce Storage](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/SauceStorage.sh)
     
   * Emulators and Simulators
-     * [iOS web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
+    * [iOS web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
 
 * Automation Best Practices
   * [Emusim web testing](/best-practice/src/test/java/com/saucedemo/tests/EmusimWebAppTests.java)
