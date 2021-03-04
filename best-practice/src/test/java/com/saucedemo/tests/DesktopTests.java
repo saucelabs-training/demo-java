@@ -9,10 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.openqa.selenium.TimeoutException;
 
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
@@ -31,12 +33,26 @@ public class DesktopTests extends WebTestsBase {
         resultReportingTestWatcher.setDriver(driver);
     }
 
-    @Test
+    @Test()
     public void loginWorks() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
         loginPage.login("standard_user");
         assertTrue(new ProductsPage(driver).isDisplayed());
+    }
+    @Test(expected = TimeoutException.class)
+    public void lockedOutUser() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.visit();
+        loginPage.login("locked_out_user");
+        assertFalse(new ProductsPage(driver).isDisplayed());
+    }
+    @Test(expected = TimeoutException.class)
+    public void invalidCredentials() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.visit();
+        loginPage.login("foo_bar_user");
+        assertFalse(new ProductsPage(driver).isDisplayed());
     }
 
     /*
@@ -57,24 +73,28 @@ public class DesktopTests extends WebTestsBase {
         return Arrays.asList(new Object[][] {
                 { "chrome", "latest", "Windows 10" },
                 { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.15" },
+                { "safari", "latest", "macOS 10.14" },
                 { "chrome", "latest", "macOS 10.14" },
                 // Duplication below for demo purposes of massive parallelization
                 { "chrome", "latest", "Windows 10" },
                 { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.15" },
+                { "safari", "latest", "macOS 10.14" },
                 { "chrome", "latest", "macOS 10.14" },
                 { "chrome", "latest", "Windows 10" },
                 { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.15" },
+                { "safari", "latest", "macOS 10.14" },
                 { "chrome", "latest", "macOS 10.14" },
                 { "chrome", "latest", "Windows 10" },
                 { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.15" },
+                { "safari", "latest", "macOS 10.14" },
                 { "chrome", "latest", "macOS 10.14" },
                 { "chrome", "latest", "Windows 10" },
                 { "chrome", "latest-1", "Windows 10" },
-                { "safari", "latest", "macOS 10.15" },
+                { "safari", "latest", "macOS 10.14" },
+                { "chrome", "latest", "macOS 10.14" },
+                { "chrome", "latest", "Windows 10" },
+                { "chrome", "latest-1", "Windows 10" },
+                { "safari", "latest", "macOS 10.14" },
                 { "chrome", "latest", "macOS 10.14" },
         });
     }

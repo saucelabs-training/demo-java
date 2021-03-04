@@ -10,9 +10,11 @@ import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.TimeoutException;
 
 import java.net.MalformedURLException;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class RealDeviceWebTests extends TestBase {
@@ -46,5 +48,19 @@ public class RealDeviceWebTests extends TestBase {
         loginPage.visit();
         loginPage.login("standard_user");
         assertTrue(new ProductsPage(driver).isDisplayed());
+    }
+    @Test(expected = TimeoutException.class)
+    public void lockedOutUser() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.visit();
+        loginPage.login("locked_out_user");
+        assertFalse(new ProductsPage(driver).isDisplayed());
+    }
+    @Test(expected = TimeoutException.class)
+    public void invalidCredentials() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.visit();
+        loginPage.login("foo_bar_user");
+        assertFalse(new ProductsPage(driver).isDisplayed());
     }
 }
