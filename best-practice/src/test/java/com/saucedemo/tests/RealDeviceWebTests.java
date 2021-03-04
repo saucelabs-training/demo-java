@@ -20,9 +20,25 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 @RunWith(Parameterized.class)
 public class RealDeviceWebTests extends TestBase {
+    @Parameterized.Parameter
+    public String deviceName;
     private AppiumDriver<MobileElement> driver;
+
+    @Parameterized.Parameters()
+    public static Collection<Object[]> iosConfigurations() {
+        return Arrays.asList(new Object[][]{
+                {"iPhone 11.*"},
+                {"iPhone 12.*"},
+                {"iPad 10.*"},
+                {"iPad Air.*"},
+                {"iPad.*"},
+                // Duplication below for demo purposes of massive parallelization
+        });
+    }
+
     public AppiumDriver<MobileElement> getDriver() {
         return driver;
     }
@@ -46,6 +62,7 @@ public class RealDeviceWebTests extends TestBase {
         driver = new IOSDriver(Endpoints.getRealDevicesHub(), capabilities);
         resultReportingTestWatcher.setDriver(driver);
     }
+
     @Test
     public void loginWorks() {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -53,6 +70,7 @@ public class RealDeviceWebTests extends TestBase {
         loginPage.login("standard_user");
         assertTrue(new ProductsPage(driver).isDisplayed());
     }
+
     @Test(expected = TimeoutException.class)
     public void lockedOutUser() {
         LoginPage loginPage = new LoginPage(driver);
@@ -60,26 +78,12 @@ public class RealDeviceWebTests extends TestBase {
         loginPage.login("locked_out_user");
         assertFalse(new ProductsPage(driver).isDisplayed());
     }
+
     @Test(expected = TimeoutException.class)
     public void invalidCredentials() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
         loginPage.login("foo_bar_user");
         assertFalse(new ProductsPage(driver).isDisplayed());
-    }
-
-    @Parameterized.Parameter
-    public String deviceName;
-
-    @Parameterized.Parameters()
-    public static Collection<Object[]> iosConfigurations() {
-        return Arrays.asList(new Object[][] {
-                { "iPhone 11.*" },
-                { "iPhone 12.*" },
-                { "iPad 10.*" },
-                { "iPad Air.*" },
-                { "iPad.*" },
-                // Duplication below for demo purposes of massive parallelization
-        });
     }
 }
