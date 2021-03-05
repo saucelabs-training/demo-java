@@ -46,8 +46,8 @@ public class IOSNativeAppTest {
         capabilities.setCapability("deviceName", "iPhone.*");
         capabilities.setCapability("name", name.getMethodName());
 
-        capabilities.setCapability("app", "storage:filename=" +
-                "iOS.RealDevice.Sample.ipa");
+        capabilities.setCapability("app",
+                "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
 
         driver = new IOSDriver(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +

@@ -50,8 +50,8 @@ public class AndroidNativeAppTest {
         capabilities.setCapability("newCommandTimeout", "90");
         capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
         capabilities.setCapability("name", name.getMethodName());
-        capabilities.setCapability("app", "storage:filename=" +
-                "Android.SauceLabs.Mobile.Sample.app.2.7.0.apk");
+        capabilities.setCapability("app",
+                "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
         driver = new AndroidDriver<>(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
