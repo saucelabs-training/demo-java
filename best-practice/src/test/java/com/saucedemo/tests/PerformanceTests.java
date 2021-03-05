@@ -20,7 +20,6 @@ public class PerformanceTests extends WebTestsBase {
         }
     };
     private SauceSession session;
-    private SauceOptions sauceOptions;
 
     @After
     public void tearDown() {
@@ -29,7 +28,7 @@ public class PerformanceTests extends WebTestsBase {
 
     @Test
     public void performanceDidntDegrade() {
-        sauceOptions = new SauceOptions();
+        SauceOptions sauceOptions = new SauceOptions();
         sauceOptions.setExtendedDebugging(true);
         sauceOptions.setCapturePerformance(true);
         sauceOptions.setName(testName.getMethodName());
