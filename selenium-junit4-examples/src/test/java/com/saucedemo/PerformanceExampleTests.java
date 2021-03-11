@@ -39,7 +39,6 @@ public class PerformanceExampleTests {
         sauceOptions.setExtendedDebugging(true);
         sauceOptions.setCapturePerformance(true);
         sauceOptions.setName(testName.getMethodName());
-        sauceOptions.setName("simplePerformanceTest");
 
         session = new SauceSession(sauceOptions);
         WebDriver driver = session.start();
@@ -48,7 +47,8 @@ public class PerformanceExampleTests {
 
     @Test
     public void specificMetricsTests() {
-        //If you want, you can assert on specific metrics
+        //If you want, you can assert on specific metrics such as load time, score...
+        // This is a less reliable way to test performance
         sauceOptions = new SauceOptions();
         sauceOptions.setExtendedDebugging(true);
         sauceOptions.setCapturePerformance(true);
