@@ -13,7 +13,7 @@ everything that you need to get started with web, mobile, visual, functional and
 ![RDC iOS Native App](https://github.com/saucelabs-training/demo-java/workflows/RDC%20iOS%20Native%20App/badge.svg)
 ![RDC Android Native App](https://github.com/saucelabs-training/demo-java/workflows/RDC%20Android%20Native%20App/badge.svg)
 
-## Most Popular
+## 🥇Most Popular
 *  [Web automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Quick start test, Junit 4](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
 *  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/TestNgTest.java)
@@ -23,7 +23,7 @@ everything that you need to get started with web, mobile, visual, functional and
 *  [Visual E2E test](./selenium-junit4-examples/src/test/java/com/saucedemo/SimpleVisualE2ETest.java)
 *  [Sauce Connect usage](./selenium-junit4-examples/src/test/java/com/saucedemo/SauceConnectTest.java)
 
-## Web automation
+## 🖥Web automation
 
 * Popular Examples
   * [JUnit 5 web test](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
@@ -36,8 +36,8 @@ everything that you need to get started with web, mobile, visual, functional and
   * [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
   * [TestNg Sample Framework](/selenium-testng-best-practice/src/)
 
-## Mobile automation
-[Mobile Testing Training Tutorials](./TRAINING.md)
+## 📱Mobile automation
+[📚 Mobile Testing Training Tutorials](./TRAINING.md)
 
 * Popular Examples
   * Real Devices
