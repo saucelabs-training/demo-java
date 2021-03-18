@@ -9,7 +9,11 @@
 An **example** is some code that wants to demonstrate a feature. 
 For example, parallelization with JUnit4, parallelization with
 Junit5,
-biometric authentication, simple Appium iOS test.
+biometric authentication, simple Appium iOS test. An **example** is as simple as it gets.
+If you're creating a simple test to show off Sauce Labs, don't
+add page objects for example.
+
+> The primary goal is to keep maintenance costs as low as possible!
 
 A **best-practice** is solution that shows off
 how to use a specific technology combination in the optimal way
