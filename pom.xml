@@ -23,7 +23,7 @@
         <module>parallel-testing/cross-browser-and-platform-config</module>
         <module>parallel-testing/single-browser-config</module>
         <module>headless</module>
-        <module>appium-junit4-examples</module>
+        <module>appium-examples</module>
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
         <module>java11/selenium3-junit5-examples</module>
