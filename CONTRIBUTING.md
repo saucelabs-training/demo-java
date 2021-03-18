@@ -13,11 +13,9 @@ biometric authentication, simple Appium iOS test.
 
 A **best-practice** is solution that shows off
 how to use a specific technology combination in the optimal way
-according to the Solution Architects team. You might have a
-**best-practice** that shows how to correctly use Cucumber with Junit4
-or Cucumber with Junit5 or maybe a data driven framework with
-TestNg.
-**best-practice** examples are not as common as code examples.
+to test applications, according to the Solution Architects team. There is typically
+only a single best practice which demonstrates the best use of technology.
+**best-practice** code is not as common as code **examples**.
 
 ## Add relevant code
 
@@ -37,10 +35,10 @@ However, we may choose to break this up into "best-practice" for web, mobile, ap
 
 |-- demo-java
     |-- best-practice (Java module)
-    |-- selenium-testRunnerVersion-examples (Java module)
-    |-- selenium-testRunnerVersion-cucumber-examples (Java module)
-    |-- appium-testRunnerVersion-examples (Java module)
-    |-- appium-testRunnerVersion-cucumber-examples (Java module)
+    |-- selenium-examples (Java module)
+    |-- selenium-cucumber-examples (Java module)
+    |-- appium-examples (Java module)
+    |-- appium-cucumber-examples (Java module)
 ```
 
 ```text
@@ -58,7 +56,7 @@ Specific Structure With Examples
                         |-- FunctionalWebTests.java
                         |-- MobileWebTests.java
                         |-- ...
-    |-- selenium-junit4-examples (Java module)
+    |-- selenium-examples (Java module)
         |-- src
             |-- main
             |-- test
@@ -68,21 +66,16 @@ Specific Structure With Examples
                         |-- Junit4TestStatusUpdate.java
                         |-- Junit4DataDriven.java
                         |-- PerformanceTesting.java
-    |-- selenium-testng-examples (Java module)
-    |-- src
-        |-- main
-        |-- test
-            |-- java
-                |-- com.saucedemo
-                    |-- TestNgTest.java
-                    |-- W3CTest.java
-                    |-- ParallelTest.java
-                    |-- ...
-    |-- selenium-testng-cucumber-examples (Java module)
+    |-- selenium-cucumber-examples (Java module)
         |-- ...
 ```
 
 ## FAQs
+
+### What are examples?
+
+**examples** are a way to show off some feature in Sauce Labs.
+Every time we add an example, please be sure to add it to the main README.
 
 ### Why is there only one best-practice folder?
 
