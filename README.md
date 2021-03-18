@@ -14,11 +14,11 @@ everything that you need to get started with web, mobile, visual, functional and
 ![RDC Android Native App](https://github.com/saucelabs-training/demo-java/workflows/RDC%20Android%20Native%20App/badge.svg)
 
 ## 🥇Most Popular
-*  [Web automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
+*  [Web automation best practices framework with multiple testing strategies. Crafted by industry experts with decades of experience.](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Quick start test, Junit 4](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
 *  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/TestNgTest.java)
 *  [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
-*  [iOS real device, native app, Junit4](./java11/appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppUnifiedPlatformTest.java)
+*  [iOS real device, native app, Junit4](./appium-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
 *  [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
 *  [Visual E2E test](./selenium-junit4-examples/src/test/java/com/saucedemo/SimpleVisualE2ETest.java)
 *  [Sauce Connect usage](./selenium-junit4-examples/src/test/java/com/saucedemo/SauceConnectTest.java)
@@ -41,13 +41,13 @@ everything that you need to get started with web, mobile, visual, functional and
 
 * Popular Examples
   * Real Devices
-    * [iOS native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
-    * [Android native app, Junit4](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
-    * [Set test status on mobile](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
-    * [Upload app to Sauce Storage](./appium-junit4-examples/src/test/java/com/realdevice/unifiedplatform/SauceStorage.sh)
+    * [iOS native app, Junit4](./appium-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
+    * [Android native app, Junit4](./appium-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
+    * [Set test status on mobile](./appium-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
+    * [Upload app to Sauce Storage](./appium-examples/src/test/java/com/realdevice/unifiedplatform/SauceStorage.sh)
     
   * Emulators and Simulators
-    * [iOS web app, Junit4](./appium-junit4-examples/src/test/java/com/emusim)
+    * [iOS web app, Junit4](./appium-examples/src/test/java/com/emusim)
 
 * Automation Best Practices
   * [Emusim web testing](/best-practice/src/test/java/com/saucedemo/tests/EmusimWebAppTests.java)
