@@ -53,6 +53,9 @@ everything that you need to get started with web, mobile, visual, functional and
   * [Emusim web testing](/best-practice/src/test/java/com/saucedemo/tests/EmusimWebAppTests.java)
   * [Real devices web testing](/best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java)
 
+* All Examples
+  * [Android native app test](./appium-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
+  * [iOS native app test](./appium-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
 
 ## Prerequisites
 
