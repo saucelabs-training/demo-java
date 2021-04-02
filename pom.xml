@@ -11,7 +11,7 @@
 
     <properties>
         <selenium.version>3.141.59</selenium.version>
-        <sauce.version>1.0.1</sauce.version>
+        <sauce.version>1.0.2</sauce.version>
         <appium.version>7.3.0</appium.version>
     </properties>
 
