@@ -8,10 +8,15 @@ Below you will find a comprehensive training of automated testing from Sauce Lab
 
 ## 📱Mobile automation with Appium
 
-* [Theory and Appium background](https://youtu.be/g1owB-2AOJc)
+### Appium desktop
+
+Appium Desktop is the tool to use for creating mobile automation. You can't create Appium mobile automation without it.
+1. [Using Appium Desktop](https://youtu.be/o9MRM04yDws)
+2. [Using Appium Desktop with Sauce Labs](https://youtu.be/3Mnz7K9WJts)
+
+### Testing strategy
 * [Mobile automation pyramid and testing strategy](https://youtu.be/0euUSTJtUhw)
 * [Live testing with real devices on Sauce Labs](https://youtu.be/MzH6lQFV3MQ)
-* [Introduction to Appium Desktop](https://youtu.be/0P8mkguf2z8)
 
 ### Cannot Live Without Appium Resources
 
