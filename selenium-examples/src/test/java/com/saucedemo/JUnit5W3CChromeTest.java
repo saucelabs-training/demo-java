@@ -12,7 +12,7 @@ public class JUnit5W3CChromeTest {
 
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        var sauceOptions = new SauceOptions();
+        SauceOptions sauceOptions = new SauceOptions();
         sauceOptions.setName(testInfo.getDisplayName());
         sauceSession = new SauceSession(sauceOptions);
         driver = sauceSession.start();
