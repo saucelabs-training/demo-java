@@ -4,7 +4,7 @@
 
 * Clone the repository
 
-* Decide if your code example is an example or a framework
+* Decide if your code example is an example or a best-practice
 
 An **example** is some code that wants to demonstrate a feature. 
 For example, parallelization with JUnit4, parallelization with
@@ -17,9 +17,18 @@ add page objects for example.
 
 A **best-practice** is solution that shows off
 how to use a specific technology combination in the optimal way
-to test applications, according to the Solution Architects team. There is typically
-only a single best practice which demonstrates the best use of technology.
+to test applications, according to the Solution Architects team. Typically there is
+only a single best practice for web and for mobile. 
+A **best-practice** will show:
+* POs, 
+* proper folder structure, 
+* correct parallelization, 
+* correct abstractions,
+* use of all Sauce testing types (visual, perf, visual component) where applicable
 **best-practice** code is not as common as code **examples**.
+
+* **best-practice** for web exists [here](./best-practice)
+* **best-practice** for mobile native exists [here](./best-practice-mobile-native)
 
 ## Add relevant code
 
@@ -60,6 +69,7 @@ Specific Structure With Examples
                         |-- FunctionalWebTests.java
                         |-- MobileWebTests.java
                         |-- ...
+    |-- best-practice-mobile-native
     |-- selenium-examples (Java module)
         |-- src
             |-- main
