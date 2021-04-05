@@ -35,6 +35,8 @@
         <module>selenium-testng-best-practice</module>
         <module>selenium-testng-examples</module>
         <module>selenium-junit4-examples</module>
+        <module>selenium-examples</module>
+        <module>selenium-cucumber-examples</module>
     </modules>
     <dependencies>
         <dependency>
