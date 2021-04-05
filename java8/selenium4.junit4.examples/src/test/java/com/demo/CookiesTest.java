@@ -17,7 +17,8 @@ public class CookiesTest {
     @Test
     public void manageCookies()  {
         ChromeDriver chromeDriver = new ChromeDriver();
-        DevTools devTools = chromeDriver.getDevTools();
+        DevTools devTools = chromeDriver
+                .getDevTools();
         devTools.createSession();
 
         chromeDriver.get("https://titusfortner.com/examples/cookies.html");
