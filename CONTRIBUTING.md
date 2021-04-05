@@ -42,12 +42,10 @@ Description
 It's basically Selenium/Appium/API... examples.
 Followed by testRunnerVersion(which really only applies for Junit)
 Most of the code is an "example".
-There may be one or more "best-practice". Technically, there 
-should only be a single "best-practice" implementation per our team.
-However, we may choose to break this up into "best-practice" for web, mobile, api...
 
 |-- demo-java
     |-- best-practice (Java module)
+    |-- best-practice-mobile-native (Java module)
     |-- selenium-examples (Java module)
     |-- selenium-cucumber-examples (Java module)
     |-- appium-examples (Java module)
