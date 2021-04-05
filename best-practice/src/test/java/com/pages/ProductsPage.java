@@ -19,7 +19,7 @@ public class ProductsPage extends BasePage {
     public boolean isDisplayed() {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         //wait for the user name field to be visible and store that element into a variable
-        By userNameFieldLocator = By.cssSelector(".product_label");
+        By userNameFieldLocator = By.id("inventory_container");
         return
                 wait.until(
                         ExpectedConditions.visibilityOfElementLocated(userNameFieldLocator)).isDisplayed();
