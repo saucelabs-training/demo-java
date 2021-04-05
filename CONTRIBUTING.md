@@ -1,10 +1,18 @@
 # Adding Code To demo-java
 
+1. Clone this repository
+
 **Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://kcd.im/pull-request)
 
-* Clone the repository
+2. Decide if your code example is an example (most likely) or a best-practice (least common)
+3. Add your code to the correct folder structure as specified below
+4. Push your changes to the remote repository
+5. Create a PR
+6. Make sure that all the checks pass
 
-* Decide if your code example is an example or a best-practice
+![passing checks](./images/checks.png)
+
+7. Request someone to be a reviewer (@nadvolod or @joshmgrant are a good start)
 
 An **example** is some code that wants to demonstrate a feature. 
 For example, parallelization with JUnit4, parallelization with
