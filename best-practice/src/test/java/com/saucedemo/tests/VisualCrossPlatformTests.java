@@ -6,6 +6,7 @@ import com.pages.ProductsPage;
 import com.pages.ShoppingCartPage;
 import com.saucedemo.Endpoints;
 import com.saucedemo.WebTestsBase;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class VisualCrossPlatformTests extends WebTestsBase {
@@ -71,6 +72,13 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         URL url = Endpoints.getScreenerHub();
         driver = new RemoteWebDriver(url, browserOptions);
     }
+    @After
+    public void afterEach()
+    {
+        Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
+        boolean isTestPassed = Boolean.parseBoolean(response.get("passed").toString());
+        assertTrue(isTestPassed);
+    }
 
     @Test()
     public void pagesRenderCorrectly() {
@@ -86,11 +94,8 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         shoppingCartPage.visit();
         shoppingCartPage.takeSnapshot(deviceNameValue);
 
-        CheckoutStepOnePage stepOne = new CheckoutStepOnePage(driver);
-        stepOne.visit();
-        stepOne.takeSnapshot(deviceNameValue);
-
-        Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
-        assertEquals(true, response.get("passed"));
+        CheckoutStepOnePage stepOneCheckoutPage = new CheckoutStepOnePage(driver);
+        stepOneCheckoutPage.visit();
+        stepOneCheckoutPage.takeSnapshot(deviceNameValue);
     }
 }
