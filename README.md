@@ -26,7 +26,7 @@ everything that you need to get started with web, mobile, visual, functional and
 ## 🖥Web automation
 
 * Popular Examples
-  * [JUnit 5 web test](/java11/selenium3-junit5-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
+  * [JUnit 5 web test](/selenium-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
   * [JUnit 4,Cucumber web test](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
   * [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
   * [Visual tests on multiple platforms and resolutions](/best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
