@@ -2,11 +2,11 @@
 This folder contains Selenium examples
 
 ## Examples
-- [Simple web test, Junit 5](../selenium-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
+- [Simple web test, JUnit 5](../selenium-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 
 ## How to run tests
 
-### Junit 5 test
+### JUnit 5 test
 ```bash
 cd selenium-examples
 mvn test -Dtest=JUnit5W3CChromeTest
