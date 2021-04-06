@@ -1,3 +1,5 @@
+package com.saucedemo;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +16,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class CrossBrowserTest {
+public class CrossBrowserHeadlessTest {
     // ThreadLocal variable containing WebDriver instance and the Sauce Job Id
     private ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
     private ThreadLocal<String> sessionId = new ThreadLocal<>();
