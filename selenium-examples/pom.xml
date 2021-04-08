@@ -23,12 +23,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.saucelabs</groupId>
-            <artifactId>sauce_testng</artifactId>
-            <version>2.1.23</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.10</version>
