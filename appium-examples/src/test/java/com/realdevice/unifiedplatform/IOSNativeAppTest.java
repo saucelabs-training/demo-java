@@ -43,7 +43,8 @@ public class IOSNativeAppTest {
         capabilities.setCapability("platformName", "iOS");
         //Not specifying platformVersion or the exact device is the most likely to
         //find a device in the cloud
-        capabilities.setCapability("deviceName", "iPhone.*");
+        //Find all iPhone devices that aren't 5 or 5S: ^(iPhone.*)(?!5|5S)$
+        capabilities.setCapability("deviceName", "^(iPhone.*)(?!5|5S)$");
         capabilities.setCapability("name", name.getMethodName());
 
         capabilities.setCapability("app",
