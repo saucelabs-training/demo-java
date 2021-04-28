@@ -31,6 +31,7 @@ everything that you need to get started with web, mobile, visual, functional and
   * [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
   * [Visual tests on multiple platforms and resolutions](/best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
   * [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
+  * [JUnit 3 Sauce Status Updates](./selenium-examples/src/test/java/com/saucedemo/JUnit3UpdateSauceStatusTest.java)
 
 * Automation Best Practices
   * [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
