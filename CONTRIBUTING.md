@@ -47,9 +47,7 @@ The correct repository structure is:
 ```text
 Description
 -----------------
-It's basically Selenium/Appium/API... examples.
-Followed by testRunnerVersion(which really only applies for Junit)
-Most of the code is an "example".
+Most of the code that we will ever create is an "example"
 
 |-- demo-java
     |-- best-practice (Java module)
