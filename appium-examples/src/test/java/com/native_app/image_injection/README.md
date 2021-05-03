@@ -35,7 +35,7 @@ If you want to run the tests on Sauce Labs real devices in the **New Sauce Labs 
     
 The tests will be executed on a Samsung Galaxy 10.
 
-> NOTE: Make sure you are in the folder `appium-testng-examples` when you execute this command
+> NOTE: Make sure you are in the folder `appium-examples` when you execute this command
 
 ## Run tests on Sauce Labs iOS real devices in the New Sauce Labs UI
 If you want to run the tests on Sauce Labs real devices in the **New Sauce Labs UI** then you can run the iOS test with

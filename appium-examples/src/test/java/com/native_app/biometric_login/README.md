@@ -52,7 +52,7 @@ If you want to run the tests on Sauce Labs real devices then you can run the iOS
     mvn clean install -Dtest=BiometricLoginIosTest -Dregion=eu -Drdc=true
     
 The tests will be executed on a iPhone 8.
-> NOTE: Make sure you are in the folder `appium-testng-examples` when you execute this command
+> NOTE: Make sure you are in the folder `appium-examples` when you execute this command
 
 ## Run tests on Sauce Labs iOS simulators
 If you want to run the tests on Sauce Labs iOS simulators then you can run the iOS test with
@@ -64,7 +64,7 @@ If you want to run the tests on Sauce Labs iOS simulators then you can run the i
     mvn clean test -Dtest=BiometricLoginIosTest -Dregion=eu -Drdc=false
     
 The tests will be executed on a iPhone 8.
-> NOTE: Make sure you are in the folder `appium-testng-examples` when you execute this command
+> NOTE: Make sure you are in the folder `appium-examples` when you execute this command
 
 ## Run tests on Sauce Labs Android emulators
 If you want to run the tests on Sauce Labs Android emulators then you can run the Android test with
