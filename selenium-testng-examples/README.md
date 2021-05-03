@@ -3,15 +3,15 @@ This folder contains Selenium examples specific to TestNG
 
 ## Examples
 
-- [Single Browser in Parallel w/ TestNG](./src/test/java/ParallelSingleBrowserTest.java)
-- [Cross Browser/Platform in Parallel w/ TestNG](./src/test/java/CrossBrowserPlatformTest.java)
+- [Single Browser in Parallel w/ TestNG](./src/test/java/com/saucedemo/ParallelSingleBrowserTest.java)
+- [Cross Browser/Platform in Parallel w/ TestNG](./src/test/java/com/saucedemo/CrossBrowserPlatformTest.java)
 
 ## How to run tests
 
 ### Single Browser Test in Parallel
 ```bash
 cd selenium-testng-examples
-mvn test -Dtest=ParallelSingleBrowserTest
+mvn test -Dtest=com.saucedemo.ParallelSingleBrowserTest
 ```
 <details>
   <summary>Your output will look like this if done correctly</summary>
@@ -42,7 +42,7 @@ mvn test -Dtest=ParallelSingleBrowserTest
 [INFO] -------------------------------------------------------
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
-[INFO] Running ParallelSingleBrowserTest
+[INFO] Running com.saucedemo.ParallelSingleBrowserTest
 May 03, 2021 2:51:16 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
 May 03, 2021 2:51:17 PM org.openqa.selenium.remote.ProtocolHandshake createSession
@@ -83,7 +83,7 @@ SauceOnDemandSessionID=10f14b434e454938b1d37af3ee239955 job-name=testCase7
 Test Job Link: https://app.saucelabs.com/tests/10f14b434e454938b1d37af3ee239955
 SauceOnDemandSessionID=2d3aa210b61f42d092b9dc2aeb7bffcc job-name=testCase6
 Test Job Link: https://app.saucelabs.com/tests/2d3aa210b61f42d092b9dc2aeb7bffcc
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.943 s - in ParallelSingleBrowserTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.943 s - in com.saucedemo.ParallelSingleBrowserTest
 [INFO]
 [INFO] Results:
 [INFO]
@@ -102,7 +102,7 @@ Test Job Link: https://app.saucelabs.com/tests/2d3aa210b61f42d092b9dc2aeb7bffcc
 ### Cross Browser/Platform Test in Parallel
 ```bash
 cd selenium-testng-examples
-mvn test -Dtest=CrossBrowserPlatformTest
+mvn test -Dtest=com.saucedemo.CrossBrowserPlatformTest
 ```
 <details>
   <summary>Your output will look like this if done correctly</summary>
@@ -135,7 +135,7 @@ mvn test -Dtest=CrossBrowserPlatformTest
 [INFO] -------------------------------------------------------
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
-[INFO] Running CrossBrowserPlatformTest
+[INFO] Running com.saucedemo.CrossBrowserPlatformTest
 May 03, 2021 2:58:58 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
 May 03, 2021 2:58:58 PM org.openqa.selenium.remote.ProtocolHandshake createSession
@@ -176,7 +176,7 @@ SauceOnDemandSessionID=e23e5d84e0754ee3a8a1e4d0f418b74d job-name=testCase2
 Test Job Link: https://app.saucelabs.com/tests/e23e5d84e0754ee3a8a1e4d0f418b74d
 SauceOnDemandSessionID=3fcd41c0f3e64be59185ac018f8bd9d9 job-name=testCase1
 Test Job Link: https://app.saucelabs.com/tests/3fcd41c0f3e64be59185ac018f8bd9d9
-[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.659 s - in CrossBrowserPlatformTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.659 s - in com.saucedemo.CrossBrowserPlatformTest
 [INFO]
 [INFO] Results:
 [INFO]

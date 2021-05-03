@@ -1,3 +1,5 @@
+package com.saucedemo;
+
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import org.openqa.selenium.WebDriver;
