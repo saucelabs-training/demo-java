@@ -26,10 +26,10 @@ For more information on this step please visit: [Application Storage](https://wi
 
 ### iOS
 Using TouchID or FaceID for iOS simulators is pretty straightforward, you **don't** need to add an extra capability to your capabilities,
-you can just enable it during runtime, please check [this](./src/test/java/com/native_app/biometric_login/BiometricLoginIosTest.java) to see how to do that.
+you can just enable it during runtime, please check [this](./BiometricLoginIosTest.java) to see how to do that.
 
 On the real iOS devices you need to add `allowTouchIdEnroll: true` to your capabilities.
-See [this](./src/test/java/com/native_app/biometric_login/BiometricLoginIosTest.java) where rdc = true   
+See [this](./BiometricLoginIosTest.java) where rdc = true   
 
 ### Android
 Android is not that straightforward as iOS, there is no specific capability you can use to enable fingerprint support. 
@@ -39,7 +39,7 @@ to get the flow.
 The challenge with Android was that there is a different flow for almost each version. Take for example Android 7, 
 that version doesn't support to automatically set a pin, you need to walk through a complete flow to enable this. 
 There is also a small different in the fingerprint wizard between Android 9 and 10. 
-In this example, I covered the flow for Android 8, see [this](./src/test/java/com/native_app/biometric_login/AndroidSettings.java)-file. 
+In this example, I covered the flow for Android 8, see [this](./AndroidSettings.java)-file. 
 The method `enableBiometricLogin()` will do all the magic for you. 
 
 ## Run tests on Sauce Labs iOS real devices
