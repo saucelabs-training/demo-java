@@ -87,15 +87,16 @@ Specific Structure With Examples
     |-- selenium-cucumber-examples (Java module)
         |-- ...
     |-- appium-examples (Java module)
-    |-- src
-        |-- main
-        |-- test
-            |-- java
-                |-- com.emusim (Java package)
-                    |-- SomeEmusimExample.java
-                |-- com.realdevice.unifiedplatform (Java package)
-                    |-- SomeRealDeviceExample.java
-                |-- com.realdevice.legacy (Java package)
+        |-- src
+            |-- main
+            |-- test
+                |-- java
+                    |-- com.emusim (Java package)
+                        |-- SomeEmusimExample.java
+                    |-- com.realdevice.unifiedplatform (Java package)
+                        |-- SomeRealDeviceExample.java
+                    |-- com.realdevice.legacy (Java package)
+                        |-- ...
 ```
 
 ## FAQs
