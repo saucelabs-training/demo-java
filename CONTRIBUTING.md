@@ -86,6 +86,16 @@ Specific Structure With Examples
                         |-- PerformanceTesting.java
     |-- selenium-cucumber-examples (Java module)
         |-- ...
+    |-- appium-examples (Java module)
+    |-- src
+        |-- main
+        |-- test
+            |-- java
+                |-- com.emusim (Java package)
+                    |-- SomeEmusimExample.java
+                |-- com.realdevice.unifiedplatform (Java package)
+                    |-- SomeRealDeviceExample.java
+                |-- com.realdevice.legacy (Java package)
 ```
 
 ## FAQs
