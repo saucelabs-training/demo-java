@@ -9,15 +9,17 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>appium-junit4-examples</artifactId>
+    <artifactId>appium-examples</artifactId>
 
     <!--    You will find Junit and Appium configration in the project level pom.xml -->
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.14.3</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.1</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- Apache Commons Logging -->

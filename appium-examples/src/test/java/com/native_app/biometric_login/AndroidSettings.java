@@ -1,4 +1,4 @@
-package biometric_login;
+package com.native_app.biometric_login;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
