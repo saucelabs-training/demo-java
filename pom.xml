@@ -20,8 +20,6 @@
         <module>common</module>
         <module>on-boarding-modules/junit</module>
         <module>on-boarding-modules/testng</module>
-        <module>parallel-testing/cross-browser-and-platform-config</module>
-        <module>parallel-testing/single-browser-config</module>
         <module>appium-examples</module>
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
