@@ -40,7 +40,7 @@ everything that you need to get started with web, mobile, visual, functional and
 ## 📱Mobile automation
 [📚 Mobile Testing Training Tutorials](./TRAINING.md)
 
-* Popular Examples
+* All Examples
   * Real Devices
     * [iOS native app, Junit4](./appium-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
     * [Android native app, Junit4](./appium-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
