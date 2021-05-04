@@ -16,7 +16,7 @@ everything that you need to get started with web, mobile, visual, functional and
 ## 🥇Most Popular
 *  [Web automation best practices framework with multiple testing strategies. Crafted by industry experts with decades of experience.](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Quick start test, Junit 4](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
-*  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/com.saucedemo.TestNgTest.java)
+*  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/TestNgTest.java)
 *  [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
 *  [iOS real device, native app, Junit4](./appium-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
 *  [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
