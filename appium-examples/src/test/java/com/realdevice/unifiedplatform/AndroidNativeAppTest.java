@@ -1,5 +1,6 @@
-package com.native_app;
+package com.realdevice.unifiedplatform;
 
+import com.realdevice.unifiedplatform.SauceTestWatcher;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;

@@ -19,11 +19,6 @@ Be aware of the fact that iOS simulator uses a different build than a real iOS d
 
 > The advice is to download the files to an `apps` folder in the root of this folder.
 
-### Upload apps to Sauce Storage
-* If you want to use Native apps you need to upload the apps to the Sauce Storage.
-For more information on this step please visit: [Application Storage](https://wiki.saucelabs.com/display/DOCS/Application+Storage).
-* In the app capability you can use storage:filename=<file-name>. For more information on this step please visit: [Using Application Storage with Automated Test Builds](https://wiki.saucelabs.com/display/DOCS/Application+Storage#ApplicationStorage-UsingApplicationStoragewithAutomatedTestBuilds) section of [Application Storage](https://wiki.saucelabs.com/display/DOCS/Application+Storage)
-
 ### iOS
 Using TouchID or FaceID for iOS simulators is pretty straightforward, you **don't** need to add an extra capability to your capabilities,
 you can just enable it during runtime, please check [this](./BiometricLoginIosTest.java) to see how to do that.

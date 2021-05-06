@@ -1,41 +1,38 @@
-package com.native_app.image_injection;
+package com.emusim.biometric_login;
 
+import com.emusim.biometric_login.AndroidSettings;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.IOException;
 import java.net.URL;
 
 import static helpers.Constants.region;
 
-public class ImageInjectionAndroidTest {
-
-    String usernameID = "test-Username";
-    String passwordID = "test-Password";
-    String submitButtonID = "test-LOGIN";
-
-    By ProductTitle = By.xpath("//android.widget.TextView[@text='PRODUCTS']");
-
-    By testMenu = By.xpath("//android.view.ViewGroup[@content-desc='test-Menu']");
-    By testMenuItemQRCode = By.xpath("//android.view.ViewGroup[@content-desc='test-QR CODE SCANNER']");
-    By testMenuItemWebView = By.xpath("//android.view.ViewGroup[@content-desc='test-WEBVIEW']");
+public class BiometricLoginAndroidTest {
 
     protected AndroidDriver driver;
+
+    private String biometryID = "test-biometry";
+
+    private By ProductTitle = By.xpath("//android.widget.TextView[@text='PRODUCTS']");
+
+    private final int DEFAULT_PIN = 1234;
+    private final int INCORRECT_PIN = 4321;
 
     @RegisterExtension
     public MyTestWatcher myTestWatcher = new MyTestWatcher();
 
     @BeforeEach
     public void setup(TestInfo testInfo) throws IOException {
-
-        System.out.println("Sauce - BeforeEach hook");
+        System.out.println("Sauce - BeforeMethod hook");
 
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
@@ -51,57 +48,60 @@ public class ImageInjectionAndroidTest {
         URL url = new URL(SAUCE_REMOTE_URL);
 
         MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("deviceName", "Samsung Galaxy S10");
-
+        capabilities.setCapability("deviceName", "Android Emulator");
+        capabilities.setCapability("platformVersion", "8.0");
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("name", methodName);
-//      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
 //        capabilities.setCapability("app", "storage:filename=" +appName);
         capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
-        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
 
-        capabilities.setCapability("sauceLabsImageInjectionEnabled", true);
-        capabilities.setCapability("autoGrantPermissions", true);
+        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
 
         // Launch remote browser and set it as the current thread
         driver = new AndroidDriver(url, capabilities);
     }
 
     @Test
-    @DisplayName("imageInjectionScanQRcode")
-    @Tag("imageInjection")
-    @Tag("Android")
-    public void imageInjectionScanQRcode() throws InterruptedException {
-        System.out.println("Sauce - start test imageInjection_scan_QR_code");
+    @DisplayName("biometricLoginWithMatchingTouch")
+    @Tag("biometricLogin")
+    @Tag("android")
+    public void biometricLoginWithMatchingTouch() throws InterruptedException {
+        System.out.println("Sauce - start test Biometric login with matching touch");
 
-        // Login
-        login("standard_user", "secret_sauce");
+        // If the biometry is not shown on iOS, enable it on the phone
+        if (!this.isBiometryDisplayed()){
+            AndroidSettings androidSettings = new AndroidSettings(driver);
+            androidSettings.enableBiometricLogin();
+        }
+
+        // Login with biometric auth
+        this.login(true);
 
         // Verificsation
         Assertions.assertTrue(isOnProductsPage());
 
-        // Select QR Code Scanner from the menu
-        clickMenu();
-        selecMenuQRCodeScanner();
+    }
 
-        // inject the image - provide the transformed image to the device with this command
-        Utils utils = new Utils();
-        String qrCodeImage = utils.encoder("src/test/java/com/native_app/image_injection/images/qr-code.png");
-        ((JavascriptExecutor)driver).executeScript("sauce:inject-image=" + qrCodeImage);
+    @Test
+    @DisplayName("biometricLoginWithNonMatchingTouch")
+    @Tag("biometricLogin")
+    @Tag("android")
+    public void biometricLoginWithNonMatchingTouch() throws InterruptedException {
+        System.out.println("Sauce - start test Biometric login with a non matching touch");
 
-        // Verify that the browser is running
-        utils.isAndroidBrowserOpened(driver);
-
-        // This is not need only for the video
-        try
-        {
-            Thread.sleep(5000);
+        // If the biometry is not shown on iOS, enable it on the phone
+        if (!this.isBiometryDisplayed()){
+            AndroidSettings androidSettings = new AndroidSettings(driver);
+            androidSettings.enableBiometricLogin();
         }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
+
+        // Login with biometric auth
+        this.login(false);
+
+        // Verificsation
+        Assertions.assertTrue(this.isRetryBiometryDisplay(),"Retry is not shown");
 
     }
 
@@ -113,7 +113,7 @@ public class ImageInjectionAndroidTest {
                 ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
             } catch (Exception ignored) {
             } finally {
-                    driver.quit();
+                driver.quit();
             }
         }
 
@@ -129,30 +129,25 @@ public class ImageInjectionAndroidTest {
         }
     }
 
-    private void login(String user, String pass) {
+    public void login(boolean successful) {
         try {
-            driver.context("NATIVE_APP");
 
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            final WebElement usernameEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(new MobileBy.ByAccessibilityId(usernameID)));
+            WebElement biometryButton = (WebElement) driver.findElementByAccessibilityId(biometryID);
+            biometryButton.click();
 
-            usernameEdit.click();
-            usernameEdit.sendKeys(user);
+            if (successful){
+                driver.fingerPrint(DEFAULT_PIN);
+            } else {
+                driver.fingerPrint(INCORRECT_PIN);
+            }
 
-
-            WebElement passwordEdit = (WebElement) driver.findElementByAccessibilityId(passwordID);
-            passwordEdit.click();
-            passwordEdit.sendKeys(pass);
-
-            WebElement submitButton = (WebElement) driver.findElementByAccessibilityId(submitButtonID);
-            submitButton.click();
 
         } catch (Exception e) {
             System.out.println("*** Problem to login: " + e.getMessage());
         }
     }
 
-    private boolean isOnProductsPage() {
+    public boolean isOnProductsPage() {
 
         //Create an instance of a Selenium explicit wait so that we can dynamically wait for an element
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -166,13 +161,25 @@ public class ImageInjectionAndroidTest {
         return true;
     }
 
-    private void clickMenu() {
-        driver.findElement(testMenu).click();
-    }
-    private void selecMenuQRCodeScanner() {
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+    public boolean isRetryBiometryDisplay(){
 
-        WebElement QCCodeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(testMenuItemQRCode));
-        QCCodeMenu.click();
+        try {
+            WebElement fingerprintLink = driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"Not recognized\")"));
+            return fingerprintLink.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
+
+    public boolean isBiometryDisplayed() {
+        try {
+
+            WebElement biometryButton = (WebElement) driver.findElementByAccessibilityId(biometryID);
+            return biometryButton.isDisplayed();
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

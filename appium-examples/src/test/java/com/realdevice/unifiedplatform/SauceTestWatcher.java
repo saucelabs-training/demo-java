@@ -1,4 +1,4 @@
-package com.native_app;
+package com.realdevice.unifiedplatform;
 
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;

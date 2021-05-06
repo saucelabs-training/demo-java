@@ -1,4 +1,4 @@
-package com.native_app.image_injection;
+package com.realdevice.unifiedplatform.image_injection;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;

@@ -1,6 +1,5 @@
-package com.native_app.biometric_login;
+package com.emusim.biometric_login;
 
-import com.native_app.image_injection.ImageInjectionIosTest;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtensionContext;
