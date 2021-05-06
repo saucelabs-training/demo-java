@@ -7,12 +7,7 @@ This folder contains examples for using Biometric login on real devices for:
 > Note: Android real devices are currently not supported
 
 ## Important information
-### Environment variables for Sauce Labs
-The examples in this repository use environment variables, make sure you've added the following
 
-    export SAUCE_USERNAME=********
-    export SAUCE_ACCESS_KEY=*******
-    
 ### Demo app(s)
 The demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/sample-app-mobile/releases).
 Be aware of the fact that iOS simulator uses a different build than a real iOS device. So please check the file you download.

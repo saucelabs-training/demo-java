@@ -7,13 +7,7 @@ This folder contains examples for using image injection on real devices for:
 > NOTE: this feature is **NOT** supported for emulators and simulators!!
 
 ## Important information
-### Environment variables for Sauce Labs
-The examples in this repository that can run on Sauce Labs use environment variables, make sure you've added the following
 
-    # For Sauce Labs Real devices in the New UI
-    export SAUCE_USERNAME=********
-    export SAUCE_ACCESS_KEY=*******
-    
 ### Demo app(s)
 The demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/sample-app-mobile/releases).
 Be aware of the fact that you need the build for the iOS real device. So please check the file you download.
