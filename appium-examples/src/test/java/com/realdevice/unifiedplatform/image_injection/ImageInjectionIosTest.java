@@ -98,7 +98,7 @@ public class ImageInjectionIosTest {
 
         Utils utils = new Utils();
         // inject the image - provide the transformed image to the device with this command
-        String qrCodeImage = utils.encoder("src/test/java/com/native_app/image_injection/images/qr-code.png");
+        String qrCodeImage = utils.encoder("src/test/java/com/realdevice.unifiedplatform/image_injection/images/qr-code.png");
         ((JavascriptExecutor)driver).executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
