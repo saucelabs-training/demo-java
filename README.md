@@ -16,7 +16,7 @@ everything that you need to get started with web, mobile, visual, functional and
 ## 🥇Most Popular
 *  [Web automation best practices framework with multiple testing strategies. Crafted by industry experts with decades of experience.](/best-practice/src/test/java/com/saucedemo/tests/)
 *  [Quick start test, Junit 4](./java11/selenium3.junit4.examples/src/test/java/com/onboarding/Module1JunitTest.java)
-*  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/TestNgTest.java)
+*  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/TestNgTest.java)
 *  [W3C examples using Sauce Labs](https://github.com/saucelabs-training/demo-java/blob/master/w3c-examples)
 *  [iOS real device, native app, Junit4](./appium-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
 *  [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
@@ -32,6 +32,8 @@ everything that you need to get started with web, mobile, visual, functional and
   * [Visual tests on multiple platforms and resolutions](/best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
   * [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/WindowsAuthentication.java)
   * [JUnit 3 Sauce Status Updates](./selenium-examples/src/test/java/com/saucedemo/JUnit3UpdateSauceStatusTest.java)
+  * [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/ParallelSingleBrowserTest.java)
+  * [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/CrossBrowserPlatformTest.java)
 
 * Automation Best Practices
   * [Automation best practices with multiple testing strategies](/best-practice/src/test/java/com/saucedemo/tests/)
