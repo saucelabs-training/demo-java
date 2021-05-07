@@ -39,7 +39,7 @@ public class IOSNativeAppExample {
         capabilities.setCapability("language", "en");
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("platformVersion", "13.2");
-        capabilities.setCapability("deviceName", "iPhone 11 Pro Max");
+        capabilities.setCapability("deviceName", "iPhone XS Max Simulator");
         capabilities.setCapability("name", name.getMethodName());
         //You need to upload your own Native Mobile App to Sauce Storage!
         //https://wiki.saucelabs.com/display/DOCS/Uploading+your+Application+to+Sauce+Storage

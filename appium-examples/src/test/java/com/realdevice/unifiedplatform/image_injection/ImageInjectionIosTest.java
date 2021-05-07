@@ -1,20 +1,23 @@
-package image_injection;
+package com.realdevice.unifiedplatform.image_injection;
 
 import io.appium.java_client.ios.IOSDriver;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -33,14 +36,17 @@ public class ImageInjectionIosTest {
 
     protected IOSDriver driver;
 
-    @BeforeMethod
-    public void setup(Method method) throws MalformedURLException {
+    @RegisterExtension
+    public MyTestWatcher myTestWatcher = new MyTestWatcher();
 
-        System.out.println("Sauce - BeforeMethod hook ");
+    @BeforeEach
+    public void setup(TestInfo testInfo) throws IOException {
+
+        System.out.println("Sauce - BeforeEach hook");
 
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-        String methodName = method.getName();
+        String methodName = testInfo.getDisplayName();
 
         String sauceUrl;
         if (region.equalsIgnoreCase("eu")) {
@@ -72,6 +78,9 @@ public class ImageInjectionIosTest {
     }
 
     @Test
+    @DisplayName("imageInjectionScanQRcode")
+    @Tag("imageInjection")
+    @Tag("ios")
     public void imageInjectionScanQRcode() throws InterruptedException {
         System.out.println("Sauce - start test imageInjection_scan_QR_code");
 
@@ -79,8 +88,7 @@ public class ImageInjectionIosTest {
         login("standard_user", "secret_sauce");
 
         // Verificsation
-        Assert.assertTrue(isOnProductsPage());
-
+        Assertions.assertTrue(isOnProductsPage());
         // Select QR Code Scanner from the menu
         clickMenu();
         selecMenuQRCodeScanner();
@@ -90,7 +98,7 @@ public class ImageInjectionIosTest {
 
         Utils utils = new Utils();
         // inject the image - provide the transformed image to the device with this command
-        String qrCodeImage = utils.encoder("src/test/java/image_injection/images/qr-code.png");
+        String qrCodeImage = utils.encoder("src/test/java/com/realdevice.unifiedplatform/image_injection/images/qr-code.png");
         ((JavascriptExecutor)driver).executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
@@ -107,13 +115,30 @@ public class ImageInjectionIosTest {
         }
     }
 
+    public class MyTestWatcher implements TestWatcher {
+        @Override
+        public void testSuccessful(ExtensionContext context) {
+            try {
+                System.out.println("Test Passed!");
+                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+            } catch (Exception ignored) {
+            } finally {
+                driver.quit();
+            }
+        }
 
-    @AfterMethod
-    public void teardown(ITestResult result) {
-        System.out.println("Sauce - AfterMethod hook");
-        ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
-        driver.quit();
+        @Override
+        public void testFailed(ExtensionContext context, Throwable cause) {
+            try {
+                System.out.println("Test Failed!");
+                ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
+            } catch (Exception ignored) {
+            } finally {
+                driver.quit();
+            }
+        }
     }
+
 
     private void login(String user, String pass) {
         try {

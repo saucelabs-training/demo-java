@@ -1,6 +1,15 @@
-package biometric_login;
+package com.emusim.biometric_login;
 
 import io.appium.java_client.ios.IOSDriver;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,19 +17,14 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import static helpers.Constants.region;
 import static helpers.Constants.rdc;
+import static helpers.Constants.region;
 
 public class BiometricLoginIosTest {
 
@@ -29,14 +33,17 @@ public class BiometricLoginIosTest {
     private By biometryButton = By.id("test-biometry");
     private String ProductTitleSelector = "type==\"XCUIElementTypeStaticText\" && name==\"PRODUCTS\"";
 
-    @BeforeMethod
-    public void setup(Method method) throws MalformedURLException {
+    @RegisterExtension
+    public MyTestWatcher myTestWatcher = new MyTestWatcher();
+
+    @BeforeEach
+    public void setup(TestInfo testInfo) throws IOException {
 
         System.out.println("Sauce - BeforeMethod hook");
 
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-        String methodName = method.getName();
+        String methodName = testInfo.getDisplayName();
         String sauceUrl;
 
         MutableCapabilities capabilities = new MutableCapabilities();
@@ -70,15 +77,15 @@ public class BiometricLoginIosTest {
         capabilities.setCapability("automationName", "XCUITEST");
         capabilities.setCapability("name", methodName);
 
-
-
         // Launch remote browser and set it as the current thread
         driver = new IOSDriver(url, capabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-
     @Test
+    @DisplayName("biometricLoginWithMatchingTouch")
+    @Tag("biometricLogin")
+    @Tag("ios")
     public void biometricLoginWithMatchingTouch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with matching touch");
 
@@ -94,11 +101,14 @@ public class BiometricLoginIosTest {
         this.login(true);
 
         // Verificsation
-        Assert.assertTrue(this.isOnProductsPage());
+        Assertions.assertTrue(isOnProductsPage());
 
     }
 
     @Test
+    @DisplayName("biometricLoginWithNonMatchingTouch")
+    @Tag("biometricLogin")
+    @Tag("ios")
     public void biometricLoginWithNonMatchingTouch () throws InterruptedException {
         System.out.println("Sauce - start test Biometric login with a non matching touch");
 
@@ -114,15 +124,32 @@ public class BiometricLoginIosTest {
         this.login(false);
 
         // Verificsation
-        Assert.assertTrue(this.isRetryBiometryDisplay(Boolean.valueOf(rdc)));
+        Assertions.assertTrue(this.isRetryBiometryDisplay(Boolean.valueOf(rdc)));
 
     }
 
-    @AfterMethod
-    public void teardown(ITestResult result) {
-        System.out.println("Sauce - AfterMethod hook");
-        ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
-        driver.quit();
+    public class MyTestWatcher implements TestWatcher {
+        @Override
+        public void testSuccessful(ExtensionContext context) {
+            try {
+                System.out.println("Test Passed!");
+                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+            } catch (Exception ignored) {
+            } finally {
+                driver.quit();
+            }
+        }
+
+        @Override
+        public void testFailed(ExtensionContext context, Throwable cause) {
+            try {
+                System.out.println("Test Failed!");
+                ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
+            } catch (Exception ignored) {
+            } finally {
+                driver.quit();
+            }
+        }
     }
 
 
