@@ -13,6 +13,7 @@
         <selenium.version>3.141.59</selenium.version>
         <sauce.version>1.0.2</sauce.version>
         <appium.version>7.3.0</appium.version>
+        <maven.surefire.version>3.0.0-M5</maven.surefire.version>
     </properties>
 
     <modules>
@@ -88,7 +89,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.0</version>
+                <version>${maven.surefire.version}</version>
                 <configuration>
                     <parallel>classes</parallel>
                     <threadCountMethods>100</threadCountMethods>
