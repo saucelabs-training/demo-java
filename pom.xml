@@ -19,8 +19,6 @@
     <modules>
         <module>best-practice</module>
         <module>common</module>
-        <module>on-boarding-modules/junit</module>
-        <module>on-boarding-modules/testng</module>
         <module>appium-examples</module>
         <module>w3c-examples/w3c-junit5</module>
         <module>w3c-examples/w3c-testng</module>
