@@ -14,20 +14,6 @@
     <!--    You will find Junit and Appium configration in the project level pom.xml -->
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.7.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.14.3</version>
-        </dependency>
-
         <!-- Apache Commons Logging -->
         <dependency>
             <groupId>commons-logging</groupId>

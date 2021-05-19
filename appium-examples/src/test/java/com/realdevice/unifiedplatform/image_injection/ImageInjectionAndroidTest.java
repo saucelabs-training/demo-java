@@ -1,16 +1,13 @@
 package com.realdevice.unifiedplatform.image_injection;
 
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestName;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -22,8 +19,12 @@ import java.io.IOException;
 import java.net.URL;
 
 import static helpers.Constants.region;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ImageInjectionAndroidTest {
+
+    @Rule
+    public TestName name = new TestName();
 
     String usernameID = "test-Username";
     String passwordID = "test-Password";
@@ -37,17 +38,14 @@ public class ImageInjectionAndroidTest {
 
     protected AndroidDriver driver;
 
-    @RegisterExtension
-    public MyTestWatcher myTestWatcher = new MyTestWatcher();
 
-    @BeforeEach
-    public void setup(TestInfo testInfo) throws IOException {
+    @Before
+    public void setup() throws IOException {
 
         System.out.println("Sauce - BeforeEach hook");
 
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-        String methodName = testInfo.getDisplayName();
 
         String sauceUrl;
         if (region.equalsIgnoreCase("eu")) {
@@ -63,7 +61,7 @@ public class ImageInjectionAndroidTest {
 
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", "UiAutomator2");
-        capabilities.setCapability("name", methodName);
+        capabilities.setCapability("name", name.getMethodName());
 //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
 //        capabilities.setCapability("app", "storage:filename=" +appName);
         capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
@@ -77,9 +75,6 @@ public class ImageInjectionAndroidTest {
     }
 
     @Test
-    @DisplayName("imageInjectionScanQRcode")
-    @Tag("imageInjection")
-    @Tag("Android")
     public void imageInjectionScanQRcode() throws InterruptedException {
         System.out.println("Sauce - start test imageInjection_scan_QR_code");
 
@@ -87,7 +82,7 @@ public class ImageInjectionAndroidTest {
         login("standard_user", "secret_sauce");
 
         // Verificsation
-        Assertions.assertTrue(isOnProductsPage());
+        assertThat(isOnProductsPage()).isTrue();
 
         // Select QR Code Scanner from the menu
         clickMenu();
@@ -113,20 +108,10 @@ public class ImageInjectionAndroidTest {
 
     }
 
-    public class MyTestWatcher implements TestWatcher {
+    @Rule
+    public TestWatcher watchman= new TestWatcher() {
         @Override
-        public void testSuccessful(ExtensionContext context) {
-            try {
-                System.out.println("Test Passed!");
-                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
-            } catch (Exception ignored) {
-            } finally {
-                    driver.quit();
-            }
-        }
-
-        @Override
-        public void testFailed(ExtensionContext context, Throwable cause) {
+        protected void failed(Throwable e, Description description) {
             try {
                 System.out.println("Test Failed!");
                 ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
@@ -135,7 +120,18 @@ public class ImageInjectionAndroidTest {
                 driver.quit();
             }
         }
-    }
+
+        @Override
+        protected void succeeded(Description description) {
+            try {
+                System.out.println("Test Passed!");
+                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+            } catch (Exception ignored) {
+            } finally {
+                driver.quit();
+            }
+        }
+    };
 
     private void login(String user, String pass) {
         try {

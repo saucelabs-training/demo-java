@@ -1,15 +1,12 @@
 package com.realdevice.unifiedplatform.image_injection;
 
 import io.appium.java_client.ios.IOSDriver;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.junit.jupiter.api.extension.TestWatcher;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestName;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
@@ -22,8 +19,12 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import static helpers.Constants.region;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ImageInjectionIosTest {
+
+    @Rule
+    public TestName name = new TestName();
 
     By usernameID = By.id("test-Username");
     By passwordID = By.id("test-Password");
@@ -36,17 +37,13 @@ public class ImageInjectionIosTest {
 
     protected IOSDriver driver;
 
-    @RegisterExtension
-    public MyTestWatcher myTestWatcher = new MyTestWatcher();
-
-    @BeforeEach
-    public void setup(TestInfo testInfo) throws IOException {
+    @Before
+    public void setup() throws IOException {
 
         System.out.println("Sauce - BeforeEach hook");
 
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-        String methodName = testInfo.getDisplayName();
 
         String sauceUrl;
         if (region.equalsIgnoreCase("eu")) {
@@ -63,7 +60,7 @@ public class ImageInjectionIosTest {
         capabilities.setCapability("deviceName", "iPhone 8*");
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("automationName", "XCUITEST");
-        capabilities.setCapability("name", methodName);
+        capabilities.setCapability("name", name.getMethodName());
         //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
 //        capabilities.setCapability("app", "storage:filename=" +appName);
         capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
@@ -78,9 +75,6 @@ public class ImageInjectionIosTest {
     }
 
     @Test
-    @DisplayName("imageInjectionScanQRcode")
-    @Tag("imageInjection")
-    @Tag("ios")
     public void imageInjectionScanQRcode() throws InterruptedException {
         System.out.println("Sauce - start test imageInjection_scan_QR_code");
 
@@ -88,7 +82,7 @@ public class ImageInjectionIosTest {
         login("standard_user", "secret_sauce");
 
         // Verificsation
-        Assertions.assertTrue(isOnProductsPage());
+        assertThat(isOnProductsPage()).isTrue();
         // Select QR Code Scanner from the menu
         clickMenu();
         selecMenuQRCodeScanner();
@@ -115,20 +109,10 @@ public class ImageInjectionIosTest {
         }
     }
 
-    public class MyTestWatcher implements TestWatcher {
+    @Rule
+    public TestWatcher watchman= new TestWatcher() {
         @Override
-        public void testSuccessful(ExtensionContext context) {
-            try {
-                System.out.println("Test Passed!");
-                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
-            } catch (Exception ignored) {
-            } finally {
-                driver.quit();
-            }
-        }
-
-        @Override
-        public void testFailed(ExtensionContext context, Throwable cause) {
+        protected void failed(Throwable e, Description description) {
             try {
                 System.out.println("Test Failed!");
                 ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
@@ -137,8 +121,18 @@ public class ImageInjectionIosTest {
                 driver.quit();
             }
         }
-    }
 
+        @Override
+        protected void succeeded(Description description) {
+            try {
+                System.out.println("Test Passed!");
+                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+            } catch (Exception ignored) {
+            } finally {
+                driver.quit();
+            }
+        }
+    };
 
     private void login(String user, String pass) {
         try {
@@ -184,6 +178,5 @@ public class ImageInjectionIosTest {
             // Do nothing, the alert was not shown
         }
     }
-
 
 }
