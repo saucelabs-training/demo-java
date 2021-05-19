@@ -13,7 +13,7 @@
         <selenium.version>3.141.59</selenium.version>
         <sauce.version>1.0.2</sauce.version>
         <appium.version>7.3.0</appium.version>
-        <maven.surefire.version>2.22.1</maven.surefire.version>
+        <maven.surefire.version>3.0.0-M4</maven.surefire.version>
     </properties>
 
     <modules>
