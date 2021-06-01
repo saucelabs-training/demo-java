@@ -10,9 +10,8 @@ public abstract class BasePage {
         this.driver = driver;
         js = (JavascriptExecutor) driver;
     }
-    public void takeSnapshot(String deviceName) {
-        js.executeScript("/*@visual.snapshot*/",
-                this.getClass().getSimpleName().toString() + ":" + deviceName);
+    public void takeSnapshot() {
+        js.executeScript("/*@visual.snapshot*/",this.getClass().getSimpleName());
     }
 
     public void visit() {

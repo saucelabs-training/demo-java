@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 @RunWith(Parameterized.class)
 public class VisualCrossPlatformTests extends WebTestsBase {
@@ -35,9 +35,9 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     public String platform;
     @Parameterized.Parameter(3)
     public String viewportSize;
+    // Device name is a property added to know which device resolution is configured
     @Parameterized.Parameter(4)
     public String deviceName;
-    String deviceNameValue;
 
     @Parameterized.Parameters(name = "{4}")
     public static Collection<Object[]> crossBrowserData() {
@@ -50,8 +50,6 @@ public class VisualCrossPlatformTests extends WebTestsBase {
 
     @Before
     public void setUp() throws Exception {
-        deviceNameValue = testName.getMethodName().split("\\[", -1)[1];
-
         MutableCapabilities browserOptions = new MutableCapabilities();
         browserOptions.setCapability(CapabilityType.BROWSER_NAME, browserName);
         browserOptions.setCapability(CapabilityType.BROWSER_VERSION, browserVersion);
@@ -76,26 +74,26 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     public void afterEach()
     {
         Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
-        boolean isTestPassed = Boolean.parseBoolean(response.get("passed").toString());
-        assertTrue(isTestPassed);
+        String message = response.get("message").toString();
+        assertNull(message);
     }
 
     @Test()
-    public void pagesRenderCorrectly() {
+    public void visualFlow() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
-        getJSExecutor().executeScript("/*@visual.init*/", "Responsive Flows");
-        loginPage.takeSnapshot(deviceNameValue);
+        getJSExecutor().executeScript("/*@visual.init*/", deviceName);
+        loginPage.takeSnapshot();
 
         loginPage.login("standard_user");
-        new ProductsPage(driver).takeSnapshot(deviceNameValue);
+        new ProductsPage(driver).takeSnapshot();
 
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
         shoppingCartPage.visit();
-        shoppingCartPage.takeSnapshot(deviceNameValue);
+        shoppingCartPage.takeSnapshot();
 
         CheckoutStepOnePage stepOneCheckoutPage = new CheckoutStepOnePage(driver);
         stepOneCheckoutPage.visit();
-        stepOneCheckoutPage.takeSnapshot(deviceNameValue);
+        stepOneCheckoutPage.takeSnapshot();
     }
 }
