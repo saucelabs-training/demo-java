@@ -129,7 +129,7 @@ everything that you need to get started with web, mobile, visual, functional and
     ```
 3. Finally, run the following test to see if you've properly configured the test environment:
     ```
-    $ mvn test -pl selenium-testng-examples -Dtest=TestNgTest 
+    $ mvn test -pl best-practice -Dtest=DesktopTests 
 
     ```
     
