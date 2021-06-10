@@ -60,28 +60,12 @@ everything that you need to get started with web, mobile, visual, functional and
   * [Android native app test](./appium-examples/src/test/java/com/realdevice/unifiedplatform/AndroidNativeAppTest.java)
   * [iOS native app test](./appium-examples/src/test/java/com/realdevice/unifiedplatform/IOSNativeAppTest.java)
 
-## Prerequisites
+## ⚙️Setup
 
 * Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-git)
 * Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-intellij)
 * Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-the-jdk)
 * Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-maven)
-
-> Select the button below to try this demo in [Gitpod](https://www.gitpod.io/)
->
-> <a href="https://gitpod.io/#https://github.com/saucelabs-training/demo-java"><img src="https://github.com/saucelabs-training/demo-java/blob/master/docs/open-in-gitpod.png" title="Open in Gitpod"></a>
->
-> [Click here](docs/gitpod_instructions.md) to see how to setup your Sauce Labs credentials in Gitpod
-
-<br />
-
-## Project Setup
-* [Import the Project](#import-the-project)
-* [Set Your Sauce Labs Credentials](#set-your-sauce-labs-credentials)
-* [Run a Maven Test](#run-a-maven-test)
- 
-<br />
-
 
 #### Import the Project
 
