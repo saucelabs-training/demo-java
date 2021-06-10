@@ -1,6 +1,5 @@
 package com.realdevices;
 
-import com.common.SauceConstants;
 import io.appium.java_client.ios.IOSDriver;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
@@ -34,12 +33,12 @@ public class StepDefinitions {
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("name", scenario.getName());
         capabilities.setCapability("app",
-                "storage:filename=" + SauceConstants.RealDevice.IOS_APP);
+                "storage:filename=" + "ios");
 
         driver = new IOSDriver(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
                         System.getenv("SAUCE_ACCESS_KEY") +
-                        SauceConstants.HubUrl.WEST),
+                        "ondemand.us-west-1.saucelabs.com/wd/hub"),
                 capabilities);
         wait = new WebDriverWait(driver, 20);
     }
