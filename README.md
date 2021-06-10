@@ -132,15 +132,8 @@ everything that you need to get started with web, mobile, visual, functional and
     $ mvn test -pl selenium-testng-examples -Dtest=TestNgTest 
 
     ```
-
-    > If you wish to run a specific test/sub-module in this emusim_testng use the following command:
-    >   ```
-    >   # for running a specific test:
-    >   mvn test -Dtest=testname
-    > 
-    >   # for running a specific sub-module
-    >   mvn test -pl subproject/
-    >   ```
+    
+   You can run different tests from different modules. Check out some examples by looking at the [CI YML files](./.github/workflows)
 
 > ###### Disclaimer:
 >
