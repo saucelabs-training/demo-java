@@ -3,6 +3,8 @@ This folder contains Selenium examples
 
 ## Examples
 
+- [Accessibility Test with Sauce Bindings](../selenium-examples/src/test/java/com/saucedemo/accessibility/SauceBindingsExampleTest.java)
+- [Accessibility Test with Deque Axe](../selenium-examples/src/test/java/com/saucedemo/accessibility/DequeAxeExampleTest.java)
 - [Simple web test, Junit 5](../selenium-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
 - [Simple Headless test, TestNG](../selenium-examples/src/test/java/com/saucedemo/SampleHeadlessSauceTest.java)
 - [Sauce Status Updates w/ JUnit 3](../selenium-examples/src/test/java/com/saucedemo/JUnit3UpdateSauceStatusTest.java)

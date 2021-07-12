@@ -26,6 +26,8 @@ everything that you need to get started with web, mobile, visual, functional and
 ## 🖥Web automation
 
 * All Examples
+  * [Accessibility Test with Sauce Bindings](/selenium-examples/src/test/java/com/saucedemo/accessibility/SauceBindingsExampleTest.java)
+  * [Accessibility Test with Deque Axe](/selenium-examples/src/test/java/com/saucedemo/accessibility/DequeAxeExampleTest.java)
   * [JUnit 5 web test](/selenium-examples/src/test/java/com/saucedemo/JUnit5W3CChromeTest.java)
   * [JUnit 4,Cucumber web test](/java8/selenium3.junit4.examples.cucumber/src/test/resources/AddItem.feature)
   * [Front-end performance testing](./selenium-junit4-examples/src/test/java/com/saucedemo/PerformanceExampleTests.java)
