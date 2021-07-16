@@ -55,11 +55,13 @@ public class W3CExampleTest {
         @Override
         public void testSuccessful(ExtensionContext context) {
             driver.executeScript("sauce:job-result=passed");
+            driver.quit();
         }
 
         @Override
         public void testFailed(ExtensionContext context, Throwable cause) {
             driver.executeScript("sauce:job-result=failed");
+            driver.quit();
         }
     }
 }
