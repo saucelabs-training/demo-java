@@ -14,6 +14,10 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    public By usernameFieldLocator = By.id("user-name");
+    public By passwordFieldLocator = By.id("password");
+    public By submitButtonLocator = By.id("login-button");
+
     @Override
     public String getPagePart() {
         return "";
@@ -24,14 +28,16 @@ public class LoginPage extends BasePage {
         // so that we can dynamically wait for an element
         WebDriverWait wait = new WebDriverWait(driver, 5);
         //wait for the user name field to be visible and store that element into a variable
-        By userNameFieldLocator = By.cssSelector("#user-name");
-        WebElement userNameField =
-                wait.until(
-                        ExpectedConditions.visibilityOfElementLocated(userNameFieldLocator));
-        userNameField.sendKeys(userName);
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(usernameFieldLocator));
 
-        driver.findElement(By.cssSelector("#password")).sendKeys("secret_sauce");
-        driver.findElement(By.cssSelector("#login-button")).click();
+        WebElement userNameField = driver.findElement(usernameFieldLocator);
+        WebElement passwordField = driver.findElement(passwordFieldLocator);
+        WebElement submitButton = driver.findElement(submitButtonLocator);
+
+        userNameField.sendKeys(userName);
+        passwordField.sendKeys("secret_sauce");
+        submitButton.click();
     }
 
     public Integer getPageLoadTime() {
