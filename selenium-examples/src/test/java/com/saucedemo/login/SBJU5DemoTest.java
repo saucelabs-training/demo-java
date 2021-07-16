@@ -1,4 +1,4 @@
-package com.saucedemo;
+package com.saucedemo.login;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import org.junit.jupiter.api.Assertions;
@@ -8,7 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginTest extends SauceBaseTest {
+public class SBJU5DemoTest extends SauceBaseTest {
+
     @DisplayName("Swag Labs Login")
     @Test
     public void swagLabsLoginTest() {
