@@ -3,7 +3,6 @@ package com.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
@@ -24,12 +23,10 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String userName) {
-        //Create an instance of a Selenium explicit wait
-        // so that we can dynamically wait for an element
+        //Create an instance of a Selenium explicit wait to dynamically wait for an element
         WebDriverWait wait = new WebDriverWait(driver, 5);
         //wait for the user name field to be visible and store that element into a variable
-        wait.until(
-                ExpectedConditions.visibilityOfElementLocated(usernameFieldLocator));
+        wait.until((driver) -> driver.findElement(usernameFieldLocator).isDisplayed());
 
         WebElement userNameField = driver.findElement(usernameFieldLocator);
         WebElement passwordField = driver.findElement(passwordFieldLocator);
