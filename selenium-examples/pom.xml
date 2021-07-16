@@ -17,27 +17,15 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.7.0-M1</version>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>saucebindings-junit5</artifactId>
+            <version>1.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.deque.html.axe-core</groupId>
-            <artifactId>selenium</artifactId>
-            <version>4.2.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.7.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
