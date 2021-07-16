@@ -12,7 +12,7 @@
     <properties>
         <selenium.version>3.141.59</selenium.version>
         <sauce.version>1.2.0</sauce.version>
-        <sauce_junit.version>0.2.0</sauce_junit.version>
+        <sauce_junit5.version>1.0.0</sauce_junit5.version>
         <appium.version>7.3.0</appium.version>
         <maven.surefire.version>3.0.0-M4</maven.surefire.version>
     </properties>
@@ -39,8 +39,8 @@
         </dependency>
         <dependency>
             <groupId>com.saucelabs</groupId>
-            <artifactId>sauce_bindings_junit4</artifactId>
-            <version>${sauce_junit.version}</version>
+            <artifactId>saucebindings-junit5</artifactId>
+            <version>${sauce_junit5.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
