@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SBJU5DemoTest extends SauceBaseTest {
+public class SauceBindingsLoginTest extends SauceBaseTest {
 
     @DisplayName("Swag Labs Login")
     @Test

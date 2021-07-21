@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class WindowsAuthentication {
         sauceOptions.setPlatformName(SaucePlatform.WINDOWS_10);
 
         session = new SauceSession(sauceOptions);
-        WebDriver driver = session.start();
+        RemoteWebDriver driver = session.start();
         driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
         driver.findElement(By.id("content"));
     }
@@ -50,7 +50,7 @@ public class WindowsAuthentication {
         sauceOptions.setPrerun(prerun);
 
         session = new SauceSession(sauceOptions);
-        WebDriver driver = session.start();
+        RemoteWebDriver driver = session.start();
         driver.get("http://the-internet.herokuapp.com/basic_auth");
     }
 
@@ -74,7 +74,7 @@ public class WindowsAuthentication {
 //        arr.put("-q");
 //        jsonObj.put("args", arr);
 //        caps.setCapability("prerun",jsonObj);
-//        WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
+//        RemoteWebDriver driver = new RemoteWebDriver(new URL(URL), caps);
 //        driver.get("https://the-internet.herokuapp.com/basic_auth");
 //        driver.quit();
     }

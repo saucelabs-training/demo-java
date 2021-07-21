@@ -1,4 +1,4 @@
-package com.saucedemo.selenium.junit5;
+package com.saucedemo.selenium.demo;
 
 import com.saucelabs.saucebindings.SauceSession;
 import com.saucelabs.saucebindings.options.SauceOptions;
@@ -17,8 +17,7 @@ public class SauceBindingsTest {
     protected RemoteWebDriver driver;
 
     /**
-     * @RegisterExtension is needed to add a Test Watcher to a class
-     * a Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs
+     * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs
      * Note that the name is never actually used
      */
     @RegisterExtension
@@ -27,7 +26,8 @@ public class SauceBindingsTest {
     @BeforeEach
     public void setup(TestInfo testInfo) {
         SauceOptions sauceOptions = SauceOptions.chrome()
-                .setName(testInfo.getDisplayName()).build();
+                .setName(testInfo.getDisplayName())
+                .build();
         session = new SauceSession(sauceOptions);
         driver = session.start();
     }
@@ -37,7 +37,7 @@ public class SauceBindingsTest {
      */
     @DisplayName("Sauce Bindings example with JUnit5")
     @Test
-    public void SauceBindingsWithJUnit5Test() throws AssertionError {
+    public void SauceBindingsWithJUnit5Test() {
         driver.navigate().to("https://www.saucedemo.com");
         Assertions.assertEquals("Swag Labs", driver.getTitle());
     }

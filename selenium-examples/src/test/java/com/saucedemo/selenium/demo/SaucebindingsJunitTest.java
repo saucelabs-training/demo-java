@@ -1,4 +1,4 @@
-package com.saucedemo.selenium.junit5;
+package com.saucedemo.selenium.demo;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +16,7 @@ public class SaucebindingsJunitTest extends SauceBaseTest {
      */
     @DisplayName("saucebindings-junit5 package example")
     @Test
-    public void SaucebindingsJunit5Test() throws AssertionError {
+    public void SaucebindingsJunit5Test() {
         driver.navigate().to("https://www.saucedemo.com");
         Assertions.assertEquals("Swag Labs", driver.getTitle());
     }

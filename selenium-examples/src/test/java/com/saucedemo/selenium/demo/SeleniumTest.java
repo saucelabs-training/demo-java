@@ -1,4 +1,4 @@
-package com.saucedemo.selenium.login;
+package com.saucedemo.selenium.demo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,19 +8,20 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
-import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class W3CDemoTest {
-    protected RemoteWebDriver driver;
+public class SeleniumTest {
+    public RemoteWebDriver driver;
 
+    /**
+     * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs
+     * Note that the name is never actually used
+     */
     @RegisterExtension
     public SauceTestWatcher watcher = new SauceTestWatcher();
 
@@ -39,27 +40,14 @@ public class W3CDemoTest {
         driver = new RemoteWebDriver(url, options);
     }
 
-    @DisplayName("Swag Labs Login")
+    /**
+     * @DisplayName is a JUnit 5 annotation that defines test case name.
+     */
+    @DisplayName("W3C example with JUnit5")
     @Test
-    public void swagLabsLoginTest() {
-        driver.get("https://www.saucedemo.com");
-
-        By usernameFieldLocator = By.id("user-name");
-        By passwordFieldLocator = By.id("password");
-        By submitButtonLocator = By.id("login-button");
-
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until((driver) -> driver.findElement(usernameFieldLocator).isDisplayed());
-
-        WebElement userNameField = driver.findElement(usernameFieldLocator);
-        WebElement passwordField = driver.findElement(passwordFieldLocator);
-        WebElement submitButton = driver.findElement(submitButtonLocator);
-
-        userNameField.sendKeys("standard_user");
-        passwordField.sendKeys("secret_sauce");
-        submitButton.click();
-
-        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
+    public void w3cExampleWithJUnit5() {
+        driver.navigate().to("https://www.saucedemo.com");
+        Assertions.assertEquals("Swag Labs", driver.getTitle());
     }
 
     public class SauceTestWatcher implements TestWatcher {
