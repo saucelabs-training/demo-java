@@ -50,12 +50,13 @@ Description
 Most of the code that we will ever create is an "example"
 
 |-- demo-java
+    |-- appium-examples (Java module)
     |-- best-practice (Java module)
     |-- best-practice-mobile-native (Java module)
-    |-- selenium-examples (Java module)
     |-- selenium-cucumber-examples (Java module)
-    |-- appium-examples (Java module)
-    |-- appium-cucumber-examples (Java module)
+    |-- selenium-examples (Java module)
+    |-- selenium-junit4-examples (Java module)
+    |-- selenium-testng-examples (Java module)
 ```
 
 ```text
@@ -63,7 +64,7 @@ Specific Structure With Examples
 --------------------------------
 |-- demo-java
     |-- best-practice (Java module)
-            |-- src
+        |-- src
             |-- main
             |-- test
                 |-- java
@@ -79,7 +80,7 @@ Specific Structure With Examples
             |-- main
             |-- test
                 |-- java
-                    |-- com.saucedemo
+                    |-- com.saucedemo.selenium
                         |-- Junit4InParallelTests.java
                         |-- Junit4TestStatusUpdate.java
                         |-- Junit4DataDriven.java
@@ -91,11 +92,11 @@ Specific Structure With Examples
             |-- main
             |-- test
                 |-- java
-                    |-- com.emusim (Java package)
+                    |-- com.saucedemo.emusim (Java package)
                         |-- SomeEmusimExample.java
-                    |-- com.realdevice.unifiedplatform (Java package)
+                    |-- com.saucedemo.realdevice (Java package)
                         |-- SomeRealDeviceExample.java
-                    |-- com.realdevice.legacy (Java package)
+                    |-- com.saucedemo.realdevice.legacy (Java package)
                         |-- ...
 ```
 
