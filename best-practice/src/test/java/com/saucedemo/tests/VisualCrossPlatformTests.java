@@ -74,8 +74,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     public void afterEach()
     {
         Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
-        String message = response.get("message").toString();
-        assertNull(message);
+        assertNull(response.get("message"));
     }
 
     @Test()
