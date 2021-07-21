@@ -1,7 +1,7 @@
 package com.saucedemo.tests;
 
-import com.saucedemo.pages.LoginPage;
 import com.saucedemo.WebTestsBase;
+import com.saucedemo.pages.LoginPage;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import org.junit.After;
@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class PerformanceTests extends WebTestsBase {
 
@@ -35,7 +35,7 @@ public class PerformanceTests extends WebTestsBase {
         sauceOptions.setName("simplePerformanceTest");
         session = new SauceSession(sauceOptions);
 
-        WebDriver driver = session.start();
+        RemoteWebDriver driver = session.start();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
 

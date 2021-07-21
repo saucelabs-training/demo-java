@@ -1,9 +1,9 @@
 package com.saucedemo.pages;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class ShoppingCartPage extends BasePage {
-    public ShoppingCartPage(WebDriver driver) {
+    public ShoppingCartPage(RemoteWebDriver driver) {
         super(driver);
     }
     @Override

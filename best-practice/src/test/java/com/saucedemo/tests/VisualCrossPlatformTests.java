@@ -79,7 +79,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     public void visualFlow() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
-        getJSExecutor().executeScript("/*@visual.init*/", deviceName);
+        driver.executeScript("/*@visual.init*/", deviceName);
         loginPage.takeSnapshot();
 
         loginPage.login("standard_user");
@@ -93,7 +93,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         stepOneCheckoutPage.visit();
         stepOneCheckoutPage.takeSnapshot();
 
-        Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
+        Map<String, Object> response = (Map<String, Object>) driver.executeScript("/*@visual.end*/");
         assertNull(response.get("message"));
     }
 }

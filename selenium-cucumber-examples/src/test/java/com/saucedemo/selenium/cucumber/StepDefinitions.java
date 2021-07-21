@@ -13,7 +13,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,7 +29,7 @@ public class StepDefinitions {
         return session.get();
     }
 
-    public WebDriver getDriver() {
+    public RemoteWebDriver getDriver() {
         return getSession().getDriver();
     }
 

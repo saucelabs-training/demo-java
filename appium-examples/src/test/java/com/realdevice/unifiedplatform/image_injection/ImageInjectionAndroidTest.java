@@ -1,20 +1,20 @@
 package com.realdevice.unifiedplatform.image_injection;
 
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -91,7 +91,7 @@ public class ImageInjectionAndroidTest {
         // inject the image - provide the transformed image to the device with this command
         Utils utils = new Utils();
         String qrCodeImage = utils.encoder("src/test/java/com/realdevice/unifiedplatform/image_injection/images/qr-code.png");
-        ((JavascriptExecutor)driver).executeScript("sauce:inject-image=" + qrCodeImage);
+        driver.executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
         utils.isAndroidBrowserOpened(driver);
@@ -114,7 +114,7 @@ public class ImageInjectionAndroidTest {
         protected void failed(Throwable e, Description description) {
             try {
                 System.out.println("Test Failed!");
-                ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
+                driver.executeScript("sauce:job-result=failed");
             } catch (Exception ignored) {
             } finally {
                 driver.quit();
@@ -125,7 +125,7 @@ public class ImageInjectionAndroidTest {
         protected void succeeded(Description description) {
             try {
                 System.out.println("Test Passed!");
-                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+                driver.executeScript("sauce:job-result=passed");
             } catch (Exception ignored) {
             } finally {
                 driver.quit();

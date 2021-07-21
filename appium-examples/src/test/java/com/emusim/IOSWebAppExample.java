@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -22,9 +21,9 @@ public class IOSWebAppExample {
             return String.format("%s", super.getMethodName());
         }
     };
-    private WebDriver driver;
+    private RemoteWebDriver driver;
 
-    public WebDriver getDriver() {
+    public RemoteWebDriver getDriver() {
         return driver;
     }
 

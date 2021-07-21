@@ -5,7 +5,6 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -60,12 +59,12 @@ public class SauceTestBase {
 
         @Override
         protected void failed(Throwable e, Description description) {
-            ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
+            driver.executeScript("sauce:job-result=failed");
         }
 
         @Override
         protected void succeeded(Description description) {
-            ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+            driver.executeScript("sauce:job-result=passed");
         }
 
         @Override

@@ -8,7 +8,6 @@ import org.junit.rules.TestName;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -93,7 +92,7 @@ public class ImageInjectionIosTest {
         Utils utils = new Utils();
         // inject the image - provide the transformed image to the device with this command
         String qrCodeImage = utils.encoder("src/test/java/com/realdevice.unifiedplatform/image_injection/images/qr-code.png");
-        ((JavascriptExecutor)driver).executeScript("sauce:inject-image=" + qrCodeImage);
+        driver.executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
         utils.isIosApplicationRunning(driver, "com.apple.mobilesafari");
@@ -115,7 +114,7 @@ public class ImageInjectionIosTest {
         protected void failed(Throwable e, Description description) {
             try {
                 System.out.println("Test Failed!");
-                ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
+                driver.executeScript("sauce:job-result=failed");
             } catch (Exception ignored) {
             } finally {
                 driver.quit();
@@ -126,7 +125,7 @@ public class ImageInjectionIosTest {
         protected void succeeded(Description description) {
             try {
                 System.out.println("Test Passed!");
-                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+                driver.executeScript("sauce:job-result=passed");
             } catch (Exception ignored) {
             } finally {
                 driver.quit();

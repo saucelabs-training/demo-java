@@ -7,21 +7,20 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import static helpers.Constants.rdc;
 import static helpers.Constants.region;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BiometricLoginIosTest {
 
@@ -122,7 +121,7 @@ public class BiometricLoginIosTest {
         protected void failed(Throwable e, Description description) {
             try {
                 System.out.println("Test Failed!");
-                ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
+                driver.executeScript("sauce:job-result=failed");
             } catch (Exception ignored) {
             } finally {
                 driver.quit();
@@ -133,7 +132,7 @@ public class BiometricLoginIosTest {
         protected void succeeded(Description description) {
             try {
                 System.out.println("Test Passed!");
-                ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
+                driver.executeScript("sauce:job-result=passed");
             } catch (Exception ignored) {
             } finally {
                 driver.quit();
