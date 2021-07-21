@@ -24,4 +24,4 @@ jobs:
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-      run: mvn test -pl selenium-junit4-examples -Dtest=PerformanceExampleTests#simplePerformanceTest
+      run: mvn test -pl selenium-examples -Dtest=PerformanceTest

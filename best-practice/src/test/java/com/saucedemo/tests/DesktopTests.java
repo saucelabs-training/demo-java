@@ -2,10 +2,10 @@ package com.saucedemo.tests;
 
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductsPage;
-import com.saucedemo.WebTestsBase;
-import com.saucelabs.saucebindings.SauceOptions;
-import com.saucelabs.saucebindings.SauceSession;
-import org.junit.Before;
+import com.saucelabs.saucebindings.Browser;
+import com.saucelabs.saucebindings.SaucePlatform;
+import com.saucelabs.saucebindings.junit4.SauceBaseTest;
+import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -18,60 +18,56 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class DesktopTests extends WebTestsBase {
+public class DesktopTests extends SauceBaseTest {
     /*
      * Configure our data driven parameters
      * */
     @Parameterized.Parameter
-    public String browserName;
+    public Browser browserName;
     @Parameterized.Parameter(1)
     public String browserVersion;
     @Parameterized.Parameter(2)
-    public String platform;
+    public SaucePlatform platform;
 
     @Parameterized.Parameters()
     public static Collection<Object[]> crossBrowserData() {
         return Arrays.asList(new Object[][]{
-                {"chrome", "latest", "Windows 10"},
-                {"chrome", "latest-1", "Windows 10"},
-                {"safari", "latest", "macOS 10.14"},
-                {"chrome", "latest", "macOS 10.14"},
+                {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
                 // Duplication below for demo purposes of massive parallelization
-                {"chrome", "latest", "Windows 10"},
-                {"chrome", "latest-1", "Windows 10"},
-                {"safari", "latest", "macOS 10.14"},
-                {"chrome", "latest", "macOS 10.14"},
-                {"chrome", "latest", "Windows 10"},
-                {"chrome", "latest-1", "Windows 10"},
-                {"safari", "latest", "macOS 10.14"},
-                {"chrome", "latest", "macOS 10.14"},
-                {"chrome", "latest", "Windows 10"},
-                {"chrome", "latest-1", "Windows 10"},
-                {"safari", "latest", "macOS 10.14"},
-                {"chrome", "latest", "macOS 10.14"},
-                {"chrome", "latest", "Windows 10"},
-                {"chrome", "latest-1", "Windows 10"},
-                {"safari", "latest", "macOS 10.14"},
-                {"chrome", "latest", "macOS 10.14"},
-                {"chrome", "latest", "Windows 10"},
-                {"chrome", "latest-1", "Windows 10"},
-                {"safari", "latest", "macOS 10.14"},
-                {"chrome", "latest", "macOS 10.14"},
+                {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
         });
     }
 
-    @Before
-    public void setUp() {
+    @Override
+    public SauceOptions createSauceOptions() {
         SauceOptions sauceOptions = new SauceOptions();
-        sauceOptions.setCapability("browserName", browserName);
-        sauceOptions.setCapability("browserVersion", browserVersion);
-        sauceOptions.setCapability("platformName", platform);
-        sauceOptions.setName(testName.getMethodName());
-        sauceOptions.setBuild(buildName);
+        sauceOptions.setBrowserName(browserName);
+        sauceOptions.setBrowserVersion(browserVersion);
+        sauceOptions.setPlatformName(platform);
 
-        SauceSession session = new SauceSession(sauceOptions);
-        driver = session.start();
-        resultReportingTestWatcher.setDriver(driver);
+        return sauceOptions;
     }
 
     @Test()

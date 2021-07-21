@@ -28,7 +28,7 @@ public class SampleHeadlessSauceTest {
 
         driver.get("https://www.saucedemo.com");
         System.out.println("title of page is: " + driver.getTitle());
-        Assert.assertEquals(driver.getTitle(), "Swag Labs");
+        Assert.assertEquals("Swag Labs", driver.getTitle());
     }
 
     /* Sends results to SauceLabs.com */
