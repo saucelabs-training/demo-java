@@ -21,7 +21,14 @@ jobs:
       with:
         java-version: 1.8
     - name: Run tests
+      continue-on-error: true
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
       run: mvn test -pl best-practice -Dtest=DesktopTests
+    - name: Retry failed tests
+      continue-on-error: false
+      id: retry1
+      if: steps.test.outcome=='failure'         # check the step outcome, retry 1st time
+      run: |
+        mvn test -pl best-practice -Dtest=DesktopTests
