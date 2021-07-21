@@ -1,4 +1,4 @@
-package com.yourcompany.saucecucumberjvm;
+package com.saucedemo.selenium.cucumber;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;

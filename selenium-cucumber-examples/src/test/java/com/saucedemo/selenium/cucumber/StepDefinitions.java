@@ -1,4 +1,4 @@
-package com.yourcompany.saucecucumberjvm;
+package com.saucedemo.selenium.cucumber;
 
 import com.saucelabs.saucebindings.Browser;
 import com.saucelabs.saucebindings.SauceOptions;
