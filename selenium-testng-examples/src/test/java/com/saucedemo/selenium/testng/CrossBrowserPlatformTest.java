@@ -1,25 +1,14 @@
 package com.saucedemo.selenium.testng;
 
-import com.saucelabs.saucebindings.SauceOptions;
-import com.saucelabs.saucebindings.SauceSession;
-import org.openqa.selenium.WebDriver;
+import com.saucelabs.saucebindings.options.SauceOptions;
+import com.saucelabs.saucebindings.testng.SauceParameterizedBaseTest;
 import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class CrossBrowserPlatformTest {
-    protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    private ThreadLocal<SauceSession> session = new ThreadLocal<>();
-
-    private static String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-
+public class CrossBrowserPlatformTest extends SauceParameterizedBaseTest {
     /**
      * DataProvider that sets the browser combinations to be used.
      *
@@ -45,34 +34,24 @@ public class CrossBrowserPlatformTest {
         };
     }
 
-
-    @BeforeMethod
-    public void setup(Method method, Object[] parameters) {
+    @Override
+    protected SauceOptions createSauceOptions(Method method, Object[] parameters) {
         SauceOptions sauceOptions = new SauceOptions();
         sauceOptions.setCapability("browserName", parameters[0]);
         sauceOptions.setCapability("browserVersion", parameters[1]);
         sauceOptions.setCapability("platformName", parameters[2]);
-        sauceOptions.setName(method.getName());
-        sauceOptions.setBuild(buildName);
-
-        session.set(new SauceSession(sauceOptions));
-        driver.set(session.get().start());
+        return sauceOptions;
     }
 
     @Test(dataProvider = "sauceBrowsers")
     public void testCase1(String browser, String browserVersion, String platformName) {
-        driver.get().navigate().to("https://www.saucedemo.com");
-        Assert.assertEquals(driver.get().getTitle(), "Swag Labs");
+        getDriver().navigate().to("https://www.saucedemo.com");
+        Assert.assertEquals("Swag Labs", getDriver().getTitle());
     }
 
     @Test(dataProvider = "sauceBrowsers")
     public void testCase2(String browser, String browserVersion, String platformName) {
-        driver.get().navigate().to("https://www.saucedemo.com");
-        Assert.assertEquals(driver.get().getTitle(), "Swag Labs");
-    }
-
-    @AfterMethod
-    public void teardown(ITestResult result) {
-        session.get().stop(result.isSuccess());
+        getDriver().navigate().to("https://www.saucedemo.com");
+        Assert.assertEquals("Swag Labs", getDriver().getTitle());
     }
 }

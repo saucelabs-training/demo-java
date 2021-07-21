@@ -26,7 +26,7 @@ public class SauceBindingsTest {
     @Test
     public void correctTitle() {
         driver.navigate().to("https://www.saucedemo.com");
-        Assert.assertEquals(driver.getTitle(), "Swag Labs");
+        Assert.assertEquals("Swag Labs", driver.getTitle());
     }
 
     @AfterMethod

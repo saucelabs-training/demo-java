@@ -1,9 +1,9 @@
 package com.saucedemo.selenium.junit4;
 
 import com.saucelabs.saucebindings.Prerun;
-import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SaucePlatform;
 import com.saucelabs.saucebindings.SauceSession;
+import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -39,7 +39,6 @@ public class WindowsAuthentication {
     public void autoItScriptTest() {
         //Good AutoIt docs: https://support.saucelabs.com/hc/en-us/articles/360049978374-Sample-AutoIT-Example-to-Handle-Integrated-Windows-Authentication-Dialog-IWA-
         sauceOptions = new SauceOptions();
-        sauceOptions.setPlatformName(SaucePlatform.WINDOWS_10);
 
         Map<Prerun, Object> prerun = new HashMap<>();
         prerun.put(Prerun.EXECUTABLE, "sauce-storage:login.zip");
@@ -47,7 +46,7 @@ public class WindowsAuthentication {
         prerun.put(Prerun.ARGS, "-a");
         prerun.put(Prerun.ARGS, "-q");
         prerun.put(Prerun.BACKGROUND, true);
-        sauceOptions.setPrerun(prerun);
+        sauceOptions.sauce().setPrerun(prerun);
 
         session = new SauceSession(sauceOptions);
         RemoteWebDriver driver = session.start();

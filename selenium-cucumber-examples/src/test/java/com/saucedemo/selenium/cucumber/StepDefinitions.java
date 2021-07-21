@@ -1,9 +1,9 @@
 package com.saucedemo.selenium.cucumber;
 
 import com.saucelabs.saucebindings.Browser;
-import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SaucePlatform;
 import com.saucelabs.saucebindings.SauceSession;
+import com.saucelabs.saucebindings.options.SauceOptions;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -37,10 +37,10 @@ public class StepDefinitions {
     @Before
     public void setUp(Scenario scenario) {
         options.set(new SauceOptions());
-        options.get().setName(scenario.getName());
+        options.get().sauce().setName(scenario.getName());
 
         if (System.getenv("START_TIME") != null) {
-            options.get().setBuild("Build Time: " + System.getenv("START_TIME"));
+            options.get().sauce().setBuild("Build Time: " + System.getenv("START_TIME"));
         }
 
         String platform;

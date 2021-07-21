@@ -8,6 +8,6 @@ public class SauceBindingsTestngTest extends SauceBaseTest {
     @Test
     public void correctTitle() {
         getDriver().navigate().to("https://www.saucedemo.com");
-        Assert.assertEquals(getDriver().getTitle(), "Swag Labs");
+        Assert.assertEquals("Swag Labs", getDriver().getTitle());
     }
 }
