@@ -17,9 +17,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.saucelabs</groupId>
-            <artifactId>saucebindings-junit5</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.0-M1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
