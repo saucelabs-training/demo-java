@@ -1,4 +1,4 @@
-package com.saucedemo.junit5;
+package com.saucedemo.selenium.junit5;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import org.junit.jupiter.api.Assertions;

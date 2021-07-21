@@ -1,4 +1,4 @@
-package com.saucedemo;
+package com.saucedemo.selenium.junit4;
 
 import org.junit.After;
 import org.junit.Test;

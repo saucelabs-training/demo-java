@@ -1,7 +1,7 @@
 package com.saucedemo.tests;
 
-import com.pages.LoginPage;
-import com.pages.ProductsPage;
+import com.saucedemo.pages.LoginPage;
+import com.saucedemo.pages.ProductsPage;
 import com.saucedemo.Endpoints;
 import com.saucedemo.TestBase;
 import io.appium.java_client.AppiumDriver;
