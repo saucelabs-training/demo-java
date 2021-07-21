@@ -65,6 +65,8 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         visualOptions.setCapability("apiKey", screenerApiKey);
         visualOptions.setCapability("projectName", "Sauce Demo Java");
         visualOptions.setCapability("viewportSize", viewportSize);
+        visualOptions.setCapability("failOnNewStates", false);
+
         browserOptions.setCapability("sauce:visual", visualOptions);
 
         URL url = Endpoints.getScreenerHub();
