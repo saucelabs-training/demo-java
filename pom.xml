@@ -13,8 +13,9 @@
         <selenium.version>3.141.59</selenium.version>
         <sauce.version>1.2.0</sauce.version>
         <sauce_junit5.version>1.0.0</sauce_junit5.version>
+        <sauce_junit4.version>1.0.1</sauce_junit4.version>
         <appium.version>7.3.0</appium.version>
-        <maven.surefire.version>3.0.0-M4</maven.surefire.version>
+        <maven.surefire.version>3.0.0-M5</maven.surefire.version>
     </properties>
 
     <modules>
@@ -31,18 +32,6 @@
         <module>selenium-cucumber-examples</module>
     </modules>
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.saucelabs</groupId>
-            <artifactId>saucebindings-junit5</artifactId>
-            <version>${sauce_junit5.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce_bindings</artifactId>
@@ -88,17 +77,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.version}</version>
-                <configuration>
-                    <parallel>classes</parallel>
-                    <threadCountMethods>100</threadCountMethods>
-                    <useUnlimitedThreads>true</useUnlimitedThreads>
-                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
             </plugin>
         </plugins>

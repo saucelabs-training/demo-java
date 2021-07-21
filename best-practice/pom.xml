@@ -12,9 +12,10 @@
     <artifactId>best-practice</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>saucebindings-junit4</artifactId>
+            <version>${sauce_junit4.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -31,6 +32,7 @@
                 <configuration>
                     <parallel>all</parallel>
                     <threadCountMethods>100</threadCountMethods>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>
             </plugin>

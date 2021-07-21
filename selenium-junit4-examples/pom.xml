@@ -16,6 +16,14 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>saucebindings-junit4</artifactId>
+            <version>${sauce_junit4.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
