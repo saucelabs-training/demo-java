@@ -1,4 +1,4 @@
-package com.saucedemo;
+package com.saucedemo.selenium.junit4;
 
 import com.saucelabs.saucebindings.Prerun;
 import com.saucelabs.saucebindings.SauceOptions;

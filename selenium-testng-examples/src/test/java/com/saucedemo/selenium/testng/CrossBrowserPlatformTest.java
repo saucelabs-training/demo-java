@@ -1,4 +1,4 @@
-package com.saucedemo;
+package com.saucedemo.selenium.testng;
 
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;

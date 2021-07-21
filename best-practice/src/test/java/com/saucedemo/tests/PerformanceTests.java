@@ -1,6 +1,6 @@
 package com.saucedemo.tests;
 
-import com.pages.LoginPage;
+import com.saucedemo.pages.LoginPage;
 import com.saucedemo.WebTestsBase;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;

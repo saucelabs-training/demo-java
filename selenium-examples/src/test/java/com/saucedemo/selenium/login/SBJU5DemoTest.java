@@ -1,4 +1,4 @@
-package com.saucedemo.login;
+package com.saucedemo.selenium.login;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import org.junit.jupiter.api.Assertions;

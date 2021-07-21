@@ -1,9 +1,9 @@
 package com.saucedemo.tests;
 
-import com.pages.CheckoutStepOnePage;
-import com.pages.LoginPage;
-import com.pages.ProductsPage;
-import com.pages.ShoppingCartPage;
+import com.saucedemo.pages.CheckoutStepOnePage;
+import com.saucedemo.pages.LoginPage;
+import com.saucedemo.pages.ProductsPage;
+import com.saucedemo.pages.ShoppingCartPage;
 import com.saucedemo.Endpoints;
 import com.saucedemo.WebTestsBase;
 import org.junit.After;

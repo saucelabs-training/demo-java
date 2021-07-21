@@ -1,5 +1,7 @@
-package com.saucedemo.junit5;
+package com.saucedemo.selenium.junit5;
 
+import com.saucelabs.saucebindings.SauceSession;
+import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,14 +10,10 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
-import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-public class W3CExampleTest {
+public class SauceBindingsTest {
+    private SauceSession session;
     protected RemoteWebDriver driver;
 
     /**
@@ -27,26 +25,19 @@ public class W3CExampleTest {
     public SauceTestWatcher watcher = new SauceTestWatcher();
 
     @BeforeEach
-    public void setup(TestInfo testInfo) throws MalformedURLException {
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOptions.setCapability("access_key", System.getenv("SAUCE_ACCESS_KEY"));
-        sauceOptions.setCapability("name", testInfo.getDisplayName());
-        sauceOptions.setCapability("browserVersion", "latest");
-
-        ChromeOptions options = new ChromeOptions();
-        options.setCapability("sauce:options", sauceOptions);
-        URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
-
-        driver = new RemoteWebDriver(url, options);
+    public void setup(TestInfo testInfo) {
+        SauceOptions sauceOptions = SauceOptions.chrome()
+                .setName(testInfo.getDisplayName()).build();
+        session = new SauceSession(sauceOptions);
+        driver = session.start();
     }
 
     /**
      * @DisplayName is a JUnit 5 annotation that defines test case name.
      */
-    @DisplayName("W3C example with JUnit5")
+    @DisplayName("Sauce Bindings example with JUnit5")
     @Test
-    public void w3cExampleWithJUnit5() throws AssertionError {
+    public void SauceBindingsWithJUnit5Test() throws AssertionError {
         driver.navigate().to("https://www.saucedemo.com");
         Assertions.assertEquals("Swag Labs", driver.getTitle());
     }
@@ -54,14 +45,12 @@ public class W3CExampleTest {
     public class SauceTestWatcher implements TestWatcher {
         @Override
         public void testSuccessful(ExtensionContext context) {
-            driver.executeScript("sauce:job-result=passed");
-            driver.quit();
+            session.stop(true);
         }
 
         @Override
         public void testFailed(ExtensionContext context, Throwable cause) {
-            driver.executeScript("sauce:job-result=failed");
-            driver.quit();
+            session.stop(false);
         }
     }
 }

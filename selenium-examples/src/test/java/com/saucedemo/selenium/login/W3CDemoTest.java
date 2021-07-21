@@ -1,4 +1,4 @@
-package com.saucedemo.login;
+package com.saucedemo.selenium.login;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

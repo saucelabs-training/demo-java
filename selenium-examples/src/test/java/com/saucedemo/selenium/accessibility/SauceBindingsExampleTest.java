@@ -1,4 +1,4 @@
-package com.saucedemo.accessibility;
+package com.saucedemo.selenium.accessibility;
 
 import com.deque.html.axecore.results.Results;
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
