@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import static org.junit.Assert.assertEquals;
 
 public class SauceConnectTest {
-    protected WebDriver driver;
+    protected RemoteWebDriver driver;
     private SauceSession session;
 
     @Test

@@ -8,8 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +40,7 @@ public class PerformanceExampleTests {
         sauceOptions.setName(testName.getMethodName());
 
         session = new SauceSession(sauceOptions);
-        WebDriver driver = session.start();
+        RemoteWebDriver driver = session.start();
         driver.get("https://www.saucedemo.com");
     }
 
@@ -57,10 +56,10 @@ public class PerformanceExampleTests {
 
         HashMap<String, Object> metrics = new HashMap<>();
         metrics.put("type", "sauce:performance");
-        WebDriver driver = session.start();
+        RemoteWebDriver driver = session.start();
         driver.get("https://www.saucedemo.com");
 
-        Map<String, Object> perfMetrics = (Map<String, Object>) ((JavascriptExecutor)driver).executeScript("sauce:log", metrics);
+        Map<String, Object> perfMetrics = (Map<String, Object>) driver.executeScript("sauce:log", metrics);
         Integer loadTime = Integer.parseInt(perfMetrics.get("load").toString());
         Assert.assertTrue(loadTime < 1500);
     }
@@ -75,14 +74,13 @@ public class PerformanceExampleTests {
         sauceOptions.setName(testName.getMethodName());
         session = new SauceSession(sauceOptions);
 
-        WebDriver driver = session.start();
+        RemoteWebDriver driver = session.start();
         //We disable sauce performance until we reach the desired page
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("sauce:performanceDisable");
+        driver.executeScript("sauce:performanceDisable");
         driver.get("https://www.saucedemo.com");
 
         //Enable performance check before navigating to the page we actually want to test
-        js.executeScript("sauce:performanceEnable");
+        driver.executeScript("sauce:performanceEnable");
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
