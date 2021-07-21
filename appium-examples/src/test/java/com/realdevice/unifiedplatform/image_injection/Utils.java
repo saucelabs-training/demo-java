@@ -3,7 +3,6 @@ package com.realdevice.unifiedplatform.image_injection;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.JavascriptExecutor;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,7 +50,7 @@ public class Utils {
         params.put("bundleId", bundleId);
 
         // App state: 0 is not installed. 1 is not running. 2 is running in background or suspended. 3 is running in background. 4 is running in foreground. (number)
-        long res = (long) ((JavascriptExecutor) driver).executeScript("mobile:queryAppState", params);
+        long res = (long) driver.executeScript("mobile:queryAppState", params);
 
         System.out.println("Sauce. iOS App state for bundleId " + bundleId + " is " + res );
         return res;

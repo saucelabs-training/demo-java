@@ -18,7 +18,7 @@ public class LocalExecutionTest {
         WebDriverManager.chromedriver().setup();
 
         // Start session (opens browser)
-        WebDriver driver = new ChromeDriver();
+        RemoteWebDriver driver = new ChromeDriver();
 
         // Quit session (closes browser)
         driver.quit();

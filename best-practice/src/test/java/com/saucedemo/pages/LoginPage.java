@@ -1,15 +1,15 @@
 package com.saucedemo.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginPage extends BasePage {
-    public LoginPage(WebDriver driver) {
+    public LoginPage(RemoteWebDriver driver) {
         super(driver);
     }
 
@@ -40,7 +40,7 @@ public class LoginPage extends BasePage {
     public Integer getPageLoadTime() {
         HashMap<String, Object> metrics = new HashMap<>();
         metrics.put("type", "sauce:performance");
-        Map<String, Object> perfMetrics = (Map<String, Object>) js.executeScript("sauce:log", metrics);
+        Map<String, Object> perfMetrics = (Map<String, Object>) driver.executeScript("sauce:log", metrics);
         Integer loadTime = Integer.parseInt(perfMetrics.get("load").toString());
         return loadTime;
     }

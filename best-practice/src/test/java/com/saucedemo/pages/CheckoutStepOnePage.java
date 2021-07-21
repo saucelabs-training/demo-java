@@ -1,9 +1,9 @@
 package com.saucedemo.pages;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class CheckoutStepOnePage extends BasePage{
-    public CheckoutStepOnePage(WebDriver driver) {
+    public CheckoutStepOnePage(RemoteWebDriver driver) {
         super(driver);
     }
 

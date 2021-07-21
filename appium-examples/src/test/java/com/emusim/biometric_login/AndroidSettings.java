@@ -2,7 +2,6 @@ package com.emusim.biometric_login;
 
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -47,7 +46,7 @@ public class AndroidSettings {
     private void executeAdbCommand(String adbCommand) {
         Map<String, Object> params = new HashMap<>();
         params.put("command", adbCommand);
-        ((JavascriptExecutor) driver).executeScript("mobile: shell", params);
+        driver.executeScript("mobile: shell", params);
     }
 
     public void waitAndClick(String text){

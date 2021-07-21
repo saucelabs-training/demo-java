@@ -1,17 +1,15 @@
 package com.saucedemo.pages;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class BasePage {
-    public WebDriver driver;
-    JavascriptExecutor js;
+    public RemoteWebDriver driver;
 
-    public BasePage(WebDriver driver) {
+    public BasePage(RemoteWebDriver driver) {
         this.driver = driver;
-        js = (JavascriptExecutor) driver;
     }
     public void takeSnapshot() {
-        js.executeScript("/*@visual.snapshot*/",this.getClass().getSimpleName());
+        driver.executeScript("/*@visual.snapshot*/",this.getClass().getSimpleName());
     }
 
     public void visit() {

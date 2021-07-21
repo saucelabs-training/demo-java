@@ -2,7 +2,6 @@ package Tests;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -27,26 +26,24 @@ public class LocatorSauceTest extends SauceTestBase {
     @Test
     public void relativeLocatorsGood() throws InterruptedException {
         // https://github.com/diemol/selenium-4-demo
-        JavascriptExecutor jsExecutor = driver;
-
         driver.manage().window().maximize();
         driver.get("https://www.diemol.com/selenium-4-demo/relative-locators-demo.html");
 
         WebElement element = driver.findElement(withTagName("li")
                 .toLeftOf(By.id("boston"))
                 .below(By.id("warsaw")));
-        blur(jsExecutor, element);
-        unblur(jsExecutor, element);
+        blur(driver, element);
+        unblur(driver, element);
     }
 
-    public void blur(JavascriptExecutor jsExecutor, WebElement webElement) throws InterruptedException {
-        jsExecutor.executeScript("arguments[0].style.filter='blur(8px)'", webElement);
+    public void blur(RemoteWebDriver driver, WebElement webElement) throws InterruptedException {
+        driver.executeScript("arguments[0].style.filter='blur(8px)'", webElement);
         // Thread.sleep only meant for demo purposes!
         Thread.sleep(5000);
     }
 
-    public void unblur(JavascriptExecutor jsExecutor, WebElement webElement) throws InterruptedException {
-        jsExecutor.executeScript("arguments[0].style.filter='blur(0px)'", webElement);
+    public void unblur(RemoteWebDriver driver, WebElement webElement) throws InterruptedException {
+        driver.executeScript("arguments[0].style.filter='blur(0px)'", webElement);
         // Thread.sleep only meant for demo purposes!
         Thread.sleep(5000);
     }
