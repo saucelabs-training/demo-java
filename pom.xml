@@ -14,22 +14,19 @@
         <sauce.version>1.2.0</sauce.version>
         <sauce_junit5.version>1.0.0</sauce_junit5.version>
         <sauce_junit4.version>1.0.1</sauce_junit4.version>
+        <sauce_testng.version>1.0.0</sauce_testng.version>
         <appium.version>7.3.0</appium.version>
         <maven.surefire.version>3.0.0-M5</maven.surefire.version>
     </properties>
 
     <modules>
         <module>best-practice</module>
-        <module>common</module>
         <module>appium-examples</module>
-        <module>w3c-examples/w3c-junit5</module>
-        <module>w3c-examples/w3c-testng</module>
         <module>appium-junit4-cucumber-examples</module>
-        <module>selenium-testng-best-practice</module>
-        <module>selenium-testng-examples</module>
-        <module>selenium-junit4-examples</module>
-        <module>selenium-examples</module>
         <module>selenium-cucumber-examples</module>
+        <module>selenium-examples</module>
+        <module>selenium-junit4-examples</module>
+        <module>selenium-testng-examples</module>
     </modules>
     <dependencies>
         <dependency>
@@ -38,27 +35,10 @@
             <version>${sauce.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>${selenium.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
         </dependency>
         <dependency>
             <groupId>io.appium</groupId>

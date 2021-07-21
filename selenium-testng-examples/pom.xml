@@ -10,19 +10,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>selenium-testng-examples</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>saucebindings-testng</artifactId>
-            <version>1.0.0</version>
+            <version>${sauce_testng.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
 
     <build>
         <plugins>
