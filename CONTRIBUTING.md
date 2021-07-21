@@ -69,22 +69,29 @@ Specific Structure With Examples
             |-- test
                 |-- java
                     |-- com.saucedemo
-                        |-- VisualTests.java
-                        |-- PerformanceTests.java
-                        |-- FunctionalWebTests.java
-                        |-- MobileWebTests.java
-                        |-- ...
+                        |--pages
+                            |--BasePage.java
+                            |--LoginPage.java
+                            |-- ...
+                        |--tests
+                            |--DesktopTests.java
+                            |--PerformanceTests.java
+                            |--RealDeviceWebTests.java
+                            |-- ...
     |-- best-practice-mobile-native
     |-- selenium-examples (Java module)
         |-- src
-            |-- main
             |-- test
                 |-- java
                     |-- com.saucedemo.selenium
-                        |-- Junit4InParallelTests.java
-                        |-- Junit4TestStatusUpdate.java
-                        |-- Junit4DataDriven.java
-                        |-- PerformanceTesting.java
+                        |-- accessibility
+                            |-- ...
+                        |-- demo
+                            |-SaucebindingsJunitTest.java
+                            |-SeleniumTest.java
+                        |-- login
+                            |-- ...
+                        |-- PerformanceTest.java
     |-- selenium-cucumber-examples (Java module)
         |-- ...
     |-- appium-examples (Java module)
