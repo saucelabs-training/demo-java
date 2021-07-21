@@ -12,9 +12,9 @@
     <artifactId>selenium-testng-examples</artifactId>
     <dependencies>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.3.0</version>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>saucebindings-testng</artifactId>
+            <version>1.0.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
