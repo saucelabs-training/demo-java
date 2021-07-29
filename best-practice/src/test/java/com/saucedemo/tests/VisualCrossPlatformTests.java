@@ -63,7 +63,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
 
         MutableCapabilities visualOptions = new MutableCapabilities();
         visualOptions.setCapability("apiKey", screenerApiKey);
-        visualOptions.setCapability("projectName", "Sauce Demo Java 2");
+        visualOptions.setCapability("projectName", "Sauce Demo Java");
         visualOptions.setCapability("viewportSize", viewportSize);
         visualOptions.setCapability("failOnNewStates", false);
 
