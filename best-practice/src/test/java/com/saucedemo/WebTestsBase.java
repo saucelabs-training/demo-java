@@ -7,11 +7,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 public class WebTestsBase extends TestBase {
     public RemoteWebDriver driver;
 
-    public WebDriver getDriver() {
+    public RemoteWebDriver getDriver() {
         return driver;
-    }
-
-    public JavascriptExecutor getJSExecutor() {
-        return (JavascriptExecutor) getDriver();
     }
 }

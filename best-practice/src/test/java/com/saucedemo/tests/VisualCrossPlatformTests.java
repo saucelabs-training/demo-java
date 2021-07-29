@@ -63,7 +63,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
 
         MutableCapabilities visualOptions = new MutableCapabilities();
         visualOptions.setCapability("apiKey", screenerApiKey);
-        visualOptions.setCapability("projectName", "Sauce Demo Java");
+        visualOptions.setCapability("projectName", "Sauce Demo Java 2");
         visualOptions.setCapability("viewportSize", viewportSize);
         visualOptions.setCapability("failOnNewStates", false);
 
@@ -72,18 +72,12 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         URL url = Endpoints.getScreenerHub();
         driver = new RemoteWebDriver(url, browserOptions);
     }
-    @After
-    public void afterEach()
-    {
-        Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
-        assertNull(response.get("message"));
-    }
 
     @Test()
     public void visualFlow() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
-        getJSExecutor().executeScript("/*@visual.init*/", deviceName);
+        getDriver().executeScript("/*@visual.init*/", deviceName);
         loginPage.takeSnapshot();
 
         loginPage.login("standard_user");
@@ -96,5 +90,11 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         CheckoutStepOnePage stepOneCheckoutPage = new CheckoutStepOnePage(driver);
         stepOneCheckoutPage.visit();
         stepOneCheckoutPage.takeSnapshot();
+
+        if(getDriver() == null){
+            return;
+        }
+        Map<String, Object> response = (Map<String, Object>) getDriver().executeScript("/*@visual.end*/");
+        assertNull(response.get("message"));
     }
 }
