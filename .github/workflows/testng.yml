@@ -5,9 +5,18 @@ name: TestNg Tests
 
 on:
   push:
+    # Only trigger if files in this path changed
+    paths:
+      - 'selenium-testng-examples/**'
+      # Don't run on Markdown changes
+      - '!**.md'
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    # Only trigger if files in this path changed
+    paths:
+      - 'selenium-testng-examples/**'
+      # Don't run on Markdown changes
+      - '!**.md'
 
 jobs:
   build:

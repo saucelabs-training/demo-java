@@ -5,9 +5,18 @@ name: Visual E2E Tests
 
 on:
   push:
+    # Only trigger if files in this path changed
+    paths:
+      - 'best-practice/**'
+      # Don't run on Markdown changes
+      - '!**.md'
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    # Only trigger if files in this path changed
+    paths:
+      - 'best-practice/**'
+      # Don't run on Markdown changes
+      - '!**.md'
 
 jobs:
   build:
