@@ -14,50 +14,43 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class SimpleVisualE2ETest {
+public class VisualE2ETests {
 
-    protected WebDriver webDriver;
+    protected RemoteWebDriver webDriver;
     public String sauceUsername = System.getenv("SAUCE_USERNAME");
     public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
     public String screenerApiKey = System.getenv("SCREENER_API_KEY");
-    private MutableCapabilities capabilities;
-
-    public JavascriptExecutor getJsExecutor()
-    {
-        return (JavascriptExecutor) webDriver;
-    }
+    private MutableCapabilities browserOptions;
 
     @Before
     public void setUp() {
-        capabilities = new MutableCapabilities();
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-        capabilities.setCapability(CapabilityType.BROWSER_VERSION, "latest");
-        capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Windows 10");
+        browserOptions = new MutableCapabilities();
+        browserOptions.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+        browserOptions.setCapability(CapabilityType.BROWSER_VERSION, "latest");
+        browserOptions.setCapability(CapabilityType.PLATFORM_NAME, "Windows 10");
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", sauceUsername);
         sauceOptions.setCapability("accesskey", sauceAccessKey);
-        capabilities.setCapability("sauce:options", sauceOptions);
+        browserOptions.setCapability("sauce:options", sauceOptions);
     }
 
     @Test
     public void testVisualE2E() throws MalformedURLException {
         MutableCapabilities visualOptions = new MutableCapabilities();
         visualOptions.setCapability("apiKey", screenerApiKey);
-        visualOptions.setCapability("projectName", "visual-e2e-test");
+        visualOptions.setCapability("projectName", "Visual Demo Java");
         visualOptions.setCapability("viewportSize", "1280x1024");
-        capabilities.setCapability("sauce:visual", visualOptions);
+        browserOptions.setCapability("sauce:visual", visualOptions);
 
         URL url = new URL("https://hub.screener.io/wd/hub");
-        webDriver = new RemoteWebDriver(url, capabilities);
+        webDriver = new RemoteWebDriver(url, browserOptions);
 
         webDriver.get("https://screener.io");
 
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("/*@visual.init*/", "My Visual Test 2");
-        js.executeScript("/*@visual.snapshot*/", "Home");
-        Map<String, Object> response = (Map<String, Object>) js.executeScript("/*@visual.end*/");
-        assertNull(response.get("message").toString());
+        webDriver.executeScript("/*@visual.init*/", "My Visual Test 2");
+        webDriver.executeScript("/*@visual.snapshot*/", "Home");
+        assertNoVisualDifferences();
     }
 
     @Test
@@ -74,16 +67,16 @@ public class SimpleVisualE2ETest {
         visualOptions.setCapability("branch", "main");
         visualOptions.setCapability("baseBranch", "main");
         visualOptions.setCapability("alwaysAcceptBaseBranch", true);
-        capabilities.setCapability("sauce:visual", visualOptions);
+        browserOptions.setCapability("sauce:visual", visualOptions);
 
         URL url = new URL("https://hub.screener.io/wd/hub");
-        webDriver = new RemoteWebDriver(url, capabilities);
+        webDriver = new RemoteWebDriver(url, browserOptions);
 
         webDriver.get("https://www.saucedemo.com");
 
         // Capture a snapshot of a page on the main branch
-        getJsExecutor().executeScript("/*@visual.init*/", "My Visual Test");
-        getJsExecutor().executeScript("/*@visual.snapshot*/", "Branch Compare");
+        webDriver.executeScript("/*@visual.init*/", "My Visual Test");
+        webDriver.executeScript("/*@visual.snapshot*/", "Branch Compare");
         assertNoVisualDifferences();
 
         //Capture a snapshot on a different branch
@@ -93,20 +86,20 @@ public class SimpleVisualE2ETest {
         visualOptions.setCapability("viewportSize", "1280x1024");
         visualOptions.setCapability("branch", "newBranch");
         visualOptions.setCapability("baseBranch", "main");
-        capabilities.setCapability("sauce:visual", visualOptions);
+        browserOptions.setCapability("sauce:visual", visualOptions);
 
         url = new URL("https://hub.screener.io/wd/hub");
-        webDriver = new RemoteWebDriver(url, capabilities);
+        webDriver = new RemoteWebDriver(url, browserOptions);
         webDriver.get("https://www.screener.io");
 
         // Capture a snapshot of a page on the main branch
-        getJsExecutor().executeScript("/*@visual.init*/", "My Visual Test");
-        getJsExecutor().executeScript("/*@visual.snapshot*/", "Branch Compare");
+        webDriver.executeScript("/*@visual.init*/", "My Visual Test");
+        webDriver.executeScript("/*@visual.snapshot*/", "Branch Compare");
         assertNoVisualDifferences();
     }
 
     private void assertNoVisualDifferences() {
-        Map<String, Object> response = (Map<String, Object>) getJsExecutor().executeScript("/*@visual.end*/");
+        Map<String, Object> response = (Map<String, Object>) webDriver.executeScript("/*@visual.end*/");
         if(response.get("message") != null){
             assertNull(response.get("message").toString());
         }
