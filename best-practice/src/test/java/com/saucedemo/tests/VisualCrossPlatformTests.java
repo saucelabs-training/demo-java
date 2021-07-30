@@ -58,7 +58,6 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", sauceUsername);
         sauceOptions.setCapability("accesskey", sauceAccessKey);
-        sauceOptions.setCapability("build", buildName);
         browserOptions.setCapability("sauce:options", sauceOptions);
 
         MutableCapabilities visualOptions = new MutableCapabilities();
@@ -77,7 +76,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     public void visualFlow() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
-        getDriver().executeScript("/*@visual.init*/", deviceName);
+        driver.executeScript("/*@visual.init*/", deviceName);
         loginPage.takeSnapshot();
 
         loginPage.login("standard_user");
@@ -91,10 +90,10 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         stepOneCheckoutPage.visit();
         stepOneCheckoutPage.takeSnapshot();
 
-        if(getDriver() == null){
+        if(driver == null){
             return;
         }
-        Map<String, Object> response = (Map<String, Object>) getDriver().executeScript("/*@visual.end*/");
+        Map<String, Object> response = (Map<String, Object>) driver.executeScript("/*@visual.end*/");
         assertNull(response.get("message"));
     }
 }
