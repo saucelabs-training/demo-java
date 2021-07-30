@@ -90,7 +90,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         stepOneCheckoutPage.visit();
         stepOneCheckoutPage.takeSnapshot();
 
-        if(driver == null){
+        if (driver == null) {
             return;
         }
         final Map<String, Object> response =
