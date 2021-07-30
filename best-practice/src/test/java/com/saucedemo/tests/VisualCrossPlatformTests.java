@@ -39,12 +39,14 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     @Parameterized.Parameter(4)
     public String deviceName;
 
-    @Parameterized.Parameters(name = "{4}")
+    @Parameterized.Parameters()
     public static Collection<Object[]> crossBrowserData() {
         return Arrays.asList(new Object[][]{
                 {"Chrome", "Windows 10", "latest", "412x732", "Pixel XL"},
                 {"Chrome", "Windows 10", "latest", "412x869", "Galaxy Note 10+"},
-                {"Safari", "macOS 10.15", "latest", "375x812", "iPhone X"}
+                {"Safari", "macOS 10.15", "latest", "375x812", "iPhone X"},
+                {"Chrome", "Windows 10", "latest", "1080x720", "1080p"},
+                {"Safari", "macOS 10.15", "latest", "1080x720", "1080p"}
         });
     }
 
@@ -77,7 +79,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     public void visualFlow() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
-        getDriver().executeScript("/*@visual.init*/", deviceName);
+        getJSExecutor().executeScript("/*@visual.init*/", deviceName);
         loginPage.takeSnapshot();
 
         loginPage.login("standard_user");
@@ -91,10 +93,7 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         stepOneCheckoutPage.visit();
         stepOneCheckoutPage.takeSnapshot();
 
-        if(getDriver() == null){
-            return;
-        }
-        Map<String, Object> response = (Map<String, Object>) getDriver().executeScript("/*@visual.end*/");
+        Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
         assertNull(response.get("message"));
     }
 }
