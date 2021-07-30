@@ -16,11 +16,13 @@ import static org.junit.Assert.*;
 
 public class VisualE2ETests {
 
-    protected RemoteWebDriver webDriver;
+    private RemoteWebDriver webDriver;
     public String sauceUsername = System.getenv("SAUCE_USERNAME");
     public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
     public String screenerApiKey = System.getenv("SCREENER_API_KEY");
     private MutableCapabilities browserOptions;
+
+    public VisualE2ETests(){}
 
     @Before
     public void setUp() {
@@ -99,7 +101,8 @@ public class VisualE2ETests {
     }
 
     private void assertNoVisualDifferences() {
-        Map<String, Object> response = (Map<String, Object>) webDriver.executeScript("/*@visual.end*/");
+        final Map<String, Object> response =
+                (Map<String, Object>) webDriver.executeScript("/*@visual.end*/");
         if(response.get("message") != null){
             assertNull(response.get("message").toString());
         }

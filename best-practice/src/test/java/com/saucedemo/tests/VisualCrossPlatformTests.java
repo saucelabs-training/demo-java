@@ -93,7 +93,8 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         if(driver == null){
             return;
         }
-        Map<String, Object> response = (Map<String, Object>) driver.executeScript("/*@visual.end*/");
+        final Map<String, Object> response =
+                (Map<String, Object>) driver.executeScript("/*@visual.end*/");
         assertNull(response.get("message"));
     }
 }
