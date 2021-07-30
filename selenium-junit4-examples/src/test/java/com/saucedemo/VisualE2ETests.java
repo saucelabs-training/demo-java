@@ -53,12 +53,13 @@ public class VisualE2ETests {
 
     @Test
     public void visualBaselineBranching() throws MalformedURLException {
-        //*
-        // This example shows how a team might have a baseline snapshot in Prod
-        // that is compared against a snapshot in QA
-        // However, this is not a very useful or realistic scenario
-        // as we can simply capture 1 baseline and test that against other envs
-        // **/
+
+        /*
+        * This example shows how a team might have a baseline snapshot in Prod
+         that is compared against a snapshot in QA
+         However, this is not a very useful or realistic scenario
+         as we can simply capture 1 baseline and test that against other envs
+        * */
         String projectName = "visual-examples-java";
         MutableCapabilities visualOptions = new MutableCapabilities();
         visualOptions.setCapability("apiKey", screenerApiKey);
