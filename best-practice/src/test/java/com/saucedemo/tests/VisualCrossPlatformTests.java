@@ -6,7 +6,6 @@ import com.pages.ProductsPage;
 import com.pages.ShoppingCartPage;
 import com.saucedemo.Endpoints;
 import com.saucedemo.WebTestsBase;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,10 +42,10 @@ public class VisualCrossPlatformTests extends WebTestsBase {
     public static Collection<Object[]> crossBrowserData() {
         return Arrays.asList(new Object[][]{
                 {"Chrome", "Windows 10", "latest", "412x732", "Pixel XL"},
-                {"Chrome", "Windows 10", "latest", "412x869", "Galaxy Note 10+"},
-                {"Safari", "macOS 10.15", "latest", "375x812", "iPhone X"},
-                {"Chrome", "Windows 10", "latest", "1080x720", "1080p"},
-                {"Safari", "macOS 10.15", "latest", "1080x720", "1080p"}
+//                {"Chrome", "Windows 10", "latest", "412x869", "Galaxy Note 10+"},
+//                {"Safari", "macOS 10.15", "latest", "375x812", "iPhone X"},
+//                {"Chrome", "Windows 10", "latest", "1080x720", "1080p"},
+//                {"Safari", "macOS 10.15", "latest", "1080x720", "1080p"}
         });
     }
 
@@ -60,12 +59,11 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", sauceUsername);
         sauceOptions.setCapability("accesskey", sauceAccessKey);
-        sauceOptions.setCapability("build", buildName);
         browserOptions.setCapability("sauce:options", sauceOptions);
 
         MutableCapabilities visualOptions = new MutableCapabilities();
         visualOptions.setCapability("apiKey", screenerApiKey);
-        visualOptions.setCapability("projectName", "Sauce Demo Java 2");
+        visualOptions.setCapability("projectName", "Sauce Demo Java");
         visualOptions.setCapability("viewportSize", viewportSize);
         visualOptions.setCapability("failOnNewStates", false);
 
@@ -93,7 +91,11 @@ public class VisualCrossPlatformTests extends WebTestsBase {
         stepOneCheckoutPage.visit();
         stepOneCheckoutPage.takeSnapshot();
 
-        Map<String, Object> response = (Map<String, Object>) getJSExecutor().executeScript("/*@visual.end*/");
+        if (getJSExecutor() == null) {
+            return;
+        }
+        final Map<String, Object> response =
+                (Map<String, Object>) driver.executeScript("/*@visual.end*/");
         assertNull(response.get("message"));
     }
 }

@@ -5,9 +5,18 @@ name: Visual E2E Tests
 
 on:
   push:
+    # Only trigger if files in this path changed
+    paths:
+      - 'best-practice/**'
+      # Don't run on Markdown changes
+      - '!**.md'
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    # Only trigger if files in this path changed
+    paths:
+      - 'best-practice/**'
+      # Don't run on Markdown changes
+      - '!**.md'
 
 jobs:
   build:
@@ -25,4 +34,4 @@ jobs:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
         SCREENER_API_KEY: ${{ secrets.SCREENER_API_KEY }}
-      run: mvn test -pl best-practice -Dtest=Visual*
+      run: mvn test -pl best-practice -Dtest=Visual* -X

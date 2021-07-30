@@ -56,15 +56,6 @@ public class JUnit4Test {
         Assert.assertEquals(driver.getTitle(), "Swag Labs");
     }
 
-    /**
-     * @After is a JUnit4 annotation that defines any postrequisite test method tasks .
-     * In the example below we:
-     * - Pass the ITestResult class results to a parameter called 'result'
-     * - Use the JavascriptExecutor class to send our test 'result' to Sauce Labs with a "passed" flag
-     * if the test was successful, or a "failed" flag if the test was unsuccessful.
-     * - Teardown the RemoteWebDriver session with a 'driver.quit()' command so that the test VM doesn't hang.
-     * For more information visit the docs: https://junit.org/junit4/javadoc/4.12/org/junit/After.html
-     */
     @After
     public void teardown() {
         session.stop(true);
