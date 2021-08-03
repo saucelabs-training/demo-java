@@ -3,7 +3,7 @@ package com.saucedemo.tests;
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductsPage;
 import com.saucedemo.Endpoints;
-import com.saucedemo.WebTestsBase;
+import com.saucedemo.MobileTestsBase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class EmusimWebAppTests extends WebTestsBase {
+public class EmusimWebAppTests extends MobileTestsBase {
 
     /*
      * Configure our data driven parameters
@@ -71,7 +71,6 @@ public class EmusimWebAppTests extends WebTestsBase {
         //Emusim devices have Simulator/Emulator in the name
 
         driver = new RemoteWebDriver(Endpoints.getEmusimHub(), capabilities);
-        resultReportingTestWatcher.setDriver(driver);
     }
 
     @Test
