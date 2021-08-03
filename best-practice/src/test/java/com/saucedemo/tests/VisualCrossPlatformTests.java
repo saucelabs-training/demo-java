@@ -1,12 +1,11 @@
 package com.saucedemo.tests;
 
+import com.saucedemo.Endpoints;
+import com.saucedemo.MobileTestsBase;
 import com.saucedemo.pages.CheckoutStepOnePage;
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductsPage;
 import com.saucedemo.pages.ShoppingCartPage;
-import com.saucedemo.Endpoints;
-import com.saucedemo.WebTestsBase;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +22,7 @@ import java.util.Map;
 import static org.junit.Assert.assertNull;
 
 @RunWith(Parameterized.class)
-public class VisualCrossPlatformTests extends WebTestsBase {
+public class VisualCrossPlatformTests extends MobileTestsBase {
     /*
      * Configure our data driven parameters
      * */

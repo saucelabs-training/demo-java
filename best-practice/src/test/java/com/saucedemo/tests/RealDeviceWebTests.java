@@ -1,11 +1,9 @@
 package com.saucedemo.tests;
 
+import com.saucedemo.Endpoints;
+import com.saucedemo.MobileTestsBase;
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductsPage;
-import com.saucedemo.Endpoints;
-import com.saucedemo.TestBase;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,10 +20,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class RealDeviceWebTests extends TestBase {
+public class RealDeviceWebTests extends MobileTestsBase {
     @Parameterized.Parameter
     public String deviceName;
-    private AppiumDriver<MobileElement> driver;
 
     @Parameterized.Parameters()
     public static Collection<Object[]> iosConfigurations() {
@@ -37,10 +34,6 @@ public class RealDeviceWebTests extends TestBase {
                 {"iPad.*"},
                 // Duplication below for demo purposes of massive parallelization
         });
-    }
-
-    public AppiumDriver<MobileElement> getDriver() {
-        return driver;
     }
 
     @Before
@@ -60,7 +53,6 @@ public class RealDeviceWebTests extends TestBase {
         capabilities.setCapability("build", buildName);
 
         driver = new IOSDriver(Endpoints.getRealDevicesHub(), capabilities);
-        resultReportingTestWatcher.setDriver(driver);
     }
 
     @Test
