@@ -1,6 +1,7 @@
 package com.saucedemo.selenium.junit4;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.CapabilityType;
@@ -52,6 +53,7 @@ public class SimpleVisualE2ETest {
         assertNull(response.get("message").toString());
     }
 
+    @Ignore("Expected to Fail - For Demo Purposes")
     @Test
     public void visualBaselineBranching() throws MalformedURLException {
         //*
