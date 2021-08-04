@@ -1,4 +1,4 @@
-package com.realdevice.unifiedplatform;
+package com.realdevice;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
