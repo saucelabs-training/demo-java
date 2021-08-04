@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Front-end performance
+name: Best Practices Tests
 
 on:
   push:
@@ -11,17 +11,21 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        test: [ DesktopTests, EmusimWeb*, Real*, Visual*]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Front-end performance tests
+    - name: Run tests
+      continue-on-error: true
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-      run: mvn test -pl selenium-examples -Dtest=PerformanceTest
+        SCREENER_API_KEY: ${{ secrets.SCREENER_API_KEY }}
+      run: mvn test -pl best-practice -Dtest=${{ matrix.test }} -X
