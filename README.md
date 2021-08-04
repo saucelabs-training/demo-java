@@ -85,13 +85,15 @@ everything that you need to get started with web, mobile, visual, functional and
 2. Open a Terminal window (command prompt for Windows) and set your Sauce Labs Environment variables:   
    ###### Mac OSX:
    ```
-   $ export SAUCE_USERNAME="username"
-   $ export SAUCE_ACCESS_KEY="accessKey"
+   $ export SAUCE_USERNAME="your username"
+   $ export SAUCE_ACCESS_KEY="your accessKey"
+   $ export SCREENER_API_KEY="your screener key"
    ```
    ###### Windows:
    ```
    > set SAUCE_USERNAME="username"
    > set SAUCE_ACCESS_KEY="accessKey"
+   > set SCREENER_API_KEY="your screener key"
    ```
    > To set an environment variables permanently in Windows, you must append it to the `PATH` variable.
    
