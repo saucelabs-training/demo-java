@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Visual E2E Tests
+name: Selenium JUnit 5 Tests
 
 on:
   push:
@@ -24,5 +24,4 @@ jobs:
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-        SCREENER_API_KEY: ${{ secrets.SCREENER_API_KEY }}
-      run: mvn test -pl best-practice -Dtest=Visual* -X
+      run: mvn test -pl selenium-examples -X
