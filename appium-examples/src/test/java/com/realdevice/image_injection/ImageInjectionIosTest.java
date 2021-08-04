@@ -1,7 +1,6 @@
-package com.realdevice.unifiedplatform.image_injection;
+package com.realdevice.image_injection;
 
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,34 +9,32 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import static helpers.Constants.region;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ImageInjectionAndroidTest {
+public class ImageInjectionIosTest {
 
     @Rule
     public TestName name = new TestName();
 
-    String usernameID = "test-Username";
-    String passwordID = "test-Password";
-    String submitButtonID = "test-LOGIN";
+    By usernameID = By.id("test-Username");
+    By passwordID = By.id("test-Password");
+    By submitButton = By.id("test-LOGIN");
+    String ProductTitleSelector = "type==\"XCUIElementTypeStaticText\" && name==\"PRODUCTS\"";
+    By testMenu = By.name("test-Menu");
+    By testMenuItemWebView = By.name("test-WEBVIEW");
+    By testMenuItemQRCode = By.name("test-QR CODE SCANNER");
+    By acceptCameraButton = By.name("OK");
 
-    By ProductTitle = By.xpath("//android.widget.TextView[@text='PRODUCTS']");
-
-    By testMenu = By.xpath("//android.view.ViewGroup[@content-desc='test-Menu']");
-    By testMenuItemQRCode = By.xpath("//android.view.ViewGroup[@content-desc='test-QR CODE SCANNER']");
-    By testMenuItemWebView = By.xpath("//android.view.ViewGroup[@content-desc='test-WEBVIEW']");
-
-    protected AndroidDriver driver;
-
+    protected IOSDriver driver;
 
     @Before
     public void setup() throws IOException {
@@ -53,25 +50,27 @@ public class ImageInjectionAndroidTest {
         } else {
             sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
         }
+
         String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl +"/wd/hub";
         URL url = new URL(SAUCE_REMOTE_URL);
 
-        MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("deviceName", "Samsung Galaxy S10");
 
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("automationName", "UiAutomator2");
+        MutableCapabilities capabilities = new MutableCapabilities();
+        capabilities.setCapability("deviceName", "iPhone 8*");
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("automationName", "XCUITEST");
         capabilities.setCapability("name", name.getMethodName());
-//      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
 //        capabilities.setCapability("app", "storage:filename=" +appName);
-        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
-        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
+        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
 
         capabilities.setCapability("sauceLabsImageInjectionEnabled", true);
-        capabilities.setCapability("autoGrantPermissions", true);
+        capabilities.setCapability("autoAcceptAlerts", true);
 
         // Launch remote browser and set it as the current thread
-        driver = new AndroidDriver(url, capabilities);
+        driver = new IOSDriver(url, capabilities);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
     }
 
     @Test
@@ -83,18 +82,20 @@ public class ImageInjectionAndroidTest {
 
         // Verificsation
         assertThat(isOnProductsPage()).isTrue();
-
         // Select QR Code Scanner from the menu
         clickMenu();
         selecMenuQRCodeScanner();
 
-        // inject the image - provide the transformed image to the device with this command
+        // Accept access if asked
+        acceptCameraAccess();
+
         Utils utils = new Utils();
-        String qrCodeImage = utils.encoder("src/test/java/com/realdevice/unifiedplatform/image_injection/images/qr-code.png");
+        // inject the image - provide the transformed image to the device with this command
+        String qrCodeImage = utils.encoder("src/test/java/com/realdevice.unifiedplatform/image_injection/images/qr-code.png");
         driver.executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
-        utils.isAndroidBrowserOpened(driver);
+        utils.isIosApplicationRunning(driver, "com.apple.mobilesafari");
 
         // This is not need only for the video
         try
@@ -105,7 +106,6 @@ public class ImageInjectionAndroidTest {
         {
             Thread.currentThread().interrupt();
         }
-
     }
 
     @Rule
@@ -135,21 +135,16 @@ public class ImageInjectionAndroidTest {
 
     private void login(String user, String pass) {
         try {
-            driver.context("NATIVE_APP");
 
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            final WebElement usernameEdit = wait.until(ExpectedConditions.visibilityOfElementLocated(new MobileBy.ByAccessibilityId(usernameID)));
-
+            WebElement usernameEdit = driver.findElement(usernameID);
             usernameEdit.click();
             usernameEdit.sendKeys(user);
 
-
-            WebElement passwordEdit = (WebElement) driver.findElementByAccessibilityId(passwordID);
+            WebElement passwordEdit = driver.findElement(passwordID);
             passwordEdit.click();
             passwordEdit.sendKeys(pass);
 
-            WebElement submitButton = (WebElement) driver.findElementByAccessibilityId(submitButtonID);
-            submitButton.click();
+            driver.findElement(submitButton).click();
 
         } catch (Exception e) {
             System.out.println("*** Problem to login: " + e.getMessage());
@@ -157,26 +152,30 @@ public class ImageInjectionAndroidTest {
     }
 
     private boolean isOnProductsPage() {
-
-        //Create an instance of a Selenium explicit wait so that we can dynamically wait for an element
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-
-        //wait for the product field to be visible and store that element into a variable
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(ProductTitle));
-        } catch (TimeoutException e){
-            return false;
-        }
-        return true;
+        return driver.findElementByIosNsPredicate(ProductTitleSelector).isDisplayed();
     }
 
     private void clickMenu() {
         driver.findElement(testMenu).click();
     }
+
     private void selecMenuQRCodeScanner() {
         WebDriverWait wait = new WebDriverWait(driver, 5);
 
         WebElement QCCodeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(testMenuItemQRCode));
         QCCodeMenu.click();
     }
+
+    public void acceptCameraAccess(){
+        // In Sauce Labs (Legacy) RDC Android permissions are enabled by default.
+        /// iOS needs to be done with automation
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 3);
+            WebElement acceptCameraBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(acceptCameraButton));
+            acceptCameraBtn.click();
+        } catch (Exception e) {
+            // Do nothing, the alert was not shown
+        }
+    }
+
 }
