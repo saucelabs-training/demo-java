@@ -15,6 +15,14 @@ cd appium-examples
 mvn test -Dtest=AndroidNativeAppTest
 ```
 
+**Dynamic app name**
+
+```bash
+cd appium-examples
+export ANDROID_APP=YOUR APP NAME HERE
+mvn test -Dtest=AndroidNativeAppTest
+```
+
 ### 🍎iOS native app test
 ```bash
 cd appium-examples
