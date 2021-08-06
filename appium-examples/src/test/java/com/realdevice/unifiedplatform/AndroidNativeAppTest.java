@@ -77,8 +77,7 @@ public class AndroidNativeAppTest {
         * We can dynamically set an app name from environment variables
         * Just set the value in command line before running `mvn` command
         * */
-        capabilities.setCapability("app",
-                "storage:filename=" + System.getenv("ANDROID_APP"));
+        capabilities.setCapability("app", System.getenv("ANDROID_APP"));
 
         driver = new AndroidDriver<>(
                 new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
