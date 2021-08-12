@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Page Object for Login page.
+ */
 public class LoginPage extends AbstractBasePage {
     public LoginPage(RemoteWebDriver driver) {
         super(driver);
@@ -22,6 +25,11 @@ public class LoginPage extends AbstractBasePage {
         return "";
     }
 
+    /**
+     * Log in on page.
+     *
+     * @param userName the name of the user to log in
+     */
     public void login(String userName) {
         //Create an instance of a Selenium explicit wait to dynamically wait for an element
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -37,6 +45,11 @@ public class LoginPage extends AbstractBasePage {
         submitButton.click();
     }
 
+    /**
+     * How long it takes to load the page.
+     *
+     * @return duration of time to load the page
+     */
     @SuppressWarnings("unchecked")
     public Integer getPageLoadTime() {
         HashMap<String, Object> metrics = new HashMap<>();

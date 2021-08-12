@@ -12,6 +12,9 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+/**
+ * Demo tests using Sauce bindings.
+ */
 public class SauceBindingsTest {
     private SauceSession session;
     protected RemoteWebDriver driver;
@@ -32,16 +35,16 @@ public class SauceBindingsTest {
         driver = session.start();
     }
 
-    /**
-     * @DisplayName is a JUnit 5 annotation that defines test case name.
-     */
     @DisplayName("Sauce Bindings example with JUnit5")
     @Test
-    public void SauceBindingsWithJUnit5Test() {
+    public void sauceBindingsWithJUnit5Test() {
         driver.navigate().to("https://www.saucedemo.com");
         Assertions.assertEquals("Swag Labs", driver.getTitle());
     }
 
+    /**
+     * Custom TestWatcher for Sauce Labs projects.
+     */
     public class SauceTestWatcher implements TestWatcher {
         @Override
         public void testSuccessful(ExtensionContext context) {

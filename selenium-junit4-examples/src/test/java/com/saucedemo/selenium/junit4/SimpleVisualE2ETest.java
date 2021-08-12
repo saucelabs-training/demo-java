@@ -13,6 +13,9 @@ import java.util.Map;
 
 import static org.junit.Assert.assertNull;
 
+/**
+ * Tests for running Visual Tests on Sauce.
+ */
 public class SimpleVisualE2ETest {
 
     protected RemoteWebDriver driver;
@@ -101,7 +104,7 @@ public class SimpleVisualE2ETest {
 
     private void assertNoVisualDifferences() {
         Map<String, Object> response = (Map<String, Object>) driver.executeScript("/*@visual.end*/");
-        if(response.get("message") != null){
+        if (response.get("message") != null) {
             assertNull(response.get("message"));
         }
     }

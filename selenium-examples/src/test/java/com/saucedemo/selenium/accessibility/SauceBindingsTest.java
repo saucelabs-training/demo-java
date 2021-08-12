@@ -5,6 +5,9 @@ import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Accessibility Tests with Sauce Bindings.
+ */
 public class SauceBindingsTest extends SauceBaseTest {
 
     @Test

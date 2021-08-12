@@ -10,6 +10,9 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+/**
+ * Tests for running Headless on Sauce.
+ */
 public class SampleHeadlessSauceTest {
     private RemoteWebDriver driver;
     private SauceSession sauceSession;

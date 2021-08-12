@@ -16,6 +16,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static org.junit.Assert.assertTrue;
+
+/**
+ * Android Native App Tests
+ */
 public class AndroidNativeAppTest {
     @Rule
     public TestName name = new TestName() {

@@ -4,6 +4,9 @@ import com.saucelabs.saucebindings.testng.SauceBaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * Tests for running a single browser in parallel.
+ */
 public class ParallelSingleBrowserTest extends SauceBaseTest {
     @Test
     public void testCase1() {

@@ -1,9 +1,9 @@
 package com.saucedemo.tests;
 
-import com.saucedemo.pages.LoginPage;
-import com.saucedemo.pages.ProductsPage;
 import com.saucedemo.Endpoints;
 import com.saucedemo.MobileTestsBase;
+import com.saucedemo.pages.LoginPage;
+import com.saucedemo.pages.ProductsPage;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +19,9 @@ import java.util.Collection;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Emulator / Simulator Web Tests.
+ */
 @RunWith(Parameterized.class)
 public class EmuSimWebAppTests extends MobileTestsBase {
 

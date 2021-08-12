@@ -10,14 +10,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 
+/**
+ * Example Tests for running with Sauce Bindings diriectly without test runner jar.
+ */
 public class SauceBindingsTest {
     protected SauceSession session;
     protected RemoteWebDriver driver;
 
     @BeforeMethod
-    public void setup(Method method) throws MalformedURLException {
+    public void setup(Method method) {
         SauceOptions options = SauceOptions.chrome().setName(method.getName()).build();
         session = new SauceSession(options);
         driver = session.start();

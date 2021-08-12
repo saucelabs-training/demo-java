@@ -15,11 +15,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Demo tests with Selenium.
+ */
 public class SeleniumTest {
     public RemoteWebDriver driver;
 
     /**
-     * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs
+     * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs.
      * Note that the name is never actually used
      */
     @RegisterExtension
@@ -40,9 +43,6 @@ public class SeleniumTest {
         driver = new RemoteWebDriver(url, options);
     }
 
-    /**
-     * @DisplayName is a JUnit 5 annotation that defines test case name.
-     */
     @DisplayName("W3C example with JUnit5")
     @Test
     public void w3cExampleWithJUnit5() {
@@ -50,6 +50,9 @@ public class SeleniumTest {
         Assertions.assertEquals("Swag Labs", driver.getTitle());
     }
 
+    /**
+     * Custom TestWatcher for Sauce Labs projects.
+     */
     public class SauceTestWatcher implements TestWatcher {
         @Override
         public void testSuccessful(ExtensionContext context) {

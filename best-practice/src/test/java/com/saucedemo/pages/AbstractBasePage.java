@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * All page objects inherit from the base page.
  */
-public abstract class AbstractBasePage implements PageVisits {
+public abstract class AbstractBasePage {
     protected final RemoteWebDriver driver;
 
     public RemoteWebDriver getDriver() {
@@ -19,10 +19,14 @@ public abstract class AbstractBasePage implements PageVisits {
     }
 
     /**
-     * Executes a visual test
+     * Executes a visual test.
      */
     public final void takeSnapshot() {
         driver.executeScript("/*@visual.snapshot*/", this.getClass().getSimpleName());
+    }
+
+    public void visit() {
+        driver.get("https://www.saucedemo.com/" + getPagePart());
     }
 
     public abstract String getPagePart();
