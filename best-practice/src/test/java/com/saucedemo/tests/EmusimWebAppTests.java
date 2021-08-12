@@ -39,7 +39,7 @@ public class EmusimWebAppTests extends MobileTestsBase {
         return Arrays.asList(new Object[][]{
                 {"Safari", "iOS", "14.3", "iPhone XS Max Simulator"},
                 {"Safari", "iOS", "14.3", "iPhone XS Simulator"},
-                {"Safari", "iOS", "14.3", "iPhone SE (2nd generation) Simulator"},
+                {"Safari", "iOS", "14.3", "iPhone SE (2nd generation) Simulator"}
                 // Duplication below for demo purposes of massive parallelization
 //                {"Safari", "iOS", "14.3", "iPhone XS Max Simulator"},
 //                {"Safari", "iOS", "14.3", "iPhone XS Simulator"},

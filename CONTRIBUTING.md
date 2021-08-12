@@ -28,13 +28,11 @@ how to use a specific technology combination in the optimal way
 to test applications, according to the Solution Architects team. Typically there is
 only a single best practice for web and for mobile. 
 A **best-practice** will show:
-* POs, 
-* proper folder structure, 
-* correct parallelization, 
-* correct abstractions,
-* use of all Sauce testing types (visual, perf, visual component) where applicable
-**best-practice** code is not as common as code **examples**.
-
+* POs 
+* Proper folder structure 
+* Correct parallelization 
+* Correct abstractions
+* Use of all Sauce testing types (visual, perf, visual component) where applicable (**best-practice** code is not as common as code **examples**).
 * **best-practice** for web exists [here](./best-practice)
 * **best-practice** for mobile native exists [here](./best-practice-mobile-native)
 

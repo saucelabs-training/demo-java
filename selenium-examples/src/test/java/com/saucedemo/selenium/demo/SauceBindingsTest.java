@@ -17,7 +17,7 @@ public class SauceBindingsTest {
     protected RemoteWebDriver driver;
 
     /**
-     * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs
+     * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs.
      * Note that the name is never actually used
      */
     @RegisterExtension

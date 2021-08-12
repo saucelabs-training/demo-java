@@ -14,7 +14,7 @@ public class LocalExecutionTest {
         //
         // 2. Add driver to PATH ENV
         //
-        // 3. Use Driver manager:
+        // 3. Use Driver manager
         WebDriverManager.chromedriver().setup();
 
         // Start session (opens browser)
