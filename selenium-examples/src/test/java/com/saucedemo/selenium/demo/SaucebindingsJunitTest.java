@@ -12,11 +12,6 @@ import org.junit.jupiter.api.Test;
  */
 public class SaucebindingsJunitTest extends SauceBaseTest {
 
-    // TODO: change `SauceBaseTest` to Abstract
-    public SaucebindingsJunitTest() {
-        super();
-    }
-
     /**
      * @DisplayName is a JUnit 5 annotation that defines test case name.
      */

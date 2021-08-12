@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 
 public abstract class MobileTestsBase extends AbstractTestBase {
     /**
-     * This casts RemoteWebDriver to AppiumDriver for mobile tests
+     * This casts RemoteWebDriver to AppiumDriver for mobile tests.
+     *
      * @return instance of Appium Driver
      */
     @SuppressWarnings("unchecked")

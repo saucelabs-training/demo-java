@@ -119,7 +119,7 @@ everything that you need to get started with web, mobile, visual, functional and
     $ launchctl setenv SAUCE_USERNAME $SAUCE_USERNAME
     $ launchctl setenv SAUCE_ACCESS_KEY $SAUCE_ACCESS_KEY
     ```
-    
+
     **Windows:**
     ```
     > echo %SAUCE_USERNAME%

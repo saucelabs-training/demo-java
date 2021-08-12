@@ -5,7 +5,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.Map;
 
 /**
- * All page objects inherit from the base page
+ * All page objects inherit from the base page.
  */
 public abstract class AbstractBasePage implements PageVisits {
     protected final RemoteWebDriver driver;
@@ -22,11 +22,16 @@ public abstract class AbstractBasePage implements PageVisits {
      * Executes a visual test
      */
     public final void takeSnapshot() {
-        driver.executeScript("/*@visual.snapshot*/",this.getClass().getSimpleName());
+        driver.executeScript("/*@visual.snapshot*/", this.getClass().getSimpleName());
     }
 
     public abstract String getPagePart();
 
+    /**
+     * Screener uses this JavaScript to provide results of visual snapshot.
+     *
+     * @return Map of visual results
+     */
     @SuppressWarnings("unchecked")
     public Map<String, Object> getVisualResults() {
         return (Map<String, Object>) driver.executeScript("/*@visual.end*/");

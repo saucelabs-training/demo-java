@@ -57,14 +57,14 @@ public class VisualCrossPlatformTests extends MobileTestsBase {
         browserOptions.setCapability(CapabilityType.PLATFORM_NAME, platform);
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", sauceUsername);
-        sauceOptions.setCapability("accessKey", sauceAccessKey);
+        sauceOptions.setCapability("username", SAUCE_USERNAME);
+        sauceOptions.setCapability("accessKey", SAUCE_ACCESS_KEY);
         sauceOptions.setCapability("name", testName.getMethodName());
         sauceOptions.setCapability("build", buildName);
         browserOptions.setCapability("sauce:options", sauceOptions);
 
         MutableCapabilities visualOptions = new MutableCapabilities();
-        visualOptions.setCapability("apiKey", screenerApiKey);
+        visualOptions.setCapability("apiKey", SCREENER_API_KEY);
         visualOptions.setCapability("projectName", "Sauce Demo Java");
         visualOptions.setCapability("viewportSize", viewportSize);
         visualOptions.setCapability("failOnNewStates", false);

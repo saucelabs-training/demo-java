@@ -6,6 +6,7 @@ public class ShoppingCartPage extends AbstractBasePage {
     public ShoppingCartPage(RemoteWebDriver driver) {
         super(driver);
     }
+
     @Override
     public String getPagePart() {
         return "cart.html";

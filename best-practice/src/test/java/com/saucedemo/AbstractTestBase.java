@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class AbstractTestBase {
-    public final static String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    public static final String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     @Rule
     public TestName testName = new TestName() {
@@ -21,9 +21,9 @@ public abstract class AbstractTestBase {
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
 
-    protected final static String sauceUsername = System.getenv("SAUCE_USERNAME");
-    protected final static String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
-    protected final static String screenerApiKey = System.getenv("SCREENER_API_KEY");
+    protected static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
+    protected static final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+    protected static final String SCREENER_API_KEY = System.getenv("SCREENER_API_KEY");
     protected RemoteWebDriver driver;
 
     public class SauceTestWatcher extends TestWatcher {
