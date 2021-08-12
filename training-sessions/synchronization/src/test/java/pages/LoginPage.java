@@ -24,7 +24,7 @@ public class LoginPage extends PageObject {
         try {
             synchWait().until((page) -> !isOnPage());
         } catch (TimeoutException e) {
-            throw new Exception("login was unsuccessful; found error message: " + error.getText());
+            throw new TimeoutException("login was unsuccessful; found error message: " + error.getText());
         }
     }
 
@@ -35,7 +35,7 @@ public class LoginPage extends PageObject {
         try {
             synchWait().until((page) -> error.doesExist());
         } catch (TimeoutException e) {
-            throw new Exception("expected unsuccessful login to show errors, but none were found");
+            throw new TimeoutException("expected unsuccessful login to show errors, but none were found");
         }
     }
 

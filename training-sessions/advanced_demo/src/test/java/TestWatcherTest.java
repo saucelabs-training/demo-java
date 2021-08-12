@@ -17,7 +17,7 @@ public class TestWatcherTest {
 
     @Test
     public void testFail() {
-        throw new RuntimeException();
+        throw new RuntimeException("Throws Exception");
     }
 
     @Test

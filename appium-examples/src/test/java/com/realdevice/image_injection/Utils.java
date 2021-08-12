@@ -73,7 +73,7 @@ public class Utils {
     }
 
     public boolean isIOS(AppiumDriver driver){
-        if (driver.getPlatformName().toLowerCase().equals("ios")) {
+        if (driver.getPlatformName().equalsIgnoreCase("ios")) {
             System.out.println("Sauce. iOS platform");
             return true;
         }

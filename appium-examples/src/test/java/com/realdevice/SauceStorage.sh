@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # upload app to sauce storage
 curl -F "payload=@/Users/nikolayadvolodkin/Documents/source/Appium/Android.SauceLabs.Mobile.Sample.app.2.2.1.apk" -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" 'https://api.us-west-1.saucelabs.com/v1/storage/upload'
 
