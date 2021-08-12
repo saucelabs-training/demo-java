@@ -8,6 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * Login Test Using Sauce Bindings.
+ */
 public class SauceBindingsLoginTest extends SauceBaseTest {
 
     @DisplayName("Swag Labs Login")

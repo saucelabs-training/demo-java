@@ -8,29 +8,27 @@ import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 
+/**
+ * Tests whoing how to run cross browser tests with TestNG Sauce Bindings jar when Parameterized.
+ */
 public class CrossBrowserPlatformTest extends SauceParameterizedBaseTest {
-    /**
-     * DataProvider that sets the browser combinations to be used.
-     *
-     * @return TestNG's preferred Object[][] structure, containing browser, version, and platform information
-     */
     @DataProvider(name = "sauceBrowsers", parallel = true)
     public static Object[][] sauceBrowserDataProvider() {
         return new Object[][]{
-                /** Uncomment the other data providers ONLY if you have the relevant Sauce VM concurrency **/
-                new Object[]{"chrome", "latest", "macOS 11.00"},
-                new Object[]{"firefox", "latest", "macOS 11.00"},
-                new Object[]{"chrome", "latest", "Windows 10"},
-                new Object[]{"firefox", "latest", "Windows 10"},
-                new Object[]{"chrome", "latest-1", "Windows 10"}
-                /*new Object[]{"firefox", "latest-1", "Windows 10"},
-                new Object[]{"safari", "12.0", "macOS 10.14"},
-                new Object[]{"MicrosoftEdge", "latest", "Windows 10"},
-                new Object[]{"firefox", "65.0", "Windows 10"},
-                new Object[]{"firefox", "64.0", "macOS 10.14"},
-                new Object[]{"firefox", "63.0", "macOS 10.13"},
-                new Object[]{"firefox", "62.0", "macOS 10.12"},
-                new Object[]{"firefox", "61.0", "macOS 10.13"},*/
+            // Uncomment the other data providers ONLY if you have the relevant Sauce VM concurrency
+            new Object[]{"chrome", "latest", "macOS 11.00"},
+            new Object[]{"firefox", "latest", "macOS 11.00"},
+            new Object[]{"chrome", "latest", "Windows 10"},
+            new Object[]{"firefox", "latest", "Windows 10"},
+            new Object[]{"chrome", "latest-1", "Windows 10"}
+            /*new Object[]{"firefox", "latest-1", "Windows 10"},
+            new Object[]{"safari", "12.0", "macOS 10.14"},
+            new Object[]{"MicrosoftEdge", "latest", "Windows 10"},
+            new Object[]{"firefox", "65.0", "Windows 10"},
+            new Object[]{"firefox", "64.0", "macOS 10.14"},
+            new Object[]{"firefox", "63.0", "macOS 10.13"},
+            new Object[]{"firefox", "62.0", "macOS 10.12"},
+            new Object[]{"firefox", "61.0", "macOS 10.13"},*/
         };
     }
 

@@ -21,6 +21,9 @@ import java.util.Map;
 
 import static org.junit.Assert.assertNull;
 
+/**
+ * Cross Platform Tests for Visual.
+ */
 @RunWith(Parameterized.class)
 public class VisualCrossPlatformTests extends MobileTestsBase {
     /*

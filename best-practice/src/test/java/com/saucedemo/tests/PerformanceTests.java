@@ -6,6 +6,9 @@ import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Performance Tests.
+ */
 public class PerformanceTests extends SauceBaseTest {
     @Override
     public SauceOptions createSauceOptions() {

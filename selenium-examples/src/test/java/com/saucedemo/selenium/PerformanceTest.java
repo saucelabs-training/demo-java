@@ -10,12 +10,10 @@ import org.openqa.selenium.By;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Performance Test.
+ */
 public class PerformanceTest extends SauceBaseTest {
-
-    // TODO: change `SauceBaseTest` to Abstract
-    public PerformanceTest() {
-        super();
-    }
 
     @Override
     public SauceOptions createSauceOptions() {

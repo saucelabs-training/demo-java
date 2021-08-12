@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test to demonstrate how Sauce Connect works.
+ */
 public class SauceConnectTest extends SauceBaseTest {
     @Override
     public SauceOptions createSauceOptions() {

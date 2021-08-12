@@ -17,6 +17,7 @@ import java.util.Collection;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/** Desktop Tests. */
 @RunWith(Parameterized.class)
 public class DesktopTests extends SauceBaseTest {
     /*
@@ -31,41 +32,37 @@ public class DesktopTests extends SauceBaseTest {
 
     @Parameterized.Parameters()
     public static Collection<Object[]> crossBrowserData() {
-        return Arrays.asList(new Object[][]{
-                {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE}
-/*
-                 // Duplication below for demo purposes of massive parallelization
-                 {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                 {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                 {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                 {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                 {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                 {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                 {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                 {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                 {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                 {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                 {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                 {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-*/
+        return Arrays.asList(new Object[][] {
+                { Browser.CHROME, "latest", SaucePlatform.WINDOWS_10 },
+                { Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10 },
+                { Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE },
+                { Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE }
+                /*
+                         // Duplication below for demo purposes of massive parallelization
+                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
+                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
+                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
+                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
+                */
         });
     }
 
-    /**
-     * Creates a special case instance of Sauce Options
-     * @return SauceOptions
-     */
     @Override
     public SauceOptions createSauceOptions() {
         SauceOptions sauceOptions = new SauceOptions();

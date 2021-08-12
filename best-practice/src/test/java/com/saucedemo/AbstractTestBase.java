@@ -9,6 +9,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * All Tests need to extend this class to get the correct behavior.
+ */
 public abstract class AbstractTestBase {
     public static final String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
@@ -26,6 +29,9 @@ public abstract class AbstractTestBase {
     protected static final String SCREENER_API_KEY = System.getenv("SCREENER_API_KEY");
     protected RemoteWebDriver driver;
 
+    /**
+     * Custom TestWatcher for Sauce Labs projects.
+     */
     public class SauceTestWatcher extends TestWatcher {
         @Override
         protected void succeeded(Description description) {

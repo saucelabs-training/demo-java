@@ -13,6 +13,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Tests for Basic Authentication.
+ */
 public class WindowsAuthentication {
 
     private SauceSession session;
@@ -51,30 +54,5 @@ public class WindowsAuthentication {
         session = new SauceSession(sauceOptions);
         RemoteWebDriver driver = session.start();
         driver.get("http://the-internet.herokuapp.com/basic_auth");
-    }
-
-    @Test
-    @Ignore("need to try")
-    public void autoItScriptTest2() {
-//        public static final String URL = "https://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:443/wd/hub";
-//        DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
-//        caps.setCapability("platform", "Windows 7");
-//        caps.setCapability("version", "11.0");
-//        caps.setCapability("seleniumVersion","3.141.0");
-//        caps.setCapability("name", "SampleAutoItSauceSampleWinSec");
-        //import org.json.JSONObject;
-//        JSONObject jsonObj = new JSONObject();
-//        jsonObj.put("executable", "sauce-storage:SampleWinSec.exe");
-//        jsonObj.put("background", true);
-//        //import org.json.JSONArray;
-//        JSONArray arr = new JSONArray();
-//        arr.put("--silent");
-//        arr.put("-a");
-//        arr.put("-q");
-//        jsonObj.put("args", arr);
-//        caps.setCapability("prerun",jsonObj);
-//        RemoteWebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-//        driver.get("https://the-internet.herokuapp.com/basic_auth");
-//        driver.quit();
     }
 }

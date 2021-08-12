@@ -12,20 +12,16 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for using Sauce Bindings without a Test Runner library.
+ */
 public class SauceBindingsTest {
     private SauceSession session;
     public RemoteWebDriver driver;
 
-    /**
-     * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs
-     * Note that the name is never actually used
-     */
     @Rule
     public SauceTestWatcher watcher = new SauceTestWatcher();
 
-    /**
-     * TestName Rule allows dynamically sending name information to Sauce Labs
-     */
     @Rule
     public TestName testName = new TestName();
 
@@ -44,6 +40,9 @@ public class SauceBindingsTest {
         assertEquals("Swag Labs", driver.getTitle());
     }
 
+    /**
+     * Custom TestWatcher for Sauce Labs projects.
+     */
     protected class SauceTestWatcher extends TestWatcher {
         @Override
         protected void failed(Throwable e, Description description) {

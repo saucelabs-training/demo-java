@@ -16,6 +16,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Accessibility Tests with Deque Library.
+ */
 public class DequeAxeTest {
     public RemoteWebDriver driver;
 

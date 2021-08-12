@@ -13,6 +13,9 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Example of running a TestNG test without using Sauce Bindings.
+ */
 public class SeleniumTest {
     protected RemoteWebDriver driver;
 

@@ -18,6 +18,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Login tests with Selenium.
+ */
 public class SeleniumLoginTest {
     protected RemoteWebDriver driver;
 
@@ -62,6 +65,9 @@ public class SeleniumLoginTest {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
     }
 
+    /**
+     * Custom TestWatcher for Sauce Labs projects.
+     */
     public class SauceTestWatcher implements TestWatcher {
         @Override
         public void testSuccessful(ExtensionContext context) {

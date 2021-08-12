@@ -19,6 +19,9 @@ import java.util.Collection;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Real Device Web Tests.
+ */
 @RunWith(Parameterized.class)
 public class RealDeviceWebTests extends MobileTestsBase {
     @Parameterized.Parameter
