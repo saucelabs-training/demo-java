@@ -9,8 +9,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TestBase {
-    public static String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+public abstract class AbstractTestBase {
+    public final static String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     @Rule
     public TestName testName = new TestName() {
@@ -21,12 +21,13 @@ public class TestBase {
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
 
-    protected String sauceUsername = System.getenv("SAUCE_USERNAME");
-    protected String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
-    protected String screenerApiKey = System.getenv("SCREENER_API_KEY");
+    protected final static String sauceUsername = System.getenv("SAUCE_USERNAME");
+    protected final static String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+    protected final static String screenerApiKey = System.getenv("SCREENER_API_KEY");
     protected RemoteWebDriver driver;
 
     public class SauceTestWatcher extends TestWatcher {
+        @Override
         protected void succeeded(Description description) {
             if (driver != null) {
                 driver.executeScript("sauce:job-result=passed");
@@ -34,7 +35,8 @@ public class TestBase {
             }
         }
 
-        protected void failed(Description description) {
+        @Override
+        protected void failed(Throwable e, Description description) {
             if (driver != null) {
                 driver.executeScript("sauce:job-result=failed");
                 driver.quit();

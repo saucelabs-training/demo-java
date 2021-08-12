@@ -20,7 +20,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class EmusimWebAppTests extends MobileTestsBase {
+public class EmuSimWebAppTests extends MobileTestsBase {
 
     /*
      * Configure our data driven parameters
@@ -68,9 +68,9 @@ public class EmusimWebAppTests extends MobileTestsBase {
 
         capabilities.setCapability("idleTimeout", "90");
         capabilities.setCapability("newCommandTimeout", "90");
-        //Emusim devices have Simulator/Emulator in the name
+        //EmuSim devices have Simulator/Emulator in the name
 
-        driver = new RemoteWebDriver(Endpoints.getEmusimHub(), capabilities);
+        driver = new RemoteWebDriver(Endpoints.getEmuSimHub(), capabilities);
     }
 
     @Test

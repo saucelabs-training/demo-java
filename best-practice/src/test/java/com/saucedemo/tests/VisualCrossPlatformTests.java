@@ -58,7 +58,7 @@ public class VisualCrossPlatformTests extends MobileTestsBase {
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", sauceUsername);
-        sauceOptions.setCapability("accesskey", sauceAccessKey);
+        sauceOptions.setCapability("accessKey", sauceAccessKey);
         sauceOptions.setCapability("name", testName.getMethodName());
         sauceOptions.setCapability("build", buildName);
         browserOptions.setCapability("sauce:options", sauceOptions);
@@ -93,7 +93,7 @@ public class VisualCrossPlatformTests extends MobileTestsBase {
         stepOneCheckoutPage.visit();
         stepOneCheckoutPage.takeSnapshot();
 
-        Map<String, Object> response = (Map<String, Object>) driver.executeScript("/*@visual.end*/");
+        Map<String, Object> response = stepOneCheckoutPage.getVisualResults();
         assertNull(response.get("message"));
     }
 }

@@ -52,7 +52,7 @@ public class RealDeviceWebTests extends MobileTestsBase {
         capabilities.setCapability("name", testName.getMethodName());
         capabilities.setCapability("build", buildName);
 
-        driver = new IOSDriver(Endpoints.getRealDevicesHub(), capabilities);
+        driver = new IOSDriver<>(Endpoints.getRealDevicesHub(), capabilities);
     }
 
     @Test

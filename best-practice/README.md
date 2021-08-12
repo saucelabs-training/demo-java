@@ -1,17 +1,14 @@
 # Web Automation Best Practices 
-This is a repository that contains a suite of tests entended to
-test SauceDemo application.
+This is a repository that contains a suite of tests extended to test SauceDemo application.
 
-The suite is built using a combination of testing techniques for
-the most efficient test coverage. This suite combines
-techniques such as:
+The suite uses a combination of testing techniques for the most efficient test coverage. This suite combines techniques such as:
 * Functional browser automation on Desktop
 * Functional mobile web automation
 * Visual testing
 * Front-end performance tests
 * API testing
 
-![visualTesting](./assets/visualTesting.gif)
+![visualTesting](assets/visualTesting.gif)
 
 ## Executing tests
 
@@ -23,10 +20,10 @@ mvn clean test
 The output will look like this:
 ```text
 [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 140.32 s - in com.saucedemo.tests.VisualCrossPlatformTests
-[INFO] Running com.saucedemo.tests.EmusimWebAppTests
+[INFO] Running com.saucedemo.tests.EmuSimWebAppTests
 Feb 03, 2021 3:17:44 PM org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: OSS
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 60.017 s - in com.saucedemo.tests.EmusimWebAppTests
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 60.017 s - in com.saucedemo.tests.EmuSimWebAppTests
 [INFO] 
 [INFO] Results:
 [INFO] 
