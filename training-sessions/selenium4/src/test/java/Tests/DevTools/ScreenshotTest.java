@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.DevTools;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,13 +16,11 @@ public class ScreenshotTest {
     // https://github.com/diemol/selenium-4-demo/blob/master/src/test/java/CDPTest.java
 
     private ChromeDriver chromeDriver;
-    private DevTools devTools;
 
     @Before
     public void setUp() {
         chromeDriver = new ChromeDriver();
-        devTools = chromeDriver.getDevTools();
-        devTools.createSession();
+        chromeDriver.getDevTools().createSession();
     }
 
     @Test

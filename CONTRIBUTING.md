@@ -107,12 +107,12 @@ Specific Structure With Examples
 
 ## FAQs
 
-### What are examples?
+### Examples
 
 **examples** are a way to show off some feature in Sauce Labs.
 Every time we add an example, please be sure to add it to the main README.
 
-### Why is there only one best-practice folder?
+### Single Best Practice Directory
 
 With the evolution of Sauce, a true Best Practice is not only
 Selenium automation. A true Best Practice shows customers
@@ -120,10 +120,10 @@ how to utilize all of the tools (Selenium, Appium, Visual, Performance, API...)
 that Sauce has to offer in a cohesive framework
 and test strategy.
 
-### Why should I separate my code in this manner?
+### Code Separation
 
 The key ideas behind this organization are visibility and 
-reusability for the clients and the team. A mature customer may need
+re-usability for the clients and the team. A mature customer may need
 a performance testing code example using Junit5. On the other
 hand, a less mature, but very valuable customer may need the 
 same exact code sample but using Junit3. If we create
@@ -135,7 +135,7 @@ But where would such code examples go?
 
 In the above structure that's easy for everyone to understand.
 
-### Why does Cucumber get its own module?
+### Cucumber
 
 Because the organization of the Cucumber source code is
 different than the typical organization of a Maven project.
@@ -146,7 +146,7 @@ Also, Cucumber doesn't have a Best Practice as we don't
 believe that it is one nor does our team have a Best Practice strategy
 developed.
 
-### But I don't want to create a code example for 10 different technologies!
+### Too Many Code Examples
 
 There is no requirement to have a code **example** for every single tech combination.
 
