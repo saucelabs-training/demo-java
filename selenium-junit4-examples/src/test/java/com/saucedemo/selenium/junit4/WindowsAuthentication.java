@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Tests for Basic Authentication.
@@ -59,5 +60,7 @@ public class WindowsAuthentication {
         session = new SauceSession(sauceOptions);
         RemoteWebDriver driver = session.start();
         driver.get("http://the-internet.herokuapp.com/basic_auth");
+
+        fail();
     }
 }

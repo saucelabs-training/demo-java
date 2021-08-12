@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        test: [ DesktopTests, EmuSimWeb*, Real*, Visual*]
+        test: [ DesktopTests, EmuSimWeb*, Real*]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
