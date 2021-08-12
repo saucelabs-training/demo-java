@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Endpoints {
-    public static URL getEmusimHub() throws MalformedURLException {
+    public static URL getEmuSimHub() throws MalformedURLException {
         String user = System.getenv("SAUCE_USERNAME");
         String key = System.getenv("SAUCE_ACCESS_KEY");
         return new URL("https://" + user + ":" + key +

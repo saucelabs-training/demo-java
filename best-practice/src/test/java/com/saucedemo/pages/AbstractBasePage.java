@@ -1,0 +1,34 @@
+package com.saucedemo.pages;
+
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.util.Map;
+
+/**
+ * All page objects inherit from the base page
+ */
+public abstract class AbstractBasePage implements PageVisits {
+    protected final RemoteWebDriver driver;
+
+    public RemoteWebDriver getDriver() {
+        return this.driver;
+    }
+
+    public AbstractBasePage(RemoteWebDriver driver) {
+        this.driver = driver;
+    }
+
+    /**
+     * Executes a visual test
+     */
+    public final void takeSnapshot() {
+        driver.executeScript("/*@visual.snapshot*/",this.getClass().getSimpleName());
+    }
+
+    public abstract String getPagePart();
+
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> getVisualResults() {
+        return (Map<String, Object>) driver.executeScript("/*@visual.end*/");
+    }
+}

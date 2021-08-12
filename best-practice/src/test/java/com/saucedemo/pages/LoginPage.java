@@ -8,14 +8,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends AbstractBasePage {
     public LoginPage(RemoteWebDriver driver) {
         super(driver);
     }
 
-    public By usernameFieldLocator = By.id("user-name");
-    public By passwordFieldLocator = By.id("password");
-    public By submitButtonLocator = By.id("login-button");
+    private final By usernameFieldLocator = By.id("user-name");
+    private final By passwordFieldLocator = By.id("password");
+    private final By submitButtonLocator = By.id("login-button");
 
     @Override
     public String getPagePart() {
@@ -37,12 +37,12 @@ public class LoginPage extends BasePage {
         submitButton.click();
     }
 
+    @SuppressWarnings("unchecked")
     public Integer getPageLoadTime() {
         HashMap<String, Object> metrics = new HashMap<>();
         metrics.put("type", "sauce:performance");
         Map<String, Object> perfMetrics = (Map<String, Object>) driver.executeScript("sauce:log", metrics);
-        Integer loadTime = Integer.parseInt(perfMetrics.get("load").toString());
-        return loadTime;
+        return Integer.parseInt(perfMetrics.get("load").toString());
     }
 
 }

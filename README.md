@@ -89,13 +89,13 @@ everything that you need to get started with web, mobile, visual, functional and
 ### Set Your Sauce Labs Credentials
 1. Copy your Sauce Labs **username** and **accessKey** in the [User Settings](https://app.saucelabs.com/user-settings) section of the [Sauce Labs Dashboard](https://app.saucelabs.com/dashboard/builds).
 2. Open a Terminal window (command prompt for Windows) and set your Sauce Labs Environment variables:   
-   ##### Mac OSX:
+   **Mac OSX:**
    ```
    $ export SAUCE_USERNAME="your username"
    $ export SAUCE_ACCESS_KEY="your accessKey"
    $ export SCREENER_API_KEY="your screener key"
    ```
-   ##### Windows:
+   **Windows:**
    ```
    > set SAUCE_USERNAME="username"
    > set SAUCE_ACCESS_KEY="accessKey"
@@ -107,8 +107,8 @@ everything that you need to get started with web, mobile, visual, functional and
    
    > Then set the "Name" and "Value" for each variable
    
-9. Test the environment variables
-    ##### Mac OSX:
+3. Test the environment variables
+    **Mac OSX:**
     ```
     $ echo $SAUCE_USERNAME
     $ echo $SAUCE_ACCESS_KEY
@@ -119,7 +119,7 @@ everything that you need to get started with web, mobile, visual, functional and
     $ launchctl setenv SAUCE_USERNAME $SAUCE_USERNAME
     $ launchctl setenv SAUCE_ACCESS_KEY $SAUCE_ACCESS_KEY
     ```
-    ##### Windows:
+    **Windows:**
     ```
     > echo %SAUCE_USERNAME%
     > echo %SAUCE_ACCESS_KEY%
@@ -145,7 +145,7 @@ everything that you need to get started with web, mobile, visual, functional and
     
    You can run different tests from different modules. Check out some examples by looking at the [CI YML files](./.github/workflows)
 
-##### Disclaimer:
+## Disclaimer:
 
 > The code in these scripts is provided on an "AS-IS" basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are provided for educational and demonstration purposes only, and should not be used in production. Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by the Technical Services team at Sauce Labs.
 >
