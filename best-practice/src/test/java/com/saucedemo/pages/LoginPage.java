@@ -12,13 +12,13 @@ import java.util.Map;
  * Page Object for Login page.
  */
 public class LoginPage extends AbstractBasePage {
-    public LoginPage(RemoteWebDriver driver) {
-        super(driver);
-    }
-
     private final By usernameFieldLocator = By.id("user-name");
     private final By passwordFieldLocator = By.id("password");
     private final By submitButtonLocator = By.id("login-button");
+
+    public LoginPage(RemoteWebDriver driver) {
+        super(driver);
+    }
 
     @Override
     public String getPagePart() {

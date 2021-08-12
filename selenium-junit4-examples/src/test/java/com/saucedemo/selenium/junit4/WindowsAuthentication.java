@@ -8,10 +8,13 @@ import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for Basic Authentication.
@@ -34,7 +37,9 @@ public class WindowsAuthentication {
         session = new SauceSession(sauceOptions);
         RemoteWebDriver driver = session.start();
         driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
-        driver.findElement(By.id("content"));
+        WebElement content = driver.findElement(By.id("content"));
+
+        assertTrue(content.isDisplayed());
     }
 
     @Test

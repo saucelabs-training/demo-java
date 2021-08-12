@@ -25,51 +25,51 @@ everything that you need to get started with web, mobile, visual, functional and
 *  [Sauce Connect usage](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/SauceConnectTest.java)
 
 ## Best Practices
-* [Desktop](./best-practice/src/test/java/com/saucedemo/tests/DesktopTests.java)
-* [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmuSimWebAppTests.java)
-* [Performance](./best-practice/src/test/java/com/saucedemo/tests/PerformanceTests.java)
-* [RealDevice](./best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java)
-* [Visual](./best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
+*  [Desktop](./best-practice/src/test/java/com/saucedemo/tests/DesktopTests.java)
+*  [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmuSimWebAppTests.java)
+*  [Performance](./best-practice/src/test/java/com/saucedemo/tests/PerformanceTests.java)
+*  [RealDevice](./best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java)
+*  [Visual](./best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
 
 ## 🖥Web automation
-* Sauce Bindings With TestRunner Examples
+*  Sauce Bindings With TestRunner Examples
   *  [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SaucebindingsJunitTest.java)
   *  [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsJunit4Test.java)
   *  [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTestngTest.java)
 
-* Sauce Bindings Examples
+*  Sauce Bindings Examples
   *  [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SauceBindingsTest.java)
   *  [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsTest.java)
   *  [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTest.java)
 
-* Selenium Examples
-  * [Accessibility Test with Sauce Bindings](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/SauceBindingsTest.java)
-  * [Accessibility Test with Deque Axe](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/DequeAxeTest.java)
-  * [Cucumber web test](./selenium-cucumber-examples/src/test/java/com/saucedemo/selenium/cucumber/RunTestsAT.java)
-  * [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/WindowsAuthentication.java)
-  * [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/CrossBrowserPlatformTest.java)
-  * [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/ParallelSingleBrowserTest.java)
+*  Selenium Examples
+  *  [Accessibility Test with Sauce Bindings](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/SauceBindingsTest.java)
+  *  [Accessibility Test with Deque Axe](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/DequeAxeTest.java)
+  *  [Cucumber web test](./selenium-cucumber-examples/src/test/java/com/saucedemo/selenium/cucumber/RunTestsAT.java)
+  *  [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/WindowsAuthentication.java)
+  *  [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/CrossBrowserPlatformTest.java)
+  *  [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/ParallelSingleBrowserTest.java)
 
 ## 📱Mobile automation
 [📚 Mobile Testing Training Tutorials](./TRAINING.md)
 
-* Real Devices
-  * [iOS native app](./appium-examples/src/test/java/com/realdevice/IOSNativeAppTest.java)
-  * [Android native app](./appium-examples/src/test/java/com/realdevice/AndroidNativeAppTest.java)
-  * [Upload app to Sauce Storage](./appium-examples/src/test/java/com/realdevice/SauceStorage.sh)
-  * [Image Injection](./appium-examples/src/test/java/com/realdevice/image_injection)
+*  Real Devices
+  *  [iOS native app](./appium-examples/src/test/java/com/realdevice/IOSNativeAppTest.java)
+  *  [Android native app](./appium-examples/src/test/java/com/realdevice/AndroidNativeAppTest.java)
+  *  [Upload app to Sauce Storage](./appium-examples/src/test/java/com/realdevice/SauceStorage.sh)
+  *  [Image Injection](./appium-examples/src/test/java/com/realdevice/image_injection)
 
-* Emulators and Simulators
-  * [iOS native app](./appium-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
-  * [iOS web app](./appium-examples/src/test/java/com/emusim/IOSWebAppExample.java)
-  * [Biometric Login](./appium-examples/src/test/java/com/emusim/biometric_login)
+*  Emulators and Simulators
+  *  [iOS native app](./appium-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
+  *  [iOS web app](./appium-examples/src/test/java/com/emusim/IOSWebAppExample.java)
+  *  [Biometric Login](./appium-examples/src/test/java/com/emusim/biometric_login)
 
 ## ⚙️Setup
 
-* Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-git)
-* Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-intellij)
-* Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-the-jdk)
-* Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-maven)
+*  Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-git)
+*  Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-intellij)
+*  Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-the-jdk)
+*  Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-maven)
 
 ### Import the Project
 
@@ -125,8 +125,6 @@ everything that you need to get started with web, mobile, visual, functional and
     > echo %SAUCE_USERNAME%
     > echo %SAUCE_ACCESS_KEY%
     ```
-
-<br />
 
 ### Run a Maven Test
 

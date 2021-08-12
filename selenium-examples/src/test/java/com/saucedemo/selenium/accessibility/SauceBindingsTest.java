@@ -13,13 +13,15 @@ public class SauceBindingsTest extends SauceBaseTest {
     @Test
     public void sauceDemoAccessibility() {
         driver.navigate().to("https://www.saucedemo.com");
-        session.getAccessibilityResults();
+        Results results = session.getAccessibilityResults();
+        Assertions.assertEquals(3, results.getViolations().size());
     }
 
     @Test
     public void abcdcomputechTest() {
         driver.navigate().to("http://abcdcomputech.dequecloud.com");
-        session.getAccessibilityResults();
+        Results results = session.getAccessibilityResults();
+        Assertions.assertEquals(7, results.getViolations().size());
     }
 
     @Test
