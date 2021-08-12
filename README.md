@@ -108,13 +108,17 @@ everything that you need to get started with web, mobile, visual, functional and
    > Then set the "Name" and "Value" for each variable
    
 3. Test the environment variables
+
     **Mac OSX:**
     ```
     $ echo $SAUCE_USERNAME
     $ echo $SAUCE_ACCESS_KEY
     ```
-    ***WARNING FOR UNIX USERS!***:
-    > If you have problems setting your environment variables, run the following commands in your terminal:
+
+    ***WARNING FOR UNIX USERS!***
+    
+    *If you have problems setting your environment variables, run the following commands in your terminal:*
+
     ```
     $ launchctl setenv SAUCE_USERNAME $SAUCE_USERNAME
     $ launchctl setenv SAUCE_ACCESS_KEY $SAUCE_ACCESS_KEY
