@@ -23,6 +23,8 @@ import static org.junit.Assert.assertNull;
 
 /**
  * Cross Platform Tests for Visual.
+ *
+ * Note: Visual Tests do not run in Github By Default
  */
 @RunWith(Parameterized.class)
 public class VisualCrossPlatformTests extends MobileTestsBase {
