@@ -10,9 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TestBase {
-    protected RemoteWebDriver driver;
-
     public static String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
     @Rule
     public TestName testName = new TestName() {
         public String getMethodName() {
@@ -21,9 +20,11 @@ public class TestBase {
     };
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
-    public String sauceUsername = System.getenv("SAUCE_USERNAME");
-    public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
-    public String screenerApiKey = System.getenv("SCREENER_API_KEY");
+
+    protected String sauceUsername = System.getenv("SAUCE_USERNAME");
+    protected String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
+    protected String screenerApiKey = System.getenv("SCREENER_API_KEY");
+    protected RemoteWebDriver driver;
 
     public class SauceTestWatcher extends TestWatcher {
         protected void succeeded(Description description) {

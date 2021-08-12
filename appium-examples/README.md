@@ -2,10 +2,10 @@
 This folder contains Appium examples
 
 ## Examples
-- [Using biometric login on Sauce Labs](./src/test/java/com/emusim/biometric_login)
-- [Using image injection on Sauce Labs](./src/test/java/com/realdevice/image_injection)
-- [Android native app test](./src/test/java/com/realdevice/AndroidNativeAppTest.java)
-- [Emusim iOS web app test](./src/test/java/com/emusim/IOSWebAppExample.java)
+* [Using biometric login on Sauce Labs](./src/test/java/com/emusim/biometric_login)
+* [Using image injection on Sauce Labs](./src/test/java/com/realdevice/image_injection)
+* [Android native app test](./src/test/java/com/realdevice/AndroidNativeAppTest.java)
+* [Emusim iOS web app test](./src/test/java/com/emusim/IOSWebAppExample.java)
 
 ## How to run tests
 

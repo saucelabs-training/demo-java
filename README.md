@@ -33,14 +33,14 @@ everything that you need to get started with web, mobile, visual, functional and
 
 ## 🖥Web automation
 * Sauce Bindings With TestRunner Examples
-    *  [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SaucebindingsJunitTest.java)
-    *  [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsJunit4Test.java)
-    *  [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTestngTest.java)
+  *  [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SaucebindingsJunitTest.java)
+  *  [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsJunit4Test.java)
+  *  [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTestngTest.java)
 
 * Sauce Bindings Examples
-    *  [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SauceBindingsTest.java)
-    *  [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsTest.java)
-    *  [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTest.java)
+  *  [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SauceBindingsTest.java)
+  *  [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsTest.java)
+  *  [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTest.java)
 
 * Selenium Examples
   * [Accessibility Test with Sauce Bindings](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/SauceBindingsTest.java)
@@ -54,15 +54,15 @@ everything that you need to get started with web, mobile, visual, functional and
 [📚 Mobile Testing Training Tutorials](./TRAINING.md)
 
 * Real Devices
-    * [iOS native app](./appium-examples/src/test/java/com/realdevice/IOSNativeAppTest.java)
-    * [Android native app](./appium-examples/src/test/java/com/realdevice/AndroidNativeAppTest.java)
-    * [Upload app to Sauce Storage](./appium-examples/src/test/java/com/realdevice/SauceStorage.sh)
-    * [Image Injection](./appium-examples/src/test/java/com/realdevice/image_injection)
+  * [iOS native app](./appium-examples/src/test/java/com/realdevice/IOSNativeAppTest.java)
+  * [Android native app](./appium-examples/src/test/java/com/realdevice/AndroidNativeAppTest.java)
+  * [Upload app to Sauce Storage](./appium-examples/src/test/java/com/realdevice/SauceStorage.sh)
+  * [Image Injection](./appium-examples/src/test/java/com/realdevice/image_injection)
 
 * Emulators and Simulators
-    * [iOS native app](./appium-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
-    * [iOS web app](./appium-examples/src/test/java/com/emusim/IOSWebAppExample.java)
-    * [Biometric Login](./appium-examples/src/test/java/com/emusim/biometric_login)
+  * [iOS native app](./appium-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
+  * [iOS web app](./appium-examples/src/test/java/com/emusim/IOSWebAppExample.java)
+  * [Biometric Login](./appium-examples/src/test/java/com/emusim/biometric_login)
 
 ## ⚙️Setup
 
@@ -71,27 +71,31 @@ everything that you need to get started with web, mobile, visual, functional and
 * Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-the-jdk)
 * Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-maven)
 
-#### Import the Project
+### Import the Project
 
 1. Create a directory on your machine.
+
 2. Clone this repository into said directory.
     ```
     $ git clone https://github.com/saucelabs-training/demo-java.git
     ```
-2. Import the project into your IntelliJ (or IDE of your choice) as a **Maven Project**.
-3. Click through the prompts, and confirm when it asks to **Import from Sources**
-4. Choose the **demo-java** directory as the **root** directory of the project.
 
-#### Set Your Sauce Labs Credentials
+3. Import the project into your IntelliJ (or IDE of your choice) as a **Maven Project**.
+
+4. Click through the prompts, and confirm when it asks to **Import from Sources**
+
+5. Choose the **demo-java** directory as the **root** directory of the project.
+
+### Set Your Sauce Labs Credentials
 1. Copy your Sauce Labs **username** and **accessKey** in the [User Settings](https://app.saucelabs.com/user-settings) section of the [Sauce Labs Dashboard](https://app.saucelabs.com/dashboard/builds).
 2. Open a Terminal window (command prompt for Windows) and set your Sauce Labs Environment variables:   
-   ###### Mac OSX:
+   ##### Mac OSX:
    ```
    $ export SAUCE_USERNAME="your username"
    $ export SAUCE_ACCESS_KEY="your accessKey"
    $ export SCREENER_API_KEY="your screener key"
    ```
-   ###### Windows:
+   ##### Windows:
    ```
    > set SAUCE_USERNAME="username"
    > set SAUCE_ACCESS_KEY="accessKey"
@@ -104,7 +108,7 @@ everything that you need to get started with web, mobile, visual, functional and
    > Then set the "Name" and "Value" for each variable
    
 9. Test the environment variables
-    ###### Mac OSX:
+    ##### Mac OSX:
     ```
     $ echo $SAUCE_USERNAME
     $ echo $SAUCE_ACCESS_KEY
@@ -115,7 +119,7 @@ everything that you need to get started with web, mobile, visual, functional and
     $ launchctl setenv SAUCE_USERNAME $SAUCE_USERNAME
     $ launchctl setenv SAUCE_ACCESS_KEY $SAUCE_ACCESS_KEY
     ```
-    ###### Windows:
+    ##### Windows:
     ```
     > echo %SAUCE_USERNAME%
     > echo %SAUCE_ACCESS_KEY%
@@ -123,7 +127,7 @@ everything that you need to get started with web, mobile, visual, functional and
 
 <br />
 
-#### Run a Maven Test
+### Run a Maven Test
 
 1. Run the following command to update any package dependencies:
     ```
@@ -141,8 +145,8 @@ everything that you need to get started with web, mobile, visual, functional and
     
    You can run different tests from different modules. Check out some examples by looking at the [CI YML files](./.github/workflows)
 
-> ###### Disclaimer:
->
+##### Disclaimer:
+
 > The code in these scripts is provided on an "AS-IS" basis without warranty of any kind, either express or implied, including without limitation any implied warranties of condition, uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are provided for educational and demonstration purposes only, and should not be used in production. Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by the Technical Services team at Sauce Labs.
 >
 > Some examples in this repository, such as `appium-example`, `parallel-testing`, and `headless`, may require a different account tier beyond free trial. Please contact the [Sauce Labs Sales Team](https://saucelabs.com/contact) for support and information.
