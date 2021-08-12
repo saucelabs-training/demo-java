@@ -10,11 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SauceBindingsLoginTest extends SauceBaseTest {
 
-    // TODO: change `SauceBaseTest` to Abstract
-    public SauceBindingsLoginTest() {
-        super();
-    }
-
     @DisplayName("Swag Labs Login")
     @Test
     public void swagLabsLoginTest() {
