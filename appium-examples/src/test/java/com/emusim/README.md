@@ -1,4 +1,4 @@
-# Sauce Emusim Code Examples
+# Sauce EmuSim Code Examples
 
 These code samples are meant to demonstrate functionality of Sauce Labs.
 For example, you might find examples of how to get started with iOS, Android, Native apps and so on.

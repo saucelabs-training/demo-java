@@ -26,7 +26,7 @@ everything that you need to get started with web, mobile, visual, functional and
 
 ## Best Practices
 * [Desktop](./best-practice/src/test/java/com/saucedemo/tests/DesktopTests.java)
-* [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmusimWebAppTests.java)
+* [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmuSimWebAppTests.java)
 * [Performance](./best-practice/src/test/java/com/saucedemo/tests/PerformanceTests.java)
 * [RealDevice](./best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java)
 * [Visual](./best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
@@ -119,6 +119,7 @@ everything that you need to get started with web, mobile, visual, functional and
     $ launchctl setenv SAUCE_USERNAME $SAUCE_USERNAME
     $ launchctl setenv SAUCE_ACCESS_KEY $SAUCE_ACCESS_KEY
     ```
+    
     **Windows:**
     ```
     > echo %SAUCE_USERNAME%

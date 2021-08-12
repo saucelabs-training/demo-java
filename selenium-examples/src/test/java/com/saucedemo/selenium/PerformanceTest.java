@@ -12,6 +12,11 @@ import java.util.Map;
 
 public class PerformanceTest extends SauceBaseTest {
 
+    // TODO: change `SauceBaseTest` to Abstract
+    public PerformanceTest() {
+        super();
+    }
+
     @Override
     public SauceOptions createSauceOptions() {
         return SauceOptions.chrome()

@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 
 public class SauceBindingsTest extends SauceBaseTest {
 
+    // TODO: change `SauceBaseTest` to Abstract
+    public SauceBindingsTest() {
+        super();
+    }
+
     @Test
     public void sauceDemoAccessibility() {
         driver.navigate().to("https://www.saucedemo.com");

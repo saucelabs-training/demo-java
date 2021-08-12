@@ -98,7 +98,7 @@ Specific Structure With Examples
             |-- test
                 |-- java
                     |-- com.saucedemo.emusim (Java package)
-                        |-- SomeEmusimExample.java
+                        |-- SomeEmuSimExample.java
                     |-- com.saucedemo.realdevice (Java package)
                         |-- SomeRealDeviceExample.java
                     |-- com.saucedemo.realdevice.legacy (Java package)
