@@ -10,7 +10,8 @@
 ## Running the tests
 to run: `make run_all_in_parallel`
 
-## Running the tests with a proxy - replace PORT with port number and localhost as necessary
-```
+## Running the tests with a proxy
+*replace PORT with port number and localhost as necessary*
+```shell
 mvn -Dhttp.proxyHost=localhost -Dhttp.proxyPort=PORT -Dhttps.proxyHost=localhost -Dhttps.proxyPort=PORT -Dhttps.proxyPort=PORT test
 ```
