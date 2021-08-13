@@ -37,7 +37,6 @@ public class SimpleVisualE2ETest {
         capabilities.setCapability("sauce:options", sauceOptions);
     }
 
-    @Ignore("Not Running Visual Tests in CI")
     @Test
     public void testVisualE2E() throws MalformedURLException {
         MutableCapabilities visualOptions = new MutableCapabilities();

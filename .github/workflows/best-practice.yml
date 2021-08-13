@@ -4,8 +4,10 @@
 name: Best Practices Tests
 
 on:
-  - push
-  - pull_request
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -13,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        test: [ DesktopTests, EmuSimWeb*, Real*]
+        test: [ DesktopTests, EmuSimWeb*, Visual*]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
