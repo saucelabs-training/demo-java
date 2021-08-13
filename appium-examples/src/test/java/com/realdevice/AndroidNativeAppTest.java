@@ -16,8 +16,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.junit.Assert.assertTrue;
-
 /**
  * Android Native App Tests
  */
@@ -39,7 +37,7 @@ public class AndroidNativeAppTest {
     }
 
     @Before
-    public void setup(){
+    public void setup() {
         //Arrange
         capabilities = new MutableCapabilities();
         /*
@@ -79,9 +77,9 @@ public class AndroidNativeAppTest {
     @Test
     public void setAppNameDynamically() throws MalformedURLException {
         /*
-        * We can dynamically set an app name from environment variables
-        * Just set the value in command line before running `mvn` command
-        * */
+         * We can dynamically set an app name from environment variables
+         * Just set the value in command line before running `mvn` command
+         * */
         capabilities.setCapability("app", System.getenv("ANDROID_APP"));
 
         driver = new AndroidDriver<>(
