@@ -1,8 +1,10 @@
-name: RDC Android Native App
+name: Real Devices
 
 on:
-  - push
-  - pull_request
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 env:
   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
@@ -25,3 +27,7 @@ jobs:
       run: |
         export ANDROID_APP=https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk
         mvn test -pl appium-examples -Dtest=AndroidNativeAppTest#setAppNameDynamically -X
+    - name: RDC Native App IOS
+      run: mvn test -pl appium-examples -Dtest=IOSNativeAppTest -X
+    - name: RDC Web
+      run: mvn test -pl best-practice -Dtest=Real* -X
