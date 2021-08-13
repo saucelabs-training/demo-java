@@ -48,7 +48,7 @@ public class SimpleVisualE2ETest {
         URL url = new URL("https://hub.screener.io/wd/hub");
         driver = new RemoteWebDriver(url, capabilities);
 
-        driver.get("https://screener.io");
+        driver.get("https://saucedemo.com");
 
         driver.executeScript("/*@visual.init*/", "My Visual Test 2");
         driver.executeScript("/*@visual.snapshot*/", "Home");
