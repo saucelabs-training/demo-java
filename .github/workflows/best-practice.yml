@@ -11,10 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        test: [ DesktopTests, EmuSimWeb*, Visual*]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
@@ -27,4 +23,4 @@ jobs:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
         SCREENER_API_KEY: ${{ secrets.SCREENER_API_KEY }}
-      run: mvn test -pl best-practice -Dtest=${{ matrix.test }} -X
+      run: mvn test -pl best-practice -Dtest=\!RealDevice* -X
