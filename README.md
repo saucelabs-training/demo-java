@@ -6,13 +6,11 @@ everything that you need to get started with web, mobile, visual, functional and
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/564ddfb012db40048781b7b6c954d099)](https://app.codacy.com/gh/saucelabs-training/demo-java?utm_source=github.com&utm_medium=referral&utm_content=saucelabs-training/demo-java&utm_campaign=Badge_Grade_Dashboard)
 [![Best Practices Tests](https://github.com/saucelabs-training/demo-java/actions/workflows/best-practice.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/best-practice.yml)
-[![Selenium Examples](https://github.com/saucelabs-training/demo-java/actions/workflows/junit5.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/junit5.yml)
+[![Selenium JUnit 5 Tests](https://github.com/saucelabs-training/demo-java/actions/workflows/selenium-examples.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/selenium-examples.yml)
 [![JUnit 4 Tests](https://github.com/saucelabs-training/demo-java/actions/workflows/junit4.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/junit4.yml)
 [![TestNg Tests](https://github.com/saucelabs-training/demo-java/actions/workflows/testng.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/testng.yml)
 [![Selenium Cucumber Examples](https://github.com/saucelabs-training/demo-java/actions/workflows/cucumber.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/cucumber.yml)
-[![Real Devices Web Tests](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices-web.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices-web.yml)
-[![RDC Android Native App](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices-native-android.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices-native-android.yml)
-[![RDC iOS Native App](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices-native-ios.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices-native-ios.yml)
+[![Real Devices](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices.yml)
 
 ## 🥇Most Popular
 *  [Web automation best practices framework with multiple testing strategies. Crafted by industry experts with decades of experience.](/best-practice/src/test/java/com/saucedemo/tests/)
