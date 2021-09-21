@@ -13,7 +13,7 @@ everything that you need to get started with web, mobile, visual, functional and
 [![Real Devices](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices.yml/badge.svg)](https://github.com/saucelabs-training/demo-java/actions/workflows/real-devices.yml)
 
 ## 🥇Most Popular
-*  [Web automation best practices framework with multiple testing strategies. Crafted by industry experts with decades of experience.](/best-practice/src/test/java/com/saucedemo/tests/)
+*  [Web automation best practices framework with multiple testing strategies. Crafted by industry experts with decades of experience.](./best-practice/)
 *  [Quick start test, Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SeleniumTest.java)
 *  [Quick start test, Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SeleniumTest.java)
 *  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SeleniumTest.java)
