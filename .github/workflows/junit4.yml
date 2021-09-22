@@ -21,6 +21,7 @@ jobs:
         java-version: 1.8
     - name: check current path
       run: pwd
+           ls
     - name: Run JUnit 4 Tests
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
