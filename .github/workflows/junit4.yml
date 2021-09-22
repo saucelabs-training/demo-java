@@ -23,7 +23,7 @@ jobs:
       run: |
         pwd
         ls .
-        ls ./selenium-junit4-examples/src/test/Java/com/saucedemo/selenium/junit4/demo
+        ls selenium-junit4-examples
     - name: Run JUnit 4 Tests
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
