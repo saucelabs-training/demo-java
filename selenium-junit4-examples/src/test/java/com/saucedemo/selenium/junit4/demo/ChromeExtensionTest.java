@@ -47,7 +47,7 @@ public class ChromeExtensionTest {
         browserOptions.setCapability("platformName", "Windows 10");
         browserOptions.setCapability("browserVersion", "latest");
         // Add Extension
-        String chromeExtFile = System.getProperty("user.dir") + "/src/test/Java/com/saucedemo/selenium/junit4/demo/ninja-saucebot.crx";
+        String chromeExtFile = "src/test/Java/com/saucedemo/selenium/junit4/demo/ninja-saucebot.crx";
         File ext = new File(chromeExtFile);
         browserOptions.addExtensions(ext);
 
