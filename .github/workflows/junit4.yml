@@ -19,10 +19,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: check current path
-      run: |
-        pwd
-        ls ./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo
     - name: Run JUnit 4 Tests
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
