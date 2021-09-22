@@ -22,8 +22,7 @@ jobs:
     - name: check current path
       run: |
         pwd
-        ls .
-        ls selenium-junit4-examples
+        ls selenium-junit4-examples/src/test/java
     - name: Run JUnit 4 Tests
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
