@@ -1,33 +1,34 @@
 package Tests;
 
-import org.junit.Test;
-import org.openqa.selenium.MutableCapabilities;
+import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import com.saucelabs.saucebindings.options.SauceOptions;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Collections;
 
-public class MSEdgeTest {
+public class MSEdgeTest extends SauceBaseTest {
 
-    @Test
-    public void edgeExecution() throws MalformedURLException {
-        MutableCapabilities sauceOpts = new MutableCapabilities();
-        sauceOpts.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOpts.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+    public SauceOptions createSauceOptions() {
+        EdgeOptions options = new EdgeOptions();
 
-        EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.setExperimentalOption("excludeSwitches",
+        // Selenium 3 did not support any direct options for Chromium Edge
+        // Selenium 4 allows setting all compliant values on EdgeOptions
+
+        options.setExperimentalOption("excludeSwitches",
                 Collections.singletonList("disable-popup-blocking"));
 
-        edgeOptions.setCapability("sauce:options", sauceOpts);
+        return SauceOptions.edge(options).build();
+    }
 
-        String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
-        URL url = new URL(sauceUrl);
-        RemoteWebDriver driver = new RemoteWebDriver(url, edgeOptions);
+    @Test
+    public void edgeExecution() {
+        driver.get("https://deliver.courseavenue.com/PopupTest.aspx");
+        driver.findElement(By.cssSelector("input[type=submit]")).click();
 
-        driver.get("http://www.popuptest.com/popuptest1.html");
+        Assertions.assertEquals(1, driver.getWindowHandles().size());
         driver.quit();
     }
 }
