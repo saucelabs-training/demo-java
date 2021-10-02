@@ -1,4 +1,4 @@
-package Tests;
+package com.saucelabs.selenium4.new_;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import org.junit.jupiter.api.Assertions;
