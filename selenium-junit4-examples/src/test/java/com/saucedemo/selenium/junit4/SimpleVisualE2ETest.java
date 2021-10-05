@@ -44,6 +44,8 @@ public class SimpleVisualE2ETest {
         visualOptions.setCapability("projectName", "visual-e2e-test");
         visualOptions.setCapability("viewportSize", "1280x1024");
         capabilities.setCapability("sauce:visual", visualOptions);
+        // Visual requires validation when the browser version changes
+        capabilities.setCapability(CapabilityType.BROWSER_VERSION, "94");
 
         URL url = new URL("https://hub.screener.io/wd/hub");
         driver = new RemoteWebDriver(url, capabilities);
