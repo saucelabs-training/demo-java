@@ -5,7 +5,7 @@ name: Selenium JUnit 5 Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
 
 jobs:

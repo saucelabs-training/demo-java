@@ -64,10 +64,10 @@ everything that you need to get started with web, mobile, visual, functional and
 
 ## ⚙️Setup
 
-*  Install [Git](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-git)
-*  Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-intellij)
-*  Install [JDK](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-the-jdk)
-*  Install [Maven](https://github.com/saucelabs-training/demo-java/blob/master/docs/prerequisites.md#install-maven)
+*  Install [Git](https://github.com/saucelabs-training/demo-java/blob/main/docs/prerequisites.md#install-git)
+*  Install [IntelliJ (or another IDE)](https://github.com/saucelabs-training/demo-java/blob/main/docs/prerequisites.md#install-intellij)
+*  Install [JDK](https://github.com/saucelabs-training/demo-java/blob/main/docs/prerequisites.md#install-the-jdk)
+*  Install [Maven](https://github.com/saucelabs-training/demo-java/blob/main/docs/prerequisites.md#install-maven)
 
 ### Import the Project
 
