@@ -8,7 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
-public class LocatorSauceTest extends SauceBaseTest {
+public class RelativeLocatorsTest extends SauceBaseTest {
 
     @Test
     public void relativeLocatorsGood() throws InterruptedException {

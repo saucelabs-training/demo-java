@@ -15,7 +15,7 @@ import org.openqa.selenium.remote.Augmenter;
 
 import java.util.concurrent.TimeUnit;
 
-public class PrefsTest extends SauceBaseTest {
+public class FirefoxContextTest extends SauceBaseTest {
 
     public SauceOptions createSauceOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();

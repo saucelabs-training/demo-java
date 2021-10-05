@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.HasFullPageScreenshot;
 import org.openqa.selenium.print.PrintOptions;
 import org.openqa.selenium.remote.Augmenter;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,9 +53,9 @@ public class ViewPageFirefoxTest extends SauceBaseTest {
     @Test
     public void takeFullPageScreenshot() throws IOException {
         WebDriver augmentedDriver = new Augmenter().augment(driver);
-        byte[] screenshotAs = ((HasFullPageScreenshot) augmentedDriver).getFullPageScreenshotAs(OutputType.BYTES);
+        File file = ((HasFullPageScreenshot) augmentedDriver).getFullPageScreenshotAs(OutputType.FILE);
 
         Path fullPageScreenshot = Paths.get(directory + "TakeFullPageScreenshotFirefox.png");
-        Files.write(fullPageScreenshot, screenshotAs);
+        Files.move(file.toPath(), fullPageScreenshot);
     }
 }
