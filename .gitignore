@@ -31,3 +31,4 @@ hs_err_pid*
 *.classpath
 **/.vscode
 *.project
+appium-examples/src/test/java/com/realdevice/up_download_file/samsung_real_device/downloaded-sauce-bot-coding.png
