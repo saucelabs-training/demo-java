@@ -47,8 +47,9 @@ public class UploadImageToAndroidRealDevice {
         URL url = new URL(SAUCE_REMOTE_URL);
 
         MutableCapabilities capabilities = new MutableCapabilities();
-        // This is a specific private device so I can control the state of it
-        capabilities.setCapability("deviceName", "Samsung_Galaxy_S9_POC24");
+        // This is a specific device type so I can control the state of it
+        capabilities.setCapability("deviceName", "Samsung Galaxy S9");
+        capabilities.setCapability("platformVersion", "10");
 
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", "UiAutomator2");
