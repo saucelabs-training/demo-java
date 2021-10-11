@@ -51,9 +51,9 @@ public class SeleniumLoginTest {
     public void swagLabsLoginTest() {
         driver.get("https://www.saucedemo.com");
 
-        By usernameFieldLocator = By.id("user-name");
-        By passwordFieldLocator = By.id("password");
-        By submitButtonLocator = By.id("login-button");
+        By usernameFieldLocator = By.cssSelector("#user-name");
+        By passwordFieldLocator = By.cssSelector("#password");
+        By submitButtonLocator = By.cssSelector(".btn_action");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until((driver) -> driver.findElement(usernameFieldLocator).isDisplayed());
@@ -75,16 +75,18 @@ public class SeleniumLoginTest {
     public class SauceTestWatcher implements TestWatcher {
         @Override
         public void testSuccessful(ExtensionContext context) {
-            endSession("passed");
+            endSession(true);
         }
 
         @Override
         public void testFailed(ExtensionContext context, Throwable cause) {
-            endSession("failed");
+            endSession(false);
         }
 
-        private void endSession(String result) {
+        private void endSession(boolean passed) {
+            String result = passed ? "passed" : "failed"; 
             driver.executeScript("sauce:job-result=" + result);
+
             driver.quit();
         }
     }
