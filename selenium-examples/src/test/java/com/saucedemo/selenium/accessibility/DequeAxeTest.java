@@ -2,19 +2,21 @@ package com.saucedemo.selenium.accessibility;
 
 import com.deque.html.axecore.results.Results;
 import com.deque.html.axecore.selenium.AxeBuilder;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
-import org.openqa.selenium.MutableCapabilities;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Accessibility Tests with Deque Library.
@@ -22,51 +24,45 @@ import java.net.URL;
 public class DequeAxeTest {
     public RemoteWebDriver driver;
 
-    @Rule
+    @RegisterExtension
     public SauceTestWatcher watcher = new SauceTestWatcher();
 
-    @Rule
-    public TestName name = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
+    @BeforeEach
+    public void setup(TestInfo testInfo) throws MalformedURLException {
+        ChromeOptions options = new ChromeOptions();
+        options.setPlatformName("Windows 10");
+        options.setBrowserVersion("latest");
 
-    @Before
-    public void setup() throws MalformedURLException {
-        MutableCapabilities sauceOpts = new MutableCapabilities();
-        sauceOpts.setCapability("name", name.getMethodName());
-        sauceOpts.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOpts.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
+        sauceOptions.put("access_key", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.put("name", testInfo.getDisplayName());
 
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setCapability("sauce:options", sauceOpts);
+        options.setCapability("sauce:options", sauceOptions);
+        URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
 
-        String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
-        driver = new RemoteWebDriver(new URL(sauceUrl), chromeOptions);
+        driver = new RemoteWebDriver(url, options);
     }
 
+    @DisplayName("Deque Axe Test With Selenium")
     @Test
     public void accessibilityTest() {
         driver.navigate().to("https://www.saucedemo.com");
         AxeBuilder axeBuilder = new AxeBuilder();
         Results accessibilityResults = axeBuilder.analyze(driver);
-        Assert.assertEquals(3, accessibilityResults.getViolations().size());
+        Assertions.assertEquals(3, accessibilityResults.getViolations().size());
     }
 
-    private class SauceTestWatcher extends TestWatcher {
+    public class SauceTestWatcher implements TestWatcher {
         @Override
-        protected void failed(Throwable e, Description description) {
-            driver.executeScript("sauce:job-result=failed");
-        }
-
-        @Override
-        protected void succeeded(Description description) {
+        public void testSuccessful(ExtensionContext context) {
             driver.executeScript("sauce:job-result=passed");
+            driver.quit();
         }
 
         @Override
-        protected void finished(Description description) {
+        public void testFailed(ExtensionContext context, Throwable cause) {
+            driver.executeScript("sauce:job-result=failed");
             driver.quit();
         }
     }

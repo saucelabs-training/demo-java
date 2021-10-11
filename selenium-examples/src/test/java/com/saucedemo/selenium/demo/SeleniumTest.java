@@ -8,12 +8,13 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Demo tests with Selenium.
@@ -30,22 +31,24 @@ public class SeleniumTest {
 
     @BeforeEach
     public void setup(TestInfo testInfo) throws MalformedURLException {
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOptions.setCapability("access_key", System.getenv("SAUCE_ACCESS_KEY"));
-        sauceOptions.setCapability("name", testInfo.getDisplayName());
-        sauceOptions.setCapability("browserVersion", "latest");
-
         ChromeOptions options = new ChromeOptions();
+        options.setPlatformName("Windows 10");
+        options.setBrowserVersion("latest");
+
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
+        sauceOptions.put("access_key", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.put("name", testInfo.getDisplayName());
+
         options.setCapability("sauce:options", sauceOptions);
         URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
 
         driver = new RemoteWebDriver(url, options);
     }
 
-    @DisplayName("W3C example with JUnit5")
+    @DisplayName("Selenium Navigation Test")
     @Test
-    public void w3cExampleWithJUnit5() {
+    public void navigateAndClose() {
         driver.navigate().to("https://www.saucedemo.com");
         Assertions.assertEquals("Swag Labs", driver.getTitle());
     }

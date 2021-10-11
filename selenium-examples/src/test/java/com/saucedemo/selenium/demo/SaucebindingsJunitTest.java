@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Test;
  */
 public class SaucebindingsJunitTest extends SauceBaseTest {
 
-    @DisplayName("saucebindings-junit5 package example")
+    @DisplayName("Sauce Bindings Test Runner Navigation Example")
     @Test
-    public void saucebindingsJunit5Test() {
+    public void sauceBindingsTestRunnerTest() {
         driver.navigate().to("https://www.saucedemo.com");
         Assertions.assertEquals("Swag Labs", driver.getTitle());
     }
