@@ -35,7 +35,7 @@ public class DequeAxeTest {
 
         Map<String, Object> sauceOptions = new HashMap<>();
         sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
-        sauceOptions.put("access_key", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.put("name", testInfo.getDisplayName());
 
         options.setCapability("sauce:options", sauceOptions);

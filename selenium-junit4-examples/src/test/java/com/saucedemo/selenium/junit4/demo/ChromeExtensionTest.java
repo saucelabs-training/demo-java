@@ -1,6 +1,5 @@
 package com.saucedemo.selenium.junit4.demo;
 
-import io.appium.java_client.AppiumDriver;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -11,7 +10,6 @@ import org.junit.runner.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,8 +18,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * An example on how to run Java + JUnit 4 test in the Sauce Labs Desktop Web cloud Chrome Extensions
@@ -40,7 +36,7 @@ public class ChromeExtensionTest {
     public void setup() throws MalformedURLException {
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOptions.setCapability("access_key", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.setCapability("name", testName.getMethodName());
 
         ChromeOptions browserOptions = new ChromeOptions();
