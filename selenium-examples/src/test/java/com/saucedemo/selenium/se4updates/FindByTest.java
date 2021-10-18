@@ -11,11 +11,11 @@ public class FindByTest extends SauceBaseTest {
 
         // These are no longer available at all in Selenium 4:
         //  driver.findElementById("user-name");
-        //  driver.findElementByCssSelector(".password");
-        //  driver.findElementByTagName("button");
+        //  driver.findElementByCssSelector("#password");
+        //  driver.findElementByClassName("btn_action");
 
-        driver.findElement(By.id("user-name"));
-        driver.findElement(By.cssSelector(".password"));
-        driver.findElement(By.tagName("button"));
+        driver.findElement(By.cssSelector("#user-name"));
+        driver.findElement(By.cssSelector("#password"));
+        driver.findElement(By.cssSelector(".btn_action"));
     }
 }

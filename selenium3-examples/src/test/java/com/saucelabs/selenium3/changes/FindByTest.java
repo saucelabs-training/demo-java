@@ -10,7 +10,6 @@ public class FindByTest extends SauceBaseTest {
 
         driver.findElementById("user-name");
         driver.findElementByCssSelector("#password");
-        driver.findElementByTagName("button");
+        driver.findElementByClassName("btn_action");
     }
-
 }
