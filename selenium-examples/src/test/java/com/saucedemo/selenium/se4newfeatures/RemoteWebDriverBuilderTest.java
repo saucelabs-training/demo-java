@@ -1,4 +1,4 @@
-package com.saucelabs.selenium4.new_;
+package com.saucedemo.selenium.se4newfeatures;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
