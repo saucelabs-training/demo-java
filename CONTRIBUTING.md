@@ -48,12 +48,12 @@ Description
 Most of the code that we will ever create is an "example"
 
 |-- demo-java
-    |-- appium-examples (Java module)
-    |-- best-practice (Java module)
-    |-- best-practice-mobile-native (Java module)
-    |-- selenium-cucumber-examples (Java module)
-    |-- selenium-examples (Java module)
-    |-- selenium-junit4-examples (Java module)
+    |-- appium-examples (Java module, default is Junit4)
+    |-- best-practice (Java module, default is Junit4)
+    |-- best-practice-mobile-native (Java module, default is Junit4)
+    |-- selenium-cucumber-examples (Java module, default is Junit4)
+    |-- selenium-examples (Java module, default is Junit4)
+    |-- selenium-junit5-examples (Java module)
     |-- selenium-testng-examples (Java module)
 ```
 
