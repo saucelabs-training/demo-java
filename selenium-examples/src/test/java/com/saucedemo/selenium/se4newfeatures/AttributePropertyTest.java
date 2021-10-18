@@ -51,7 +51,7 @@ public class AttributePropertyTest extends SauceBaseTest {
         element.click();
 
         Assertions.assertNull(element.getAttribute("checked"));
-        Assertions.assertNull(element.getDomProperty("checked"));
+        Assertions.assertEquals("false", element.getDomProperty("checked"));
         Assertions.assertEquals("true", element.getDomAttribute("checked"));
     }
 
