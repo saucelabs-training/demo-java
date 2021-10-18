@@ -1,4 +1,4 @@
-package com.saucelabs.selenium4.changes;
+package com.saucedemo.selenium.se4updates;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import org.junit.jupiter.api.Test;

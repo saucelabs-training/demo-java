@@ -1,4 +1,4 @@
-package com.saucelabs.selenium4.changes;
+package com.saucedemo.selenium.se4updates;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
