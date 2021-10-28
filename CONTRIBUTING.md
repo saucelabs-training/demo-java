@@ -112,6 +112,13 @@ Specific Structure With Examples
 **examples** are a way to show off some feature in Sauce Labs.
 Every time we add an example, please be sure to add it to the main README.
 
+#### Standards for examples
+
+* Junit4 as the test runner (unless a specific feature is needed)
+* Selenium 4
+* non-Sauce Bindings
+* Java8
+
 ### Single Best Practice Directory
 
 With the evolution of Sauce, a true Best Practice is not only
