@@ -37,12 +37,14 @@ In this repository, you will find a cohesive Greybox (we have some insight into 
 * Run all the tests inside of the `best-practice` directory
 
 ```
+   cd best-practice 
    mvn clean test
 ```
 
 ### Run visual tests
 
 ```
+cd best-practice 
 mvn clean test -Dtest=Visual
 ```
 
