@@ -7,7 +7,7 @@
 1. Decide if your code is an [example (most likely)](#code-example) or a [best-practice (least common)](#best-practice)
 2. Add your code to the correct folder structure as specified in [Repository Structure](#repository-structure)
 3. Add a link to the code in the table of contents. The link should be placed in the right section and should be alphabetically organized. 
-4.Include relevant technology tags like "TestNG" and "Sauce Bindings"
+4. Include relevant technology tags like `TestNG` and `Sauce Bindings`
 5. Push your changes to the remote repository
 6. Create a PR
 7. Make sure that all the checks pass
