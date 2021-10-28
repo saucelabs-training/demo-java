@@ -1,20 +1,23 @@
 # Adding Code To demo-java
 
-1. Clone this repository
+## 1.Clone this repository
 
 **Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://kcd.im/pull-request)
 
-2. Decide if your code example is an example (most likely) or a best-practice (least common)
-3. Add your code to the correct folder structure as specified below
-4. Push your changes to the remote repository
-5. Create a PR
-6. Make sure that all the checks pass
+2. Decide if your code is an [example (most likely)](#code-example) or a [best-practice (least common)](#best-practice)
+3. Add your code to the correct folder structure as specified in [Repository Structure](#repository-structure)
+4. Add a link to the code in the table of contents. The link should be placed in the right section and should be alphabetically organized.
+5. Push your changes to the remote repository
+6. Create a PR
+7. Make sure that all the checks pass
 
 ![passing checks](./images/checks.png)
 
 7. Request someone to be a reviewer (@nadvolod or @joshmgrant are a good start)
 
-An **example** is some code that wants to demonstrate a feature. 
+### Code Example
+
+An **example** is some code that wants to demonstrate a feature.
 For example, parallelization with JUnit4, parallelization with
 Junit5,
 biometric authentication, simple Appium iOS test. An **example** is as simple as it gets.
@@ -23,20 +26,22 @@ add page objects for example.
 
 > The primary goal is to keep maintenance costs as low as possible!
 
+### Best Practice
+
 A **best-practice** is solution that shows off
 how to use a specific technology combination in the optimal way
 to test applications, according to the Solution Architects team. Typically there is
-only a single best practice for web and for mobile. 
+only a single best practice for web and for mobile.
 A **best-practice** will show:
-* POs 
-* Proper folder structure 
-* Correct parallelization 
+* POs
+* Proper folder structure
+* Correct parallelization
 * Correct abstractions
 * Use of all Sauce testing types (visual, perf, visual component) where applicable (**best-practice** code is not as common as code **examples**).
 * **best-practice** for web exists [here](./best-practice)
 * **best-practice** for mobile native exists [here](./best-practice-mobile-native)
 
-## Add relevant code
+## 2.Add relevant code
 
 ### Repository Structure
 
@@ -110,7 +115,7 @@ Specific Structure With Examples
 ### Examples
 
 **examples** are a way to show off some feature in Sauce Labs.
-Every time we add an example, please be sure to add it to the main README.
+Every time we add an example, please be sure to add it to the main [README table of contents](README.md).
 
 ### Single Best Practice Directory
 
@@ -122,16 +127,16 @@ and test strategy.
 
 ### Code Separation
 
-The key ideas behind this organization are visibility and 
+The key ideas behind this organization are visibility and
 re-usability for the clients and the team. A mature customer may need
 a performance testing code example using Junit5. On the other
-hand, a less mature, but very valuable customer may need the 
+hand, a less mature, but very valuable customer may need the
 same exact code sample but using Junit3. If we create
 this code sample for one of the customers, wouldn't it
 also be nice to make these visible to all other customers
 that desire a specific combination of technologies?
 
-But where would such code examples go? 
+But where would such code examples go?
 
 In the above structure that's easy for everyone to understand.
 
@@ -150,21 +155,21 @@ developed.
 
 There is no requirement to have a code **example** for every single tech combination.
 
-Only create what's needed at the time. 
+Only create what's needed at the time.
 All we ask is that if you create a code example for one client
-using a specific combination of technologies (ex Junit3 test status reporting), 
+using a specific combination of technologies (ex Junit3 test status reporting),
 then make
-that available to all customers, SAs, and SEs. 
+that available to all customers, SAs, and SEs.
 
 Let your work be reusable and visible for the future instead
 of being hidden somewhere in a private repository. It's highly
-likely that there is a customer, or an engineer that's 
-spending time recreating a code sample that you already 
+likely that there is a customer, or an engineer that's
+spending time recreating a code sample that you already
 created in your private repo.
 
 ### How will someone find my beautiful code sample?
 
-There are code examples that are popular 
+There are code examples that are popular
 (Getting started samples) and there are code examples that
 aren't so popular (using Junit3 to update test status).
 
