@@ -4,25 +4,27 @@
 
 **Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://kcd.im/pull-request)
 
-2. Decide if your code is an [example (most likely)](#code-example) or a [best-practice (least common)](#best-practice)
-3. Add your code to the correct folder structure as specified in [Repository Structure](#repository-structure)
-4. Add a link to the code in the table of contents. The link should be placed in the right section and should be alphabetically organized.
+1. Decide if your code is an [example (most likely)](#code-example) or a [best-practice (least common)](#best-practice)
+2. Add your code to the correct folder structure as specified in [Repository Structure](#repository-structure)
+3. Add a link to the code in the table of contents. The link should be placed in the right section and should be alphabetically organized. 
+4.Include relevant technology tags like "TestNG" and "Sauce Bindings"
 5. Push your changes to the remote repository
 6. Create a PR
 7. Make sure that all the checks pass
-
-![passing checks](./images/checks.png)
-
-7. Request someone to be a reviewer (@nadvolod or @joshmgrant are a good start)
+8. Request someone to be a reviewer (@nadvolod or @joshmgrant are a good start)
 
 ### Code Example
 
-An **example** is some code that wants to demonstrate a feature.
-For example, parallelization with JUnit4, parallelization with
-Junit5,
-biometric authentication, simple Appium iOS test. An **example** is as simple as it gets.
+An **example** is code that demonstrates a specific feature.
 If you're creating a simple test to show off Sauce Labs, don't
-add page objects for example.
+add page objects for example. All examples must be buildable and executable. 
+
+#### Standards for examples
+
+* Junit4 as the test runner (unless a specific feature is needed)
+* Selenium 4
+* non-Sauce Bindings
+* Java8
 
 > The primary goal is to keep maintenance costs as low as possible!
 
@@ -33,13 +35,11 @@ how to use a specific technology combination in the optimal way
 to test applications, according to the Solution Architects team. Typically there is
 only a single best practice for web and for mobile.
 A **best-practice** will show:
-* POs
+* Page Objects
 * Proper folder structure
 * Correct parallelization
 * Correct abstractions
-* Use of all Sauce testing types (visual, perf, visual component) where applicable (**best-practice** code is not as common as code **examples**).
-* **best-practice** for web exists [here](./best-practice)
-* **best-practice** for mobile native exists [here](./best-practice-mobile-native)
+* Use of all Sauce testing types (visual, perf, visual component) where applicable.
 
 ## 2.Add relevant code
 
@@ -112,20 +112,15 @@ Specific Structure With Examples
 
 ## FAQs
 
-### Examples
-
-**examples** are a way to show off some feature in Sauce Labs.
-Every time we add an example, please be sure to add it to the main [README table of contents](README.md).
-
-### Single Best Practice Directory
+### How do you define "Best Practice"?
 
 With the evolution of Sauce, a true Best Practice is not only
 Selenium automation. A true Best Practice shows customers
 how to utilize all of the tools (Selenium, Appium, Visual, Performance, API...)
-that Sauce has to offer in a cohesive framework
+that Sauce Labs has to offer in a cohesive framework
 and test strategy.
 
-### Code Separation
+### Why distinguish between "examples" and "best practices"?
 
 The key ideas behind this organization are visibility and
 re-usability for the clients and the team. A mature customer may need
@@ -140,7 +135,7 @@ But where would such code examples go?
 
 In the above structure that's easy for everyone to understand.
 
-### Cucumber
+### Where can I add Cucumber best practices examples?
 
 Because the organization of the Cucumber source code is
 different than the typical organization of a Maven project.
@@ -151,7 +146,7 @@ Also, Cucumber doesn't have a Best Practice as we don't
 believe that it is one nor does our team have a Best Practice strategy
 developed.
 
-### Too Many Code Examples
+### Is there a risk of creating too many examples?
 
 There is no requirement to have a code **example** for every single tech combination.
 
