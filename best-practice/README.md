@@ -1,49 +1,52 @@
-# Web Automation Best Practices 
-This is a repository that contains a suite of tests extended to test SauceDemo application.
+# Best Practices for Web Testing
 
-The suite uses a combination of testing techniques for the most efficient test coverage. This suite combines techniques such as:
-* Functional browser automation on Desktop
-* Functional mobile web automation
-* Visual testing
-* Front-end performance tests
-* API testing
+A good testing strategy doesn't only focus on web testing. Instead, it tackles risks at all levels of the system.
 
-![visualTesting](assets/visualTesting.gif)
+In this repository, you will find a cohesive Greybox (we have some insight into the app code) testing strategy using:
 
-## Executing tests
+✅ Browser testing on desktop
 
-1. Run full suite
-```java
-cd best-practice
-mvn clean test
+✅ Browser testing on mobile
+
+✅ Visual testing
+
+✅ CICD pipeline executed on push and PR
+
+✅ Sauce Labs cloud infrastructure
+
+## Test Strategy
+
+| Expected Behavior  | Tested? | Test Type  | Rationale  | Tech |
+|---|---|---|---|---|
+| Every web page of the app looks correct on desktop | ✅ | Visual test | A visual test efficiently validates app rendering | Selenium, Screener.io |
+| Every web page of the app looks correct on mobile  | ✅ | Visual test  | A visual test efficiently validates app rendering | Selenium, Screener.io |
+| A user can successfully check out on desktop  | ✅ | Functional web test  | Functional testing of the most critical functionality is important | Selenium |
+| A user can successfully check out on mobile  | ✅ | Functional mobile test  | Although redundant to a functional web test, it's relatively easy to test this on a mobile device as well  | Appium |
+| App is accessibility friendly  | 🙅‍♂️ | Selenium web test | Accessibility in applications is becoming extremely important  | Selenium, Axe
+| Front-end performance is at least an A  | 🙅‍♂️ | Front-end performance test  | Front-end perf is an important aspect of any digital quality effort | Selenium, Sauce Labs |
+| Test code runs on every commit in under 5 minutes  | 🙅‍♂️ | CICD  | Slow feedback makes it hard to iterate  | Github Actions |
+| App is secure  | 🙅‍♂️ | Not covered here, but something to consider for testing strategy  |   |
+
+
+## ⚙️Setup
+
+* See main [README](../README.md) 
+
+## Running all tests
+
+* Run all the tests inside of the `best-practice` directory
+
 ```
-The output will look like this:
-```text
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 140.32 s - in com.saucedemo.tests.VisualCrossPlatformTests
-[INFO] Running com.saucedemo.tests.EmuSimWebAppTests
-Feb 03, 2021 3:17:44 PM org.openqa.selenium.remote.ProtocolHandshake createSession
-INFO: Detected dialect: OSS
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 60.017 s - in com.saucedemo.tests.EmuSimWebAppTests
-[INFO] 
-[INFO] Results:
-[INFO] 
-[WARNING] Tests run: 6, Failures: 0, Errors: 0, Skipped: 1
-[INFO] 
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:23 min
-[INFO] Finished at: 2021-02-03T15:19:13-05:00
-[INFO] ------------------------------------------------------------------------
+   mvn clean test
+```
+
+### Run visual tests
 
 ```
-2. Run visual tests
-```java
-cd best-practice
-mvn clean test -Dtest=Visual*
+mvn clean test -Dtest=Visual
 ```
-3. Run desktop tests
-```java
-cd best-practice
-mvn clean test -Dtest=Desktop*
-```
+
+
+
+
+
