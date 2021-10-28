@@ -10,8 +10,11 @@ on:
 
 jobs:
   build:
-    runs-on: [ubuntu-latest]
-    runs-on: [macos-latest]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04]
+        node: [10, 12, 14]
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
