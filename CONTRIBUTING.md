@@ -25,6 +25,8 @@ add page objects for example. All examples must be buildable and executable.
 * Selenium 4
 * non-Sauce Bindings
 * Java8
+* No page objects (can be found in best-practice)
+* If code doesn't contribute to showing a feature then don't add that extra code
 
 > The primary goal is to keep maintenance costs as low as possible!
 
