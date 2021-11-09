@@ -1,42 +1,49 @@
 # Adding Code To demo-java
 
-1. Clone this repository
+## 1.Clone this repository
 
 **Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://kcd.im/pull-request)
 
-2. Decide if your code example is an example (most likely) or a best-practice (least common)
-3. Add your code to the correct folder structure as specified below
-4. Push your changes to the remote repository
-5. Create a PR
-6. Make sure that all the checks pass
+1. Decide if your code is an [example (most likely)](#code-example) or a [best-practice (least common)](#best-practice)
+2. Add your code to the correct folder structure as specified in [Repository Structure](#repository-structure)
+3. Add a link to the code in the table of contents. The link should be placed in the right section and should be alphabetically organized. 
+4. Include relevant technology tags like `TestNG` and `Sauce Bindings`
+5. Push your changes to the remote repository
+6. Create a PR
+7. Make sure that all the checks pass
+8. Request someone to be a reviewer (@nadvolod or @joshmgrant are a good start)
 
-![passing checks](./images/checks.png)
+### Code Example
 
-7. Request someone to be a reviewer (@nadvolod or @joshmgrant are a good start)
-
-An **example** is some code that wants to demonstrate a feature. 
-For example, parallelization with JUnit4, parallelization with
-Junit5,
-biometric authentication, simple Appium iOS test. An **example** is as simple as it gets.
+An **example** is code that demonstrates a specific feature.
 If you're creating a simple test to show off Sauce Labs, don't
-add page objects for example.
+add page objects for example. All examples must be buildable and executable. 
+
+#### Standards for examples
+
+* Junit4 as the test runner (unless a specific feature is needed)
+* Selenium 4
+* non-Sauce Bindings
+* Java8
+* No page objects (can be found in best-practice)
+* If code doesn't contribute to showing a feature then don't add that extra code
 
 > The primary goal is to keep maintenance costs as low as possible!
+
+### Best Practice
 
 A **best-practice** is solution that shows off
 how to use a specific technology combination in the optimal way
 to test applications, according to the Solution Architects team. Typically there is
-only a single best practice for web and for mobile. 
+only a single best practice for web and for mobile.
 A **best-practice** will show:
-* POs 
-* Proper folder structure 
-* Correct parallelization 
+* Page Objects
+* Proper folder structure
+* Correct parallelization
 * Correct abstractions
-* Use of all Sauce testing types (visual, perf, visual component) where applicable (**best-practice** code is not as common as code **examples**).
-* **best-practice** for web exists [here](./best-practice)
-* **best-practice** for mobile native exists [here](./best-practice-mobile-native)
+* Use of all Sauce testing types (visual, perf, visual component) where applicable.
 
-## Add relevant code
+## 2.Add relevant code
 
 ### Repository Structure
 
@@ -107,42 +114,30 @@ Specific Structure With Examples
 
 ## FAQs
 
-### Examples
-
-**examples** are a way to show off some feature in Sauce Labs.
-Every time we add an example, please be sure to add it to the main README.
-
-#### Standards for examples
-
-* Junit4 as the test runner (unless a specific feature is needed)
-* Selenium 4
-* non-Sauce Bindings
-* Java8
-
-### Single Best Practice Directory
+### How do you define "Best Practice"?
 
 With the evolution of Sauce, a true Best Practice is not only
 Selenium automation. A true Best Practice shows customers
 how to utilize all of the tools (Selenium, Appium, Visual, Performance, API...)
-that Sauce has to offer in a cohesive framework
+that Sauce Labs has to offer in a cohesive framework
 and test strategy.
 
-### Code Separation
+### Why distinguish between "examples" and "best practices"?
 
-The key ideas behind this organization are visibility and 
+The key ideas behind this organization are visibility and
 re-usability for the clients and the team. A mature customer may need
 a performance testing code example using Junit5. On the other
-hand, a less mature, but very valuable customer may need the 
+hand, a less mature, but very valuable customer may need the
 same exact code sample but using Junit3. If we create
 this code sample for one of the customers, wouldn't it
 also be nice to make these visible to all other customers
 that desire a specific combination of technologies?
 
-But where would such code examples go? 
+But where would such code examples go?
 
 In the above structure that's easy for everyone to understand.
 
-### Cucumber
+### Where can I add Cucumber best practices examples?
 
 Because the organization of the Cucumber source code is
 different than the typical organization of a Maven project.
@@ -153,25 +148,25 @@ Also, Cucumber doesn't have a Best Practice as we don't
 believe that it is one nor does our team have a Best Practice strategy
 developed.
 
-### Too Many Code Examples
+### Is there a risk of creating too many examples?
 
 There is no requirement to have a code **example** for every single tech combination.
 
-Only create what's needed at the time. 
+Only create what's needed at the time.
 All we ask is that if you create a code example for one client
-using a specific combination of technologies (ex Junit3 test status reporting), 
+using a specific combination of technologies (ex Junit3 test status reporting),
 then make
-that available to all customers, SAs, and SEs. 
+that available to all customers, SAs, and SEs.
 
 Let your work be reusable and visible for the future instead
 of being hidden somewhere in a private repository. It's highly
-likely that there is a customer, or an engineer that's 
-spending time recreating a code sample that you already 
+likely that there is a customer, or an engineer that's
+spending time recreating a code sample that you already
 created in your private repo.
 
 ### How will someone find my beautiful code sample?
 
-There are code examples that are popular 
+There are code examples that are popular
 (Getting started samples) and there are code examples that
 aren't so popular (using Junit3 to update test status).
 
