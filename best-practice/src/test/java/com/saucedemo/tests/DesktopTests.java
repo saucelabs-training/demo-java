@@ -33,6 +33,7 @@ public class DesktopTests extends SauceBaseTest {
     public SaucePlatform platform;
 
     private static final int NUMBER_OF_TIMES_TO_EXECUTE = 100;
+    private static final String BUILD_NUMBER = "" + System.currentTimeMillis();
 
     @Parameterized.Parameters()
     public static Collection<Object[]> crossBrowserData() {
@@ -51,12 +52,7 @@ public class DesktopTests extends SauceBaseTest {
         sauceOptions.setBrowserVersion(browserVersion);
         sauceOptions.setPlatformName(platform);
         sauceOptions.sauce().setName("loginWorks");
-
-        String buildNumber = System.getenv("buildNumber");
-        if(buildNumber == null) {
-            buildNumber = "" + System.currentTimeMillis();
-        }
-        sauceOptions.sauce().setBuild("failure-analysis-execution-" + buildNumber);
+        sauceOptions.sauce().setBuild("failure-analysis-execution-" + BUILD_NUMBER);
 
         return sauceOptions;
     }
