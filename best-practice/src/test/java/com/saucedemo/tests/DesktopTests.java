@@ -52,7 +52,7 @@ public class DesktopTests extends SauceBaseTest {
         sauceOptions.setBrowserVersion(browserVersion);
         sauceOptions.setPlatformName(platform);
         sauceOptions.sauce().setName("loginWorks");
-        sauceOptions.sauce().setBuild("failure-analysis-execution-" + BUILD_NUMBER);
+        sauceOptions.sauce().setBuild(System.getenv("SAUCE_BUILD_NAME") != null ? System.getenv("SAUCE_BUILD_NAME") : "failure-analysis-execution-" + BUILD_NUMBER);
 
         return sauceOptions;
     }
