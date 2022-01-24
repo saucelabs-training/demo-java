@@ -56,7 +56,7 @@ public class DesktopTests extends SauceBaseTest {
         if(buildNumber == null) {
             buildNumber = "" + System.currentTimeMillis();
         }
-        sauceOptions.sauce().setBuild("failure-analysis-execution-" + buildNumber)
+        sauceOptions.sauce().setBuild("failure-analysis-execution-" + buildNumber);
 
         return sauceOptions;
     }
