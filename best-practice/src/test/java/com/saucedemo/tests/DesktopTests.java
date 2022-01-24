@@ -9,6 +9,7 @@ import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 
 import java.util.ArrayList;
@@ -62,6 +63,7 @@ public class DesktopTests extends SauceBaseTest {
         long timestamp = System.currentTimeMillis() / 1000;
 
         if(timestamp % 2 == 0) {
+            ((JavascriptExecutor) driver).executeScript("sauce:context=" + "Checking item for failure analysis");
             assertTrue(false);
         }
 
