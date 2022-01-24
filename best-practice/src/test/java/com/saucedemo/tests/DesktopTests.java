@@ -11,8 +11,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.TimeoutException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -30,37 +32,16 @@ public class DesktopTests extends SauceBaseTest {
     @Parameterized.Parameter(2)
     public SaucePlatform platform;
 
+    private static final int NUMBER_OF_TIMES_TO_EXECUTE = 100;
+
     @Parameterized.Parameters()
     public static Collection<Object[]> crossBrowserData() {
-        return Arrays.asList(new Object[][] {
-                { Browser.CHROME, "latest", SaucePlatform.WINDOWS_10 },
-                { Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10 },
-                { Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE },
-                { Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE }
-                /*
-                         // Duplication below for demo purposes of massive parallelization
-                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.WINDOWS_10},
-                         {Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10},
-                         {Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE},
-                         {Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE},
-                */
-        });
+       Collection<Object[]> list = new ArrayList<>();
+       for(int i = 0; i < NUMBER_OF_TIMES_TO_EXECUTE; i++) {
+           list.add(new Object[] {
+                   Browser.CHROME, "latest", SaucePlatform.WINDOWS_10 });
+       }
+        return list;
     }
 
     @Override
@@ -69,31 +50,38 @@ public class DesktopTests extends SauceBaseTest {
         sauceOptions.setBrowserName(browserName);
         sauceOptions.setBrowserVersion(browserVersion);
         sauceOptions.setPlatformName(platform);
+        sauceOptions.sauce().setName("loginWorks");
 
         return sauceOptions;
     }
 
     @Test()
     public void loginWorks() {
+        long timestamp = System.currentTimeMillis() / 1000;
+
+        if(timestamp % 2 == 0) {
+            assertTrue(false);
+        }
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
         loginPage.login("standard_user");
         assertTrue(new ProductsPage(driver).isDisplayed());
     }
 
-    @Test(expected = TimeoutException.class)
-    public void lockedOutUser() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.visit();
-        loginPage.login("locked_out_user");
-        assertFalse(new ProductsPage(driver).isDisplayed());
-    }
-
-    @Test(expected = TimeoutException.class)
-    public void invalidCredentials() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.visit();
-        loginPage.login("foo_bar_user");
-        assertFalse(new ProductsPage(driver).isDisplayed());
-    }
+//    @Test(expected = TimeoutException.class)
+//    public void lockedOutUser() {
+//        LoginPage loginPage = new LoginPage(driver);
+//        loginPage.visit();
+//        loginPage.login("locked_out_user");
+//        assertFalse(new ProductsPage(driver).isDisplayed());
+//    }
+//
+//    @Test(expected = TimeoutException.class)
+//    public void invalidCredentials() {
+//        LoginPage loginPage = new LoginPage(driver);
+//        loginPage.visit();
+//        loginPage.login("foo_bar_user");
+//        assertFalse(new ProductsPage(driver).isDisplayed());
+//    }
 }
