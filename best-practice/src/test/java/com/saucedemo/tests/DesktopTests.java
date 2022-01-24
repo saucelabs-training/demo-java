@@ -52,7 +52,7 @@ public class DesktopTests extends SauceBaseTest {
         sauceOptions.setPlatformName(platform);
         sauceOptions.sauce().setName("loginWorks");
 
-        String buildNumber = System.getenv("BUILD_NUMBER");
+        String buildNumber = System.getenv("buildNumber");
         if(buildNumber == null) {
             buildNumber = "" + System.currentTimeMillis();
         }
