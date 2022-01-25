@@ -9,8 +9,10 @@ import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,7 +66,8 @@ public class DesktopTests extends SauceBaseTest {
 
         if(timestamp % 2 == 0) {
             ((JavascriptExecutor) driver).executeScript("sauce:context=" + "Checking item for failure analysis");
-            assertTrue(false);
+            WebElement failure = driver.findElement(By.id("failure-analysis"));
+            failure.sendKeys("test");
         }
 
         LoginPage loginPage = new LoginPage(driver);
