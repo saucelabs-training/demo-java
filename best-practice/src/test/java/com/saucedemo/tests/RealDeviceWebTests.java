@@ -27,7 +27,7 @@ public class RealDeviceWebTests extends MobileTestsBase {
     @Parameterized.Parameter
     public String deviceName;
 
-    @Parameterized.Parameters()
+    @Parameterized.Parameters(name = "{0}")
     public static Collection<Object[]> iosConfigurations() {
         return Arrays.asList(new Object[][]{
                 {"iPhone 11.*"},

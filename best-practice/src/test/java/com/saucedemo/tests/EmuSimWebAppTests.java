@@ -37,22 +37,12 @@ public class EmuSimWebAppTests extends MobileTestsBase {
     @Parameterized.Parameter(3)
     public String deviceName;
 
-    @Parameterized.Parameters()
+    @Parameterized.Parameters(name = "{3} – {1} {2}")
     public static Collection<Object[]> crossBrowserData() {
         return Arrays.asList(new Object[][]{
                 {"Safari", "iOS", "14.3", "iPhone XS Max Simulator"},
                 {"Safari", "iOS", "14.3", "iPhone XS Simulator"},
                 {"Safari", "iOS", "14.3", "iPhone SE (2nd generation) Simulator"}
-                // Duplication below for demo purposes of massive parallelization
-//                {"Safari", "iOS", "14.3", "iPhone XS Max Simulator"},
-//                {"Safari", "iOS", "14.3", "iPhone XS Simulator"},
-//                {"Safari", "iOS", "14.3", "iPhone SE (2nd generation) Simulator"},
-//                {"Safari", "iOS", "14.3", "iPhone XS Max Simulator"},
-//                {"Safari", "iOS", "14.3", "iPhone XS Simulator"},
-//                {"Safari", "iOS", "14.3", "iPhone SE (2nd generation) Simulator"},
-//                {"Safari", "iOS", "14.3", "iPhone XS Max Simulator"},
-//                {"Safari", "iOS", "14.3", "iPhone XS Simulator"},
-//                {"Safari", "iOS", "14.3", "iPhone SE (2nd generation) Simulator"},
         });
     }
 

@@ -43,7 +43,7 @@ public class VisualCrossPlatformTests extends MobileTestsBase {
     @Parameterized.Parameter(4)
     public String deviceName;
 
-    @Parameterized.Parameters()
+    @Parameterized.Parameters(name = "{4}")
     public static Collection<Object[]> crossBrowserData() {
         return Arrays.asList(new Object[][]{
                 {"Chrome", "Windows 10", "latest", "412x732", "Pixel XL"},

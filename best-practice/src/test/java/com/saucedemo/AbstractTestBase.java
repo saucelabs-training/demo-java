@@ -13,7 +13,7 @@ import java.util.Date;
  * All Tests need to extend this class to get the correct behavior.
  */
 public abstract class AbstractTestBase {
-    public static final String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    public static final String buildName = System.getenv("SAUCE_BUILD_NAME") != null ? System.getenv("SAUCE_BUILD_NAME") : "Build Time: " + System.currentTimeMillis();
 
     @Rule
     public TestName testName = new TestName() {

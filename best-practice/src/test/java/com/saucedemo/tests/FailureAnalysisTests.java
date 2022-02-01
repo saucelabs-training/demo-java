@@ -6,15 +6,16 @@ import com.saucedemo.pages.ProductsPage;
 import com.saucelabs.saucebindings.Browser;
 import com.saucelabs.saucebindings.SaucePlatform;
 import com.saucelabs.saucebindings.SauceSession;
-import com.saucelabs.saucebindings.junit4.SauceBaseTest;
 import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.junit.Assert.assertFalse;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 /** Desktop Tests. */
 @RunWith(Parameterized.class)
-public class DesktopTests extends AbstractTestBase {
+public class FailureAnalysisTests extends AbstractTestBase {
     /*
      * Configure our data driven parameters
      * */
@@ -33,14 +34,16 @@ public class DesktopTests extends AbstractTestBase {
     @Parameterized.Parameter(2)
     public SaucePlatform platform;
 
-    @Parameterized.Parameters(name="{2} – {0} {1}")
+    private static final int NUMBER_OF_TIMES_TO_EXECUTE = 100;
+
+    @Parameterized.Parameters()
     public static Collection<Object[]> crossBrowserData() {
-        return Arrays.asList(new Object[][] {
-                { Browser.CHROME, "latest", SaucePlatform.WINDOWS_10 },
-                { Browser.CHROME, "latest-1", SaucePlatform.WINDOWS_10 },
-                { Browser.SAFARI, "latest", SaucePlatform.MAC_MOJAVE },
-                { Browser.CHROME, "latest", SaucePlatform.MAC_MOJAVE }
-        });
+        Collection<Object[]> list = new ArrayList<>();
+        for(int i = 0; i < NUMBER_OF_TIMES_TO_EXECUTE; i++) {
+            list.add(new Object[] {
+                    Browser.CHROME, "latest", SaucePlatform.WINDOWS_10 });
+        }
+        return list;
     }
 
     @Before
@@ -49,33 +52,25 @@ public class DesktopTests extends AbstractTestBase {
         sauceOptions.setBrowserName(browserName);
         sauceOptions.setBrowserVersion(browserVersion);
         sauceOptions.setPlatformName(platform);
+        sauceOptions.sauce().setName("loginWorks – failure");
         sauceOptions.sauce().setBuild(buildName);
-        sauceOptions.sauce().setName(testName.getMethodName());
 
         driver = new SauceSession(sauceOptions).start();
     }
 
     @Test()
     public void loginWorks() {
+        long timestamp = System.currentTimeMillis() / 1000;
+
+        if(timestamp % 2 == 0) {
+            ((JavascriptExecutor) driver).executeScript("sauce:context=" + "Checking item for failure analysis");
+            WebElement failure = driver.findElement(By.id("failure-analysis"));
+            failure.sendKeys("test");
+        }
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.visit();
         loginPage.login("standard_user");
         assertTrue(new ProductsPage(driver).isDisplayed());
-    }
-
-    @Test(expected = TimeoutException.class)
-    public void lockedOutUser() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.visit();
-        loginPage.login("locked_out_user");
-        assertFalse(new ProductsPage(driver).isDisplayed());
-    }
-
-    @Test(expected = TimeoutException.class)
-    public void invalidCredentials() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.visit();
-        loginPage.login("foo_bar_user");
-        assertFalse(new ProductsPage(driver).isDisplayed());
     }
 }
