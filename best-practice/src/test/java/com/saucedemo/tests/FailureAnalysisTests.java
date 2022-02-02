@@ -33,15 +33,17 @@ public class FailureAnalysisTests extends AbstractTestBase {
     public String browserVersion;
     @Parameterized.Parameter(2)
     public SaucePlatform platform;
+    @Parameterized.Parameter(3)
+    public boolean failure;
 
-    private static final int NUMBER_OF_TIMES_TO_EXECUTE = 100;
+    private static final int NUMBER_OF_TIMES_TO_EXECUTE = 50;
 
     @Parameterized.Parameters()
-    public static Collection<Object[]> crossBrowserData() {
+    public static Collection<Object[]> browserData() {
         Collection<Object[]> list = new ArrayList<>();
         for(int i = 0; i < NUMBER_OF_TIMES_TO_EXECUTE; i++) {
             list.add(new Object[] {
-                    Browser.CHROME, "latest", SaucePlatform.WINDOWS_10 });
+                    Browser.CHROME, "latest", SaucePlatform.WINDOWS_10, i < 5 });
         }
         return list;
     }
@@ -52,7 +54,7 @@ public class FailureAnalysisTests extends AbstractTestBase {
         sauceOptions.setBrowserName(browserName);
         sauceOptions.setBrowserVersion(browserVersion);
         sauceOptions.setPlatformName(platform);
-        sauceOptions.sauce().setName("loginWorks – failure");
+        sauceOptions.sauce().setName("failureAnalysis");
         sauceOptions.sauce().setBuild(buildName);
 
         driver = new SauceSession(sauceOptions).start();
@@ -60,9 +62,7 @@ public class FailureAnalysisTests extends AbstractTestBase {
 
     @Test()
     public void loginWorks() {
-        long timestamp = System.currentTimeMillis() / 1000;
-
-        if(timestamp % 2 == 0) {
+        if(failure) {
             ((JavascriptExecutor) driver).executeScript("sauce:context=" + "Checking item for failure analysis");
             WebElement failure = driver.findElement(By.id("failure-analysis"));
             failure.sendKeys("test");
