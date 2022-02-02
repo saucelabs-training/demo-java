@@ -49,8 +49,10 @@ public class VisualCrossPlatformTests extends MobileTestsBase {
                 {"Chrome", "Windows 10", "latest", "412x732", "Pixel XL"},
                 {"Chrome", "Windows 10", "latest", "412x869", "Galaxy Note 10+"},
                 {"Safari", "macOS 10.15", "latest", "375x812", "iPhone X"},
-                {"Chrome", "Windows 10", "latest", "1080x720", "1080p"},
-                {"Safari", "macOS 10.15", "latest", "1080x720", "1080p"}
+                {"Chrome", "Windows 10", "latest", "1920x1080", "1080p"},
+                {"Safari", "macOS 10.15", "latest", "1920x1080", "1080p"},
+                {"Chrome", "Windows 10", "latest", "1280x720", "720p"},
+                {"Safari", "macOS 10.15", "latest", "1280x720", "720p"}
         });
     }
 
