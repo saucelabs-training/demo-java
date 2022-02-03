@@ -51,7 +51,7 @@ public class IOSNativeAppTest {
         }
 
         capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("automationName", "UiAutomator2");
+        capabilities.setCapability("automationName", "XCuiTest");
         //Allocate any avilable iPhone device with version 14
         capabilities.setCapability("appium:deviceName", "iPhone.*");
         capabilities.setCapability("appium:platformVersion", "14");
