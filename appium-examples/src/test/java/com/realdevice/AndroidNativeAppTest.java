@@ -1,8 +1,6 @@
 package com.realdevice;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,85 +13,78 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import static helpers.Constants.region;
 
 /**
  * Android Native App Tests
  */
 public class AndroidNativeAppTest {
+
+    private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
+    private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
+
     @Rule
-    public TestName name = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
+    public TestName name = new TestName();
+
     //This rule allows us to set test status with Junit
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
-    public AppiumDriver<MobileElement> driver;
-    private MutableCapabilities capabilities;
 
-    public AppiumDriver<MobileElement> getDriver() {
+    private AndroidDriver driver;
+
+    public AndroidDriver getDriver() {
         return driver;
     }
 
     @Before
-    public void setup() {
-        //Arrange
-        capabilities = new MutableCapabilities();
-        /*
-         * Pick your device
-         * */
-        //Not specifying platformVersion or the exact device is the most likely to
+    public void setup() throws MalformedURLException {
+
+        MutableCapabilities capabilities = new MutableCapabilities();
+        MutableCapabilities sauceOptions = new MutableCapabilities();
+        URL url;
+
+        switch (region) {
+            case "us":
+                url = new URL(SAUCE_US_URL);
+                break;
+            case "eu":
+            default:
+                url = new URL(SAUCE_EU_URL);
+                break;
+        }
+
         //find a device in the cloud
         capabilities.setCapability("platformName", "android");
-        capabilities.setCapability("deviceName", "Google Pixel.*");
-        capabilities.setCapability("idleTimeout", "90");
-        capabilities.setCapability("noReset", "true");
-        capabilities.setCapability("newCommandTimeout", "90");
-        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
-        capabilities.setCapability("name", name.getMethodName());
+        capabilities.setCapability("automationName", "UiAutomator2");
+        //Allocate any avilable samsung device with Android version 12
+        capabilities.setCapability("appium:deviceName", "Samsung.*");
+        capabilities.setCapability("appium:platformVersion", "12");
+        capabilities.setCapability("appium:appWaitActivity", "com.swaglabsmobileapp.MainActivity");
+        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+        //        capabilities.setCapability("app", "storage:filename=" +appName);
+        capabilities.setCapability("appium:app",
+                "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
+
+        sauceOptions.setCapability("name", name.getMethodName());
+        sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
+        sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+        capabilities.setCapability("sauce:options", sauceOptions);
+
+        driver = new AndroidDriver(url, capabilities);
+
+        //Setting the driver so that we can report results
+        resultReportingTestWatcher.setDriver(driver);
+
     }
 
     @Test
     public void shouldOpenApp() throws MalformedURLException {
-        capabilities.setCapability("app",
-                "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
-
-        driver = new AndroidDriver<>(
-                new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
-                        System.getenv("SAUCE_ACCESS_KEY") +
-                        "@ondemand.us-west-1.saucelabs.com/wd/hub"),
-                capabilities);
-        //Setting the driver so that we can report results
-        resultReportingTestWatcher.setDriver(driver);
 
         //Act
-        WebDriverWait wait = new WebDriverWait(getDriver(), 10000);
+        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
         By usernameLocator = MobileBy.AccessibilityId("test-Username");
         //Assert
         wait.until(ExpectedConditions.visibilityOfElementLocated(usernameLocator));
-    }
 
-    @Test
-    public void setAppNameDynamically() throws MalformedURLException {
-        /*
-         * We can dynamically set an app name from environment variables
-         * Just set the value in command line before running `mvn` command
-         * */
-        capabilities.setCapability("app", System.getenv("ANDROID_APP"));
-
-        driver = new AndroidDriver<>(
-                new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
-                        System.getenv("SAUCE_ACCESS_KEY") +
-                        "@ondemand.us-west-1.saucelabs.com/wd/hub"),
-                capabilities);
-        //Setting the driver so that we can report results
-        resultReportingTestWatcher.setDriver(driver);
-
-        //Act
-        WebDriverWait wait = new WebDriverWait(getDriver(), 10000);
-        By usernameLocator = MobileBy.AccessibilityId("test-Username");
-        //Assert
-        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameLocator));
     }
 }

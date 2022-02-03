@@ -1,8 +1,6 @@
 package com.realdevice;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -16,45 +14,60 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static helpers.Constants.region;
 import static org.junit.Assert.assertTrue;
 
 public class IOSNativeAppTest {
+
+    private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
+    private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
+
     @Rule
-    public TestName name = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
+    public TestName name = new TestName();
+
     //This rule allows us to set test status with Junit
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
-    public AppiumDriver<MobileElement> driver;
-    public AppiumDriver<MobileElement> getDriver() {
+
+    public IOSDriver driver;
+    public IOSDriver getDriver() {
         return driver;
     }
 
     @Before
     public void setUp() throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("idleTimeout", "90");
-        capabilities.setCapability("noReset", "true");
-        capabilities.setCapability("newCommandTimeout", "90");
-        capabilities.setCapability("language", "en");
-        capabilities.setCapability("platformName", "iOS");
-        //Not specifying platformVersion or the exact device is the most likely to
-        //find a device in the cloud
-        //Find all iPhone devices that aren't 5 or 5S: ^(iPhone.*)(?!5|5S)$
-        capabilities.setCapability("deviceName", "^(iPhone.*)(?!5|5S)$");
-        capabilities.setCapability("name", name.getMethodName());
+        MutableCapabilities sauceOptions = new MutableCapabilities();
+        URL url;
 
-        capabilities.setCapability("app",
+        switch (region) {
+            case "us":
+                url = new URL(SAUCE_US_URL);
+                break;
+            case "eu":
+            default:
+                url = new URL(SAUCE_EU_URL);
+                break;
+        }
+
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("automationName", "UiAutomator2");
+        //Allocate any avilable iPhone device with version 14
+        capabilities.setCapability("appium:deviceName", "iPhone.*");
+        capabilities.setCapability("appium:platformVersion", "14");
+        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+        //      capabilities.setCapability("app", "storage:filename=" +appName);
+        capabilities.setCapability("appium:app",
                 "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
 
-        driver = new IOSDriver(
-                new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
-                        System.getenv("SAUCE_ACCESS_KEY") +
-                        "@ondemand.us-west-1.saucelabs.com/wd/hub"),
-                capabilities);
+        sauceOptions.setCapability("name", name.getMethodName());
+        sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
+        sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+//        sauceOptions.setCapability("noReset", "true");
+        capabilities.setCapability("sauce:options", sauceOptions);
+
+        driver = new IOSDriver(url, capabilities);
+
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
     }
