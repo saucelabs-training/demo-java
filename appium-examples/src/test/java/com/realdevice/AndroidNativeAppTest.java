@@ -132,7 +132,7 @@ public class AndroidNativeAppTest {
 
     private WebElement getProduct(String needle){
         By elemLocator =  By.xpath("//android.widget.TextView[contains(@text,'" + needle + "')]");
-        // swipe once if needed
+        // swipe if needed
         for (int i = 0; i < 2; i++) {
             if (isDisplayed(elemLocator,1))
                 return driver.findElement(elemLocator);;
@@ -159,20 +159,15 @@ public class AndroidNativeAppTest {
         final int ANIMATION_TIME = 500; // ms
         final int PRESS_TIME = 200; // ms
 
-        int edgeBorder;
         PointOption pointOptionStart, pointOptionEnd;
 
         // init screen variables
         Rectangle rect = el.getRect();
-        // sometimes it is needed to configure edgeBorders
-        // you can also improve borders to have vertical/horizontal
-        // or left/right/up/down border variables
-        edgeBorder = 0;
 
         pointOptionStart = PointOption.point(rect.x + rect.width / 2,
-                rect.y + rect.height - edgeBorder);
+                rect.y + (int)(rect.height*0.9));
         pointOptionEnd = PointOption.point(rect.x + rect.width / 2,
-                rect.y + edgeBorder);
+                rect.y + (int)(rect.height*0.1) );
 
         // execute swipe using TouchAction
         try {
