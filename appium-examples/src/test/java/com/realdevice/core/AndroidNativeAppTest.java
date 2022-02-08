@@ -43,10 +43,6 @@ public class AndroidNativeAppTest {
 
     private AndroidDriver driver;
 
-    public AndroidDriver getDriver() {
-        return driver;
-    }
-
     @Before
     public void setup() throws MalformedURLException {
         System.out.println("Sauce Android Native App  - BeforeMethod hook");

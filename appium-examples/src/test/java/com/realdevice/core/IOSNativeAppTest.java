@@ -40,10 +40,7 @@ public class IOSNativeAppTest {
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
 
-    public IOSDriver driver;
-    public IOSDriver getDriver() {
-        return driver;
-    }
+    private IOSDriver driver;
 
     @Before
     public void setUp() throws MalformedURLException {
