@@ -1,7 +1,9 @@
-package com.realdevice;
+package com.realdevice.core;
 
+import com.realdevice.SauceTestWatcher;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
@@ -21,17 +23,15 @@ import java.time.Duration;
 
 import static helpers.Constants.region;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
-/**
- * Android Native App Tests
- */
-public class AndroidNativeAppTest {
+public class IOSNativeAppTest {
 
     private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
     private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub";
 
-    By productsScreenLocator = By.xpath("//*[@content-desc=\"products screen\"]");
-    By productScreenLocator = By.xpath("//*[@content-desc=\"product screen\"]");
+    By productsScreenLocator = By.id("products screen");
+    By productScreenLocator = By.id("product screen");
 
     @Rule
     public TestName name = new TestName();
@@ -40,15 +40,13 @@ public class AndroidNativeAppTest {
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
 
-    private AndroidDriver driver;
-
-    public AndroidDriver getDriver() {
+    public IOSDriver driver;
+    public IOSDriver getDriver() {
         return driver;
     }
 
     @Before
-    public void setup() throws MalformedURLException {
-        System.out.println("Sauce Android Native App  - BeforeMethod hook");
+    public void setUp() throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
         MutableCapabilities sauceOptions = new MutableCapabilities();
         URL url;
@@ -56,35 +54,31 @@ public class AndroidNativeAppTest {
         switch (region) {
             case "us":
                 url = new URL(SAUCE_US_URL);
-                System.out.println("Sauce REGION US");
                 break;
             case "eu":
             default:
                 url = new URL(SAUCE_EU_URL);
-                System.out.println("Sauce REGION EU");
                 break;
         }
 
-        //find a device in the cloud
-        capabilities.setCapability("platformName", "android");
-        capabilities.setCapability("automationName", "UiAutomator2");
-        //Allocate any avilable samsung device with Android version 11
-        capabilities.setCapability("appium:deviceName", "Samsung.*");
-        capabilities.setCapability("appium:platformVersion", "11");
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("automationName", "XCuiTest");
+        //Allocate any avilable iPhone device with version 14
+        capabilities.setCapability("appium:deviceName", "iPhone.*");
+        capabilities.setCapability("appium:platformVersion", "14");
         //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
-        //        capabilities.setCapability("app", "storage:filename=" +appName);
+        //      capabilities.setCapability("app", "storage:filename=" +appName);
         capabilities.setCapability("appium:app",
-                "https://github.com/saucelabs/my-demo-app-rn/releases/download/v.1.1.0-build-146-224/Android-MyDemoAppRN.1.1.0.build-226.apk");
-        capabilities.setCapability("appium:appWaitActivity","com.saucelabs.mydemoapp.rn.MainActivity");
+                "https://github.com/saucelabs/my-demo-app-rn/releases/download/v.1.1.0-build-146-224/iOS-Real-Device-MyRNDemoApp.1.1.0-146.ipa");
 
-        // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
-        sauceOptions.setCapability("build", "");
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+//        sauceOptions.setCapability("noReset", "true");
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        driver = new AndroidDriver(url, capabilities);
+        driver = new IOSDriver(url, capabilities);
+
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
     }
@@ -97,7 +91,7 @@ public class AndroidNativeAppTest {
     @Test
     public void selectProduct() throws MalformedURLException {
         assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
-        WebElement product = getProduct("Backpack");
+        WebElement product = getProduct("Sauce Labs Backpack");
         if (product !=null)
             product.click();
         else
@@ -110,7 +104,7 @@ public class AndroidNativeAppTest {
     @Test
     public void scrollAndSelectProduct() throws MalformedURLException {
         assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
-        WebElement product = getProduct("Test.allTheThings");
+        WebElement product = getProduct("Test.allTheThings() T-Shirt");
         if (product !=null)
             product.click();
         else
@@ -130,12 +124,24 @@ public class AndroidNativeAppTest {
         return true;
     }
 
+    public Boolean isElementDisplayed(WebElement elem, long timeoutInSeconds) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            wait.until(ExpectedConditions.visibilityOf(elem));
+        } catch (org.openqa.selenium.TimeoutException exception) {
+            return false;
+        }
+        return true;
+    }
+
     private WebElement getProduct(String needle){
-        By elemLocator =  By.xpath("//android.widget.TextView[contains(@text,'" + needle + "')]");
+        String selector = "**/XCUIElementTypeOther[`label == \"" + needle + "\"`]";
+        // in iOS - XCUITest Gives back all elements  in the screen
+        WebElement productElement = driver.findElementByIosClassChain(selector);
         // swipe if needed
         for (int i = 0; i < 2; i++) {
-            if (isDisplayed(elemLocator,1))
-                return driver.findElement(elemLocator);;
+            if (isElementDisplayed(productElement,1))
+                return productElement;
             // swipe
             swipeElementUP(driver.findElement(productsScreenLocator));
         }
@@ -165,9 +171,9 @@ public class AndroidNativeAppTest {
         Rectangle rect = el.getRect();
 
         pointOptionStart = PointOption.point(rect.x + rect.width / 2,
-                rect.y + (int)(rect.height*0.9));
+                rect.y + (int)(rect.height * 0.9));
         pointOptionEnd = PointOption.point(rect.x + rect.width / 2,
-                rect.y + (int)(rect.height*0.1) );
+                rect.y + (int)(rect.height * 0.1)  );
 
         // execute swipe using TouchAction
         try {
