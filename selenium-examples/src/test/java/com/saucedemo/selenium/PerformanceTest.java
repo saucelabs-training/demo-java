@@ -19,7 +19,7 @@ public class PerformanceTest extends SauceBaseTest {
     public SauceOptions createSauceOptions() {
         return SauceOptions.chrome()
                 .setExtendedDebugging()
-                .setName("") // bug - https://github.com/saucelabs/sauce_bindings/issues/267
+                .setName("PerformanceTest") // bug - https://github.com/saucelabs/sauce_bindings/issues/267
                 .setCapturePerformance()
                 .build();
     }
@@ -46,7 +46,6 @@ public class PerformanceTest extends SauceBaseTest {
         metrics.put("type", "sauce:performance");
         Map<String, Object> perfMetrics1 = (Map<String, Object>) driver.executeScript("sauce:log", metrics);
 
-
         // Disabling performance prevents previous metrics from being overridden
         driver.executeScript("sauce:performanceDisable");
 
@@ -56,10 +55,9 @@ public class PerformanceTest extends SauceBaseTest {
 
         Map<String, Object> perfMetrics2 = (Map<String, Object>) driver.executeScript("sauce:log", metrics);
 
-        // Additionally, if metrics were captured for filling the form, load would be null
+        // Additionally, if metrics were captured for filling the form, load would be
+        // null
         Assertions.assertEquals(perfMetrics1.get("load"), perfMetrics2.get("load"));
     }
-
-
 
 }
