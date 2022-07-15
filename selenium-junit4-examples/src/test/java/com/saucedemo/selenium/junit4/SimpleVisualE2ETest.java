@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
@@ -23,6 +24,7 @@ public class SimpleVisualE2ETest {
     public String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");
     public String screenerApiKey = System.getenv("SCREENER_API_KEY");
     private MutableCapabilities capabilities;
+    private MutableCapabilities visualOptions;
 
     @Before
     public void setUp() {
@@ -35,6 +37,10 @@ public class SimpleVisualE2ETest {
         sauceOptions.setCapability("username", sauceUsername);
         sauceOptions.setCapability("accesskey", sauceAccessKey);
         capabilities.setCapability("sauce:options", sauceOptions);
+
+        visualOptions = new MutableCapabilities();
+        visualOptions.setCapability("apiKey", screenerApiKey);
+        visualOptions.setCapability("viewportSize", "1280x1024");
     }
 
     @Test
@@ -43,6 +49,7 @@ public class SimpleVisualE2ETest {
         visualOptions.setCapability("apiKey", screenerApiKey);
         visualOptions.setCapability("projectName", "visual-e2e-test");
         visualOptions.setCapability("viewportSize", "1280x1024");
+        visualOptions.setCapability("failOnNewStates", "false");
         capabilities.setCapability("sauce:visual", visualOptions);
         // Visual requires validation when the browser version changes
         capabilities.setCapability(CapabilityType.BROWSER_VERSION, "94");
@@ -52,24 +59,21 @@ public class SimpleVisualE2ETest {
 
         driver.get("https://saucedemo.com");
 
-        driver.executeScript("/*@visual.init*/", "My Visual Test 2");
+        driver.executeScript("/*@visual.init*/", "testVisualE2E()");
         driver.executeScript("/*@visual.snapshot*/", "Home");
         Map<String, Object> response = (Map<String, Object>) driver.executeScript("/*@visual.end*/");
         assertNull(response.get("message"));
     }
 
-    @Ignore("Expected to Fail - For Demo Purposes")
     @Test
-    public void visualBaselineBranching() throws MalformedURLException {
+    public void samePagesDifferentBranches() throws MalformedURLException {
         //*
         // This example shows how a team might have a baseline snapshot in Prod
         // that is compared against a snapshot in QA
+        // Since this test is against the same page, all snapshots should pass
         // **/
-        String projectName = "visual-examples-java";
-        MutableCapabilities visualOptions = new MutableCapabilities();
-        visualOptions.setCapability("apiKey", screenerApiKey);
+        String projectName = "samePagesDifferentBranches()";
         visualOptions.setCapability("projectName", projectName);
-        visualOptions.setCapability("viewportSize", "1280x1024");
         visualOptions.setCapability("branch", "main");
         visualOptions.setCapability("baseBranch", "main");
         visualOptions.setCapability("alwaysAcceptBaseBranch", true);
@@ -86,22 +90,71 @@ public class SimpleVisualE2ETest {
         assertNoVisualDifferences();
 
         //Capture a snapshot on a different branch
-        visualOptions = new MutableCapabilities();
-        visualOptions.setCapability("apiKey", screenerApiKey);
-        visualOptions.setCapability("projectName", projectName);
-        visualOptions.setCapability("viewportSize", "1280x1024");
-        visualOptions.setCapability("branch", "newBranch");
+        visualOptions.setCapability("branch", "2ndBranch");
         visualOptions.setCapability("baseBranch", "main");
         capabilities.setCapability("sauce:visual", visualOptions);
-
         url = new URL("https://hub.screener.io/wd/hub");
         driver = new RemoteWebDriver(url, capabilities);
-        driver.get("https://www.screener.io");
+        driver.get("https://www.saucedemo.com");
+        driver.executeScript("/*@visual.init*/", "My Visual Test");
+        driver.executeScript("/*@visual.snapshot*/", "Branch Compare");
+        assertNoVisualDifferences();
+
+        visualOptions.setCapability("branch", "3rdBranch");
+        visualOptions.setCapability("baseBranch", "main");
+        capabilities.setCapability("sauce:visual", visualOptions);
+        url = new URL("https://hub.screener.io/wd/hub");
+        driver = new RemoteWebDriver(url, capabilities);
+        driver.get("https://www.saucedemo.com");
+        driver.executeScript("/*@visual.init*/", "My Visual Test");
+        driver.executeScript("/*@visual.snapshot*/", "Branch Compare");
+        assertNoVisualDifferences();
+    }
+
+    @Test
+    public void differentPagesDifferentBranches() throws MalformedURLException {
+        //*
+        // This example shows how a team might have a baseline snapshot in Prod
+        // that is compared against a snapshot in QA
+        // Since this test is against different pages, all snapshots should fail
+        // **/
+        String projectName = "differentPagesDifferentBranches()";
+        visualOptions.setCapability("projectName", projectName);
+        visualOptions.setCapability("branch", "main");
+        visualOptions.setCapability("baseBranch", "main");
+        visualOptions.setCapability("alwaysAcceptBaseBranch", true);
+        capabilities.setCapability("sauce:visual", visualOptions);
+
+        URL url = new URL("https://hub.screener.io/wd/hub");
+        driver = new RemoteWebDriver(url, capabilities);
+
+        driver.get("https://www.saucedemo.com");
 
         // Capture a snapshot of a page on the main branch
         driver.executeScript("/*@visual.init*/", "My Visual Test");
         driver.executeScript("/*@visual.snapshot*/", "Branch Compare");
         assertNoVisualDifferences();
+
+        //Capture a snapshot on a different branch
+        visualOptions.setCapability("branch", "2ndBranch");
+        visualOptions.setCapability("baseBranch", "main");
+        capabilities.setCapability("sauce:visual", visualOptions);
+        url = new URL("https://hub.screener.io/wd/hub");
+        driver = new RemoteWebDriver(url, capabilities);
+        driver.get("https://www.screener.io");
+        driver.executeScript("/*@visual.init*/", "My Visual Test");
+        driver.executeScript("/*@visual.snapshot*/", "Branch Compare");
+        assertHasVisualDifferences();
+
+        visualOptions.setCapability("branch", "3rdBranch");
+        visualOptions.setCapability("baseBranch", "main");
+        capabilities.setCapability("sauce:visual", visualOptions);
+        url = new URL("https://hub.screener.io/wd/hub");
+        driver = new RemoteWebDriver(url, capabilities);
+        driver.get("https://www.saucelabs.com");
+        driver.executeScript("/*@visual.init*/", "My Visual Test");
+        driver.executeScript("/*@visual.snapshot*/", "Branch Compare");
+        assertHasVisualDifferences();
     }
 
     private void assertNoVisualDifferences() {
@@ -109,5 +162,10 @@ public class SimpleVisualE2ETest {
         if (response.get("message") != null) {
             assertNull(response.get("message"));
         }
+    }
+
+    private void assertHasVisualDifferences() {
+        Map<String, Object> response = (Map<String, Object>) driver.executeScript("/*@visual.end*/");
+        assertEquals(false, response.get("passed"));
     }
 }
