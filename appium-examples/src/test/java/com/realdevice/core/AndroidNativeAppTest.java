@@ -64,10 +64,8 @@ public class AndroidNativeAppTest {
 
         //find a device in the cloud
         capabilities.setCapability("platformName", "android");
-        capabilities.setCapability("automationName", "UiAutomator2");
         //Allocate any avilable samsung device with Android version 11
         capabilities.setCapability("appium:deviceName", "Samsung.*");
-        capabilities.setCapability("appium:platformVersion", "11");
         //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
         //        capabilities.setCapability("app", "storage:filename=" +appName);
         capabilities.setCapability("appium:app",
