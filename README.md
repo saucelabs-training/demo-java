@@ -23,44 +23,50 @@ everything that you need to get started with web, mobile, visual, functional and
 *  [Sauce Connect usage](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/SauceConnectTest.java)
 
 ## Best Practices
-*  [Desktop](./best-practice/src/test/java/com/saucedemo/tests/DesktopTests.java)
-*  [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmuSimWebAppTests.java)
-*  [Performance](./best-practice/src/test/java/com/saucedemo/tests/PerformanceTests.java)
-*  [RealDevice](./best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java)
-*  [Visual](./best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java)
+*  [Desktop](./best-practice/src/test/java/com/saucedemo/tests/DesktopTests.java) `junit4` `sauce-bindings`
+*  [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmuSimWebAppTests.java) `junit4` `sauce-bindings`
+*  [Performance](./best-practice/src/test/java/com/saucedemo/tests/PerformanceTests.java) `junit4` `sauce-bindings`
+*  [RealDevice](./best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java) `junit4` `sauce-bindings`
+*  [Visual E2E](./best-practice/src/test/java/com/saucedemo/tests/VisualCrossPlatformTests.java) `junit4` `sauce-bindings`
 
 ## 🖥Web automation
-*  Sauce Bindings With TestRunner Examples
-  *  [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SaucebindingsJunitTest.java)
-  *  [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsJunit4Test.java)
-  *  [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTestngTest.java)
 
-*  Sauce Bindings Examples
-  *  [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SauceBindingsTest.java)
-  *  [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsTest.java)
-  *  [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTest.java)
+- Sauce Bindings With TestRunner Examples
+  * [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SaucebindingsJunitTest.java) `junit5` `sauce-bindings`
+  * [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsJunit4Test.java) `junit4` `sauce-bindings`
+  * [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTestngTest.java) `testng` `sauce-bindings`
 
-*  Selenium Examples
-  *  [Accessibility Test with Sauce Bindings](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/SauceBindingsTest.java)
-  *  [Accessibility Test with Deque Axe](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/DequeAxeTest.java)
-  *  [Cucumber web test](./selenium-cucumber-examples/src/test/java/com/saucedemo/selenium/cucumber/RunTestsAT.java)
-  *  [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/WindowsAuthentication.java)
-  *  [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/CrossBrowserPlatformTest.java)
-  *  [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/ParallelSingleBrowserTest.java)
+- Sauce Bindings Examples
+  * [Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SauceBindingsTest.java) `junit4` `sauce-bindings`
+  * [Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SauceBindingsTest.java) `junit4` `sauce-bindings`
+  * [TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SauceBindingsTest.java) `junit4` `sauce-bindings`
+
+- Selenium Examples
+  * [Accessibility Test with Sauce Bindings](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/SauceBindingsTest.java) `junit4` `sauce-bindings`
+  * [Accessibility Test with Deque Axe](/selenium-examples/src/test/java/com/saucedemo/selenium/accessibility/DequeAxeTest.java) `junit4`
+  * [Cucumber web test](./selenium-cucumber-examples/src/test/java/com/saucedemo/selenium/cucumber/RunTestsAT.java)
+  * [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/WindowsAuthentication.java) `junit4`
+  * [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/CrossBrowserPlatformTest.java) `testng`
+  * [Performance, front-end with Sauce Bindings](/selenium-examples/src/test/java/com/saucedemo/selenium/PerformanceTest.java) `junit5` `sauce-bindings`
+  * [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/ParallelSingleBrowserTest.java) `testng`
+  * [Visual e2e test](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/SimpleVisualE2ETest.java) `visual` `junit4`
+  * [Visual e2e test with branching strategy](./blob/54a4bfde9040d71f88f3b3aff79a047474d01be9/selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/SimpleVisualE2ETest.java#L115-L158) `visual` `junit4`
 
 ## 📱Mobile automation
+
 [📚 Mobile Testing Training Tutorials](./TRAINING.md)
 
-*  Real Devices
-  *  [iOS native app](./appium-examples/src/test/java/com/realdevice/IOSNativeAppTest.java)
-  *  [Android native app](./appium-examples/src/test/java/com/realdevice/AndroidNativeAppTest.java)
-  *  [Upload app to Sauce Storage](./appium-examples/src/test/java/com/realdevice/SauceStorage.sh)
-  *  [Image Injection](./appium-examples/src/test/java/com/realdevice/image_injection)
+- Real Devices
+  * [iOS native app](./appium-examples/src/test/java/com/realdevice/IOSNativeAppTest.java)
+  * [Android native app](./appium-examples/src/test/java/com/realdevice/AndroidNativeAppTest.java)
+  * [Upload app to Sauce Storage](./appium-examples/src/test/java/com/realdevice/SauceStorage.sh)
+  * [Image Injection](./appium-examples/src/test/java/com/realdevice/image_injection)
+  * [Cucumber w/ Appium](./appium-junit4-cucumber-examples/src/test/resources/LoginPage.feature) `junit4` `cucumber`
 
-*  Emulators and Simulators
-  *  [iOS native app](./appium-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
-  *  [iOS web app](./appium-examples/src/test/java/com/emusim/IOSWebAppExample.java)
-  *  [Biometric Login](./appium-examples/src/test/java/com/emusim/biometric_login)
+- Emulators and Simulators
+  * [iOS native app](./appium-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
+  * [iOS web app](./appium-examples/src/test/java/com/emusim/IOSWebAppExample.java)
+  * [Biometric Login](./appium-examples/src/test/java/com/emusim/biometric_login)
 
 ## ⚙️Setup
 
@@ -145,6 +151,13 @@ everything that you need to get started with web, mobile, visual, functional and
     ```
     
    You can run different tests from different modules. Check out some examples by looking at the [CI YML files](./.github/workflows)
+
+## Contributing 
+
+This repository is maintained by the Solutions Architect team at Sauce Labs. **We welcome all ideas and contributions!**
+
+Guidance for contributing can be found [here](./CONTRIBUTING.md) 
+
 
 ## Disclaimer
 

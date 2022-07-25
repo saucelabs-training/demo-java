@@ -23,7 +23,7 @@ public class SeleniumTest {
     public void setup(Method method) throws MalformedURLException {
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOptions.setCapability("access_key", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.setCapability("name", method.getName());
         sauceOptions.setCapability("browserVersion", "latest");
 

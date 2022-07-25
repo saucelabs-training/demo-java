@@ -8,12 +8,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 /**
  * Login Test Using Sauce Bindings.
  */
 public class SauceBindingsLoginTest extends SauceBaseTest {
 
-    @DisplayName("Swag Labs Login")
+    @DisplayName("Swag Labs Login with Sauce Bindings")
     @Test
     public void swagLabsLoginTest() {
         driver.get("https://www.saucedemo.com");
@@ -22,7 +24,7 @@ public class SauceBindingsLoginTest extends SauceBaseTest {
         By passwordFieldLocator = By.id("password");
         By submitButtonLocator = By.id("login-button");
 
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until((driver) -> driver.findElement(usernameFieldLocator).isDisplayed());
 
         WebElement userNameField = driver.findElement(usernameFieldLocator);

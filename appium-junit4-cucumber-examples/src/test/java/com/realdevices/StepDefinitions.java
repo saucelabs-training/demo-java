@@ -4,43 +4,61 @@ import io.appium.java_client.ios.IOSDriver;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static org.junit.Assert.assertEquals;
+
 public class StepDefinitions {
-    private RemoteWebDriver driver;
+    private IOSDriver driver;
     private WebDriverWait wait;
+    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
+    private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
+    private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub";
+    public static final String region = System.getProperty("region", "us");
 
     @io.cucumber.java.Before
     public void setUp(Scenario scenario) throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("appiumVersion", "1.17.1");
-        capabilities.setCapability("platformVersion", "13.2");
-        capabilities.setCapability("deviceName", "iPhone 11 Pro Max");
+        MutableCapabilities sauceOptions = new MutableCapabilities();
+        URL url;
 
-        capabilities.setCapability("idleTimeout", "90");
-        capabilities.setCapability("noReset", "true");
-        capabilities.setCapability("newCommandTimeout", "90");
-        capabilities.setCapability("language", "en");
+        switch (region) {
+            case "us":
+                url = new URL(SAUCE_US_URL);
+                break;
+            case "eu":
+            default:
+                url = new URL(SAUCE_EU_URL);
+                break;
+        }
+
         capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("name", scenario.getName());
-        capabilities.setCapability("app",
-                "storage:filename=" + "ios");
+        capabilities.setCapability("automationName", "XCuiTest");
+        //Allocate any avilable iPhone device with version 14
+        capabilities.setCapability("appium:deviceName", "iPhone.*");
+        capabilities.setCapability("appium:platformVersion", "14");
+        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
+        //      capabilities.setCapability("app", "storage:filename=" +appName);
+        capabilities.setCapability("appium:app",
+                "https://github.com/saucelabs/my-demo-app-rn/releases/download/v.1.1.0-build-146-224/iOS-Real-Device-MyRNDemoApp.1.1.0-146.ipa");
 
-        driver = new IOSDriver(
-                new URL("https://" + System.getenv("SAUCE_USERNAME") + ":" +
-                        System.getenv("SAUCE_ACCESS_KEY") +
-                        "ondemand.us-west-1.saucelabs.com/wd/hub"),
-                capabilities);
-        wait = new WebDriverWait(driver, 20);
+        sauceOptions.setCapability("name", scenario.getName());
+        sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
+        sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+//        sauceOptions.setCapability("noReset", "true");
+        capabilities.setCapability("sauce:options", sauceOptions);
+
+        driver = new IOSDriver(url, capabilities);
+
+        //Setting the driver so that we can report results
+        resultReportingTestWatcher.setDriver(driver);
     }
 
     @io.cucumber.java.After
@@ -53,10 +71,18 @@ public class StepDefinitions {
         //do nothing
     }
 
-    @Then("I should see Swag Labs login page")
+    @Then("I should see the home page")
     public void iShouldSeeSwagLabsLoginPage() {
-        WebElement loginField = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.id("test-LOGIN")));
-        Assert.assertTrue("Should see login field", loginField.isDisplayed());
+        By productsScreenLocator = By.id("products screen");
+        assertEquals(true, isDisplayed(productsScreenLocator, 10));
+    }
+    public Boolean isDisplayed(By locator, long timeoutInSeconds) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (org.openqa.selenium.TimeoutException exception) {
+            return false;
+        }
+        return true;
     }
 }

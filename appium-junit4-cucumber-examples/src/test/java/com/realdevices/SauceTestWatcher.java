@@ -1,4 +1,4 @@
-package com.realdevice;
+package com.realdevices;
 
 import io.appium.java_client.AppiumDriver;
 import org.junit.rules.TestWatcher;

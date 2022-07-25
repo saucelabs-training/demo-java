@@ -35,9 +35,9 @@ public class SauceBindingsTest {
         driver = session.start();
     }
 
-    @DisplayName("Sauce Bindings example with JUnit5")
+    @DisplayName("Sauce Bindings Navigation Test")
     @Test
-    public void sauceBindingsWithJUnit5Test() {
+    public void sauceBindingsNavigationTest() {
         driver.navigate().to("https://www.saucedemo.com");
         Assertions.assertEquals("Swag Labs", driver.getTitle());
     }
