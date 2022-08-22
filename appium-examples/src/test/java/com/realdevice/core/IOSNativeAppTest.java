@@ -66,20 +66,21 @@ public class IOSNativeAppTest {
         //Allocate any avilable iPhone device with version 14
         capabilities.setCapability("appium:deviceName", "iPhone.*");
         capabilities.setCapability("appium:platformVersion", "14");
-        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
-        //      capabilities.setCapability("app", "storage:filename=" +appName);
-        capabilities.setCapability("appium:app",
-                "https://github.com/saucelabs/my-demo-app-rn/releases/download/v.1.1.0-build-146-224/iOS-Real-Device-MyRNDemoApp.1.1.0-146.ipa");
-
+        String appName = "iOS-Real-Device-MyRNDemoApp.ipa";
+        capabilities.setCapability("app", "storage:filename=" +appName);
         sauceOptions.setCapability("name", name.getMethodName());
-        sauceOptions.setCapability("build", "build_3");
-        List<String> tags = Arrays.asList("sauceDemo_ios", "Mobile A-Team", "iOS");
+        sauceOptions.setCapability("build", "myApp-job-1");
+        List<String> tags = Arrays.asList("sauceDemo_ios", "iOS", "Demo");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         capabilities.setCapability("sauce:options", sauceOptions);
 
+        try {
         driver = new IOSDriver(url, capabilities);
+        } catch (Exception e){
+            System.out.println("Error to create iOS Driver: " + e.getMessage());
+        }
 
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);

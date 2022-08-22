@@ -67,32 +67,31 @@ public class AndroidNativeAppTest {
         //find a device in the cloud
         capabilities.setCapability("platformName", "android");
         capabilities.setCapability("automationName", "UiAutomator2");
-        //Allocate any avilable samsung device with Android version 11
+        //Allocate any avilable samsung device with Android version 12
         capabilities.setCapability("appium:deviceName", "Samsung.*");
         capabilities.setCapability("appium:platformVersion", "12");
-        String appName = "Android-MyDemoAppRN.1.3.0.build-244.apk";
-        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
-                capabilities.setCapability("app", "storage:filename=" +appName);
-       // capabilities.setCapability("appium:app",
-         //       "https://github.com/saucelabs/my-demo-app-rn/releases/download/v.1.1.0-build-146-224/Android-MyDemoAppRN.1.1.0.build-226.apk");
+        String appName = "Android-MyDemoAppRN.build.apk";
+        capabilities.setCapability("app", "storage:filename=" +appName);
         capabilities.setCapability("appium:appWaitActivity","com.saucelabs.mydemoapp.rn.MainActivity");
 
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "myApp-job-1");
-        List<String> tags = Arrays.asList("sauceDemo", "Mobile the A-Team", "Android");
+        List<String> tags = Arrays.asList("sauceDemo", "Android", "Demo");
         sauceOptions.setCapability("tags", tags);
-//        sauceOptions.setCapability("cacheId", "android123");
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
 
         sauceOptions.setCapability("resigningEnabled", true);
-        sauceOptions.setCapability("sauceLabsImageInjectionEnabled", true);
         sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
 
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        driver = new AndroidDriver(url, capabilities);
+        try {
+            driver = new AndroidDriver(url, capabilities);
+        } catch (Exception e){
+            System.out.println("Error to create Android Driver: " + e.getMessage());
+        }
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
     }
