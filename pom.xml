@@ -10,12 +10,12 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <selenium.version>3.141.59</selenium.version>
+        <selenium.version>4.4.0</selenium.version>
+        <appium.version>8.1.1</appium.version>
         <sauce.version>1.2.0</sauce.version>
         <sauce_junit5.version>1.0.0</sauce_junit5.version>
         <sauce_junit4.version>1.0.1</sauce_junit4.version>
         <sauce_testng.version>1.0.0</sauce_testng.version>
-        <appium.version>7.3.0</appium.version>
         <maven.surefire.version>3.0.0-M5</maven.surefire.version>
     </properties>
 
@@ -40,6 +40,7 @@
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>

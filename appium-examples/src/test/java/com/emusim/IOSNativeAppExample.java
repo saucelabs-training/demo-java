@@ -1,7 +1,6 @@
 package com.emusim;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.After;
 import org.junit.Before;
@@ -23,9 +22,9 @@ public class IOSNativeAppExample {
             return String.format("%s", super.getMethodName());
         }
     };
-    private AppiumDriver<MobileElement> driver;
+    private AppiumDriver driver;
 
-    public AppiumDriver<MobileElement> getDriver() {
+    public AppiumDriver getDriver() {
         return driver;
     }
 

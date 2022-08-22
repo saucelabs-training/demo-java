@@ -1,5 +1,6 @@
 package com.emusim.biometric_login;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -16,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static helpers.Constants.rdc;
@@ -163,9 +165,9 @@ public class BiometricLoginIosTest {
 
     public boolean isOnProductsPage() {
 
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        boolean isDisplay =  driver.findElementByIosNsPredicate(ProductTitleSelector).isDisplayed();
-        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        boolean isDisplay = driver.findElement(AppiumBy.iOSNsPredicateString(ProductTitleSelector)).isDisplayed();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         return isDisplay;
     }
 
@@ -180,7 +182,7 @@ public class BiometricLoginIosTest {
                 elementText = "Try Again";
             }
 
-            WebDriverWait wait = new WebDriverWait(driver, 5);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elementText)));
 
         } catch (TimeoutException e){

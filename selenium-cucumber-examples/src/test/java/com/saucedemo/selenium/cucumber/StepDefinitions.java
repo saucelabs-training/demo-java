@@ -17,6 +17,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.stream.IntStream;
 
 public class StepDefinitions {
@@ -79,7 +80,7 @@ public class StepDefinitions {
         session.set(new SauceSession(options.get()));
 
         getSession().start();
-        wait = new WebDriverWait(getDriver(), 10);
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
     }
 
     @After

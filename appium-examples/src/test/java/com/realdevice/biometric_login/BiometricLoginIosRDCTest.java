@@ -1,6 +1,7 @@
 package com.realdevice.biometric_login;
 
 import com.realdevice.SauceTestWatcher;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -153,7 +154,7 @@ public class BiometricLoginIosRDCTest {
         // Biometrics login will automatically be triggered, so wait for the modal.
         String selector = "**/XCUIElementTypeStaticText[`label CONTAINS \"Touch ID Verification\" OR label CONTAINS \"Face ID Verification\"`]";
         // in iOS - XCUITest Gives back all elements  in the screen
-        WebElement iosBiometricsModalSelector = driver.findElementByIosClassChain(selector);
+        WebElement iosBiometricsModalSelector = (WebElement) driver.findElement(AppiumBy.iOSClassChain(selector));
         if (isElementDisplayed(iosBiometricsModalSelector,1)) {
             driver.executeScript("sauce:biometrics-authenticate=true");
         }
@@ -173,7 +174,7 @@ public class BiometricLoginIosRDCTest {
         // Biometrics login will automatically be triggered, so wait for the modal.
         String selector = "**/XCUIElementTypeStaticText[`label CONTAINS \"Touch ID Verification\" OR label CONTAINS \"Face ID Verification\"`]";
         // in iOS - XCUITest Gives back all elements  in the screen
-        WebElement iosBiometricsModalSelector = driver.findElementByIosClassChain(selector);
+        WebElement iosBiometricsModalSelector = (WebElement) driver.findElement(AppiumBy.iOSClassChain(selector));
         if (isElementDisplayed(iosBiometricsModalSelector,1)) {
             driver.executeScript("sauce:biometrics-authenticate=false");
         }
@@ -186,7 +187,7 @@ public class BiometricLoginIosRDCTest {
 
     public Boolean isDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;
@@ -196,7 +197,7 @@ public class BiometricLoginIosRDCTest {
 
     public WebElement waitDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             System.out.println("*** The element wasn't diplayed ***");
@@ -207,7 +208,7 @@ public class BiometricLoginIosRDCTest {
 
     public Boolean isElementDisplayed(WebElement elem, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOf(elem));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;

@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,7 +78,7 @@ public class ImageInjectionTest {
         capabilities.setCapability("autoGrantPermissions", true);
         androidDriver = new AndroidDriver(url, capabilities);
 
-        WebDriverWait wait = new WebDriverWait(androidDriver, 10);
+        WebDriverWait wait = new WebDriverWait(androidDriver, Duration.ofSeconds(10));
 
         // *** The main test *****
 
@@ -121,7 +122,7 @@ public class ImageInjectionTest {
 
         iOSDriver = new IOSDriver(url, capabilities);
 
-        WebDriverWait wait = new WebDriverWait(iOSDriver, 10);
+        WebDriverWait wait = new WebDriverWait(iOSDriver, Duration.ofSeconds(10));
 
         // *** The main test *****
 

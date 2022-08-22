@@ -13,7 +13,7 @@ public abstract class MobileTestsBase extends AbstractTestBase {
      * @return instance of Appium Driver
      */
     @SuppressWarnings("unchecked")
-    public AppiumDriver<WebElement> getDriver() {
-        return (AppiumDriver<WebElement>) driver;
+    public AppiumDriver getDriver() {
+        return (AppiumDriver) driver;
     }
 }
