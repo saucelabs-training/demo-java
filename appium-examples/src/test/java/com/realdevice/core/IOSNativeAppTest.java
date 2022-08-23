@@ -66,7 +66,7 @@ public class IOSNativeAppTest {
         //Allocate any avilable iPhone device with version 14
         capabilities.setCapability("appium:deviceName", "iPhone.*");
         capabilities.setCapability("appium:platformVersion", "14");
-        String appName = "iOS-Real-Device-MyRNDemoApp.ipa";
+        String appName = "iOS.MyDemoAppRN.ipa";
         capabilities.setCapability("app", "storage:filename=" +appName);
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "myApp-job-1");

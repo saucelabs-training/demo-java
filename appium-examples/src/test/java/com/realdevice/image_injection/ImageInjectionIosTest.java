@@ -66,6 +66,15 @@ public class ImageInjectionIosTest {
                 break;
         }
 
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("automationName", "XCuiTest");
+        //Allocate any avilable iPhone device with version 14
+        capabilities.setCapability("appium:deviceName", "iPhone.*");
+        capabilities.setCapability("appium:platformVersion", "14");
+        String appName = "iOS.MyDemoAppRN.ipa";
+        capabilities.setCapability("app", "storage:filename=" +appName);
+        capabilities.setCapability("autoAcceptAlerts", true);
+
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "imageInjection-job-1");
@@ -79,15 +88,6 @@ public class ImageInjectionIosTest {
         sauceOptions.setCapability("sauceLabsImageInjectionEnabled", true);
 
         capabilities.setCapability("sauce:options", sauceOptions);
-
-        capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("automationName", "XCuiTest");
-        //Allocate any avilable iPhone device with version 14
-        capabilities.setCapability("appium:deviceName", "iPhone.*");
-        capabilities.setCapability("appium:platformVersion", "14");
-        String appName = "iOS-Real-Device-MyRNDemoApp.ipa";
-        capabilities.setCapability("app", "storage:filename=" +appName);
-        capabilities.setCapability("autoAcceptAlerts", true);
 
         driver = new IOSDriver(url, capabilities);
 
