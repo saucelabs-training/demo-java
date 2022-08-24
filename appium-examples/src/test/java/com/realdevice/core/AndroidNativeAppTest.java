@@ -32,7 +32,7 @@ public class AndroidNativeAppTest {
 
     private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
     private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub";
-
+    
     By productsScreenLocator = By.xpath("//*[@content-desc=\"products screen\"]");
     By productScreenLocator = By.xpath("//*[@content-desc=\"product screen\"]");
 
@@ -71,7 +71,7 @@ public class AndroidNativeAppTest {
         capabilities.setCapability("appium:deviceName", "Samsung.*");
         capabilities.setCapability("appium:platformVersion", "12");
         String appName = "Android.MyDemoAppRN.apk";
-        capabilities.setCapability("app", "storage:filename=" +appName);
+        capabilities.setCapability("appium:app", "storage:filename=" +appName);
         capabilities.setCapability("appium:appWaitActivity","com.saucelabs.mydemoapp.rn.MainActivity");
 
         // Sauce capabilities
@@ -91,6 +91,7 @@ public class AndroidNativeAppTest {
             driver = new AndroidDriver(url, capabilities);
         } catch (Exception e){
             System.out.println("Error to create Android Driver: " + e.getMessage());
+            return;
         }
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
