@@ -47,7 +47,10 @@ everything that you need to get started with web, mobile, visual, functional and
   * [Cucumber web test](./selenium-cucumber-examples/src/test/java/com/saucedemo/selenium/cucumber/RunTestsAT.java)
   * [Windows authentication](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/WindowsAuthentication.java) `junit4`
   * [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/CrossBrowserPlatformTest.java) `testng`
+  * [Performance, front-end with Sauce Bindings](/selenium-examples/src/test/java/com/saucedemo/selenium/PerformanceTest.java) `junit5` `sauce-bindings`
   * [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/ParallelSingleBrowserTest.java) `testng`
+  * [Visual e2e test](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/SimpleVisualE2ETest.java) `visual` `junit4`
+  * [Visual e2e test with branching strategy](./blob/54a4bfde9040d71f88f3b3aff79a047474d01be9/selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/SimpleVisualE2ETest.java#L115-L158) `visual` `junit4`
 
 ## 📱Mobile automation
 
