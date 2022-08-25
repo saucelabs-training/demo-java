@@ -1,5 +1,6 @@
 package com.emusim.biometric_login;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
@@ -17,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 
 import static helpers.Constants.region;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -130,8 +132,7 @@ public class BiometricLoginAndroidTest {
 
     public void login(boolean successful) {
         try {
-
-            WebElement biometryButton = (WebElement) driver.findElementByAccessibilityId(biometryID);
+            WebElement biometryButton = (WebElement) driver.findElement(AppiumBy.accessibilityId(biometryID));
             biometryButton.click();
 
             if (successful){
@@ -149,7 +150,7 @@ public class BiometricLoginAndroidTest {
     public boolean isOnProductsPage() {
 
         //Create an instance of a Selenium explicit wait so that we can dynamically wait for an element
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         //wait for the product field to be visible and store that element into a variable
         try {
@@ -172,8 +173,7 @@ public class BiometricLoginAndroidTest {
 
     public boolean isBiometryDisplayed() {
         try {
-
-            WebElement biometryButton = (WebElement) driver.findElementByAccessibilityId(biometryID);
+            WebElement biometryButton = (WebElement)driver.findElement(AppiumBy.accessibilityId(biometryID));
             return biometryButton.isDisplayed();
 
         } catch (Exception e) {

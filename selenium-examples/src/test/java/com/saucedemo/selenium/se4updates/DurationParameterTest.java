@@ -14,10 +14,10 @@ public class DurationParameterTest extends SauceBaseTest {
     public void timeoutIntegersDeprecated() {
 
         // Uses Seconds
-        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
 
         // Uses Long / TimeUnit
-        driver.manage().timeouts().implicitlyWait(555, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(555));
     }
 
     @DisplayName("Timeouts now use Duration instances")

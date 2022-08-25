@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
@@ -78,7 +79,7 @@ public class StepDefinitions {
     }
     public Boolean isDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;

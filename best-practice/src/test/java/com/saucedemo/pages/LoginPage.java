@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class LoginPage extends AbstractBasePage {
      */
     public void login(String userName) {
         //Create an instance of a Selenium explicit wait to dynamically wait for an element
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         //wait for the user name field to be visible and store that element into a variable
         wait.until((driver) -> driver.findElement(usernameFieldLocator).isDisplayed());
 

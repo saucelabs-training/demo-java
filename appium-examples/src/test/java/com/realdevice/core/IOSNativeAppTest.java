@@ -1,6 +1,7 @@
 package com.realdevice.core;
 
 import com.realdevice.SauceTestWatcher;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
@@ -20,6 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 
 import static helpers.Constants.region;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -63,18 +66,21 @@ public class IOSNativeAppTest {
         //Allocate any avilable iPhone device with version 14
         capabilities.setCapability("appium:deviceName", "iPhone.*");
         capabilities.setCapability("appium:platformVersion", "14");
-        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
-        //      capabilities.setCapability("app", "storage:filename=" +appName);
-        capabilities.setCapability("appium:app",
-                "https://github.com/saucelabs/my-demo-app-rn/releases/download/v.1.1.0-build-146-224/iOS-Real-Device-MyRNDemoApp.1.1.0-146.ipa");
-
+        String appName = "iOS.MyDemoAppRN.ipa";
+        capabilities.setCapability("app", "storage:filename=" +appName);
         sauceOptions.setCapability("name", name.getMethodName());
+        sauceOptions.setCapability("build", "myApp-job-1");
+        List<String> tags = Arrays.asList("sauceDemo_ios", "iOS", "Demo");
+        sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-//        sauceOptions.setCapability("noReset", "true");
         capabilities.setCapability("sauce:options", sauceOptions);
 
+        try {
         driver = new IOSDriver(url, capabilities);
+        } catch (Exception e){
+            System.out.println("Error to create iOS Driver: " + e.getMessage());
+        }
 
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
@@ -113,7 +119,7 @@ public class IOSNativeAppTest {
 
     public Boolean isDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;
@@ -123,7 +129,7 @@ public class IOSNativeAppTest {
 
     public Boolean isElementDisplayed(WebElement elem, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOf(elem));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;
@@ -134,7 +140,7 @@ public class IOSNativeAppTest {
     private WebElement getProduct(String needle){
         String selector = "**/XCUIElementTypeOther[`label == \"" + needle + "\"`]";
         // in iOS - XCUITest Gives back all elements  in the screen
-        WebElement productElement = driver.findElementByIosClassChain(selector);
+        WebElement productElement = (WebElement) driver.findElement(AppiumBy.iOSClassChain(selector));
         // swipe if needed
         for (int i = 0; i < 2; i++) {
             if (isElementDisplayed(productElement,1))

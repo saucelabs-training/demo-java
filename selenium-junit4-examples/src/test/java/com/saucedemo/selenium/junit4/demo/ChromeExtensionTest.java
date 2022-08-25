@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 /**
  * An example on how to run Java + JUnit 4 test in the Sauce Labs Desktop Web cloud Chrome Extensions
@@ -61,7 +62,7 @@ public class ChromeExtensionTest {
     }
 
     public boolean isNinjaSaucebotExist() {
-        WebDriverWait wait = new WebDriverWait(driver, 1);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("bot_column2")));

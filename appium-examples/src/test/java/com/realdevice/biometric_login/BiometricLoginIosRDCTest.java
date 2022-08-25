@@ -1,6 +1,7 @@
 package com.realdevice.biometric_login;
 
 import com.realdevice.SauceTestWatcher;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -82,18 +83,15 @@ public class BiometricLoginIosRDCTest {
 
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("automationName", "XCuiTest");
-        // We're using dynamic device allocation
-        // See https://docs.saucelabs.com/mobile-apps/automated-testing/appium/real-devices/#dynamic-device-allocation
         capabilities.setCapability("appium:deviceName", deviceName);
         capabilities.setCapability("appium:platformVersion", platformVersion);
-        // The name of the App in the Sauce Labs storage, for more info see
-        // https://docs.saucelabs.com/mobile-apps/app-storage/
-        capabilities.setCapability("appium:app", "storage:filename=iOS.MyDemoAppRN.ipa");
+        String appName = "iOS.MyDemoAppRN.ipa";
+        capabilities.setCapability("app", "storage:filename=" +appName);
 
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-        sauceOptions.setCapability("appiumVersion", "1.21.0");
+
         // Enable touchID
         sauceOptions.setCapability("resigningEnabled", true);
         sauceOptions.setCapability("allowTouchIdEnroll", true);
@@ -111,20 +109,6 @@ public class BiometricLoginIosRDCTest {
         assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
         // (2) Open the menu
         driver.findElement(menuLocator).click();
-
-//        Rectangle eleRect = driver.findElement(menuLocator).getRect();
-//        int tapX = (int)(eleRect.x + (eleRect.width / 2));
-//        int tapY = (int)(eleRect.y + (eleRect.height / 2));
-//
-//        System.out.println("Sauce - location: " + tapX + " " +  tapY);
-//        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-//        Sequence tapPoint = new Sequence(finger, 1);
-//        // Move finger into start position
-//        tapPoint.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), tapX, tapY));
-//        tapPoint.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-//        tapPoint.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-//        driver.perform(Arrays.asList(tapPoint));
-
 
         // (3) Open Biometric page
         driver.findElement(menuBiometricLocator).click();
@@ -153,7 +137,7 @@ public class BiometricLoginIosRDCTest {
         // Biometrics login will automatically be triggered, so wait for the modal.
         String selector = "**/XCUIElementTypeStaticText[`label CONTAINS \"Touch ID Verification\" OR label CONTAINS \"Face ID Verification\"`]";
         // in iOS - XCUITest Gives back all elements  in the screen
-        WebElement iosBiometricsModalSelector = driver.findElementByIosClassChain(selector);
+        WebElement iosBiometricsModalSelector = (WebElement) driver.findElement(AppiumBy.iOSClassChain(selector));
         if (isElementDisplayed(iosBiometricsModalSelector,1)) {
             driver.executeScript("sauce:biometrics-authenticate=true");
         }
@@ -173,20 +157,20 @@ public class BiometricLoginIosRDCTest {
         // Biometrics login will automatically be triggered, so wait for the modal.
         String selector = "**/XCUIElementTypeStaticText[`label CONTAINS \"Touch ID Verification\" OR label CONTAINS \"Face ID Verification\"`]";
         // in iOS - XCUITest Gives back all elements  in the screen
-        WebElement iosBiometricsModalSelector = driver.findElementByIosClassChain(selector);
+        WebElement iosBiometricsModalSelector = (WebElement) driver.findElement(AppiumBy.iOSClassChain(selector));
         if (isElementDisplayed(iosBiometricsModalSelector,1)) {
             driver.executeScript("sauce:biometrics-authenticate=false");
         }
 
         // Verify we are NOT in the catalog page
-        assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isFalse();
+        assertThat(isDisplayed(productsScreenLocator, 5)).as("Verify catalog page").isFalse();
 
 
     }
 
     public Boolean isDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;
@@ -196,7 +180,7 @@ public class BiometricLoginIosRDCTest {
 
     public WebElement waitDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             System.out.println("*** The element wasn't diplayed ***");
@@ -207,7 +191,7 @@ public class BiometricLoginIosRDCTest {
 
     public Boolean isElementDisplayed(WebElement elem, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOf(elem));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;

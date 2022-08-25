@@ -40,7 +40,6 @@ public class RemoteWebDriverBuilderTest {
         sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
 
         ClientConfig config = ClientConfig.defaultConfig()
-                .connectionTimeout(Duration.ofMinutes(5))
                 .readTimeout(Duration.ofMinutes(3));
 
         WebDriver driver = RemoteWebDriver.builder()

@@ -19,6 +19,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 
 import static helpers.Constants.region;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,7 +32,7 @@ public class AndroidNativeAppTest {
 
     private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
     private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub";
-
+    
     By productsScreenLocator = By.xpath("//*[@content-desc=\"products screen\"]");
     By productScreenLocator = By.xpath("//*[@content-desc=\"product screen\"]");
 
@@ -65,23 +67,32 @@ public class AndroidNativeAppTest {
         //find a device in the cloud
         capabilities.setCapability("platformName", "android");
         capabilities.setCapability("automationName", "UiAutomator2");
-        //Allocate any avilable samsung device with Android version 11
+        //Allocate any avilable samsung device with Android version 12
         capabilities.setCapability("appium:deviceName", "Samsung.*");
-        capabilities.setCapability("appium:platformVersion", "11");
-        //      You can use  storage:filename=" +appName if you uploaded your app to Saucd Storage
-        //        capabilities.setCapability("app", "storage:filename=" +appName);
-        capabilities.setCapability("appium:app",
-                "https://github.com/saucelabs/my-demo-app-rn/releases/download/v.1.1.0-build-146-224/Android-MyDemoAppRN.1.1.0.build-226.apk");
+        capabilities.setCapability("appium:platformVersion", "12");
+        String appName = "Android.MyDemoAppRN.apk";
+        capabilities.setCapability("appium:app", "storage:filename=" +appName);
         capabilities.setCapability("appium:appWaitActivity","com.saucelabs.mydemoapp.rn.MainActivity");
 
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
-        sauceOptions.setCapability("build", "");
+        sauceOptions.setCapability("build", "myApp-job-1");
+        List<String> tags = Arrays.asList("sauceDemo", "Android", "Demo");
+        sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+
+        sauceOptions.setCapability("resigningEnabled", true);
+        sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        driver = new AndroidDriver(url, capabilities);
+        try {
+            driver = new AndroidDriver(url, capabilities);
+        } catch (Exception e){
+            System.out.println("Error to create Android Driver: " + e.getMessage());
+            return;
+        }
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
     }
@@ -119,7 +130,7 @@ public class AndroidNativeAppTest {
 
     public Boolean isDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;

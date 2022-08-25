@@ -16,27 +16,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static helpers.Constants.region;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(Parameterized.class)
 public class BiometricLoginAndroidRDCTest {
-
-    /*
-     * Configure our data driven parameters
-     * */
-    @Parameterized.Parameter
-    public String deviceName;
-
-    @Parameterized.Parameters()
-    public static Collection<Object[]> crossIosData() {
-        return Arrays.asList(new Object[][]{
-                {"Samsung Galaxy S(7|8|9|10|20|21).*"}
-        });
-    }
 
     private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
     private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub";
@@ -76,17 +64,21 @@ public class BiometricLoginAndroidRDCTest {
 
         capabilities.setCapability("platformName", "android");
         capabilities.setCapability("automationName", "UiAutomator2");
-        // We're using dynamic device allocation
-        // See https://docs.saucelabs.com/mobile-apps/automated-testing/appium/real-devices/#dynamic-device-allocation
-        capabilities.setCapability("appium:deviceName", deviceName);
-        // The name of the App in the Sauce Labs storage, for more info see
-        // https://docs.saucelabs.com/mobile-apps/app-storage/
-        capabilities.setCapability("appium:app", "storage:filename=Android.MyDemoAppRN.apk");
-        capabilities.setCapability("appium:appWaitActivity", "com.saucelabs.mydemoapp.rn.MainActivity");
+        //Allocate any avilable samsung device with Android version 12
+        capabilities.setCapability("appium:deviceName", "Samsung Galaxy S(7|8|9|10|20|21).*");
+        capabilities.setCapability("appium:platformVersion", "12");
+        String appName = "Android.MyDemoAppRN.apk";
+        capabilities.setCapability("app", "storage:filename=" +appName);
+        capabilities.setCapability("appium:appWaitActivity","com.saucelabs.mydemoapp.rn.MainActivity");
+        capabilities.setCapability("autoGrantPermissions", true);
+
         sauceOptions.setCapability("name", name.getMethodName());
+        sauceOptions.setCapability("build", "biometricAuth-job-1");
+        List<String> tags = Arrays.asList("sauceDemo", "Android","Biometric Login");
+        sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-        sauceOptions.setCapability("appiumVersion", "1.21.0");
+
         // Select only phone devices
         sauceOptions.setCapability("phoneOnly", true);
         // Enable touchID
@@ -154,14 +146,14 @@ public class BiometricLoginAndroidRDCTest {
         }
 
         // Verify we are NOT in the catalog page
-        assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isFalse();
+        assertThat(isDisplayed(productsScreenLocator, 5)).as("Verify catalog page").isFalse();
 
 
     }
 
     public Boolean isDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;
@@ -171,7 +163,7 @@ public class BiometricLoginAndroidRDCTest {
 
     public WebElement waitDisplayed(By locator, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             System.out.println("*** The element wasn't diplayed ***");
@@ -182,7 +174,7 @@ public class BiometricLoginAndroidRDCTest {
 
     public Boolean isElementDisplayed(WebElement elem, long timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
             wait.until(ExpectedConditions.visibilityOf(elem));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;
