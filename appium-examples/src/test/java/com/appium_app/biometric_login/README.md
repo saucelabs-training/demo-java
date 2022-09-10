@@ -52,7 +52,7 @@ your capabilities, you can just enable it during runtime, please check [this](Bi
 see how to do that.
 
 For running test on the Sauce Labs Real Device Cloud you need to add `allowTouchIdEnroll: true` to your capabilities,
-please check [this](BiometricLoginIosRDCTest#96) to see how to do that.
+please check [this](BiometricLoginIosRDCTest.java#L96) to see how to do that.
 
 ### Android
 Android is not that straightforward as iOS when it comes to Emulators. There is no specific capability you can use to 
@@ -65,7 +65,7 @@ In the example we coverd Android 10 emualtor.
 The method `enableBiometricLogin()` in [this](AndroidSettings.java)-file will do all the magic for you
 
 For running test on the Sauce Labs Real Device Cloud you need to add `allowTouchIdEnroll: true` to your capabilities,
-please check [this](BiometricLoginAndroidRDCTest.java#81) to see how to do that.
+please check [this](BiometricLoginAndroidRDCTest.java#L81) to see how to do that.
 
 ## Run tests on Sauce Labs Android real devices
 If you want to run the tests on Sauce Labs Android Real Devices then you can run the Android test with
@@ -117,7 +117,7 @@ The tests, which can be found [here](BiometricLoginIosRDCTest.java), will be exe
 expression.
 > NOTE: Make sure you are in the folder `appium-examples` when you execute this command
 
-## Run tests on Sauce Labs iOS Emulator
+## Run tests on Sauce Labs iOS Simulators
 If you want to run the tests on Sauce Labs iOS simulators then you can run the Android test with
 
     // If using the US DC
@@ -131,3 +131,7 @@ The tests, which can be found [here](BiometricLoginIosSimTest.java), will be exe
 - iPhone 8 Plus Simulator => has Touch ID
 - iPhone 12 Simulator => has Face ID
 > NOTE: Make sure you are in the folder `appium-examples` when you execute this command
+
+## Special Thanks
+Huge thanks to Wim Selles. He developed and maintained the [Sauce Labs demo-js repository] (https://github.com/saucelabs-training/demo-js). 
+The examples in the repository were inspired by the js repo
