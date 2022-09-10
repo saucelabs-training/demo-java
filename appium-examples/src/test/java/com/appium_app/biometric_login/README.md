@@ -1,7 +1,7 @@
 # Using biometric login on Sauce Labs
 This folder contains examples for using Biometric login for:
 
-- [Android Real Devices in the Sauce Labs Cloud](run-tests-on-Sauce-Labs-android-real-devices)
+- [Android Real Devices in the Sauce Labs Cloud](#run-tests-on-sauce-labs-android-real-devices)
 - [Android Emulators in the Sauce Labs Cloud](#run-tests-on-sauce-labs-android-emulators)
 - [iOS Real Devices in the Sauce Labs Cloud](#run-tests-on-sauce-labs-ios-real-devices)
 - [iOS Simulators in the Sauce Labs Cloud](#run-tests-on-sauce-labs-ios-simulators)
@@ -21,8 +21,7 @@ download.
 
 > The advice is to download the files to an `apps` folder in the root of this folder.
 
-Make sure that when you downloaded the files from the releases page, that you rename the apps to the following, see
-also the names of the apps in the configurations files [here](test/configs):
+Make sure that when you downloaded the files from the releases page, that you rename the apps to the following:
 
 - `Android-MyDemoAppRN.{#.#.#}.build-{####}.apk` => `Android.MyDemoAppRN.apk`
 - `iOS-Real-Device-MyRNDemoApp.{#.#.#}-{####}.ipa` => `iOS.MyDemoAppRN.ipa`
@@ -42,10 +41,10 @@ Execute the following steps to manually upload the apps:
 
 #### Automated upload
 You can find a script to upload them to, OR the US, OR EU DC in [this](../../helpers/push_apps_to_storage.sh)-file. You can push the files to the
-storage by doing the following from the root of this folder:
+storage by doing the following from the folder `appium-examples`:
 
-    cd scripts
-    src/test/java/com/helpers/push_apps_to_storage.sh
+    cd src/test/java/com/helpers/
+    push_apps_to_storage.sh
 
 ### iOS
 Using TouchID or FaceID for iOS simulators is pretty straightforward, you **DON'T** need to add an extra capability to 
@@ -63,10 +62,10 @@ enable fingerprint support. You need to first enable it manually or with Appium 
 
 The challenge with Android emulators was that there is a different flow for almost each version.
 In the example we coverd Android 10 emualtor.
-The method `enableBiometricLogin()` in [this](AndroidSettings.ts)-file will do all the magic for you
+The method `enableBiometricLogin()` in [this](AndroidSettings.java)-file will do all the magic for you
 
 For running test on the Sauce Labs Real Device Cloud you need to add `allowTouchIdEnroll: true` to your capabilities,
-please check [this](BiometricLoginAndroidRDCTest#81) to see how to do that.
+please check [this](BiometricLoginAndroidRDCTest.java#81) to see how to do that.
 
 ## Run tests on Sauce Labs Android real devices
 If you want to run the tests on Sauce Labs Android Real Devices then you can run the Android test with
@@ -77,8 +76,8 @@ If you want to run the tests on Sauce Labs Android Real Devices then you can run
     // If using the EU DC
      mvn clean test -Dtest=BiometricLoginAndroidRDCTest -Dregion=eu
     
-The tests which can be found [here](BiometricLoginAndroidRDCTest.java), will be executed on:     
-- Samsung Galaxy S(7|8|9|10|20|21).* and Android 12
+The tests, which can be found [here](BiometricLoginAndroidRDCTest.java), will be executed on:     
+- Samsung Galaxy S(7|8|9|10|20|21).* ,Android 12
           
 > Both devices use *dynamic* allocation, meaning they will try to find an available device that matches a regular expression.
 > NOTE: Make sure you are in the folder `appium-examples` when you execute this command
@@ -94,7 +93,7 @@ If you want to run the tests on Sauce Labs Android emulators then you can run th
 
 The tests, which can be found [here](BiometricLoginAndroidEmuTest.java), will be executed on:
 
-- Android GoogleAPI Emulator and Android 10
+- Android GoogleAPI Emulator ,Android 10
 > NOTE: Make sure you are in the folder `appium-examples` when you execute this command
 
 > As mentioned in [Important information > Android](#android), there is no easy way to enable biometrics on Android
@@ -118,7 +117,7 @@ The tests, which can be found [here](BiometricLoginIosRDCTest.java), will be exe
 expression.
 > NOTE: Make sure you are in the folder `appium-examples` when you execute this command
 
-## Run tests on iOS Simulators in the Sauce Labs Emulator Cloud
+## Run tests on Sauce Labs iOS Emulator
 If you want to run the tests on Sauce Labs iOS simulators then you can run the Android test with
 
     // If using the US DC
