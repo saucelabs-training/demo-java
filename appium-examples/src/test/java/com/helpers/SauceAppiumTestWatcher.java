@@ -1,12 +1,11 @@
-package com.realdevice;
+package com.helpers;
 
 import io.appium.java_client.AppiumDriver;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class SauceTestWatcher extends TestWatcher {
-    private RemoteWebDriver driver;
+public class SauceAppiumTestWatcher extends TestWatcher {
+    private AppiumDriver driver;
 
     public void setDriver(AppiumDriver driver)
     {
