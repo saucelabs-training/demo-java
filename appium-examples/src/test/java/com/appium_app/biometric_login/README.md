@@ -133,5 +133,5 @@ The tests, which can be found [here](BiometricLoginIosSimTest.java), will be exe
 > NOTE: Make sure you are in the folder `appium-examples` when you execute this command
 
 ## Special Thanks
-Huge thanks to Wim Selles. He developed and maintained the [Sauce Labs demo-js repository] (https://github.com/saucelabs-training/demo-js). 
-The examples in the repository were inspired by the js repo
+Huge thanks to Wim Selles. He develops and maintains the [Sauce Labs demo-js repository](https://github.com/saucelabs-training/demo-js). 
+The js repo inspired the examples in this repository.
