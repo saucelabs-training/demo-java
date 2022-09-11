@@ -1,9 +1,9 @@
-package com.realdevice.image_injection;
+package com.appium_app.image_injection;
 
 
-import com.realdevice.SauceTestWatcher;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.ios.IOSDriver;
+import com.helpers.SauceAppiumTestWatcher;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,28 +19,25 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.List;
 
-import static helpers.Constants.region;
+import static com.helpers.Constants.*;
 
-public class ImageInjectionIosTest {
-
-    private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
-    private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub";
+public class ImageInjectionAndroidTest {
 
     @Rule
     public TestName name = new TestName();
 
     //This rule allows us to set test status with Junit
     @Rule
-    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
+    public SauceAppiumTestWatcher resultReportingTestWatcher = new SauceAppiumTestWatcher();
 
     String testMenu = "open menu";
     String testMenuItemQRCode ="menu item qr code scanner";
 
-    String ios_testMenu = "tab bar option menu";
-
-    protected IOSDriver driver;
+    protected AndroidDriver driver;
 
     MutableCapabilities capabilities;
     MutableCapabilities sauceOptions;
@@ -66,19 +63,21 @@ public class ImageInjectionIosTest {
                 break;
         }
 
-        capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("automationName", "XCuiTest");
-        //Allocate any avilable iPhone device with version 14
-        capabilities.setCapability("appium:deviceName", "iPhone.*");
-        capabilities.setCapability("appium:platformVersion", "14");
-        String appName = "iOS.MyDemoAppRN.ipa";
+        //find a device in the cloud
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("appium:automationName", "UiAutomator2");
+        //Allocate any avilable samsung device with Android version 12
+        capabilities.setCapability("appium:deviceName", "Samsung.*");
+        capabilities.setCapability("appium:platformVersion", "12");
+        String appName = "Android.MyDemoAppRN.apk";
         capabilities.setCapability("app", "storage:filename=" +appName);
-        capabilities.setCapability("autoAcceptAlerts", true);
+        capabilities.setCapability("appium:appWaitActivity","com.saucelabs.mydemoapp.rn.MainActivity");
+        capabilities.setCapability("autoGrantPermissions", true);
 
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "imageInjection-job-1");
-        List<String> tags = Arrays.asList("sauceDemo", "Image Injection");
+        List<String> tags = Arrays.asList("sauceDemo", "Android","Image Injection");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
@@ -89,61 +88,54 @@ public class ImageInjectionIosTest {
 
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        driver = new IOSDriver(url, capabilities);
+        try {
+            driver = new AndroidDriver(url, capabilities);
+        } catch (Exception e){
+            System.out.println("Error to create Android Driver: " + e.getMessage());
+        }
 
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
     }
 
     @Test
-    public void imageInjectIOS() throws InterruptedException {
+    public void imageInjectionAndroid() throws InterruptedException {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Select QR Code Scanner from the menu
 
         //wait for the product field to be visible and store that element into a variable
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement menu = wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ios_testMenu)));
+        WebElement menu = wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId(testMenu)));
         menu.click();
 
-        // *** selec Menu QR Code
-        WebElement qCCodeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(testMenuItemQRCode)));
+        // *** select Menu QR Code
+        WebElement qCCodeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId(testMenuItemQRCode)));
         qCCodeMenu.click();
 
         // inject the image - provide the transformed image to the device with this command
-        String qrCodeImage = encoder("src/test/java/com/realdevice/image_injection/images/qr-code.png");
+        String qrCodeImage = encoder("src/test/java/com/appium_app/image_injection/images/qr-code.png");
         driver.executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
-        isIosApplicationRunning("com.apple.mobilesafari");
+        isAndroidBrowserOpened();
 
-        // This is not need only for the video
+        // For demo purpose so we can see the image injection in the movie
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-
     }
 
-    // ios
-    public long getIosAppState(String bundleId) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("bundleId", bundleId);
 
-        // App state: 0 is not installed. 1 is not running. 2 is running in background or suspended. 3 is running in background. 4 is running in foreground. (number)
-        long res = (long) driver.executeScript("mobile:queryAppState", params);
-
-        System.out.println("Sauce. iOS App state for bundleId " + bundleId + " is " + res );
-        return res;
-    }
-
-    public boolean isIosApplicationRunning(String bundleId) throws InterruptedException{
-
+    // Android
+    public boolean isAndroidBrowserOpened() throws InterruptedException {
         int wait = 8;
         int counter = 0;
 
         do {
-            if (getIosAppState(bundleId) == 4){
+            if (!driver.currentActivity().contains(".MainActivity")){
                 return true;
             }
             Thread.sleep(500);
@@ -152,6 +144,7 @@ public class ImageInjectionIosTest {
 
         return false;
     }
+
 
     public String encoder(String imagePath) {
         String base64Image = "";
