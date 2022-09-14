@@ -1,10 +1,18 @@
-# Using image injection on Sauce Labs Real Devices
-This folder contains examples for using image injection on real devices for:
-
+# Using gestures on Sauce Labs Real Devices
+This folder contains examples for using **Scroll** gesture on Android and iOS
+The Android example uses [W3C Actions](https://appium.io/docs/en/commands/interactions/actions/) for scrolling
+The iOS example uses [XCUITest scroll shortcut](https://github.com/appium/appium-xcuitest-driver#mobile-scroll)
 - [Android real devices on the Sauce Labs Cloud](#run-tests-on-sauce-labs-android-real-devices)
 - [iOS real devices on the Sauce Labs Cloud](#run-tests-on-sauce-labs-ios-real-devices)
 
-> NOTE: this feature is **NOT** supported for emulators and simulators!!
+## About  Gestures
+There are different ways to implement gestures. 
+If you want cross platform code, meaning the same code for Android and iOS, you can use the [W3C Actions](https://appium.io/docs/en/commands/interactions/actions/)
+There are also driver specific Gesture shortcuts:
+For android use the [UiAutomator2 Geatures](https://appium.io/docs/en/writing-running-appium/android/android-mobile-gestures/)
+For iOS use the [xcuitest Geatures](https://appium.io/docs/en/writing-running-appium/ios/ios-xctest-mobile-gestures/) 
+
+I recommand watching [this webinar](https://www.youtube.com/watch?v=oAJ7jwMNFVU): "Swiping your way through Appium by Wim Selles" from AppiumConf2021
 
 ## Important information
 ### Environment variables for Sauce Labs
@@ -50,12 +58,12 @@ storage by doing the following from the folder `appium-examples`:
 If you want to run the tests on Sauce Labs real devices then you can run the Android test with
 
     // If using the US DC
-    mvn clean test -Dtest=ImageInjectionAndroidTest -Dregion=us
+    mvn clean test -Dtest=GesturesAndroidNativeAppTest -Dregion=us
     
     // If using the EU DC
-    mvn clean test -Dtest=ImageInjectionAndroidTest -Dregion=eu
+    mvn clean test -Dtest=GesturesAndroidNativeAppTest -Dregion=eu
     
-The tests will be executed on a Samsung Galaxy 12.
+The tests will be executed on a Samsung Galaxy with OS Android 12.
 
 > NOTE: Make sure you are in the folder `appium-examples` when you execute this command
 
@@ -63,14 +71,11 @@ The tests will be executed on a Samsung Galaxy 12.
 If you want to run the tests on Sauce Labs real devices then you can run the iOS test with
 
     // If using the US DC
-    mvn clean test  -Dtest=ImageInjectionIosTest -Dregion=us
+    mvn clean test  -Dtest=GesturesIOSNativeAppTest -Dregion=us
     
     // If using the EU DC
-    mvn clean test -Dtest=ImageInjectionIosTest -Dregion=eu
+    mvn clean test -Dtest=GesturesIOSNativeAppTest -Dregion=eu
     
-The tests will be executed on an iPhone 14.
-> NOTE: Make sure you are in the folder `appium-examples` when you execute this command
+The tests will be executed on an iPhone with OS 14.
 
-## Special Thanks
-Huge thanks to [Wim Selles](https://github.com/wswebcreation). He develops and maintains the [Sauce Labs demo-js repository](https://github.com/saucelabs-training/demo-js). 
-The js repo inspired the examples in this repository. Thanks my friend.
+> NOTE: Make sure you are in the folder `appium-examples` when you execute this command
