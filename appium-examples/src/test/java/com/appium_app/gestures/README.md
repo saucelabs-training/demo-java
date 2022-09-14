@@ -1,18 +1,18 @@
 # Using gestures on Sauce Labs Real Devices
-This folder contains examples for using **Scroll** gesture on Android and iOS
-The Android example uses [W3C Actions](https://appium.io/docs/en/commands/interactions/actions/) for scrolling
+This folder contains examples for using **Scroll** gesture on Android and iOS.  
+The Android example uses [W3C Actions](https://appium.io/docs/en/commands/interactions/actions/) for scrolling.  
 The iOS example uses [XCUITest scroll shortcut](https://github.com/appium/appium-xcuitest-driver#mobile-scroll)
 - [Android real devices on the Sauce Labs Cloud](#run-tests-on-sauce-labs-android-real-devices)
 - [iOS real devices on the Sauce Labs Cloud](#run-tests-on-sauce-labs-ios-real-devices)
 
 ## About  Gestures
-There are different ways to implement gestures. 
-If you want cross platform code, meaning the same code for Android and iOS, you can use the [W3C Actions](https://appium.io/docs/en/commands/interactions/actions/)
-There are also driver specific Gesture shortcuts:
-For android use the [UiAutomator2 Geatures](https://appium.io/docs/en/writing-running-appium/android/android-mobile-gestures/)
-For iOS use the [xcuitest Geatures](https://appium.io/docs/en/writing-running-appium/ios/ios-xctest-mobile-gestures/) 
+There are different ways to implement gestures.  
+If you want cross platform code, meaning the same code for Android and iOS, you can use the [W3C Actions](https://appium.io/docs/en/commands/interactions/actions/)   
+There are also driver specific Gesture shortcuts:  
+- For android use the [UiAutomator2 Geatures](https://appium.io/docs/en/writing-running-appium/android/android-mobile-gestures/)
+- For iOS use the [xcuitest Geatures](https://appium.io/docs/en/writing-running-appium/ios/ios-xctest-mobile-gestures/) 
 
-I recommand watching [this webinar](https://www.youtube.com/watch?v=oAJ7jwMNFVU): "Swiping your way through Appium by Wim Selles" from AppiumConf2021
+I recommand watching the webinar: ["Swiping your way through Appium by Wim Selles"]((https://www.youtube.com/watch?v=oAJ7jwMNFVU)) from AppiumConf2021.
 
 ## Important information
 ### Environment variables for Sauce Labs
