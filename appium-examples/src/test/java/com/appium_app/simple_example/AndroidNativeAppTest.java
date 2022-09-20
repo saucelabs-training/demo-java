@@ -42,6 +42,7 @@ public class AndroidNativeAppTest {
     @Before
     public void setup() throws MalformedURLException {
         System.out.println("Sauce Android Native App  - BeforeMethod hook");
+        System.out.println("Username is: " + System.getenv("SAUCE_USERNAME"));
         MutableCapabilities capabilities = new MutableCapabilities();
         MutableCapabilities sauceOptions = new MutableCapabilities();
         URL url;
