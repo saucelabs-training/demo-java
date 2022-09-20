@@ -1,7 +1,7 @@
-package com.emusim.biometric_login;
+package com.appium_app.biometric_login;
 
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,30 +18,25 @@ public class AndroidSettings {
         this.driver = driver;
     }
 
-
     public void enableBiometricLogin() {
 
         executeAdbCommand("am start -a android.settings.SECURITY_SETTINGS && locksettings set-pin " + DEFAULT_PIN);
 
         waitAndClick("Fingerprint");
-        waitAndClick("NEXT");
 
-        waitForDisplay("Confirm your PIN");
+        waitForDisplay("Re-enter your PIN");
         executeAdbCommand("input text " + DEFAULT_PIN + " && input keyevent 66");
 
         waitAndClick("NEXT");
 
-        waitForDisplay("Put your finger");
+        waitForDisplay("Touch the sensor");
         int touchCode = Integer.parseInt(DEFAULT_PIN);
-        driver.fingerPrint(touchCode);
-
-        waitForDisplay("Move your finger");
-        driver.fingerPrint(touchCode);
-
+        driver.fingerPrint(touchCode); //Appium command: https://appium.io/docs/en/commands/device/authentication/finger-print/
+        for (int i=0; i<2; i++) {
+            waitForDisplay("touch again");
+            driver.fingerPrint(touchCode);
+        }
         waitAndClick("DONE");
-
-        // Open the app again
-        driver.launchApp();
     }
 
     private void executeAdbCommand(String adbCommand) {
@@ -51,18 +46,20 @@ public class AndroidSettings {
     }
 
     public void waitAndClick(String text){
-        WebElement fingerprintLink =  driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"" + text + "\")"));
+
+        WebElement elementLink =  driver.findElement(By.xpath("//*[contains(@text,'" + text + "')]"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        wait.until(ExpectedConditions.visibilityOf(fingerprintLink));
+        wait.until(ExpectedConditions.visibilityOf(elementLink));
 
-        fingerprintLink.click();
+        elementLink.click();
     }
 
     public void waitForDisplay(String text) {
-        WebElement fingerprintLink =  driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().textContains(\"" + text + "\")"));
+        WebElement elementLink =  driver.findElement(By.xpath("//*[contains(@text,'" + text + "')]"));
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        wait.until(ExpectedConditions.visibilityOf(fingerprintLink));
+        wait.until(ExpectedConditions.visibilityOf(elementLink));
     }
 }

@@ -17,7 +17,7 @@ everything that you need to get started with web, mobile, visual, functional and
 *  [Quick start test, Junit 5](./selenium-examples/src/test/java/com/saucedemo/selenium/demo/SeleniumTest.java)
 *  [Quick start test, Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/SeleniumTest.java)
 *  [Quick start test, TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SeleniumTest.java)
-*  [iOS real device, native app, Junit4](./appium-examples/src/test/java/com/realdevice/IOSNativeAppTest.java)
+*  [iOS real device, native app, Junit4](./appium-examples/src/test/java/com/appium_app/simple_example/IOSNativeAppTest.java)
 *  [Front-end performance testing](./selenium-examples/src/test/java/com/saucedemo/selenium/PerformanceTest.java)
 *  [Visual E2E test](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/SimpleVisualE2ETest.java)
 *  [Sauce Connect usage](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/SauceConnectTest.java)
@@ -57,16 +57,17 @@ everything that you need to get started with web, mobile, visual, functional and
 [📚 Mobile Testing Training Tutorials](./TRAINING.md)
 
 - Real Devices
-  * [iOS native app](./appium-examples/src/test/java/com/realdevice/IOSNativeAppTest.java)
-  * [Android native app](./appium-examples/src/test/java/com/realdevice/AndroidNativeAppTest.java)
-  * [Upload app to Sauce Storage](./appium-examples/src/test/java/com/realdevice/SauceStorage.sh)
-  * [Image Injection](./appium-examples/src/test/java/com/realdevice/image_injection)
+  * [iOS native app](./appium-examples/src/test/java/com/appium_app/simple_example/IOSNativeAppTest.java)
+  * [Android native app](./appium-examples/src/test/java/com/appium_app/simple_example/AndroidNativeAppTest.java)
+  * [Upload app to Sauce Storage](./appium-examples/src/test/java/com/helpers/push_apps_to_storage.sh)
+  * [Image Injection](./appium-examples/src/test/java/com/appium_app/image_injection)
+  * [Biometric Login](./appium-examples/src/test/java/com/appium_app/biometric_login)
   * [Cucumber w/ Appium](./appium-junit4-cucumber-examples/src/test/resources/LoginPage.feature) `junit4` `cucumber`
 
 - Emulators and Simulators
-  * [iOS native app](./appium-examples/src/test/java/com/emusim/IOSNativeAppExample.java)
-  * [iOS web app](./appium-examples/src/test/java/com/emusim/IOSWebAppExample.java)
-  * [Biometric Login](./appium-examples/src/test/java/com/emusim/biometric_login)
+  * [iOS native app](./appium-examples/src/test/java/com/appium_app/simple_example/IOSNativeAppTest.java)
+  * [Android native app](./appium-examples/src/test/java/com/appium_app/simple_example/AndroidNativeAppTest.java)
+  * [Biometric Login](./appium-examples/src/test/java/com/appium_app/biometric_login)
 
 ## ⚙️Setup
 

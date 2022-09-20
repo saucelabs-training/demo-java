@@ -1,20 +1,16 @@
-package com.realdevice.core;
+package com.appium_app.gestures;
 
-import com.realdevice.SauceTestWatcher;
+import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,16 +18,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
-import static helpers.Constants.region;
+import static com.helpers.Constants.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
 
-public class IOSNativeAppTest {
-
-    private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
-    private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub";
+public class GesturesIOSNativeAppTest {
 
     By productsScreenLocator = By.id("products screen");
     By productScreenLocator = By.id("product screen");
@@ -41,12 +34,13 @@ public class IOSNativeAppTest {
 
     //This rule allows us to set test status with Junit
     @Rule
-    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
+    public SauceAppiumTestWatcher resultReportingTestWatcher = new SauceAppiumTestWatcher();
 
     private IOSDriver driver;
 
     @Before
     public void setUp() throws MalformedURLException {
+
         MutableCapabilities capabilities = new MutableCapabilities();
         MutableCapabilities sauceOptions = new MutableCapabilities();
         URL url;
@@ -62,7 +56,7 @@ public class IOSNativeAppTest {
         }
 
         capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("automationName", "XCuiTest");
+        capabilities.setCapability("appium:automationName", "XCuiTest");
         //Allocate any avilable iPhone device with version 14
         capabilities.setCapability("appium:deviceName", "iPhone.*");
         capabilities.setCapability("appium:platformVersion", "14");
@@ -86,23 +80,6 @@ public class IOSNativeAppTest {
         resultReportingTestWatcher.setDriver(driver);
     }
 
-    @Test
-    public void verifyInProductsPage() throws MalformedURLException {
-        assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
-    }
-
-    @Test
-    public void selectProduct() throws MalformedURLException {
-        assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
-        WebElement product = getProduct("Sauce Labs Backpack");
-        if (product !=null)
-            product.click();
-        else
-            System.out.println("Can't find product Backpack");
-
-        // Verify we select a product
-        assertThat(isDisplayed(productScreenLocator, 10)).as("Verify product page").isTrue();
-    }
 
     @Test
     public void scrollAndSelectProduct() throws MalformedURLException {
@@ -156,44 +133,18 @@ public class IOSNativeAppTest {
      * Performs swipe inside an element
      *
      * @param el  the element to swipe
-     * @version java-client: 7.3.0
+     * @version java-client: 8.2.0
      **/
     public void swipeElementUP(WebElement el) {
-        System.out.println("swipeElementAndroid() "); // always log your actions
 
-        // Animation default time:
-        //  - Android: 300 ms
-        //  - iOS: 200 ms
-        // final value depends on your app and could be greater
-        final int ANIMATION_TIME = 500; // ms
-        final int PRESS_TIME = 200; // ms
-
-        PointOption pointOptionStart, pointOptionEnd;
-
-        // init screen variables
-        Rectangle rect = el.getRect();
-
-        pointOptionStart = PointOption.point(rect.x + rect.width / 2,
-                rect.y + (int)(rect.height * 0.9));
-        pointOptionEnd = PointOption.point(rect.x + rect.width / 2,
-                rect.y + (int)(rect.height * 0.1)  );
-
-        // execute swipe using TouchAction
-        try {
-            new TouchAction(driver)
-                    .press(pointOptionStart)
-                    // a bit more reliable when we add small wait
-                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(PRESS_TIME)))
-                    .moveTo(pointOptionEnd)
-                    .release().perform();
-        } catch (Exception e) {
-            System.err.println("swipeElementAndroid(): TouchAction FAILED\n" + e.getMessage());
-            return;
-        }
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("elementId",  ((RemoteWebElement)el).getId());
+        params.put("direction", "down");
+        driver.executeScript("mobile: scroll", params);
 
         // always allow swipe action to complete
         try {
-            Thread.sleep(ANIMATION_TIME);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             // ignore
         }

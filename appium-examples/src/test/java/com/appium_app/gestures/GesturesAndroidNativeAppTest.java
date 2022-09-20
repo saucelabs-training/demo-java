@@ -1,10 +1,7 @@
-package com.realdevice.core;
+package com.appium_app.gestures;
 
-import com.realdevice.SauceTestWatcher;
-import io.appium.java_client.TouchAction;
+import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,6 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Pause;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,17 +22,14 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
-import static helpers.Constants.region;
+import static com.helpers.Constants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Android Native App Tests
  */
-public class AndroidNativeAppTest {
+public class GesturesAndroidNativeAppTest {
 
-    private String SAUCE_EU_URL = "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
-    private String SAUCE_US_URL = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub";
-    
     By productsScreenLocator = By.xpath("//*[@content-desc=\"products screen\"]");
     By productScreenLocator = By.xpath("//*[@content-desc=\"product screen\"]");
 
@@ -41,7 +38,7 @@ public class AndroidNativeAppTest {
 
     //This rule allows us to set test status with Junit
     @Rule
-    public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
+    public SauceAppiumTestWatcher resultReportingTestWatcher = new SauceAppiumTestWatcher();
 
     private AndroidDriver driver;
 
@@ -65,8 +62,8 @@ public class AndroidNativeAppTest {
         }
 
         //find a device in the cloud
-        capabilities.setCapability("platformName", "android");
-        capabilities.setCapability("automationName", "UiAutomator2");
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("appium:automationName", "UiAutomator2");
         //Allocate any avilable samsung device with Android version 12
         capabilities.setCapability("appium:deviceName", "Samsung.*");
         capabilities.setCapability("appium:platformVersion", "12");
@@ -77,7 +74,7 @@ public class AndroidNativeAppTest {
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "myApp-job-1");
-        List<String> tags = Arrays.asList("sauceDemo", "Android", "Demo");
+        List<String> tags = Arrays.asList("sauceDemo", "Android", "Demo", "gestures");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
@@ -97,23 +94,6 @@ public class AndroidNativeAppTest {
         resultReportingTestWatcher.setDriver(driver);
     }
 
-    @Test
-    public void verifyInProductsPage() throws MalformedURLException {
-        assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
-    }
-
-    @Test
-    public void selectProduct() throws MalformedURLException {
-        assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
-        WebElement product = getProduct("Backpack");
-        if (product !=null)
-            product.click();
-        else
-            System.out.println("Can't find product Backpack");
-
-        // Verify we select a product
-        assertThat(isDisplayed(productScreenLocator, 10)).as("Verify product page").isTrue();
-    }
 
     @Test
     public void scrollAndSelectProduct() throws MalformedURLException {
@@ -145,54 +125,50 @@ public class AndroidNativeAppTest {
             if (isDisplayed(elemLocator,1))
                 return driver.findElement(elemLocator);;
             // swipe
-            swipeElementUP(driver.findElement(productsScreenLocator));
+            scrollElementUP(driver.findElement(productsScreenLocator));
         }
         return null;
     }
 
     /**
-     * From: http://appium.io/docs/en/writing-running-appium/tutorial/swipe/simple-element/
-     * Performs swipe inside an element
-     *
+     * Performs scroll or swipe inside an element
      * @param el  the element to swipe
-     * @version java-client: 7.3.0
+     * @version java-client: 8.2.0
      **/
-    public void swipeElementUP(WebElement el) {
-        System.out.println("swipeElementAndroid() "); // always log your actions
+    public void scrollElementUP(WebElement el) {
 
-        // Animation default time:
-        //  - Android: 300 ms
-        //  - iOS: 200 ms
-        // final value depends on your app and could be greater
-        final int ANIMATION_TIME = 500; // ms
-        final int PRESS_TIME = 200; // ms
-
-        PointOption pointOptionStart, pointOptionEnd;
-
-        // init screen variables
+        // 1. The rectangle of the element to scroll
         Rectangle rect = el.getRect();
 
-        pointOptionStart = PointOption.point(rect.x + rect.width / 2,
-                rect.y + (int)(rect.height*0.9));
-        pointOptionEnd = PointOption.point(rect.x + rect.width / 2,
-                rect.y + (int)(rect.height*0.1) );
+        // 2. Determine the x and y position of initial touch
+        // we scroll up and the x doesn't change
+        int centerX = rect.x + (int)(rect.width /2);
+        // The starting Y position
+        int startY = rect.y + (int)(rect.height*0.9);
+        // The end Y position
+        int endY = rect.y;
 
-        // execute swipe using TouchAction
-        try {
-            new TouchAction(driver)
-                    .press(pointOptionStart)
-                    // a bit more reliable when we add small wait
-                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(PRESS_TIME)))
-                    .moveTo(pointOptionEnd)
-                    .release().perform();
-        } catch (Exception e) {
-            System.err.println("swipeElementAndroid(): TouchAction FAILED\n" + e.getMessage());
-            return;
-        }
+        // 3. swipe: https://appium.io/docs/en/commands/interactions/actions/
+        // finger
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence tapPoint = new Sequence(finger, 1);
+        // Move finger into start position
+        tapPoint.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), centerX, startY));
+        // Finger comes down into context with screen
+        tapPoint.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        // Pause for a little bit
+        tapPoint.addAction(new Pause(finger, Duration.ofMillis(100)));
+        // Finger move to end position
+        tapPoint.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), centerX, endY));
+        // Finger gets up, off the screen
+        tapPoint.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
-        // always allow swipe action to complete
+        // Perform the scroll
+        driver.perform(Arrays.asList(tapPoint));
+
+        // always allow scroll action to complete
         try {
-            Thread.sleep(ANIMATION_TIME);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             // ignore
         }
