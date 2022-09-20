@@ -22,12 +22,6 @@ jobs:
       with:
         java-version: 1.8
     - name: RDC Native App Android
-      run: mvn test -pl appium-examples -Dtest=AndroidNativeAppTest#shouldOpenApp -X
-    - name: RDC Native App Android Dynamic test name
-      run: |
-        export ANDROID_APP=https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk
-        mvn test -pl appium-examples -Dtest=AndroidNativeAppTest#setAppNameDynamically -X
+      run: mvn test -pl appium-examples -Dtest=AndroidNativeAppTest -Dregion=eu -X
     - name: RDC Native App IOS
-      run: mvn test -pl appium-examples -Dtest=IOSNativeAppTest -X
-    - name: RDC Web
-      run: mvn test -pl best-practice -Dtest=Real* -X
+      run: mvn test -pl appium-examples  -Dtest=IOSNativeAppTest -Dregion=eu -X
