@@ -22,6 +22,6 @@ jobs:
       with:
         java-version: 1.8
     - name: RDC Native App Android
-      run: mvn test -pl appium-examples -Dtest=AndroidNativeAppTest -Dregion=eu -X
+      run: mvn test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=eu -X
     - name: RDC Native App IOS
-      run: mvn test -pl appium-examples  -Dtest=IOSNativeAppTest -Dregion=eu -X
+      run: mvn test -pl appium/appium-app/appium-app-examples  -Dtest=IOSNativeAppTest -Dregion=eu -X
