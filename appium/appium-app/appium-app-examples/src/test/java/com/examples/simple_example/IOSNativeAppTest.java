@@ -37,6 +37,7 @@ public class IOSNativeAppTest {
 
     @Before
     public void setUp() throws MalformedURLException {
+        System.out.println("Sauce iOS Native App  - Before hook");
 
         MutableCapabilities capabilities = new MutableCapabilities();
         MutableCapabilities sauceOptions = new MutableCapabilities();

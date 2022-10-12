@@ -1,6 +1,7 @@
-package com.examples.simple_example;
+package com.examples.deep_link;
 
 import com.helpers.SauceAppiumTestWatcher;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,20 +16,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.helpers.Constants.*;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Android Native App Tests
  */
-public class AndroidNativeAppTest {
+public class DeepLinkAndroidTest {
 
     By productsScreenLocator = By.xpath("//*[@content-desc=\"products screen\"]");
-    By sortButtonLocator = By.xpath("//*[@content-desc=\"sort button\"]");
-    By sortModalLocator = By.xpath("//*[@content-desc=\"active option\"]");
-
+    String usernameEditAccessibility = "Username input field";
 
     @Rule
     public TestName name = new TestName();
@@ -41,7 +40,8 @@ public class AndroidNativeAppTest {
 
     @Before
     public void setup() throws MalformedURLException {
-        System.out.println("Sauce Android Native App  - Before hook");
+        System.out.println("Sauce Android Deep Link - Before hook");
+
         MutableCapabilities capabilities = new MutableCapabilities();
         MutableCapabilities sauceOptions = new MutableCapabilities();
         URL url;
@@ -65,11 +65,13 @@ public class AndroidNativeAppTest {
 
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("appium:automationName", "UiAutomator2");
-        if (rdc == "true") {
+        if (rdc.equals("true")) {
+            System.out.println("Run on real device");
             //Allocate any avilable samsung device with Android version 12
             capabilities.setCapability("appium:deviceName", "Samsung.*");
         }
         else {
+            System.out.println("Run on emulator");
             capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
         }
         capabilities.setCapability("appium:platformVersion", "12");
@@ -85,7 +87,7 @@ public class AndroidNativeAppTest {
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
 
-        if (rdc == "true") {
+        if (rdc.equals("true")) {
             sauceOptions.setCapability("resigningEnabled", true);
             sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
         }
@@ -103,26 +105,33 @@ public class AndroidNativeAppTest {
     }
 
     @Test
-    public void verifyPromptSortModal() throws MalformedURLException {
+    public void openLoginPageWithDeepLink() throws MalformedURLException {
         //Wait for the application to start and load the initial screen (products screen)
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(productsScreenLocator));
 
-        driver.findElement(sortButtonLocator).click();
+        // use deep link to open directly the login screen
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("url",  "mydemoapprn://login");
+        params.put("package", "com.saucelabs.mydemoapp.rn");
+        driver.executeScript("mobile:deepLink", params);
 
-        //Verify the sort modal is displayed on screen
-        assertThat(isDisplayed(sortModalLocator, 5)).as("Verify sort modal is displayed").isTrue();
-    }
+        // Verify we are in the Login page
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId(usernameEditAccessibility)));
 
-    public Boolean isDisplayed(By locator, long timeoutInSeconds) {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        } catch (org.openqa.selenium.TimeoutException exception) {
-            return false;
+        // For video purpose
+        try
+        {
+            Thread.sleep(2000);
         }
-        return true;
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+
     }
+
+
 
 
 
