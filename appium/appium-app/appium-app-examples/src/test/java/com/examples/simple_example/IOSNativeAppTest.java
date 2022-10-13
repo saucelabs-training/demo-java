@@ -61,11 +61,13 @@ public class IOSNativeAppTest {
 
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("appium:automationName", "XCuiTest");
-        if (rdc == "true") {
+        if (rdc.equals("true")) {
             //Allocate any avilable iPhone device with version 14
             capabilities.setCapability("appium:deviceName", "iPhone.*");
             appName = "iOS.MyDemoAppRN.ipa";
 
+            sauceOptions.setCapability("resigningEnabled", true);
+            sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
         }
         else {
             capabilities.setCapability("appium:deviceName", "iPhone 11 Simulator");
