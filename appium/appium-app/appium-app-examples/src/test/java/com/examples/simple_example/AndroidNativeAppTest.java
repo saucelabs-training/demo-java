@@ -65,9 +65,11 @@ public class AndroidNativeAppTest {
 
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("appium:automationName", "UiAutomator2");
-        if (rdc == "true") {
+        if (rdc.equals("true")) {
             //Allocate any avilable samsung device with Android version 12
             capabilities.setCapability("appium:deviceName", "Samsung.*");
+            sauceOptions.setCapability("resigningEnabled", true);
+            sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
         }
         else {
             capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
@@ -84,11 +86,6 @@ public class AndroidNativeAppTest {
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-
-        if (rdc == "true") {
-            sauceOptions.setCapability("resigningEnabled", true);
-            sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
-        }
 
         capabilities.setCapability("sauce:options", sauceOptions);
 
