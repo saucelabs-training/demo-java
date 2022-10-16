@@ -27,6 +27,7 @@
         <module>selenium-junit4-examples</module>
         <module>selenium-testng-examples</module>
         <module>appium/appium-app/appium-app-examples</module>
+        <module>appium/appium-app/appium-app-best-practice</module>
     </modules>
     <dependencies>
         <dependency>

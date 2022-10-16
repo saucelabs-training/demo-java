@@ -1,0 +1,52 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Native Demo Suite" parallel="tests" thread-count="10" verbose="0">
+
+	<test name="Android Native Demo App on RDC" enabled="true">
+		<parameter name="appium:app" value="storage:filename=Android.MyDemoAppRN.apk"></parameter>
+		<parameter name="appium:appWaitActivity" value="com.saucelabs.mydemoapp.rn.MainActivity"></parameter>
+		<parameter name="platformName" value="android"></parameter>
+		<parameter name="automationName" value="UiAutomator2"></parameter>
+		<parameter name="appium:deviceName" value="samsung.*"></parameter>
+		<parameter name="appium:platformVersion" value="12"></parameter>
+		<parameter name="sauce_cacheId" value="android_123"></parameter>
+		<classes>
+			<class name="com.saucelabs.tests.Android.DemoSimpleTest"></class>
+		</classes>
+	</test>
+
+	<test name="iOS Native Demo App on RDC" enabled="true">
+		<parameter name="appium:app" value="storage:filename=iOS.MyDemoAppRN.ipa"></parameter>
+		<parameter name="platformName" value="iOS"></parameter>
+		<parameter name="automationName" value="XCuiTest"></parameter>
+		<parameter name="appium:deviceName" value="iPhone.*"></parameter>
+		<parameter name="appium:platformVersion" value="14"></parameter>
+		<parameter name="sauce_cacheId" value="ios_123"></parameter>
+		<classes>
+			<class name="com.saucelabs.tests.iOS.DemoSimpleTest"></class>
+		</classes>
+	</test>
+
+	<test name="Android Native Demo App on Emulator" enabled="true">
+		<parameter name="appium:app" value="storage:filename=Android.MyDemoAppRN.apk"></parameter>
+		<parameter name="appium:appWaitActivity" value="com.saucelabs.mydemoapp.rn.MainActivity"></parameter>
+		<parameter name="platformName" value="android"></parameter>
+		<parameter name="automationName" value="UiAutomator2"></parameter>
+		<parameter name="appium:deviceName" value="Android GoogleAPI Emulator"></parameter>
+		<parameter name="appium:platformVersion" value="12"></parameter>
+		<classes>
+			<class name="com.saucelabs.tests.Android.DemoSimpleTest"></class>
+		</classes>
+	</test>
+
+	<test name="iOS Native Demo App on Simulator" enabled="true">
+		<parameter name="appium:app" value="storage:filename=iOS.MyDemoAppRN.zip"></parameter>
+		<parameter name="platformName" value="iOS"></parameter>
+		<parameter name="automationName" value="XCuiTest"></parameter>
+		<parameter name="appium:deviceName" value="iPhone 11 Simulator"></parameter>
+		<parameter name="appium:platformVersion" value="14"></parameter>
+		<classes>
+			<class name="com.saucelabs.tests.iOS.DemoSimpleTest"></class>
+		</classes>
+	</test>
+
+</suite>
