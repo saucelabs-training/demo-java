@@ -1,63 +1,79 @@
 package com.saucedemo.selenium;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
-import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import org.junit.jupiter.api.TestInfo;
+import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Performance Test.
  */
-public class PerformanceTest extends SauceBaseTest {
+public class PerformanceTest extends SeleniumTestBase {
 
-    @Override
-    public SauceOptions createSauceOptions() {
-        return SauceOptions.chrome()
-                .setExtendedDebugging()
-                .setName("PerformanceTest") // bug - https://github.com/saucelabs/sauce_bindings/issues/267
-                .setCapturePerformance()
-                .build();
+    @BeforeEach
+    public void setup(TestInfo testInfo) {
+        ChromeOptions options = new ChromeOptions();
+        options.setPlatformName("Windows 10");
+        options.setBrowserVersion("latest");
+
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("capturePerformance", true);
+        sauceOptions.put("extendedDebugging", true);
+        options.setCapability("sauce:options", sauceOptions);
+
+        basicSetup(testInfo, options);
     }
 
-    @DisplayName("Performance Test Metrics")
+    @DisplayName("Ensure all metrics within historical limits")
     @Test
-    public void swagLabsPerformance() {
+    public void performanceAllMetrics() {
         driver.get("https://www.saucedemo.com");
 
-        HashMap<String, Object> metrics = new HashMap<>();
-        metrics.put("type", "sauce:performance");
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("name", watcher.getName());
+        Map<String, Object> performance = (Map<String, Object>) driver.executeScript("sauce:performance", args);
 
-        Map<String, Object> perfMetrics = (Map<String, Object>) driver.executeScript("sauce:log", metrics);
-        int loadTime = Integer.parseInt(perfMetrics.get("load").toString());
-        Assertions.assertTrue(loadTime < 1500);
+        Assertions.assertEquals("pass", performance.get("result"));
     }
 
-    @DisplayName("Selective Performance Test Metrics")
+    @DisplayName("Ensure provided metrics within historical limits")
     @Test
-    public void swagLabsLoginPerformance() {
+    public void performanceSpecificMetrics() {
         driver.get("https://www.saucedemo.com");
 
-        HashMap<String, Object> metrics = new HashMap<>();
-        metrics.put("type", "sauce:performance");
-        Map<String, Object> perfMetrics1 = (Map<String, Object>) driver.executeScript("sauce:log", metrics);
+        HashMap<String, Object> args = new HashMap<>();
+        args.put("name", watcher.getName());
+        args.put("metrics", Arrays.asList("load", "firstContentfulPaint"));
 
-        // Disabling performance prevents previous metrics from being overridden
-        driver.executeScript("sauce:performanceDisable");
-
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
-
-        Map<String, Object> perfMetrics2 = (Map<String, Object>) driver.executeScript("sauce:log", metrics);
-
-        // Additionally, if metrics were captured for filling the form, load would be
-        // null
-        Assertions.assertEquals(perfMetrics1.get("load"), perfMetrics2.get("load"));
+        Map<String, Object> performance = (Map<String, Object>) driver.executeScript("sauce:performance", args);
+        Assertions.assertEquals("pass", performance.get("result"));
     }
 
+    @DisplayName("Get log of performance metrics from previous navigation")
+    @Test
+    public void performanceLog() {
+        driver.get("https://www.saucedemo.com");
+
+        HashMap<String, Object> metricsLog = new HashMap<>();
+        metricsLog.put("type", "sauce:performance");
+        Map<String, Object> metrics = (Map<String, Object>) driver.executeScript("sauce:log", metricsLog);
+
+        Assertions.assertTrue((int) metrics.get("firstInteractive") < 5000 );
+    }
+
+    @DisplayName("Get jankiness metrics from previous navigation")
+    @Test
+    public void jankiness() {
+        driver.get("https://www.saucedemo.com");
+
+        Map<String, Object> metrics = (Map<String, Object>) driver.executeScript("sauce:jankinessCheck");
+
+        Assertions.assertTrue((double) metrics.get("score") > 0.5 );
+    }
 }
