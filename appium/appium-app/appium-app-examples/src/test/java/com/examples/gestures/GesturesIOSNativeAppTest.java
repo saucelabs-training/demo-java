@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -86,7 +87,8 @@ public class GesturesIOSNativeAppTest {
         assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
         WebElement product = getProduct("Test.allTheThings() T-Shirt");
         if (product !=null)
-            product.click();
+            tapElement(product);
+//            product.click();
         else
             System.out.println("Can't find product Test.allTheThings");
 
@@ -141,6 +143,29 @@ public class GesturesIOSNativeAppTest {
         params.put("elementId",  ((RemoteWebElement)el).getId());
         params.put("direction", "down");
         driver.executeScript("mobile: scroll", params);
+
+        // always allow swipe action to complete
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            // ignore
+        }
+    }
+
+    public void tapElement(WebElement el) {
+
+        // 1. The rectangle of the element to scroll
+        Rectangle rect = el.getRect();
+
+        // 2. Determine the x and y position of initial touch
+        int centerX = rect.x + (int)(rect.width /2);
+        int centerY = rect.y + (int)(rect.height /2);
+
+
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("x", centerX);
+        params.put("y", centerY);
+        driver.executeScript("mobile: tap", params);
 
         // always allow swipe action to complete
         try {
