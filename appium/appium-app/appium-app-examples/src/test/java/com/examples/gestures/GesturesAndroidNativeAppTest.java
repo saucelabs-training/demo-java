@@ -100,7 +100,8 @@ public class GesturesAndroidNativeAppTest {
         assertThat(isDisplayed(productsScreenLocator, 10)).as("Verify catalog page").isTrue();
         WebElement product = getProduct("Test.allTheThings");
         if (product !=null)
-            product.click();
+            tapElement(product);
+//            product.click();
         else
             System.out.println("Can't find product Test.allTheThings");
 
@@ -164,6 +165,38 @@ public class GesturesAndroidNativeAppTest {
         tapPoint.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         // Perform the scroll
+        driver.perform(Arrays.asList(tapPoint));
+
+        // always allow scroll action to complete
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            // ignore
+        }
+    }
+
+    public void tapElement(WebElement el) {
+
+        // 1. The rectangle of the element to scroll
+        Rectangle rect = el.getRect();
+
+        // 2. Determine the x and y position of initial touch
+        int centerX = rect.x + (int)(rect.width /2);
+        int startY = rect.y + (int)(rect.height /2);
+
+
+        // 3. tap: https://appium.io/docs/en/commands/interactions/actions/
+        // finger
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence tapPoint = new Sequence(finger, 1);
+        // Move finger into start position
+        tapPoint.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), centerX, startY));
+        // Finger comes down into context with screen
+        tapPoint.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        // Finger gets up, off the screen
+        tapPoint.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        // Perform the tap
         driver.perform(Arrays.asList(tapPoint));
 
         // always allow scroll action to complete

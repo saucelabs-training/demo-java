@@ -1,7 +1,7 @@
 # Using gestures on Sauce Labs Real Devices
-This folder contains examples for using **Scroll** gesture on Android and iOS.  
+This folder contains examples for using **Scroll** and **Tap** gestures on Android and iOS.  
 The Android example uses [W3C Actions](https://appium.io/docs/en/commands/interactions/actions/) for scrolling.  
-The iOS example uses [XCUITest scroll shortcut](https://github.com/appium/appium-xcuitest-driver#mobile-scroll)
+The iOS example uses [XCUITest scroll shortcut](https://github.com/appium/appium-xcuitest-driver#mobile-scroll) and [XCUITest tap shortcut](https://github.com/appium/appium-xcuitest-driver#mobile-tap)
 - [Android real devices on the Sauce Labs Cloud](#run-tests-on-sauce-labs-android-real-devices)
 - [iOS real devices on the Sauce Labs Cloud](#run-tests-on-sauce-labs-ios-real-devices)
 
