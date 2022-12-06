@@ -107,6 +107,9 @@ public class BaseTest {
             ((JavascriptExecutor) getDriver()).executeScript("sauce:job-result=" + (bSuccess ? "passed" : "failed"));
             if (!bSuccess)
                 ((JavascriptExecutor) getDriver()).executeScript("sauce:context=" +result.getThrowable().getMessage());
+
+            // Print the report execution URL:
+            System.out.println("Execution URL: " + getDriver().getCapabilities().getCapability("appium:testobject_test_report_url"));
         } finally {
             System.out.println("Release driver");
             getDriver().quit();
