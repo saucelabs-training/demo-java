@@ -16,6 +16,7 @@
         <testngXmlDir>src/test/resources/config</testngXmlDir>
         <testngXmlFile>myDemoTests.xml</testngXmlFile>
         <testng.version>7.5</testng.version>
+        <appium.version>8.3.0</appium.version>
     </properties>
 
     <dependencies>
@@ -29,6 +30,13 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.10.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
