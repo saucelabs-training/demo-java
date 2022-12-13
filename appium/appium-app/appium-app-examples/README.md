@@ -7,3 +7,5 @@ This folder contains Appium examples
 * [Using image injection on Sauce Labs](./src/test/java/com/examples/image_injection)
 * [Using gestures](./src/test/java/com/examples/gestures)
 * [Upload and download file](./src/test/java/com/examples/up_download_file)
+* [Using deep link](./src/test/java/com/examples/deep_link)
+* [Test on your allowlisting app](./src/test/java/com/examples/allowlist)
