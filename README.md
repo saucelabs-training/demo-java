@@ -1,4 +1,4 @@
-# Java Demonstration Scripts
+# Test Hosted Execution Java Tests
 
 Welcome to Java Demo Scripts designed by Solution Architects to provide examples of how to use Sauce Labs technologies. This repository contains
 everything that you need to get started with web, mobile, visual, functional and all other types of automation using Java.
