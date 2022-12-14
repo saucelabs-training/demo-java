@@ -1,6 +1,7 @@
 # How to use Allowlisting App on Sauce Labs Private devices
 Allow-listing your App on your Sauce Labs Private Devices means - 
-Your Apps will not be removed from your private device in the end of a live or automated session.  
+Your Apps will not be removed from your private device in the end of a live or automated session.   
+You can read more about that [here](https://docs.saucelabs.com/mobile-apps/real-device-cleaning/#private-devices)
 If you want to allowlist your app, please contact your CSM with your private device id and your app ```bundle id``` for iOS or the app ```package name``` for Android.     
 This is an example, how you can run automated tests on your allowlisting app.   
 For a demo purpose, my allowlisting app is the iOS Settings app ( Bundle id: `````"com.apple.Preferences"`````).   
