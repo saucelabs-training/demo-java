@@ -59,9 +59,9 @@ public class IOSAllowlistTest {
         //Allocate any avilable iPhone device with version 14
         capabilities.setCapability("appium:deviceName", "iPhone.*");
         capabilities.setCapability("appium:platformVersion", "14");
-        // You need to open the default browser (Safari for iOS, Chrome for Android)
-        // and not to install your app with the "app" capability
-        capabilities.setCapability("browserName", "Safari");
+
+        // Use bundleId to open an app that already installed on the device.
+        capabilities.setCapability("appium:bundleId", "com.apple.Preferences");
 
         sauceOptions.setCapability("name", name.getMethodName());
         sauceOptions.setCapability("build", "myApp-job-1");
@@ -84,15 +84,7 @@ public class IOSAllowlistTest {
     @Test
     public void openSettingsApp() throws MalformedURLException {
 
-
-        // 1) open your app ( in this case Apple Preferences App).
-        // The app is installed already on the device.
-        driver.activateApp("com.apple.Preferences");
-
-        // 2) Switch to the Native_APP context
-        driver.context("NATIVE_APP");
-
-        // 3) Run our buisness flow on the App
+        // Run our buisness flow on the App
         // In this case - open the 'privacy' setting
         RemoteWebElement settingsTable = (RemoteWebElement)driver.findElement(By.xpath("//XCUIElementTypeApplication[@name=\"Settings\"]"));
         String elementID = settingsTable.getId();
@@ -110,10 +102,6 @@ public class IOSAllowlistTest {
         assertThat(isDisplayed(By.xpath("//XCUIElementTypeStaticText[@name=\"Privacy\"]"), 5)).as("Verify Privacy Setting is displayed").isTrue();
         // Only needed for the recording video :-)
         waiting(2);
-
-        // 4. This is not a must - Since we didn't start our app from the capabilities,
-        // We can close the app using the appium terminate app command
-        driver.terminateApp("com.apple.Preferences");
 
     }
 

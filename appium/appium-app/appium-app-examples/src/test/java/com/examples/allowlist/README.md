@@ -5,12 +5,9 @@ You can read more about that [here](https://docs.saucelabs.com/mobile-apps/real-
 If you want to allowlist your app, please contact your CSM with your private device id and your app ```bundle id``` for iOS or the app ```package name``` for Android.     
 This is an example, how you can run automated tests on your allowlisting app.   
 For a demo purpose, my allowlisting app is the iOS Settings app ( Bundle id: `````"com.apple.Preferences"`````).   
-Here are the steps for running your buisness flow on allowlisting app:
-- Use the ```browserName``` capability (and not the ```app``` capability) with the value ```"Safari"``` for iOS or ```"Chrome"``` for Android
-- In the beginning of the test, [activate your allowlisting app](https://appium.io/docs/en/commands/device/app/activate-app/)    
-  ```driver.activateApp("com.apple.Preferences");```
-- Switch to the [Native_APP context](https://appium.io/docs/en/commands/context/set-context/)
-- That's it :-) Now you can continue to develop and run your buisness flow on your app.  
+For running your buisness flow on iOS allowlisting app you need to use the capability [appium:bundleId](https://docs.saucelabs.com/dev/test-configuration-options/#appiumbundleid)   
+For running your buisness flow on Android allowlisting app you need to use the capabilities [appium:appPackage](https://docs.saucelabs.com/dev/test-configuration-options/#appiumapppackage) and [appium:appActivity](https://docs.saucelabs.com/dev/test-configuration-options/#appiumappactivity).   
+
 
 ## Important information
 ### Environment variables for Sauce Labs
