@@ -60,7 +60,7 @@ public class IOSAllowlistTest {
         capabilities.setCapability("appium:deviceName", "iPhone.*");
         capabilities.setCapability("appium:platformVersion", "14");
 
-        // Use bundleId to open an app that already installed on the device.
+        // Use bundleId to open an app that is already installed on the device.
         capabilities.setCapability("appium:bundleId", "com.apple.Preferences");
 
         sauceOptions.setCapability("name", name.getMethodName());
