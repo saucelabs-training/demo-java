@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/saucelabs-training/demo-java)
+
 # Java Demonstration Scripts
 
 Welcome to Java Demo Scripts designed by Solution Architects to provide examples of how to use Sauce Labs technologies. This repository contains
