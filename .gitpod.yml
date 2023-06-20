@@ -4,5 +4,6 @@ tasks:
     init: |
       mvn dependency:resolve
       mvn test-compile
+      cd gitpod
     command: $MVN_COMMAND
 

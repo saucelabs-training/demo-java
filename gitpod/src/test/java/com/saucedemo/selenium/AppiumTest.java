@@ -25,6 +25,7 @@ import java.util.ArrayList;
  */
 public class AppiumTest {
     public AppiumDriver driver;
+    public MutableCapabilities options;
 
     /**
      * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs.
@@ -34,9 +35,9 @@ public class AppiumTest {
     public SauceTestWatcher watcher = new SauceTestWatcher();
 
     @BeforeEach
-    public void setup(TestInfo testInfo) throws MalformedURLException {
+    public void setup(TestInfo testInfo) throws MalformedURLException, InterruptedException {
         String platformName = System.getenv().getOrDefault("PLATFORM_NAME", "Android");
-        MutableCapabilities options = new MutableCapabilities();
+        options = new MutableCapabilities();
         options.setCapability("browserName", System.getenv().getOrDefault("BROWSER_NAME", null));
         options.setCapability("platformName", platformName);
         options.setCapability("appium:platformVersion", System.getenv("PLATFORM_VERSION"));
@@ -68,12 +69,18 @@ public class AppiumTest {
         } else {
             driver = new AndroidDriver(url, options);
         }
+
     }
 
     @DisplayName("Appium Test from Gitpod")
     @Test
     public void navigateAndClose() throws InterruptedException {
         // Add tests and assertions here
+        if (options.getCapability("browserName") != null) {
+            driver.get("https://saucedemo.com");
+        }
+
+        // Replace this with commands and assertions
         Thread.sleep(5000);
     }
 
