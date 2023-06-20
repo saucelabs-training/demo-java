@@ -8,13 +8,14 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 
 /**
  * Demo tests with Selenium.
@@ -31,22 +32,32 @@ public class SeleniumTest {
 
     @BeforeEach
     public void setup(TestInfo testInfo) throws MalformedURLException {
-        ChromeOptions options = new ChromeOptions();
-        options.setPlatformName("Windows 10");
-        options.setBrowserVersion("latest");
+        MutableCapabilities options = new MutableCapabilities();
+        options.setCapability("platformName", System.getenv("PLATFORM_NAME"));
+        options.setCapability("browserName", System.getenv().getOrDefault("BROWSER_NAME", "chrome"));
+        options.setCapability("browserVersion", System.getenv().getOrDefault("BROWSER_VERSION", "latest"));
+
+        ArrayList<String> tags = new ArrayList();
+        if (System.getenv("GITPOD_WORKSPACE_ID") != null) {
+            tags.add("gitpod");
+        }
 
         Map<String, Object> sauceOptions = new HashMap<>();
         sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.put("build", System.getenv("BUILD"));
         sauceOptions.put("name", testInfo.getDisplayName());
-
+        sauceOptions.put("tags", tags);
         options.setCapability("sauce:options", sauceOptions);
-        URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
+
+        String region = System.getenv().getOrDefault("REGION", "us-west-1");
+        String ondemandUrl = "https://ondemand." + region + ".saucelabs.com/wd/hub";
+        URL url = new URL(ondemandUrl);
 
         driver = new RemoteWebDriver(url, options);
     }
 
-    @DisplayName("Selenium Navigation Test")
+    @DisplayName("Selenium Test from Gitpod")
     @Test
     public void navigateAndClose() {
         driver.navigate().to("https://www.saucedemo.com");
