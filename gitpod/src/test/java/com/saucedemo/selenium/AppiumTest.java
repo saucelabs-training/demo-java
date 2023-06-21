@@ -38,10 +38,12 @@ public class AppiumTest {
     public void setup(TestInfo testInfo) throws MalformedURLException, InterruptedException {
         String platformName = System.getenv().getOrDefault("PLATFORM_NAME", "Android");
         options = new MutableCapabilities();
-        options.setCapability("browserName", System.getenv().getOrDefault("BROWSER_NAME", null));
+        String appName = System.getenv().getOrDefault("APP_NAME", null);
+        String defaultBrowser = appName != null ? null : "Chrome";
+        options.setCapability("browserName", System.getenv().getOrDefault("BROWSER_NAME", defaultBrowser));
         options.setCapability("platformName", platformName);
+        options.setCapability("appium:app", "storage:filename=" + appName);
         options.setCapability("appium:platformVersion", System.getenv("PLATFORM_VERSION"));
-        //options.setCapability("browserVersion", System.getenv().getOrDefault("BROWSER_VERSION", null));
         options.setCapability("appium:deviceName", System.getenv().getOrDefault("DEVICE_NAME", "Google.*"));
         options.setCapability("appium:automationName", System.getenv().getOrDefault("AUTOMATION_NAME", "UiAutomator2"));
 
