@@ -11,11 +11,11 @@ The examples in this repository use environment variables, make sure you've adde
     export SAUCE_ACCESS_KEY=*******
 
 ### Demo app(s)
-The demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-android/releases).
-You can find in the [apps folder](./apps) the two versions of the app that is used for this example
+The demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-android/releases).    
+The two app versions that are used in this example can be downloaded from here: [Version 1.0.17](https://github.com/saucelabs/my-demo-app-android/releases/tag/1.0.17) and [Version 1.0.14](https://github.com/saucelabs/my-demo-app-android/releases/download/1.0.14/mda-1.0.14-17.apk)
 
 ### Upload apps to Sauce Storage
-You need to upload the apps to the Sauce Storage. Please check [here](https://docs.saucelabs.com/mobile-apps/app-storage/) how to do it.
+You need to upload the apps to the Sauce Storage. Please check [here](https://docs.saucelabs.com/mobile-apps/app-storage/) how to do it.    
 **If you don't do that then the scripts can't find the apps!**
 
 ## Run tests on Sauce Labs Android real devices
