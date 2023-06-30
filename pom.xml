@@ -29,6 +29,7 @@
         <module>selenium-testng-examples</module>
         <module>appium/appium-app/appium-app-examples</module>
         <module>appium/appium-app/appium-app-best-practice</module>
+        <module>appium/appium-web/appium-web-examples</module>
     </modules>
     <dependencies>
         <dependency>
