@@ -11,6 +11,10 @@
 
     <artifactId>best-practice</artifactId>
 
+    <properties>
+        <selenium.version>4.10.0</selenium.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.saucelabs</groupId>
@@ -18,6 +22,19 @@
             <version>${sauce_junit4.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
