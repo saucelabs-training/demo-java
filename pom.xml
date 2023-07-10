@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <selenium.version>4.7.0</selenium.version>
+        <selenium.version>4.10.0</selenium.version>
         <appium.version>8.3.0</appium.version>
         <sauce.version>1.2.0</sauce.version>
         <sauce_junit5.version>1.0.0</sauce_junit5.version>
