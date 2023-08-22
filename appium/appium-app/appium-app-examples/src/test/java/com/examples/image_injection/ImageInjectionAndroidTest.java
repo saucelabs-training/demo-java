@@ -114,7 +114,7 @@ public class ImageInjectionAndroidTest {
         qCCodeMenu.click();
 
         // inject the image - provide the transformed image to the device with this command
-        String qrCodeImage = encoder("src/test/java/com/appium_app/image_injection/images/qr-code.png");
+        String qrCodeImage = encoder("src/test/java/com/examples/image_injection/images/qr-code.png");
         driver.executeScript("sauce:inject-image=" + qrCodeImage);
 
         // Verify that the browser is running
