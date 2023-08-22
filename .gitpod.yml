@@ -1,4 +1,5 @@
 # List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
+image: maven:3.6.3-jdk-8
 tasks:
   - name: Script Task
     init: |

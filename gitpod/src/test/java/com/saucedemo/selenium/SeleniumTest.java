@@ -51,7 +51,7 @@ public class SeleniumTest {
         options.setCapability("sauce:options", sauceOptions);
 
         String region = System.getenv().getOrDefault("REGION", "us-west-1");
-        String ondemandUrl = "https://ondemand." + region + ".saucelabs.com/wd/hub";
+        String ondemandUrl = "https://ondemand." + region + ".saucelabs.com:443/wd/hub";
         URL url = new URL(ondemandUrl);
 
         driver = new RemoteWebDriver(url, options);
