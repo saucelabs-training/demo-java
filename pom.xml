@@ -17,6 +17,7 @@
         <sauce_junit4.version>1.0.1</sauce_junit4.version>
         <sauce_testng.version>1.0.0</sauce_testng.version>
         <maven.surefire.version>3.0.0-M5</maven.surefire.version>
+        <argLine>${env.JAVA_SAUCE_ORCHESTRATE_PROXY_OPTS}</argLine>
     </properties>
 
     <modules>

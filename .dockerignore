@@ -1,0 +1,38 @@
+*
+!LICENSE
+!docker-entrypoint.sh
+!pom.xml
+
+!best-practice
+!appium-junit4-cucumber-examples
+!gitpod
+!selenium-cucumber-examples
+!selenium-examples
+!selenium-junit4-examples
+!selenium-testng-examples
+!appium/appium-app/appium-app-examples
+!appium/appium-app/appium-app-best-practice
+!appium/appium-web/appium-web-examples
+
+### Java template
+**.class
+
+# DS_Store
+**.DS_Store
+
+# Package Files #
+**.jar
+**.war
+**.ear
+
+# Created by .ignore support plugin (hsz.mobi)
+
+**target/
+**.iml
+**.idea
+
+**.settings
+**.classpath
+**.vscode
+**.project
+
