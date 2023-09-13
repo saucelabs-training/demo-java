@@ -63,6 +63,17 @@ public class BaseTest {
     public void setup() throws MalformedURLException {
 
         System.out.println("BeforeMethod hook");
+        int sleepBefore = 0;
+        if (SLEEP_BEFORE_SEC != null) {
+          sleepBefore = Integer.parseInt(SLEEP_BEFORE_SEC) * 1000;
+        }
+        if (sleepBefore > 0) {
+          System.out.println("Sleeping for " + SLEEP_BEFORE_SEC + " seconds");
+          try {
+            Thread.sleep(Integer.parseInt(SLEEP_BEFORE_SEC) * 1000);
+          } catch(InterruptedException e) {}
+        }
+
         URL url;
 
         if (SAUCE_URL_OVERRIDE != null) {
