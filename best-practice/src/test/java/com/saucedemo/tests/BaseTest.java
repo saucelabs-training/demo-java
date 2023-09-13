@@ -35,12 +35,26 @@ public class BaseTest {
 
     @Parameterized.Parameters()
     public static Collection<Object[]> crossPlatformData() {
-        return Arrays.asList(new Object[][] {
-                { "desktop", "safari", "latest", "macOS 11.00" },
-                { "desktop", "chrome", "latest-1", "macOS 13" },
+        Collection<Object[]> browserList;
+        browserList = Arrays.asList(new Object[][] {
                 { "desktop", "firefox", "latest", "Windows 11" },
                 { "desktop", "chrome", "latest", "Windows 10" }
         });
+
+        boolean includeMac = true;
+        if (INCLUDE_MAC != null) {
+          includeMac = Boolean.parseBoolean(INCLUDE_MAC);
+        }
+        if (includeMac) {
+          Collection<Object[]> macBrowserList;
+          macBrowserList = Arrays.asList(new Object[][] {
+                  { "desktop", "safari", "latest", "macOS 11.00" },
+                  { "desktop", "chrome", "latest-1", "macOS 13" }
+          });
+          browserList.addAll(macBrowserList);
+        }
+
+        return browserList;
     }
     @Rule
     public TestName name = new TestName();
@@ -51,14 +65,18 @@ public class BaseTest {
         System.out.println("BeforeMethod hook");
         URL url;
 
-        switch (region) {
-            case "us":
-                url = new URL(SAUCE_US_URL);
-                break;
-            case "eu":
-            default:
-                url = new URL(SAUCE_EU_URL);
-                break;
+        if (SAUCE_URL_OVERRIDE != null) {
+          url = new URL(SAUCE_URL_OVERRIDE);
+        } else {
+          switch (region) {
+              case "us":
+                  url = new URL(SAUCE_US_URL);
+                  break;
+              case "eu":
+              default:
+                  url = new URL(SAUCE_EU_URL);
+                  break;
+          }
         }
 
         boolean isBuildCap = false;
