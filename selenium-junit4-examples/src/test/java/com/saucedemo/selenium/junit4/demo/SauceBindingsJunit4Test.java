@@ -5,13 +5,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Example Test for using JUnit 4 Sauce Bindings jar.
- */
+/** Example Test for using JUnit 4 Sauce Bindings jar. */
 public class SauceBindingsJunit4Test extends SauceBaseTest {
-    @Test
-    public void correctTitle() {
-        driver.get("https://www.saucedemo.com");
-        assertEquals("Swag Labs", driver.getTitle());
-    }
+  @Test
+  public void correctTitle() {
+    driver.get("https://www.saucedemo.com");
+    assertEquals("Swag Labs", driver.getTitle());
+  }
 }
