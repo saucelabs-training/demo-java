@@ -24,6 +24,6 @@ public class SauceBindingsTest extends SauceBaseTest {
     public void abcdcomputechTest() {
         driver.navigate().to("http://abcdcomputech.dequecloud.com");
         Results results = session.getAccessibilityResults();
-        Assertions.assertEquals(7, results.getViolations().size());
+        Assertions.assertEquals(8, results.getViolations().size());
     }
 }

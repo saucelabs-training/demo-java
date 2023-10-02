@@ -35,7 +35,8 @@ public class ViewPageFirefoxTest extends SauceBaseTest {
     @Test
     public void printPage() throws IOException {
 
-        Path printPage = Paths.get(directory + "PrintPageFirefox.pdf");
+        Path printPage = Paths.get(directory + "FirefoxPrintPage.pdf");
+        printPage.toFile().deleteOnExit();
         Pdf print = driver.print(new PrintOptions());
 
         Files.write(printPage, OutputType.BYTES.convertFromBase64Png(print.getContent()));
@@ -43,8 +44,8 @@ public class ViewPageFirefoxTest extends SauceBaseTest {
 
     @Test
     public void takeScreenshot() throws IOException {
-
-        Path screenshot = Paths.get(directory + "TakeScreenshotFirefox.png");
+        Path screenshot = Paths.get(directory + "FirefoxScreenshot.png");
+        screenshot.toFile().deleteOnExit();
         byte[] screenshotAs = driver.getScreenshotAs(OutputType.BYTES);
 
         Files.write(screenshot, screenshotAs);
@@ -55,7 +56,8 @@ public class ViewPageFirefoxTest extends SauceBaseTest {
         WebDriver augmentedDriver = new Augmenter().augment(driver);
         File file = ((HasFullPageScreenshot) augmentedDriver).getFullPageScreenshotAs(OutputType.FILE);
 
-        Path fullPageScreenshot = Paths.get(directory + "TakeFullPageScreenshotFirefox.png");
+        Path fullPageScreenshot = Paths.get(directory + "FirefoxFullPageScreenshot.png");
+        fullPageScreenshot.toFile().deleteOnExit();
         Files.move(file.toPath(), fullPageScreenshot);
     }
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.HasExtensions;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.LocalFileDetector;
@@ -22,13 +23,15 @@ public class FirefoxAddonTest extends SauceBaseTest {
     public void addons() {
         driver.setFileDetector(new LocalFileDetector());
         WebDriver augmentedDriver = new Augmenter().augment(driver);
-        String id = ((HasExtensions) augmentedDriver).installExtension(Paths.get("src/test/resources/ninja_saucebot-1.0-an+fx.xpi"));
+        String id = ((HasExtensions) augmentedDriver).installExtension(Paths.get("src/test/resources/selenium-example.xpi"));
 
         driver.get("https://www.saucedemo.com");
-        Assertions.assertTrue(driver.findElements(By.className("bot_column2")).size() > 0);
+        WebElement injected = driver.findElement(By.id("webextensions-selenium-example"));
+        Assertions.assertEquals("Content injected by webextensions-selenium-example", injected.getText());
+
         ((HasExtensions) augmentedDriver).uninstallExtension(id);
 
         driver.navigate().refresh();
-        Assertions.assertEquals(0, driver.findElements(By.className("bot_column2")).size());
+        Assertions.assertEquals(0, driver.findElements(By.id("webextensions-selenium-example")).size());
     }
 }

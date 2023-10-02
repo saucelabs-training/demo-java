@@ -64,7 +64,7 @@ public class PerformanceTest extends SeleniumTestBase {
         metricsLog.put("type", "sauce:performance");
         Map<String, Object> metrics = (Map<String, Object>) driver.executeScript("sauce:log", metricsLog);
 
-        Assertions.assertTrue((int) metrics.get("firstInteractive") < 5000 );
+        Assertions.assertTrue((long)metrics.get("firstInteractive") < 5000 );
     }
 
     @DisplayName("Get jankiness metrics from previous navigation")

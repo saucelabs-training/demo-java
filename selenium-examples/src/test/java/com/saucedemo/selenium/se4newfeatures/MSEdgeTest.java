@@ -29,6 +29,5 @@ public class MSEdgeTest extends SauceBaseTest {
         driver.findElement(By.cssSelector("input[type=submit]")).click();
 
         Assertions.assertEquals(1, driver.getWindowHandles().size());
-        driver.quit();
     }
 }

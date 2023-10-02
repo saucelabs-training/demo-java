@@ -19,7 +19,7 @@ public class ViewPageChromeTest extends SauceBaseTest {
     public SauceOptions createSauceOptions() {
         ChromeOptions options = new ChromeOptions();
         // note: headless only actually required for print page
-        options.setHeadless(true);
+        options.addArguments("--headless=new");
 
         return SauceOptions.chrome(options).build();
     }
@@ -29,6 +29,7 @@ public class ViewPageChromeTest extends SauceBaseTest {
         driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
 
         Path printPage = Paths.get(directory + "PrintPageChrome.pdf");
+        printPage.toFile().deleteOnExit();
         Pdf print = driver.print(new PrintOptions());
 
         Files.write(printPage, OutputType.BYTES.convertFromBase64Png(print.getContent()));
@@ -39,7 +40,8 @@ public class ViewPageChromeTest extends SauceBaseTest {
         driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
         byte[] screenshotAs = driver.getScreenshotAs(OutputType.BYTES);
 
-        Path screenshot = Paths.get(directory + "TakeScreenshotChrome.png");
+        Path screenshot = Paths.get(directory + "FirefoxScreenshotChrome.png");
+        screenshot.toFile().deleteOnExit();
         Files.write(screenshot, screenshotAs);
     }
 }
