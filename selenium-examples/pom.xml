@@ -2,36 +2,46 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>demo-java</artifactId>
-        <groupId>com.saucelabs</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>selenium-examples</artifactId>
+    <groupId>com.com.saucelabs</groupId>
+    <artifactId>selenium_examples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Sauce Labs Selenium Examples</name>
+    <description>Example code for using Selenium on Sauce labs</description>
+    <url>https://github.com/saucelabs-training/demo-java</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <surefire.parallel>1</surefire.parallel>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>saucebindings-junit5</artifactId>
-            <version>1.0.0</version>
+            <version>1.4.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.0.0</version>
+            <version>4.14.1</version>
         </dependency>
         <dependency>
-            <groupId>com.deque.html.axe-core</groupId>
-            <artifactId>selenium</artifactId>
-            <version>4.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.4</version>
+            <groupId>com.titusfortner</groupId>
+            <artifactId>selenium-logger</artifactId>
+            <version>2.4.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -41,22 +51,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.version}</version>
+                <version>3.1.2</version>
                 <configuration>
-                    <systemPropertyVariables>
-                        <PARALLELISM>20</PARALLELISM>
-                        <MINIMUM_RUNNABLE>20</MINIMUM_RUNNABLE>
-                        <MAX_POOL_SIZE>20</MAX_POOL_SIZE>
-                        <CORE_POOL_SIZE>20</CORE_POOL_SIZE>
-                    </systemPropertyVariables>
                     <properties>
                         <configurationParameters>
                             junit.jupiter.execution.parallel.enabled = true
                             junit.jupiter.execution.parallel.mode.default = concurrent
-                            junit.jupiter.execution.parallel.mode.classes.default = concurrent
                             junit.jupiter.execution.parallel.config.strategy = fixed
-                            junit.jupiter.execution.parallel.config.strategy = custom
-                            junit.jupiter.execution.parallel.config.custom.class = com.saucelabs.saucebindings.junit5.CustomStrategy
+                            junit.jupiter.execution.parallel.config.fixed.parallelism = ${surefire.parallel}
+                            junit.jupiter.execution.parallel.config.fixed.max-pool-size = ${surefire.parallel}
                         </configurationParameters>
                     </properties>
                 </configuration>
