@@ -1,11 +1,10 @@
 package com.saucedemo.selenium.se4newfeatures;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import java.time.Duration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-
-import java.time.Duration;
 
 public class TimeoutsTest extends SauceBaseTest {
 

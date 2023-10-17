@@ -1,12 +1,12 @@
 package com.saucedemo.selenium.se4newfeatures;
 
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
+
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class RelativeLocatorsTest extends SauceBaseTest {
 

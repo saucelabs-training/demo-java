@@ -1,14 +1,13 @@
 package com.saucedemo.selenium.login;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import java.time.Duration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 /** Login Test Using Sauce Bindings. */
 public class SauceBindingsLoginTest extends SauceBaseTest {

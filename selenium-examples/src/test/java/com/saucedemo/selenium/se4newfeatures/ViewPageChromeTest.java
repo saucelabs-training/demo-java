@@ -2,16 +2,15 @@ package com.saucedemo.selenium.se4newfeatures;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import com.saucelabs.saucebindings.options.SauceOptions;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Pdf;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.print.PrintOptions;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class ViewPageChromeTest extends SauceBaseTest {
   public static final String directory = "src/test/screenshots/";

@@ -1,5 +1,8 @@
 package com.saucedemo.selenium.se4newfeatures;
 
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
@@ -10,10 +13,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.HasFullPageScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.http.ClientConfig;
-
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RemoteWebDriverBuilderTest {
 

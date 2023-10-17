@@ -2,6 +2,7 @@ package com.saucedemo.selenium.se4newfeatures;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import com.saucelabs.saucebindings.options.SauceOptions;
+import java.nio.file.Paths;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -10,8 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.HasExtensions;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.LocalFileDetector;
-
-import java.nio.file.Paths;
 
 public class FirefoxAddonTest extends SauceBaseTest {
 

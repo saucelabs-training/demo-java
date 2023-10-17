@@ -2,12 +2,11 @@ package com.saucedemo.selenium.se4newfeatures;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import com.saucelabs.saucebindings.options.SauceOptions;
+import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.edge.EdgeOptions;
-
-import java.util.Collections;
 
 public class MSEdgeTest extends SauceBaseTest {
 

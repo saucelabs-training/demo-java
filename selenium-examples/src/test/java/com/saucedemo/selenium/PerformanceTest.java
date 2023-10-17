@@ -1,15 +1,14 @@
 package com.saucedemo.selenium;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /** Performance Test. */
 public class PerformanceTest extends SeleniumTestBase {

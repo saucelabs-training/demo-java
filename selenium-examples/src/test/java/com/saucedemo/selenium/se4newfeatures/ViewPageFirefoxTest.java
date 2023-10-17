@@ -2,6 +2,11 @@ package com.saucedemo.selenium.se4newfeatures;
 
 import com.saucelabs.saucebindings.junit5.SauceBaseTest;
 import com.saucelabs.saucebindings.options.SauceOptions;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
@@ -10,12 +15,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.HasFullPageScreenshot;
 import org.openqa.selenium.print.PrintOptions;
 import org.openqa.selenium.remote.Augmenter;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class ViewPageFirefoxTest extends SauceBaseTest {
   public static final String directory = "src/test/screenshots/";
