@@ -16,7 +16,7 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--replace"
-          files: "selenium--junit4-examples/**/*.java"
+          files: "selenium-junit4-examples/**/*.java"
           skip-commit: true
       - name: Print diffs
         run: git --no-pager diff --exit-code

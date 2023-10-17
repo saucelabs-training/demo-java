@@ -54,7 +54,7 @@
                 <version>3.1.2</version>
                 <configuration>
                     <parallel>all</parallel>
-                    <threadCountMethods>100</threadCountMethods>
+                    <threadCountMethods>${surefire.parallel}</threadCountMethods>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                 </configuration>

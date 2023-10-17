@@ -1,5 +1,9 @@
 package com.saucedemo.selenium.junit4.demo;
 
+import static org.junit.Assert.assertEquals;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,11 +13,6 @@ import org.junit.runner.Description;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import static org.junit.Assert.assertEquals;
 
 /** Tests for running Selenium tests directly with JUnit 4. */
 public class SeleniumTest {

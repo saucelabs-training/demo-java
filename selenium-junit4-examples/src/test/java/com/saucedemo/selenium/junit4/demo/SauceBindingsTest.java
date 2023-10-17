@@ -1,5 +1,7 @@
 package com.saucedemo.selenium.junit4.demo;
 
+import static org.junit.Assert.assertEquals;
+
 import com.saucelabs.saucebindings.SauceSession;
 import com.saucelabs.saucebindings.options.SauceOptions;
 import org.junit.Before;
@@ -9,8 +11,6 @@ import org.junit.rules.TestName;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import static org.junit.Assert.assertEquals;
 
 /** Tests for using Sauce Bindings without a Test Runner library. */
 public class SauceBindingsTest {
