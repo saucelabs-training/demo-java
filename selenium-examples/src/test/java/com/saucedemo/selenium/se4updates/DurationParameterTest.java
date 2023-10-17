@@ -7,27 +7,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+
 public class DurationParameterTest extends SauceBaseTest {
 
-    @DisplayName("Timeout integers still work but are deprecated")
-    @Test
-    public void timeoutIntegersDeprecated() {
+  @DisplayName("Timeout integers still work but are deprecated")
+  @Test
+  public void timeoutIntegersDeprecated() {
 
-        // Uses Seconds
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+    // Uses Seconds
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        // Uses Long / TimeUnit
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(555));
-    }
+    // Uses Long / TimeUnit
+    driver.manage().timeouts().implicitlyWait(Duration.ofMillis(555));
+  }
 
-    @DisplayName("Timeouts now use Duration instances")
-    @Test
-    public void timeoutUnitsDeprecated() {
+  @DisplayName("Timeouts now use Duration instances")
+  @Test
+  public void timeoutUnitsDeprecated() {
 
-        // Uses Seconds
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    // Uses Seconds
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        // Uses Long / TimeoutUnit
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(555));
-    }
+    // Uses Long / TimeoutUnit
+    driver.manage().timeouts().implicitlyWait(Duration.ofMillis(555));
+  }
 }

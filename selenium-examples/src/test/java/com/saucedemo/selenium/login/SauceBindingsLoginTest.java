@@ -10,31 +10,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-/**
- * Login Test Using Sauce Bindings.
- */
+/** Login Test Using Sauce Bindings. */
 public class SauceBindingsLoginTest extends SauceBaseTest {
 
-    @DisplayName("Swag Labs Login with Sauce Bindings")
-    @Test
-    public void swagLabsLoginTest() {
-        driver.get("https://www.saucedemo.com");
+  @DisplayName("Swag Labs Login with Sauce Bindings")
+  @Test
+  public void swagLabsLoginTest() {
+    driver.get("https://www.saucedemo.com");
 
-        By usernameFieldLocator = By.id("user-name");
-        By passwordFieldLocator = By.id("password");
-        By submitButtonLocator = By.id("login-button");
+    By usernameFieldLocator = By.id("user-name");
+    By passwordFieldLocator = By.id("password");
+    By submitButtonLocator = By.id("login-button");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until((driver) -> driver.findElement(usernameFieldLocator).isDisplayed());
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait.until((driver) -> driver.findElement(usernameFieldLocator).isDisplayed());
 
-        WebElement userNameField = driver.findElement(usernameFieldLocator);
-        WebElement passwordField = driver.findElement(passwordFieldLocator);
-        WebElement submitButton = driver.findElement(submitButtonLocator);
+    WebElement userNameField = driver.findElement(usernameFieldLocator);
+    WebElement passwordField = driver.findElement(passwordFieldLocator);
+    WebElement submitButton = driver.findElement(submitButtonLocator);
 
-        userNameField.sendKeys("standard_user");
-        passwordField.sendKeys("secret_sauce");
-        submitButton.click();
+    userNameField.sendKeys("standard_user");
+    passwordField.sendKeys("secret_sauce");
+    submitButton.click();
 
-        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
-    }
+    Assertions.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
+  }
 }

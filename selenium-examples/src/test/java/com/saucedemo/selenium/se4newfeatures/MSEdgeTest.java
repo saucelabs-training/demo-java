@@ -11,23 +11,23 @@ import java.util.Collections;
 
 public class MSEdgeTest extends SauceBaseTest {
 
-    public SauceOptions createSauceOptions() {
-        EdgeOptions options = new EdgeOptions();
+  public SauceOptions createSauceOptions() {
+    EdgeOptions options = new EdgeOptions();
 
-        // Selenium 3 did not support any direct options for Chromium Edge
-        // Selenium 4 allows setting all compliant values on EdgeOptions
+    // Selenium 3 did not support any direct options for Chromium Edge
+    // Selenium 4 allows setting all compliant values on EdgeOptions
 
-        options.setExperimentalOption("excludeSwitches",
-                Collections.singletonList("disable-popup-blocking"));
+    options.setExperimentalOption(
+        "excludeSwitches", Collections.singletonList("disable-popup-blocking"));
 
-        return SauceOptions.edge(options).build();
-    }
+    return SauceOptions.edge(options).build();
+  }
 
-    @Test
-    public void edgeExecution() {
-        driver.get("https://deliver.courseavenue.com/PopupTest.aspx");
-        driver.findElement(By.cssSelector("input[type=submit]")).click();
+  @Test
+  public void edgeExecution() {
+    driver.get("https://deliver.courseavenue.com/PopupTest.aspx");
+    driver.findElement(By.cssSelector("input[type=submit]")).click();
 
-        Assertions.assertEquals(1, driver.getWindowHandles().size());
-    }
+    Assertions.assertEquals(1, driver.getWindowHandles().size());
+  }
 }

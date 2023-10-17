@@ -14,28 +14,35 @@ import org.openqa.selenium.remote.Augmenter;
 
 public class FirefoxContextTest extends SauceBaseTest {
 
-    public SauceOptions createSauceOptions() {
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.addPreference("intl.accept_languages", "de-DE");
-        return SauceOptions.firefox(firefoxOptions).setGeckodriverVersion("0.30.0").build();
-    }
+  public SauceOptions createSauceOptions() {
+    FirefoxOptions firefoxOptions = new FirefoxOptions();
+    firefoxOptions.addPreference("intl.accept_languages", "de-DE");
+    return SauceOptions.firefox(firefoxOptions).setGeckodriverVersion("0.30.0").build();
+  }
 
-    @Test
-    public void changePrefs() {
-        driver.get("https://www.google.com");
+  @Test
+  public void changePrefs() {
+    driver.get("https://www.google.com");
 
-        String lang1 = driver.findElement(By.id("gws-output-pages-elements-homepage_additional_languages__als")).getText();
-        Assertions.assertTrue(lang1.contains("angeboten auf"));
+    String lang1 =
+        driver
+            .findElement(By.id("gws-output-pages-elements-homepage_additional_languages__als"))
+            .getText();
+    Assertions.assertTrue(lang1.contains("angeboten auf"));
 
-        WebDriver augmentedDriver = new Augmenter().augment(driver);
-        ((HasContext) augmentedDriver).setContext(FirefoxCommandContext.CHROME);
+    WebDriver augmentedDriver = new Augmenter().augment(driver);
+    ((HasContext) augmentedDriver).setContext(FirefoxCommandContext.CHROME);
 
-        ((JavascriptExecutor) driver).executeScript("Services.prefs.setStringPref('intl.accept_languages', 'es-ES')");
+    ((JavascriptExecutor) driver)
+        .executeScript("Services.prefs.setStringPref('intl.accept_languages', 'es-ES')");
 
-        ((HasContext) augmentedDriver).setContext(FirefoxCommandContext.CONTENT);
-        driver.navigate().refresh();
+    ((HasContext) augmentedDriver).setContext(FirefoxCommandContext.CONTENT);
+    driver.navigate().refresh();
 
-        String lang2 = driver.findElement(By.id("gws-output-pages-elements-homepage_additional_languages__als")).getText();
-        Assertions.assertTrue(lang2.contains("Ofrecido por"));
-    }
+    String lang2 =
+        driver
+            .findElement(By.id("gws-output-pages-elements-homepage_additional_languages__als"))
+            .getText();
+    Assertions.assertTrue(lang2.contains("Ofrecido por"));
+  }
 }
