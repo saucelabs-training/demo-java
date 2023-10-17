@@ -27,34 +27,19 @@ public class TestBase {
   protected SessionId id;
 
   public void startChromeSession(TestInfo testInfo) {
-    ChromeOptions options = new ChromeOptions();
-    //    options.setPlatformName("Windows 10");
-    //    options.setBrowserVersion("latest");
-
-    startSession(testInfo, options);
-  }
-
-  public void startEdgeSession(TestInfo testInfo) {
-    ChromeOptions options = new ChromeOptions();
-    //    options.setPlatformName("Windows 10");
-    //    options.setBrowserVersion("latest");
-
-    startSession(testInfo, options);
+    startSession(testInfo, new ChromeOptions());
   }
 
   public void startFirefoxSession(TestInfo testInfo) {
-    FirefoxOptions options = new FirefoxOptions();
-    //    options.setPlatformName("Windows 10");
-    //    options.setBrowserVersion("latest");
-
-    startSession(testInfo, options);
+    startSession(testInfo, new FirefoxOptions());
   }
 
   public void startSession(TestInfo testInfo, Capabilities options) {
     startSession(testInfo, options, new HashMap<>());
   }
 
-  protected void startSession(TestInfo testInfo, Capabilities options, Map<String, Object> sauceOptions) {
+  protected void startSession(
+      TestInfo testInfo, Capabilities options, Map<String, Object> sauceOptions) {
     Objects.requireNonNull(testInfo, "testInfo cannot be null");
     Objects.requireNonNull(options, "options cannot be null");
     Objects.requireNonNull(sauceOptions, "sauceOptions cannot be null");
