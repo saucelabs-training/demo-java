@@ -9,6 +9,18 @@ on:
   pull_request:
 
 jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--replace"
+          files: "selenium-junit4-examples/**/*.java"
+          skip-commit: true
+      - name: Print diffs
+        run: git --no-pager diff --exit-code
+
   build:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -16,13 +28,12 @@ jobs:
         os: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
+    - name: Set up Java
       uses: actions/setup-java@v1
       with:
-        java-version: 1.8
+        java-version: 11
     - name: Run JUnit 4 Tests
       env:
         SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-        SCREENER_API_KEY: ${{ secrets.SCREENER_API_KEY }}
       run: mvn test -pl selenium-junit4-examples -X
