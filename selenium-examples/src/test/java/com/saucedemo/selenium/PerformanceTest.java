@@ -20,7 +20,7 @@ public class PerformanceTest extends SeleniumTestBase {
     public void setup(TestInfo testInfo) {
         ChromeOptions options = new ChromeOptions();
         options.setPlatformName("Windows 10");
-        options.setBrowserVersion("latest");
+        options.setBrowserVersion("117");
 
         Map<String, Object> sauceOptions = new HashMap<>();
         sauceOptions.put("capturePerformance", true);
