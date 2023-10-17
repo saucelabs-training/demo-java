@@ -1,12 +1,19 @@
-package com.saucedemo.selenium.se4newfeatures;
+package com.saucedemo.selenium.selenium_features;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import com.saucedemo.selenium.TestBase;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WindowType;
 
-public class NewWindowTest extends SauceBaseTest {
+public class NewWindowTest extends TestBase {
+
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
+    startChromeSession(testInfo);
+  }
 
   @Test
   public void secondWindow() {

@@ -1,25 +1,31 @@
-package com.saucedemo.selenium.login;
+package com.saucedemo.selenium.demo;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import com.saucedemo.selenium.TestBase;
 import java.time.Duration;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/** Login Test Using Sauce Bindings. */
-public class SauceBindingsLoginTest extends SauceBaseTest {
+public class LoginTest extends TestBase {
 
-  @DisplayName("Swag Labs Login with Sauce Bindings")
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
+    startChromeSession(testInfo);
+  }
+
+  @DisplayName("Swag Labs Login with Selenium")
   @Test
   public void swagLabsLoginTest() {
     driver.get("https://www.saucedemo.com");
 
-    By usernameFieldLocator = By.id("user-name");
-    By passwordFieldLocator = By.id("password");
-    By submitButtonLocator = By.id("login-button");
+    By usernameFieldLocator = By.cssSelector("#user-name");
+    By passwordFieldLocator = By.cssSelector("#password");
+    By submitButtonLocator = By.cssSelector(".btn_action");
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     wait.until((driver) -> driver.findElement(usernameFieldLocator).isDisplayed());

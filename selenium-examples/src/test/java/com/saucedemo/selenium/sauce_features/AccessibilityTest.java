@@ -1,20 +1,19 @@
-package com.saucedemo.selenium.accessibility;
+package com.saucedemo.selenium.sauce_features;
 
 import com.deque.html.axecore.results.Results;
 import com.deque.html.axecore.selenium.AxeBuilder;
-import com.saucedemo.selenium.SeleniumTestBase;
+import com.saucedemo.selenium.TestBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-/** Accessibility Tests with Deque Library. */
-public class DequeAxeTest extends SeleniumTestBase {
+public class AccessibilityTest extends TestBase {
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
-    basicSetup(testInfo);
+    startChromeSession(testInfo);
   }
 
   @DisplayName("Deque Axe Test With Selenium Not html")

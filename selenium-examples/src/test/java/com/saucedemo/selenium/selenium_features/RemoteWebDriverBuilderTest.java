@@ -1,5 +1,6 @@
-package com.saucedemo.selenium.se4newfeatures;
+package com.saucedemo.selenium.selenium_features;
 
+import com.saucedemo.selenium.TestBase;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import org.openqa.selenium.firefox.HasFullPageScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.http.ClientConfig;
 
-public class RemoteWebDriverBuilderTest {
+public class RemoteWebDriverBuilderTest extends TestBase {
 
   /**
    * RemoteWebDriver builder gives you a few great things off the bat: 1. Allows you to easily set
@@ -25,6 +26,7 @@ public class RemoteWebDriverBuilderTest {
   @DisplayName("Use RemoteWebDriverBuilder class")
   @Test
   public void webDriverBuilder(TestInfo testInfo) {
+    this.testInfo = testInfo;
     FirefoxOptions browserOptions = new FirefoxOptions();
 
     browserOptions.setPlatformName("Windows 10");
@@ -47,9 +49,9 @@ public class RemoteWebDriverBuilderTest {
             .address("https://ondemand.us-west-1.saucelabs.com/wd/hub")
             .config(config)
             .build();
+    this.driver = driver;
+    this.id = ((RemoteWebDriver) driver).getSessionId();
 
     ((HasFullPageScreenshot) driver).getFullPageScreenshotAs(OutputType.FILE);
-
-    driver.quit();
   }
 }

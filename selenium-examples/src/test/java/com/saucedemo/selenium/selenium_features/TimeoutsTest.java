@@ -1,12 +1,19 @@
-package com.saucedemo.selenium.se4newfeatures;
+package com.saucedemo.selenium.selenium_features;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import com.saucedemo.selenium.TestBase;
 import java.time.Duration;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.WebDriver;
 
-public class TimeoutsTest extends SauceBaseTest {
+public class TimeoutsTest extends TestBase {
+
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
+    startChromeSession(testInfo);
+  }
 
   @Test
   public void getTimoutValues() {

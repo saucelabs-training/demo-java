@@ -1,9 +1,10 @@
-package com.saucedemo.selenium.se4newfeatures;
+package com.saucedemo.selenium.selenium_features;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
-import com.saucelabs.saucebindings.options.SauceOptions;
+import com.saucedemo.selenium.TestBase;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,12 +13,13 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.HasContext;
 import org.openqa.selenium.remote.Augmenter;
 
-public class FirefoxContextTest extends SauceBaseTest {
+public class FirefoxContextTest extends TestBase {
 
-  public SauceOptions createSauceOptions() {
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
     FirefoxOptions firefoxOptions = new FirefoxOptions();
     firefoxOptions.addPreference("intl.accept_languages", "de-DE");
-    return SauceOptions.firefox(firefoxOptions).setGeckodriverVersion("0.30.0").build();
+    startSession(testInfo, firefoxOptions);
   }
 
   @Test
