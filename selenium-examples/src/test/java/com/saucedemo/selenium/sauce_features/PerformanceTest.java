@@ -36,7 +36,8 @@ public class PerformanceTest extends TestBase {
     HashMap<String, Object> args = new HashMap<>();
     args.put("name", testInfo.getDisplayName());
     Map<String, Object> performance =
-        (Map<String, Object>) ((JavascriptExecutor) driver).executeScript("sauce:performance", args);
+        (Map<String, Object>)
+            ((JavascriptExecutor) driver).executeScript("sauce:performance", args);
 
     try {
       Assertions.assertEquals("pass", performance.get("result"));
@@ -56,13 +57,14 @@ public class PerformanceTest extends TestBase {
     args.put("metrics", Arrays.asList("load", "firstContentfulPaint"));
 
     Map<String, Object> performance =
-        (Map<String, Object>) ((JavascriptExecutor) driver).executeScript("sauce:performance", args);
+        (Map<String, Object>)
+            ((JavascriptExecutor) driver).executeScript("sauce:performance", args);
 
     try {
       Assertions.assertEquals("pass", performance.get("result"));
     } catch (AssertionError ignored) {
       System.out.println(
-              "Metrics are out of historical limits, but this is just a demo, so do not fail in CI");
+          "Metrics are out of historical limits, but this is just a demo, so do not fail in CI");
     }
   }
 

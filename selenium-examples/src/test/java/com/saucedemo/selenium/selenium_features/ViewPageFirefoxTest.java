@@ -46,7 +46,8 @@ public class ViewPageFirefoxTest extends TestBase {
   @Test
   public void takeFullPageScreenshot() throws IOException {
     driver = new Augmenter().augment(driver);
-    byte[] screenshotAs = ((HasFullPageScreenshot) driver).getFullPageScreenshotAs(OutputType.BYTES);
+    byte[] screenshotAs =
+        ((HasFullPageScreenshot) driver).getFullPageScreenshotAs(OutputType.BYTES);
 
     Path fullPageScreenshot = Paths.get(directory + "FullPage.png");
     Files.write(fullPageScreenshot, screenshotAs);
