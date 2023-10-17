@@ -8,15 +8,15 @@ import org.junit.jupiter.api.Test;
 /**
  * saucebindings.junit5 package provides a default superclass to handle set up and tear down
  *
- * @see <a href="https://opensource.saucelabs.com/sauce_bindings/test-runners/">Sauce Binding Test Runners</a>
- *     for more information
+ * @see <a href="https://opensource.saucelabs.com/sauce_bindings/test-runners/">Sauce Binding Test
+ *     Runners</a> for more information
  */
 public class SaucebindingsJunitTest extends SauceBaseTest {
 
-    @DisplayName("Sauce Bindings Test Runner Navigation Example")
-    @Test
-    public void sauceBindingsTestRunnerTest() {
-        driver.navigate().to("https://www.saucedemo.com");
-        Assertions.assertEquals("Swag Labs", driver.getTitle());
-    }
+  @DisplayName("Sauce Bindings Test Runner Navigation Example")
+  @Test
+  public void sauceBindingsTestRunnerTest() {
+    driver.navigate().to("https://www.saucedemo.com");
+    Assertions.assertEquals("Swag Labs", driver.getTitle());
+  }
 }

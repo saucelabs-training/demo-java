@@ -12,48 +12,41 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-/**
- * Demo tests using Sauce bindings.
- */
+/** Demo tests using Sauce bindings. */
 public class SauceBindingsTest {
-    private SauceSession session;
-    protected RemoteWebDriver driver;
+  private SauceSession session;
+  protected RemoteWebDriver driver;
 
-    /**
-     * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to Sauce Labs.
-     * Note that the name is never actually used
-     */
-    @RegisterExtension
-    public SauceTestWatcher watcher = new SauceTestWatcher();
+  /**
+   * A Test Watcher is needed to be able to get the results of a Test so that it can be sent to
+   * Sauce Labs. Note that the name is never actually used
+   */
+  @RegisterExtension public SauceTestWatcher watcher = new SauceTestWatcher();
 
-    @BeforeEach
-    public void setup(TestInfo testInfo) {
-        SauceOptions sauceOptions = SauceOptions.chrome()
-                .setName(testInfo.getDisplayName())
-                .build();
-        session = new SauceSession(sauceOptions);
-        driver = session.start();
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
+    SauceOptions sauceOptions = SauceOptions.chrome().setName(testInfo.getDisplayName()).build();
+    session = new SauceSession(sauceOptions);
+    driver = session.start();
+  }
+
+  @DisplayName("Sauce Bindings Navigation Test")
+  @Test
+  public void sauceBindingsNavigationTest() {
+    driver.navigate().to("https://www.saucedemo.com");
+    Assertions.assertEquals("Swag Labs", driver.getTitle());
+  }
+
+  /** Custom TestWatcher for Sauce Labs projects. */
+  public class SauceTestWatcher implements TestWatcher {
+    @Override
+    public void testSuccessful(ExtensionContext context) {
+      session.stop(true);
     }
 
-    @DisplayName("Sauce Bindings Navigation Test")
-    @Test
-    public void sauceBindingsNavigationTest() {
-        driver.navigate().to("https://www.saucedemo.com");
-        Assertions.assertEquals("Swag Labs", driver.getTitle());
+    @Override
+    public void testFailed(ExtensionContext context, Throwable cause) {
+      session.stop(false);
     }
-
-    /**
-     * Custom TestWatcher for Sauce Labs projects.
-     */
-    public class SauceTestWatcher implements TestWatcher {
-        @Override
-        public void testSuccessful(ExtensionContext context) {
-            session.stop(true);
-        }
-
-        @Override
-        public void testFailed(ExtensionContext context, Throwable cause) {
-            session.stop(false);
-        }
-    }
+  }
 }
