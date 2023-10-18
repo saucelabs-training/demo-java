@@ -1,14 +1,22 @@
-package com.saucedemo.selenium.se4newfeatures;
+package com.saucedemo.selenium.selenium_features;
 
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import com.saucedemo.selenium.TestBase;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
-public class RelativeLocatorsTest extends SauceBaseTest {
+public class RelativeLocatorsTest extends TestBase {
+
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
+    startChromeSession(testInfo);
+  }
 
   @Test
   public void relativeLocators() {
@@ -19,6 +27,6 @@ public class RelativeLocatorsTest extends SauceBaseTest {
 
     Assertions.assertEquals("london", element.getAttribute("id"));
 
-    driver.executeScript("arguments[0].style.filter='blur(8px)'", element);
+    ((JavascriptExecutor) driver).executeScript("arguments[0].style.filter='blur(8px)'", element);
   }
 }

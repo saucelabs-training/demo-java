@@ -1,10 +1,17 @@
-package com.saucedemo.selenium.se4updates;
+package com.saucedemo.selenium.selenium_features;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import com.saucedemo.selenium.TestBase;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
 
-public class FindByTest extends SauceBaseTest {
+public class FindByTest extends TestBase {
+
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
+    startChromeSession(testInfo);
+  }
 
   @Test
   public void findElement() {

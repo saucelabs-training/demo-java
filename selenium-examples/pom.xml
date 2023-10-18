@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.com.saucelabs</groupId>
+    <groupId>com.saucelabs</groupId>
     <artifactId>selenium_examples</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -20,7 +20,7 @@
     </licenses>
 
     <properties>
-        <surefire.parallel>1</surefire.parallel>
+        <surefire.parallel>10</surefire.parallel>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,15 +28,22 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.saucelabs</groupId>
-            <artifactId>saucebindings-junit5</artifactId>
-            <version>1.4.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.14.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.deque.html.axe-core</groupId>
+            <artifactId>selenium</artifactId>
+            <version>4.7.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.titusfortner</groupId>

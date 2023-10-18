@@ -1,25 +1,24 @@
-package com.saucedemo.selenium.se4newfeatures;
+package com.saucedemo.selenium.selenium_features;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
-import com.saucelabs.saucebindings.options.SauceOptions;
+import com.saucedemo.selenium.TestBase;
 import java.util.Collections;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.edge.EdgeOptions;
 
-public class MSEdgeTest extends SauceBaseTest {
+// Selenium 3 did not support any direct options for Chromium Edge (like excludeSwitches)
+public class MSEdgeTest extends TestBase {
 
-  public SauceOptions createSauceOptions() {
+  @BeforeEach
+  public void createSauceOptions(TestInfo testInfo) {
     EdgeOptions options = new EdgeOptions();
-
-    // Selenium 3 did not support any direct options for Chromium Edge
-    // Selenium 4 allows setting all compliant values on EdgeOptions
-
     options.setExperimentalOption(
         "excludeSwitches", Collections.singletonList("disable-popup-blocking"));
 
-    return SauceOptions.edge(options).build();
+    startSession(testInfo, options);
   }
 
   @Test

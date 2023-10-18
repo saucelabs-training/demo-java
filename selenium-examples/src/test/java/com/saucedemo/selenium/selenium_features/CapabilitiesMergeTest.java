@@ -1,13 +1,17 @@
-package com.saucedemo.selenium.se4updates;
+package com.saucedemo.selenium.selenium_features;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import com.saucedemo.selenium.TestBase;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CapabilitiesMergeTest {
+public class CapabilitiesMergeTest extends TestBase {
+
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
+    startChromeSession(testInfo);
+  }
 
   @DisplayName("Selenium 4 Can not merge in place!")
   @Test
