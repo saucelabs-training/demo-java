@@ -15,6 +15,7 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 
@@ -49,7 +50,9 @@ public class TestBase {
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("name", testInfo.getDisplayName());
+    sauceOptions.put("seleniumVersion", "4.14.1");
     ((MutableCapabilities) options).setCapability("sauce:options", sauceOptions);
+    ((AbstractDriverOptions<AbstractDriverOptions>) options).setPlatformName("Windows 11");
 
     URL url;
     try {
