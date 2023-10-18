@@ -47,10 +47,7 @@ public class CheckoutTest extends TestBase {
 
     driver.findElement(By.cssSelector("input[data-test='continue']")).click();
 
-    Assert.assertEquals(
-        "https://www.saucedemo.com/checkout-step-two.html",
-        driver.getCurrentUrl(),
-        "Information Submission Unsuccessful");
+    Assert.assertEquals("https://www.saucedemo.com/checkout-step-two.html", driver.getCurrentUrl());
   }
 
   @Test

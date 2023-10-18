@@ -25,10 +25,7 @@ public class CartTest extends TestBase {
         .findElement(By.cssSelector("button[data-test='add-to-cart-sauce-labs-bolt-t-shirt']"))
         .click();
 
-    Assert.assertEquals(
-        "1",
-        driver.findElement(By.className("shopping_cart_badge")).getText(),
-        "Item not correctly added to cart");
+    Assert.assertEquals("1", driver.findElement(By.className("shopping_cart_badge")).getText());
   }
 
   @Test
