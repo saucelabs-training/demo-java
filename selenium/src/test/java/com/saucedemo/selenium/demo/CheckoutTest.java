@@ -8,7 +8,7 @@ public class CheckoutTest extends TestBase {
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
-    startFirefoxSession(testInfo);
+    startChromeSession(testInfo);
   }
 
   @Test

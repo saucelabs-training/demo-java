@@ -3,12 +3,13 @@ package com.saucedemo.selenium.demo;
 import com.saucedemo.selenium.TestBase;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class CartTest extends TestBase {
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
-    startFirefoxSession(testInfo);
+    startChromeSession(testInfo);
   }
 
   @Test
@@ -20,9 +21,7 @@ public class CartTest extends TestBase {
 
     driver.findElement(By.id("item_1_title_link")).click();
 
-    driver
-        .findElement(By.cssSelector("button[data-test='add-to-cart-sauce-labs-bolt-t-shirt']"))
-        .click();
+    driver.findElement(By.cssSelector("button[data-test^='add-']")).click();
 
     Assertions.assertEquals(
         "1",
@@ -33,17 +32,13 @@ public class CartTest extends TestBase {
   @Test
   public void removeFromProductPage() {
     driver.get("https://www.saucedemo.com/");
-    driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
-    driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
+    driver.findElement(By.id("user-name")).sendKeys("standard_user");
+    driver.findElement(By.id("password")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
     driver.findElement(By.id("item_1_title_link")).click();
-    driver
-        .findElement(By.cssSelector("button[data-test='add-to-cart-sauce-labs-bolt-t-shirt']"))
-        .click();
+    driver.findElement(By.cssSelector("button[data-test^='add-']")).click();
 
-    driver
-        .findElement(By.cssSelector("button[data-test='remove-sauce-labs-bolt-t-shirt']"))
-        .click();
+    driver.findElement(By.cssSelector("button[data-test^='remove-']")).click();
 
     Assertions.assertTrue(
         driver.findElements(By.className("shopping_cart_badge")).isEmpty(),
@@ -53,8 +48,8 @@ public class CartTest extends TestBase {
   @Test
   public void addFromInventoryPage() {
     driver.get("https://www.saucedemo.com/");
-    driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
-    driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
+    driver.findElement(By.id("user-name")).sendKeys("standard_user");
+    driver.findElement(By.id("password")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
 
     driver.findElement(By.cssSelector("button[data-test='add-to-cart-sauce-labs-onesie']")).click();
