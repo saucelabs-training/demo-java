@@ -1,12 +1,19 @@
-package com.saucedemo.selenium.se4updates;
+package com.saucedemo.selenium.selenium_features;
 
-import com.saucelabs.saucebindings.junit5.SauceBaseTest;
+import com.saucedemo.selenium.TestBase;
 import java.time.Duration;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class DurationParameterTest extends SauceBaseTest {
+public class DurationParameterTest extends TestBase {
+
+  @BeforeEach
+  public void setup(TestInfo testInfo) {
+    startChromeSession(testInfo);
+  }
 
   @DisplayName("Timeout integers still work but are deprecated")
   @Test
