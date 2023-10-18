@@ -1,4 +1,4 @@
-package com.saucedemo.selenium.junit4.demo;
+package com.saucedemo.selenium.junit4;
 
 import org.junit.Assert;
 import org.junit.Before;

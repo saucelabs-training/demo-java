@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.com.saucelabs</groupId>
-    <artifactId>selenium_junit4_examples</artifactId>
+    <artifactId>selenium-junit4</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>Sauce Labs Selenium Examples</name>

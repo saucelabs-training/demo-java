@@ -1,4 +1,4 @@
-package com.saucedemo.selenium.junit4.demo;
+package com.saucedemo.selenium.junit4;
 
 import java.net.MalformedURLException;
 import java.net.URL;
