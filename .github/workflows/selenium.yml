@@ -16,7 +16,7 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--replace"
-          files: "selenium-examples/**/*.java"
+          files: "selenium/**/*.java"
           skip-commit: true
       - name: Print diffs
         run: git --no-pager diff --exit-code
@@ -30,7 +30,7 @@ jobs:
         with:
           java-version: 11
       - name: Run JUnit 5 tests
-        working-directory: ./selenium-examples
+        working-directory: ./selenium
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
