@@ -1,8 +1,8 @@
 # Selenium JUnit 4 examples
 
-This project is to demonstrate how to run JUnit 4 tests on Sauce Labs including:
-* Setting correct options
-* Sending test results to Sauce
+The primary function of this project is to demonstrate using Sauce Labs with Selenium and JUnit 4, including:
+* Setting valid options
+* Sending test results to Sauce Labs
 * Running in Parallel with Maven surefire. See [pom.xml](pom.xml)
 
 ## Execute tests in parallel:
