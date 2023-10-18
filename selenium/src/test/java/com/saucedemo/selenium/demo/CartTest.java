@@ -3,7 +3,6 @@ package com.saucedemo.selenium.demo;
 import com.saucedemo.selenium.TestBase;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class CartTest extends TestBase {
 
