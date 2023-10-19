@@ -1,4 +1,4 @@
-package com.helpers;
+package com.saucelabs.helpers;
 
 import io.appium.java_client.AppiumDriver;
 import org.junit.rules.TestWatcher;

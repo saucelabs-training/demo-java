@@ -1,4 +1,4 @@
-package com.helpers;
+package com.saucedemo.appium_vdc.helpers;
 
 import io.appium.java_client.AppiumDriver;
 import org.junit.rules.TestWatcher;

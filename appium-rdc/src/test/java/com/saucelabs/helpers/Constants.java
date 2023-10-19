@@ -1,4 +1,4 @@
-package com.helpers;
+package com.saucelabs.helpers;
 
 public class Constants {
     public static final String region = System.getProperty("region", "eu");

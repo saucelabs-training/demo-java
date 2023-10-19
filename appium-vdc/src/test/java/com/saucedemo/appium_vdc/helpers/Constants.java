@@ -1,4 +1,4 @@
-package com.helpers;
+package com.saucedemo.appium_vdc.helpers;
 
 public class Constants {
     public static final String region = System.getProperty("region", "eu");
