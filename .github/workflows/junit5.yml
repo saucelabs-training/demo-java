@@ -1,0 +1,37 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+name: JUnit 4 Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--replace"
+          files: "selenium-junit5/**/*.java"
+          skip-commit: true
+      - name: Print diffs
+        run: git --no-pager diff --exit-code
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Run JUnit 5 Tests
+        working-directory: ./selenium-junit5
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+        run: mvn test
