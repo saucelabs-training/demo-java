@@ -21,7 +21,6 @@
 
     <modules>
         <module>best-practice</module>
-        <module>gitpod</module>
         <module>appium/appium-app/appium-app-examples</module>
         <module>appium/appium-app/appium-app-best-practice</module>
         <module>appium/appium-web/appium-web-examples</module>
@@ -38,7 +37,6 @@
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
