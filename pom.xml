@@ -21,15 +21,18 @@
 
     <modules>
         <module>best-practice</module>
-        <module>appium-junit4-cucumber-examples</module>
-        <module>gitpod</module>
-        <module>selenium-cucumber-examples</module>
-        <module>selenium-examples</module>
-        <module>selenium-junit4-examples</module>
-        <module>selenium-testng-examples</module>
-        <module>appium/appium-app/appium-app-examples</module>
+        <module>appium-rdc</module>
         <module>appium/appium-app/appium-app-best-practice</module>
-        <module>appium/appium-web/appium-web-examples</module>
+        <module>appium-vdc</module>
+        <module>appium-junit4-cucumber-examples</module>
+        <module>best-practice</module>
+        <module>sauce-bindings</module>
+        <module>selenium</module>
+        <module>selenium-junit4</module>
+        <module>selenium-junit5</module>
+        <module>selenium-testng</module>
+        <module>training-advanced</module>
+        <module>training-sync</module>
     </modules>
     <dependencies>
         <dependency>
@@ -43,7 +46,6 @@
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
