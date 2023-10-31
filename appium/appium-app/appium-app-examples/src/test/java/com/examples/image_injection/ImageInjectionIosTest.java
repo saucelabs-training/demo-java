@@ -1,8 +1,7 @@
 package com.examples.image_injection;
 
-
 import com.helpers.SauceAppiumTestWatcher;
-import io.appium.java_client.MobileBy;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -99,11 +98,11 @@ public class ImageInjectionIosTest {
 
         //wait for the product field to be visible and store that element into a variable
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement menu = wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(ios_testMenu)));
+        WebElement menu = wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId(ios_testMenu)));
         menu.click();
 
         // *** selec Menu QR Code
-        WebElement qCCodeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(testMenuItemQRCode)));
+        WebElement qCCodeMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId(testMenuItemQRCode)));
         qCCodeMenu.click();
 
         // inject the image - provide the transformed image to the device with this command

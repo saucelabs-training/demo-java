@@ -14,7 +14,7 @@
 
     <properties>
         <maven.surefire.version>3.0.0-M5</maven.surefire.version>
-        <appium.version>8.3.0</appium.version>
+        <appium.version>8.6.0</appium.version>
     </properties>
 
     <!--    You will find Junit and Appium configration in the project level pom.xml -->
