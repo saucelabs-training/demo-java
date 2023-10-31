@@ -1,0 +1,21 @@
+apiVersion: v1alpha
+kind: imagerunner
+sauce:
+  region: us-west-1
+suites:
+  - name: Desktop Tests
+    workload: webdriver
+    image: $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_TAG
+    imagePullAuth:
+      user: $DOCKER_USERNAME
+      token: $DOCKER_PASSWORD
+    entrypoint: mvn -o test -pl best-practice -Dtest=DesktopTests
+    artifacts:
+      - "/workdir/best-practice/target/surefire-reports/*"
+
+artifacts:
+  download:
+    when: always
+    match: 
+      - "*"
+    directory: ./artifacts
