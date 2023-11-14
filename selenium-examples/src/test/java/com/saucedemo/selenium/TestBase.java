@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -27,6 +26,12 @@ public class TestBase {
   protected TestInfo testInfo;
   protected SessionId id;
 
+  static {
+    String buildName = "Default Build Name";
+    String buildNumber = String.valueOf(System.currentTimeMillis());
+    System.setProperty("build.name", buildName + ": " + buildNumber);
+  }
+
   public void startChromeSession(TestInfo testInfo) {
     startSession(testInfo, new ChromeOptions());
   }
@@ -41,18 +46,18 @@ public class TestBase {
 
   protected void startSession(
       TestInfo testInfo, Capabilities options, Map<String, Object> sauceOptions) {
-    Objects.requireNonNull(testInfo, "testInfo cannot be null");
-    Objects.requireNonNull(options, "options cannot be null");
-    Objects.requireNonNull(sauceOptions, "sauceOptions cannot be null");
-
     this.testInfo = testInfo;
 
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("name", testInfo.getDisplayName());
-    sauceOptions.put("seleniumVersion", "4.14.1");
+    sauceOptions.put("build", System.getProperty("build.name"));
+    sauceOptions.put("seleniumVersion", "4.15.0");
+    sauceOptions.put("screeenResolution", "1920x1200");
     ((MutableCapabilities) options).setCapability("sauce:options", sauceOptions);
-    ((AbstractDriverOptions<AbstractDriverOptions>) options).setPlatformName("Windows 11");
+    if (options.getPlatformName() == null) {
+      ((AbstractDriverOptions<AbstractDriverOptions>) options).setPlatformName("Windows 11");
+    }
 
     URL url;
     try {
