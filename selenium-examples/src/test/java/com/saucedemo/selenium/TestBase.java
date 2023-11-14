@@ -41,19 +41,10 @@ public class TestBase {
   }
 
   public void startSession(TestInfo testInfo, Capabilities options) {
-    startSession(testInfo, options, new HashMap<>());
+    startSession(options, defaultSauceOptions(testInfo));
   }
 
-  protected void startSession(
-      TestInfo testInfo, Capabilities options, Map<String, Object> sauceOptions) {
-    this.testInfo = testInfo;
-
-    sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
-    sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-    sauceOptions.put("name", testInfo.getDisplayName());
-    sauceOptions.put("build", System.getProperty("build.name"));
-    sauceOptions.put("seleniumVersion", "4.15.0");
-    sauceOptions.put("screeenResolution", "1920x1200");
+  protected void startSession(Capabilities options, Map<String, Object> sauceOptions) {
     ((MutableCapabilities) options).setCapability("sauce:options", sauceOptions);
     if (options.getPlatformName() == null) {
       ((AbstractDriverOptions<AbstractDriverOptions>) options).setPlatformName("Windows 11");
@@ -68,6 +59,18 @@ public class TestBase {
 
     driver = new RemoteWebDriver(url, options);
     this.id = ((RemoteWebDriver) driver).getSessionId();
+  }
+
+  protected Map<String, Object> defaultSauceOptions(TestInfo testInfo) {
+    this.testInfo = testInfo;
+
+    Map<String, Object> options = new HashMap<>();
+    options.put("username", System.getenv("SAUCE_USERNAME"));
+    options.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+    options.put("name", testInfo.getDisplayName());
+    options.put("build", System.getProperty("build.name"));
+    options.put("seleniumVersion", "4.15.0");
+    return options;
   }
 
   public class SauceTestWatcher implements TestWatcher {

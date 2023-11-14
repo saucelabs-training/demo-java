@@ -38,9 +38,10 @@ public class DevToolsTest extends TestBase {
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
-    Map<String, Object> sauceOptions = new HashMap<>();
+    Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
     sauceOptions.put("devtools", true);
-    startSession(testInfo, new ChromeOptions(), sauceOptions);
+    startSession(new ChromeOptions(), sauceOptions);
+
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     driver = new Augmenter().augment(driver);
   }
