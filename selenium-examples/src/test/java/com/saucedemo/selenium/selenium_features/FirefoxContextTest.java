@@ -13,13 +13,17 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.HasContext;
 import org.openqa.selenium.remote.Augmenter;
 
+import java.util.Map;
+
 public class FirefoxContextTest extends TestBase {
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
     FirefoxOptions firefoxOptions = new FirefoxOptions();
     firefoxOptions.addPreference("intl.accept_languages", "de-DE");
-    startSession(testInfo, firefoxOptions);
+    Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
+
+    startSession(firefoxOptions, sauceOptions);
   }
 
   @Test

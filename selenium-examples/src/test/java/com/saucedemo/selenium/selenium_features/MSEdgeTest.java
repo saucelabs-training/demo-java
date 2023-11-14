@@ -2,6 +2,7 @@ package com.saucedemo.selenium.selenium_features;
 
 import com.saucedemo.selenium.TestBase;
 import java.util.Collections;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,9 @@ public class MSEdgeTest extends TestBase {
     EdgeOptions options = new EdgeOptions();
     options.setExperimentalOption(
         "excludeSwitches", Collections.singletonList("disable-popup-blocking"));
+    Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
 
-    startSession(testInfo, options);
+    startSession(options, sauceOptions);
   }
 
   @Test

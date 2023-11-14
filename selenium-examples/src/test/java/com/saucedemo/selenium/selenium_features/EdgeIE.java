@@ -6,17 +6,21 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 
+import java.util.Map;
+
 public class EdgeIE extends TestBase {
-    @BeforeEach
-    public void createSauceOptions(TestInfo testInfo) {
+  @BeforeEach
+  public void createSauceOptions(TestInfo testInfo) {
     InternetExplorerOptions options = new InternetExplorerOptions();
     options.attachToEdgeChrome();
     options.setCapability("browserName", "microsoftedge");
-    startSession(testInfo, options);
-    }
+    Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
 
-    @Test
-    public void ieMode() {
-        driver.get("https://www.saucedemo.com");
-    }
+    startSession(options, sauceOptions);
+  }
+
+  @Test
+  public void ieMode() {
+    driver.get("https://www.saucedemo.com");
+  }
 }

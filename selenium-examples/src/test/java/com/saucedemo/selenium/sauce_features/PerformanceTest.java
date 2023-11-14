@@ -21,11 +21,11 @@ public class PerformanceTest extends TestBase {
     options.setPlatformName("Windows 10");
     options.setBrowserVersion("117");
 
-    Map<String, Object> sauceOptions = new HashMap<>();
+    Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
     sauceOptions.put("capturePerformance", true);
     sauceOptions.put("extendedDebugging", true);
 
-    startSession(testInfo, options, sauceOptions);
+    startSession(options, sauceOptions);
   }
 
   @DisplayName("Ensure all metrics within historical limits")
