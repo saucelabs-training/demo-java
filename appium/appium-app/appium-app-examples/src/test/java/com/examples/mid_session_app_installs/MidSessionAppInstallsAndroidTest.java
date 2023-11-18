@@ -97,7 +97,7 @@ public class MidSessionAppInstallsAndroidTest {
         navigateToAbout();
 
         // Install a new version
-        var results = driver.executeScript("mobile:installApp", ImmutableMap.of("appPath", "storage:filename=mda-1.0.17-20.apk"));
+        Object results = driver.executeScript("mobile:installApp", ImmutableMap.of("appPath", "storage:filename=mda-1.0.17-20.apk"));
         System.out.println(results);
 
         // Launch the new app
