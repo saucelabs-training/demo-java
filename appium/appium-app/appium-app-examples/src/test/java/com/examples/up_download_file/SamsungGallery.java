@@ -1,5 +1,6 @@
 package com.examples.up_download_file;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -24,8 +25,10 @@ public class SamsungGallery {
     }
 
     public void open() {
-        driver.startActivity(new Activity("com.sec.android.gallery3d", "com.samsung.android.gallery.app.activity.GalleryActivity"));
-
+        driver.executeScript("mobile: startActivity", ImmutableMap.of(
+                "appPackage", "com.sec.android.gallery3d",
+                "appActivity", "com.samsung.android.gallery.app.activity.GalleryActivity"
+        ));
     }
 
     public void openPhoto(String which){
