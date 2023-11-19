@@ -12,7 +12,8 @@
     <artifactId>best-practice</artifactId>
 
     <properties>
-        <selenium.version>4.10.0</selenium.version>
+        <selenium.version>4.14.1</selenium.version>
+        <appium.version>9.0.0</appium.version>
     </properties>
 
     <dependencies>
@@ -33,6 +34,13 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

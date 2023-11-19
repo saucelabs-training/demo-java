@@ -11,6 +11,12 @@
 
     <artifactId>gitpod</artifactId>
 
+    <properties>
+        <maven.surefire.version>3.0.0-M5</maven.surefire.version>
+        <appium.version>9.0.0</appium.version>
+        <selenium.version>4.14.1</selenium.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.saucelabs</groupId>
@@ -21,7 +27,13 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.11.0</version>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
