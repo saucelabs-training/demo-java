@@ -19,7 +19,9 @@ jobs:
           files: "selenium-examples/**/*.java"
           skip-commit: true
       - name: Print diffs
+        if: success() || failure()
         run: git --no-pager diff --exit-code
+
 
   build:
     runs-on: ubuntu-latest
