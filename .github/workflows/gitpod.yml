@@ -24,4 +24,8 @@ jobs:
         SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
         BUILD: 'selenium-build-whatever'
         BROWSER_NAME: chrome
-      run: mvn test -Dtest=SeleniumTest
+      # !!!IMPORTANT!!! THIS MUST ALWAYS MATCH WHAT IS IN GITPOD.YML; SAUCE LABDS CUSTOMERS RELY ON THIS!!!!:
+      run: |
+        mvn dependency:resolve
+        mvn test-compile
+        mvn test -Dtest=SeleniumTest
