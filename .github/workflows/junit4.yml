@@ -19,6 +19,7 @@ jobs:
           files: "selenium-junit4-examples/**/*.java"
           skip-commit: true
       - name: Print diffs
+        if: success() || failure()
         run: git --no-pager diff --exit-code
 
   build:
