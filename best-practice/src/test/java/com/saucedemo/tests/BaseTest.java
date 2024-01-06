@@ -35,12 +35,26 @@ public class BaseTest {
 
     @Parameterized.Parameters()
     public static Collection<Object[]> crossPlatformData() {
-        return Arrays.asList(new Object[][] {
-                { "desktop", "safari", "latest", "macOS 11.00" },
-                { "desktop", "chrome", "latest-1", "macOS 13" },
+        Collection<Object[]> browserList;
+        browserList = Arrays.asList(new Object[][] {
                 { "desktop", "firefox", "latest", "Windows 11" },
                 { "desktop", "chrome", "latest", "Windows 10" }
         });
+
+        boolean includeMac = true;
+        if (INCLUDE_MAC != null) {
+          includeMac = Boolean.parseBoolean(INCLUDE_MAC);
+        }
+        if (includeMac) {
+          Collection<Object[]> macBrowserList;
+          macBrowserList = Arrays.asList(new Object[][] {
+                  { "desktop", "safari", "latest", "macOS 11.00" },
+                  { "desktop", "chrome", "latest-1", "macOS 13" }
+          });
+          browserList.addAll(macBrowserList);
+        }
+
+        return browserList;
     }
     @Rule
     public TestName name = new TestName();
@@ -49,16 +63,31 @@ public class BaseTest {
     public void setup() throws MalformedURLException {
 
         System.out.println("BeforeMethod hook");
+        int sleepBefore = 0;
+        if (SLEEP_BEFORE_SEC != null) {
+          sleepBefore = Integer.parseInt(SLEEP_BEFORE_SEC) * 1000;
+        }
+        if (sleepBefore > 0) {
+          System.out.println("Sleeping for " + SLEEP_BEFORE_SEC + " seconds");
+          try {
+            Thread.sleep(Integer.parseInt(SLEEP_BEFORE_SEC) * 1000);
+          } catch(InterruptedException e) {}
+        }
+
         URL url;
 
-        switch (region) {
-            case "us":
-                url = new URL(SAUCE_US_URL);
-                break;
-            case "eu":
-            default:
-                url = new URL(SAUCE_EU_URL);
-                break;
+        if (SAUCE_URL_OVERRIDE != null) {
+          url = new URL(SAUCE_URL_OVERRIDE);
+        } else {
+          switch (region) {
+              case "us":
+                  url = new URL(SAUCE_US_URL);
+                  break;
+              case "eu":
+              default:
+                  url = new URL(SAUCE_EU_URL);
+                  break;
+          }
         }
 
         boolean isBuildCap = false;
