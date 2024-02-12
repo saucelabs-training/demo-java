@@ -1,6 +1,7 @@
 package com.examples.simple_example;
 
 import com.helpers.SauceAppiumTestWatcher;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -22,9 +23,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class IOSNativeAppTest {
 
-    By productsScreenLocator = By.id("products screen");
-    By sortButtonLocator = By.id("sort button");
-    By sortModalLocator = By.id("active option");
+    By productsScreenLocator = AppiumBy.accessibilityId("Products");
+    By sortButtonLocator = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`name == \"Button\"`]");
+    By sortModalLocator = AppiumBy.accessibilityId("Sort by:");
 
     @Rule
     public TestName name = new TestName();
@@ -64,14 +65,14 @@ public class IOSNativeAppTest {
         if (rdc.equals("true")) {
             //Allocate any avilable iPhone device with version 14
             capabilities.setCapability("appium:deviceName", "iPhone.*");
-            appName = "iOS.MyDemoAppRN.ipa";
+            appName = "SauceLabs-Demo-App.ipa";
 
             sauceOptions.setCapability("resigningEnabled", true);
             sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
         }
         else {
             capabilities.setCapability("appium:deviceName", "iPhone 11 Simulator");
-            appName = "iOS.MyDemoAppRN.zip";
+            appName = "SauceLabs-Demo-App.Simulator.zip";
         }
         capabilities.setCapability("appium:platformVersion", "14");
         capabilities.setCapability("app", "storage:filename=" + appName);
@@ -94,7 +95,7 @@ public class IOSNativeAppTest {
     }
 
     @Test
-    public void verifyInProductsPage() throws MalformedURLException {
+    public void verifyPromptSortModal() throws MalformedURLException {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(productsScreenLocator));
