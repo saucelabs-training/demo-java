@@ -67,11 +67,11 @@ public class AndroidWebAppTest {
         capabilities.setCapability("appium:automationName", "UiAutomator2");
         if (rdc.equals("true")) {
             capabilities.setCapability("appium:deviceName", "samsung.*");
-            sauceOptions.setCapability("appiumVersion", "2.0.0");
+            sauceOptions.setCapability("appiumVersion", "latest");
         }
         else {
             capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
-            sauceOptions.setCapability("appiumVersion", "2.0.0-beta66");
+            sauceOptions.setCapability("appiumVersion", "latest");
         }
 
         capabilities.setCapability("appium:platformVersion", "13");

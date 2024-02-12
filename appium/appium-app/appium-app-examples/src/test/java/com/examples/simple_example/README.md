@@ -16,7 +16,8 @@ The examples in this repository use environment variables, make sure you've adde
     export SAUCE_ACCESS_KEY=*******
 
 ### Demo app(s)
-The demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-rn/releases).
+The Android demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-android/releases).   
+The iOS demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-ios/releases).
 Be aware of the fact that and iOS simulator uses a different build then a iOS real device. So please check the file you
 download.
 
@@ -24,9 +25,7 @@ download.
 
 Make sure that when you downloaded the files from the releases page, that you rename the apps to the following:
 
-- `Android-MyDemoAppRN.{#.#.#}.build-{####}.apk` => `Android.MyDemoAppRN.apk`
-- `iOS-Real-Device-MyRNDemoApp.{#.#.#}-{####}.ipa` => `iOS.MyDemoAppRN.ipa`
-- `iOS-Simulator-MyRNDemoApp.{#.#.#}-{####}.zip` => `iOS.MyDemoAppRN.zip`
+- `mda-{#.#.#}.apk` => `SauceLabs-Demo-App.apk`
 
 **If you don't do that then the scripts can't find the apps!**
 
