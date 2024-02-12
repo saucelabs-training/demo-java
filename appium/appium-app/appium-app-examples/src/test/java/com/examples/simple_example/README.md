@@ -17,7 +17,7 @@ The examples in this repository use environment variables, make sure you've adde
 
 ### Demo app(s)
 The Android demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-android/releases).   
-The iOS demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-ios/releases).
+The iOS demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-ios/releases).   
 Be aware of the fact that and iOS simulator uses a different build then a iOS real device. So please check the file you
 download.
 
