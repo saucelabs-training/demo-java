@@ -64,7 +64,27 @@ public class StepDefinitions {
 
     @io.cucumber.java.After
     public void tearDown(Scenario scenario){
-        driver.quit();
+        try {
+            if (scenario.isFailed()) {
+                if (driver != null) {
+                    System.out.println("Test Failed!");
+                    driver.executeScript("sauce:job-result=failed");
+                    driver.quit();
+                }
+
+            } else {
+                if (driver != null) {
+                    System.out.println("Test Passed!");
+                    driver.executeScript("sauce:job-result=passed");
+                    driver.quit();
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            System.out.println("Release driver");
+            driver.quit();
+        }
     }
 
     @Given("I open the iOS application")
