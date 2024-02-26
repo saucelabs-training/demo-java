@@ -8,23 +8,39 @@ import com.google.common.net.MediaType;
 import com.saucedemo.selenium.TestBase;
 import java.net.URI;
 import java.time.Duration;
-import java.util.*;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Credentials;
+import org.openqa.selenium.HasAuthentication;
+import org.openqa.selenium.JavascriptException;
+import org.openqa.selenium.UsernameAndPassword;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.NetworkInterceptor;
-import org.openqa.selenium.devtools.v118.browser.Browser;
-import org.openqa.selenium.devtools.v118.network.Network;
-import org.openqa.selenium.devtools.v118.network.model.Headers;
-import org.openqa.selenium.devtools.v118.performance.Performance;
-import org.openqa.selenium.devtools.v118.performance.model.Metric;
-import org.openqa.selenium.devtools.v118.runtime.Runtime;
+import org.openqa.selenium.devtools.v122.browser.Browser;
+import org.openqa.selenium.devtools.v122.emulation.Emulation;
+import org.openqa.selenium.devtools.v122.network.Network;
+import org.openqa.selenium.devtools.v122.network.model.Headers;
+import org.openqa.selenium.devtools.v122.performance.Performance;
+import org.openqa.selenium.devtools.v122.performance.model.Metric;
+import org.openqa.selenium.devtools.v122.runtime.Runtime;
 import org.openqa.selenium.logging.HasLogEvents;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.http.Contents;
@@ -93,6 +109,35 @@ public class DevToolsTest extends TestBase {
   }
 
   @Test
+  public void performanceMetricsWithCPUThrottling() {
+    driver.get("https://googlechrome.github.io/devtools-samples/jank/");
+
+    DevTools devTools = ((HasDevTools) driver).getDevTools();
+    devTools.createSession();
+    devTools.send(Performance.enable(Optional.empty()));
+
+    List<Metric> metricList = devTools.send(Performance.getMetrics());
+    Metric heapCheckOne =
+        metricList.stream()
+            .filter(metric -> "JSHeapUsedSize".equals(metric.getName()))
+            .findFirst()
+            .orElse(new Metric("JSHeapUsedSize", 0));
+
+    devTools.send(Emulation.setCPUThrottlingRate(4));
+    for (int i = 0; i < 15; i++) {
+      driver.findElement(By.className("add")).click();
+    }
+
+    metricList = devTools.send(Performance.getMetrics());
+    Metric heapCheckTwo = metricList.stream()
+      .filter(metric -> "JSHeapUsedSize".equals(metric.getName()))
+      .findFirst()
+      .orElse(new Metric("JSHeapUsedSize", 0));
+
+    Assertions.assertTrue(heapCheckOne.getValue().intValue() < heapCheckTwo.getValue().intValue());
+  }
+
+    @Test
   public void basicAuthenticationCdpApi() {
     DevTools devTools = ((HasDevTools) driver).getDevTools();
     devTools.createSession();
@@ -108,6 +153,20 @@ public class DevToolsTest extends TestBase {
     Assertions.assertEquals(
         "Congratulations! You must have the proper credentials.",
         driver.findElement(By.tagName("p")).getText());
+  }
+
+  @Test
+  public void basicAuthenticationBidiApi() {
+    Predicate<URI> uriPredicate = uri -> uri.toString().contains("herokuapp.com");
+    Supplier<Credentials> authentication = UsernameAndPassword.of("admin", "admin");
+
+    ((HasAuthentication) driver).register(uriPredicate, authentication);
+
+    driver.get("https://the-internet.herokuapp.com/basic_auth");
+
+    String successMessage = "Congratulations! You must have the proper credentials.";
+    WebElement elementMessage = driver.findElement(By.tagName("p"));
+    Assertions.assertEquals(successMessage, elementMessage.getText());
   }
 
   @Test
@@ -167,21 +226,6 @@ public class DevToolsTest extends TestBase {
     driver.findElement(By.id("file-2")).click();
 
     Assertions.assertDoesNotThrow(() -> wait.until(_d -> completed));
-  }
-
-  @Test
-  @Disabled("For some reason, this one does not work")
-  public void basicAuthenticationBidiApi() {
-    Predicate<URI> uriPredicate = uri -> uri.toString().contains("herokuapp.com");
-    Supplier<Credentials> authentication = UsernameAndPassword.of("admin", "admin");
-
-    ((HasAuthentication) driver).register(uriPredicate, authentication);
-
-    driver.get("https://the-internet.herokuapp.com/basic_auth");
-
-    String successMessage = "Congratulations! You must have the proper credentials.";
-    WebElement elementMessage = driver.findElement(By.tagName("p"));
-    Assertions.assertEquals(successMessage, elementMessage.getText());
   }
 
   @Test

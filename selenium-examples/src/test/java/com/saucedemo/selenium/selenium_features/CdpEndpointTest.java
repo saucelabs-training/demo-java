@@ -2,9 +2,18 @@ package com.saucedemo.selenium.selenium_features;
 
 import com.google.common.collect.ImmutableMap;
 import com.saucedemo.selenium.TestBase;
-import java.util.*;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.*;
+
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.chromium.HasCdp;
 import org.openqa.selenium.remote.Augmenter;
 
