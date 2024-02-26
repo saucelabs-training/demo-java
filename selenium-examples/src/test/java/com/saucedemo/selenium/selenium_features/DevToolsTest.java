@@ -275,6 +275,22 @@ public class DevToolsTest extends TestBase {
   }
 
   @Test
+  public void elementsMutation() {
+    driver.get("https://the-internet.herokuapp.com/dynamic_controls");
+
+    CopyOnWriteArrayList<WebElement> mutations = new CopyOnWriteArrayList<>();
+    ((HasLogEvents) driver).onLogEvent(domMutation(e -> mutations.add(e.getElement())));
+
+    driver.findElement(By.cssSelector("#checkbox-example > button")).click();
+    wait.until(_d -> !mutations.isEmpty());
+
+    driver.findElement(By.cssSelector("#checkbox-example > button")).click();
+    wait.until(_d -> mutations.size() > 1);
+
+    Assertions.assertEquals(mutations.size(), 2);
+  }
+
+  @Test
   public void consoleLogsBidiApi() {
     driver.get("https://www.selenium.dev/selenium/web/bidi/logEntryAdded.html");
 
