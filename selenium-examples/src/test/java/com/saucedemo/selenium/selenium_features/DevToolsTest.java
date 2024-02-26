@@ -1,12 +1,23 @@
 package com.saucedemo.selenium.selenium_features;
 
+import static com.google.common.net.MediaType.JPEG;
 import static org.openqa.selenium.devtools.events.CdpEventTypes.consoleEvent;
 import static org.openqa.selenium.devtools.events.CdpEventTypes.domMutation;
+import static org.openqa.selenium.remote.http.HttpMethod.DELETE;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.net.MediaType;
 import com.saucedemo.selenium.TestBase;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.HashMap;
@@ -43,14 +54,29 @@ import org.openqa.selenium.devtools.v122.performance.model.Metric;
 import org.openqa.selenium.devtools.v122.runtime.Runtime;
 import org.openqa.selenium.logging.HasLogEvents;
 import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.http.ClientConfig;
 import org.openqa.selenium.remote.http.Contents;
 import org.openqa.selenium.remote.http.Filter;
+import org.openqa.selenium.remote.http.HttpClient;
+import org.openqa.selenium.remote.http.HttpMethod;
+import org.openqa.selenium.remote.http.HttpRequest;
 import org.openqa.selenium.remote.http.HttpResponse;
+import org.openqa.selenium.remote.http.Routable;
 import org.openqa.selenium.remote.http.Route;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DevToolsTest extends TestBase {
   WebDriverWait wait;
+
+  private static URL APP_URL;
+
+  static {
+    try {
+      APP_URL = new URL("https://visual-todo-app-84499c59b74b.herokuapp.com");
+    } catch (MalformedURLException ignore) {
+      // fall off
+    }
+  }
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
@@ -60,6 +86,13 @@ public class DevToolsTest extends TestBase {
 
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     driver = new Augmenter().augment(driver);
+
+    ClientConfig clientConfig = ClientConfig.defaultConfig().baseUrl(APP_URL);
+    HttpResponse response;
+    try (HttpClient client = HttpClient.Factory.createDefault().createClient(clientConfig)) {
+      response = client.execute(new HttpRequest(DELETE, APP_URL.toString() + "/items"));
+    }
+    Assertions.assertEquals(200, response.getStatus());
   }
 
   @Test
@@ -296,5 +329,64 @@ public class DevToolsTest extends TestBase {
 
     WebElement body = driver.findElement(By.tagName("body"));
     Assertions.assertEquals("Creamy, delicious cheese!", body.getText());
+  }
+
+  @Test
+  void replaceImage() throws IOException {
+    String item = "Buy rice";
+    Path path = Paths.get("src/test/resources/cat-and-dog.jpg");
+    byte[] sauceBotImage = Files.readAllBytes(path);
+    Routable replaceImage = Route
+      .matching(req -> req.getUri().contains("unsplash.com"))
+      .to(() -> req -> new HttpResponse()
+        .addHeader("Content-Type", JPEG.toString())
+        .setContent(Contents.bytes(sauceBotImage)));
+
+    try (NetworkInterceptor ignore = new NetworkInterceptor(driver, replaceImage)) {
+      driver.get(APP_URL.toString());
+
+      String inputFieldLocator = "input[data-testid='new-item-text']";
+      WebElement inputField = wait.until(presenceOfElementLocated(By.cssSelector(inputFieldLocator)));
+      inputField.sendKeys(item);
+
+      driver.findElement(By.cssSelector("button[data-testid='new-item-button']")).click();
+
+      String itemLocator = String.format("div[data-testid='%s']", item);
+      List<WebElement> addedItem = wait.until(presenceOfAllElementsLocatedBy(By.cssSelector(itemLocator)));
+
+      Assertions.assertEquals(1, addedItem.size());
+    }
+  }
+
+  @Test
+  void replacingResponse() {
+    String item = "Clean the bathroom";
+    String mockedItem = "Go to the park";
+
+    Routable apiPost = Route
+      .matching(req -> req.getUri().contains("items") && req.getMethod().equals(HttpMethod.POST))
+      .to(() -> req -> new HttpResponse()
+        .addHeader("Content-Type", "application/json; charset=utf-8")
+        .setStatus(200)
+        .setContent(
+          Contents.asJson(
+            ImmutableMap.of("id", "f2a5514c-f451-43a6-825c-8753a2566d6e",
+                            "name", mockedItem,
+                            "completed", false))));
+
+    try (NetworkInterceptor ignore = new NetworkInterceptor(driver, apiPost)) {
+      driver.get(APP_URL.toString());
+
+      String inputFieldLocator = "input[data-testid='new-item-text']";
+      WebElement inputField = wait.until(presenceOfElementLocated(By.cssSelector(inputFieldLocator)));
+      inputField.sendKeys(item);
+
+      driver.findElement(By.cssSelector("button[data-testid='new-item-button']")).click();
+
+      String itemLocator = String.format("div[data-testid='%s']", mockedItem);
+      List<WebElement> addedItem = wait.until(presenceOfAllElementsLocatedBy(By.cssSelector(itemLocator)));
+
+      Assertions.assertEquals(1, addedItem.size());
+    }
   }
 }
