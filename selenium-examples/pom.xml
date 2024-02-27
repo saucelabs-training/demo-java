@@ -19,6 +19,13 @@
         </license>
     </licenses>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <properties>
         <surefire.parallel>10</surefire.parallel>
         <maven.compiler.source>11</maven.compiler.source>
@@ -50,6 +57,11 @@
             <artifactId>selenium-logger</artifactId>
             <version>2.4.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.blibli-badak</groupId>
+            <artifactId>selenium-har-util</artifactId>
+            <version>1.0.9</version>
         </dependency>
     </dependencies>
 

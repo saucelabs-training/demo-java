@@ -9,6 +9,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.net.MediaType;
+
+import com.blibli.oss.qa.util.services.NetworkListener;
 import com.saucedemo.selenium.TestBase;
 
 import java.io.IOException;
@@ -405,4 +407,13 @@ public class DevToolsTest extends TestBase {
       Assertions.assertEquals(1, addedItem.size());
     }
   }
+
+  @Test
+  void createHarFile() {
+    NetworkListener networkListener = new NetworkListener(driver, "har.har");
+    networkListener.start();
+    driver.get("https://saucelabs.com");
+    networkListener.createHarFile();
+  }
+
 }
