@@ -2,14 +2,24 @@ apiVersion: v1alpha
 kind: imagerunner
 sauce:
   region: us-west-1
+  # tunnel: 
+    # name: mdonovan2010_tunnel
 suites:
   - name: Desktop Tests
     workload: webdriver
-    image: $DOCKER_USERNAME/$DOCKER_IMAGE_NAME:$DOCKER_TAG
+    image: mikedonovan1987/java-orchestrate-final:0.0.5    
+    # can be c1m1, c2m2, c3m3
+    resourceProfile: c3m3
     imagePullAuth:
       user: $DOCKER_USERNAME
       token: $DOCKER_PASSWORD
+    # entrypoint: mvn -o test -pl best-practice -Dtest=DesktopTests -Dhttp.proxyHost=host.sauceconnect.internal -Dhttp.proxyPort=1080
     entrypoint: mvn -o test -pl best-practice -Dtest=DesktopTests
+    env:
+      SAUCE_ENDPOINT: https://ondemand.us-west-1.saucelabs.com/wd/hub
+      PRIVATE_API_CALL: false
+      LOGIN_LOOPS: 20
+      # MAVEN_OPTS: "-Dhttp.proxyHost=host.sauceconnect.internal -Dhttp.proxyPort=1080"    
     artifacts:
       - "/workdir/best-practice/target/surefire-reports/*"
 

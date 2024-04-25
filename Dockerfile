@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-8
+FROM maven:3.8.3-openjdk-17
 ARG USER_HOME_DIR="/root"
 WORKDIR /workdir
 COPY . .
