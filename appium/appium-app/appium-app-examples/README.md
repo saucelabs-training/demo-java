@@ -9,3 +9,4 @@ This folder contains Appium examples
 * [Upload and download file](./src/test/java/com/examples/up_download_file)
 * [Using deep link](./src/test/java/com/examples/deep_link)
 * [Test your allowlisting app](./src/test/java/com/examples/allowlist)
+* [Using Appium Image Selectors](./src/test/java/com/examples/find_by_image)

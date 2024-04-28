@@ -56,17 +56,15 @@ public class IOSNativeAppTest {
         }
 
         // For all capabilities please check
-        // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
+        // https://appium.io/docs/en/2.0/guides/caps/
         // Use the platform configuration https://saucelabs.com/platform/platform-configurator#/
         // to find the simulators/real device names, OS versions and appium versions you can use for your testings
-
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("appium:automationName", "XCuiTest");
         if (rdc.equals("true")) {
             //Allocate any avilable iPhone device with version 14
             capabilities.setCapability("appium:deviceName", "iPhone.*");
             appName = "SauceLabs-Demo-App.ipa";
-
             sauceOptions.setCapability("resigningEnabled", true);
             sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
         }

@@ -60,7 +60,7 @@ public class AndroidNativeAppTest {
         }
 
         // For all capabilities please check
-        // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
+        // https://appium.io/docs/en/2.0/guides/caps/
         // Use the platform configuration https://saucelabs.com/platform/platform-configurator#/
         // to find the emulators/real devices names, OS versions and appium versions you can use for your testings
 
