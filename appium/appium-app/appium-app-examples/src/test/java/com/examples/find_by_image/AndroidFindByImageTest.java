@@ -67,16 +67,10 @@ public class AndroidFindByImageTest {
         // to find the emulators/real devices names, OS versions and appium versions you can use for your testings
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("appium:automationName", "UiAutomator2");
-        if (rdc.equals("true")) {
-            capabilities.setCapability("appium:deviceName", "^Samsung.*");
-            capabilities.setCapability("appium:platformVersion", "1[2-4]");
-            sauceOptions.setCapability("resigningEnabled", true);
-            sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
-        }
-        else {
-            capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
-            capabilities.setCapability("appium:platformVersion", "13");
-        }
+        capabilities.setCapability("appium:deviceName", "^Samsung.*");
+        capabilities.setCapability("appium:platformVersion", "1[2-4]");
+        sauceOptions.setCapability("resigningEnabled", true);
+        sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
         String appName = "SauceLabs-Demo-App.apk";
         capabilities.setCapability("appium:app", "storage:filename=" +appName);
 
@@ -90,6 +84,7 @@ public class AndroidFindByImageTest {
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         capabilities.setCapability("sauce:options", sauceOptions);
 
+        // appium:settings capabilities
         MutableCapabilities settingsOptions = new MutableCapabilities();
         settingsOptions.setCapability("imageMatchThreshold", 0.4);
         settingsOptions.setCapability("getMatchedImageResult", true);
