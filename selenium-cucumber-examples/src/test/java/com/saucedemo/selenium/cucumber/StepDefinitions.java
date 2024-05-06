@@ -4,13 +4,13 @@ import com.saucelabs.saucebindings.Browser;
 import com.saucelabs.saucebindings.SaucePlatform;
 import com.saucelabs.saucebindings.SauceSession;
 import com.saucelabs.saucebindings.options.SauceOptions;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -88,7 +88,7 @@ public class StepDefinitions {
         getSession().stop(!scenario.isFailed());
     }
 
-    @Given("^I go to the login page$")
+    @Given("I go to the login page")
     public void go_to_login_page() {
         getDriver().get("https://www.saucedemo.com");
     }
@@ -96,6 +96,7 @@ public class StepDefinitions {
     @Given("I am on the inventory page")
     public void go_to_the_inventory_page(){
         getDriver().get("https://www.saucedemo.com/inventory.html");
+        login("standard_user", "secret_sauce");
     }
 
     @When("I login as a valid user")
@@ -142,7 +143,7 @@ public class StepDefinitions {
         getDriver().findElement(itemButton).click();
     }
 
-    @Then("I have (\\d) items? in my cart")
+    @Then("^I have (\\d) items? in my cart$")
     public void one_item_in_cart(Integer items) {
         String expected_items = items.toString();
 
