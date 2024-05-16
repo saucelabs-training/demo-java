@@ -31,7 +31,7 @@ public class NetworkThrottlingIosRDCTest {
     @Rule
     public TestName name = new TestName();
 
-    //This rule allows us to set test status with Junit
+    // This rule allows us to set test status with Junit
     @Rule
     public SauceAppiumTestWatcher resultReportingTestWatcher = new SauceAppiumTestWatcher();
 
@@ -39,7 +39,7 @@ public class NetworkThrottlingIosRDCTest {
     private WebDriverWait wait;
 
     @Before
-    public void setUp() throws MalformedURLException {
+    public void setUp() {
         MutableCapabilities capabilities = new MutableCapabilities();
         MutableCapabilities sauceOptions = new MutableCapabilities();
 
@@ -70,7 +70,7 @@ public class NetworkThrottlingIosRDCTest {
                 System.out.println("Running throttled custom network conditions test");
                 capabilities.setCapability("appium:app", "storage:filename=" + appName);
                 sauceOptions.setCapability("name", "Throttled custom network conditions test");
-                // Set a custom network conditions
+                // Set custom network conditions
                 sauceOptions.setCapability("networkConditions", ImmutableMap.of(
                         "downloadSpeed", 5000,
                         "uploadSpeed", 3000,
@@ -103,22 +103,22 @@ public class NetworkThrottlingIosRDCTest {
     }
 
     @Test
-    public void regularNetworkSpeedTest() throws MalformedURLException {
+    public void regularNetworkSpeedTest() {
         testNetworkConditions();
     }
 
     @Test
-    public void throttledNetworkProfileTest() throws MalformedURLException {
+    public void throttledNetworkProfileTest() {
         testNetworkConditions();
     }
 
     @Test
-    public void throttledCustomNetworkConditionsTest() throws MalformedURLException {
+    public void throttledCustomNetworkConditionsTest() {
         testNetworkConditions();
     }
 
     @Test
-    public void throttledNetworkSpeedWebTest() throws MalformedURLException {
+    public void throttledNetworkSpeedWebTest() {
         driver.get("https://www.fast.com");
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("show-more-details-link")));
