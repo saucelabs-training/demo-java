@@ -39,7 +39,7 @@ public class NetworkThrottlingIosRDCTest {
     private WebDriverWait wait;
 
     @Before
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         MutableCapabilities capabilities = new MutableCapabilities();
         MutableCapabilities sauceOptions = new MutableCapabilities();
 
@@ -94,8 +94,9 @@ public class NetworkThrottlingIosRDCTest {
 
         try {
             driver = new IOSDriver(getAppiumUrl(), capabilities);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error to create the iOS Driver: " + e.getMessage());
+            throw e;
         }
 
         // Setting the driver so that we can report results
