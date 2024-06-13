@@ -12,7 +12,7 @@
         <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>saucebindings-junit5</artifactId>
-            <version>1.0.0</version>
+            <version>1.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
