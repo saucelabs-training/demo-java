@@ -44,7 +44,7 @@ public class NetworkThrottlingIosRDCTest {
         MutableCapabilities sauceOptions = new MutableCapabilities();
 
         capabilities.setCapability("platformName", "ios");
-        capabilities.setCapability("deviceName", ".*");
+        capabilities.setCapability("appium:deviceName", ".*");
 
         // Sauce capabilities
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));

@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -46,8 +45,8 @@ public class NetworkThrottlingAndroidRDCTest {
         MutableCapabilities sauceOptions = new MutableCapabilities();
 
         capabilities.setCapability("platformName", "android");
-        capabilities.setCapability("deviceName", ".*");
-        capabilities.setCapability("automationName", "uiautomator2");
+        capabilities.setCapability("appium:deviceName", ".*");
+        capabilities.setCapability("appium:automationName", "uiautomator2");
 
         // Sauce capabilities
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
@@ -139,7 +138,6 @@ public class NetworkThrottlingAndroidRDCTest {
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(45));
         wait.until(ExpectedConditions.visibilityOfElementLocated(moreInfoButton));
-        driver.getScreenshotAs(OutputType.BASE64);
     }
 
     private URL getAppiumUrl() throws MalformedURLException {
