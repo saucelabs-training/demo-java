@@ -2,6 +2,7 @@
 This folder contains examples for using Network Throttling on real devices for:
 
 - [iOS real devices on the Sauce Labs Cloud](#run-tests-on-sauce-labs-ios-real-devices)
+- [Android real devices on the Sauce Labs Cloud](#run-tests-on-sauce-labs-android-real-devices)
 
 ## Important information
 ### Environment variables for Sauce Labs
@@ -56,4 +57,21 @@ The tests, which can be found [here](NetworkThrottlingIosRDCTest.java), will be 
 > The devices use *dynamic* allocation, meaning they will try to find an available device that matches a regular
 expression.
 > NOTE: Make sure you are in the folder `appium-app-examples` when you execute this command
-> 
+
+
+## Run tests on Sauce Labs Android real devices
+If you want to run the tests on Android Sauce Labs Real Devices then you can run the Android test with
+
+    // If using the US DC
+    mvn clean test -Dtest=NetworkThrottlingAndroidRDCTest -Dregion=us
+    
+    // If using the EU DC
+    mvn clean test -Dtest=NetworkThrottlingAndroidRDCTest -Dregion=eu
+
+The tests, which can be found [here](NetworkThrottlingAndroidRDCTest.java), will be executed on:
+
+- Any available Android device
+
+> The devices use *dynamic* allocation, meaning they will try to find an available device that matches a regular
+expression.
+> NOTE: Make sure you are in the folder `appium-app-examples` when you execute this command

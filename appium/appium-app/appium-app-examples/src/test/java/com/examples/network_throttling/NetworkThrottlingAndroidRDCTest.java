@@ -2,7 +2,8 @@ package com.examples.network_throttling;
 
 import com.google.common.collect.ImmutableMap;
 import com.helpers.SauceAppiumTestWatcher;
-import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,13 +21,13 @@ import static com.helpers.Constants.SAUCE_EU_URL;
 import static com.helpers.Constants.SAUCE_US_URL;
 import static com.helpers.Constants.region;
 
-public class NetworkThrottlingIosRDCTest {
+public class NetworkThrottlingAndroidRDCTest {
 
-    private final static By moreTabButton = By.xpath("//XCUIElementTypeButton[@name=\"More-tab-item\"]");
-    private final static By webviewButton = By.xpath("//XCUIElementTypeButton[@name=\"Webview-menu-item\"]");
-    private final static By urlInput = By.xpath("//XCUIElementTypeTextField[@value=\"https://www.website.com\"]");
-    private final static By goButton = By.xpath("//XCUIElementTypeButton[@name=\"Go To Site\"]");
-    private final static By moreInfoLink = By.xpath("//XCUIElementTypeLink[@name=\"Show more info\"]");
+    private final static By viewMenuButton = new AppiumBy.ByAccessibilityId("View menu");
+    private final static By webviewButton = By.xpath("//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/itemTV\" and @text=\"WebView\"]");
+    private final static By urlInput = By.id("com.saucelabs.mydemoapp.android:id/urlET");
+    private final static By goButton = new AppiumBy.ByAccessibilityId("Tap to view content of given url");
+    private final static By moreInfoButton = new AppiumBy.ByAccessibilityId("Show more info");
 
     @Rule
     public TestName name = new TestName();
@@ -35,7 +36,7 @@ public class NetworkThrottlingIosRDCTest {
     @Rule
     public SauceAppiumTestWatcher resultReportingTestWatcher = new SauceAppiumTestWatcher();
 
-    private IOSDriver driver;
+    private AndroidDriver driver;
     private WebDriverWait wait;
 
     @Before
@@ -43,14 +44,16 @@ public class NetworkThrottlingIosRDCTest {
         MutableCapabilities capabilities = new MutableCapabilities();
         MutableCapabilities sauceOptions = new MutableCapabilities();
 
-        capabilities.setCapability("platformName", "ios");
+        capabilities.setCapability("platformName", "android");
         capabilities.setCapability("appium:deviceName", ".*");
+        capabilities.setCapability("appium:automationName", "uiautomator2");
 
         // Sauce capabilities
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.setCapability("appiumVersion", "latest");
 
-        String appName = "SauceLabs-Demo-App.ipa";
+        String appName = "SauceLabs-Demo-App.apk";
 
         String testName = name.getMethodName();
         switch (testName) {
@@ -80,7 +83,7 @@ public class NetworkThrottlingIosRDCTest {
                 break;
             case "throttledNetworkSpeedWebTest":
                 System.out.println("Running throttled 2G Slow web test");
-                capabilities.setCapability("browserName", "Safari");
+                capabilities.setCapability("browserName", "Chrome");
                 sauceOptions.setCapability("name", "Throttled 2G Slow web test");
                 // Set a predefined network profile
                 sauceOptions.setCapability("networkProfile", "2G");
@@ -93,9 +96,9 @@ public class NetworkThrottlingIosRDCTest {
         capabilities.setCapability("sauce:options", sauceOptions);
 
         try {
-            driver = new IOSDriver(getAppiumUrl(), capabilities);
-        } catch (Exception e) {
-            System.out.println("Error to create the iOS Driver: " + e.getMessage());
+            driver = new AndroidDriver(getAppiumUrl(), capabilities);
+        } catch (Exception e){
+            System.out.println("Error to create the Android Driver: " + e.getMessage());
             throw e;
         }
 
@@ -128,13 +131,13 @@ public class NetworkThrottlingIosRDCTest {
     private void testNetworkConditions() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(moreTabButton)).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(viewMenuButton)).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(webviewButton)).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(urlInput)).sendKeys("fast.com");
         wait.until(ExpectedConditions.presenceOfElementLocated(goButton)).click();
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(moreInfoLink));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(45));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(moreInfoButton));
     }
 
     private URL getAppiumUrl() throws MalformedURLException {
