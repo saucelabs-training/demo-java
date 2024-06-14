@@ -1,0 +1,15 @@
+from maven
+
+WORKDIR home/build
+
+env HOME=/home
+
+ADD . .
+
+RUN mvn dependency:resolve
+
+RUN mvn install -DskipTests
+
+RUN mvn test -pl best-practice -Dtest=NoopTests
+
+ENTRYPOINT /home/build/docker-entrypoint.sh
