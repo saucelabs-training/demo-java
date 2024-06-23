@@ -15,6 +15,8 @@
         <sauce_junit5.version>1.0.0</sauce_junit5.version>
         <sauce_junit4.version>1.0.1</sauce_junit4.version>
         <sauce_testng.version>1.0.0</sauce_testng.version>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
         <maven.surefire.version>3.0.0-M5</maven.surefire.version>
     </properties>
 
@@ -57,10 +59,5 @@
             </plugin>
         </plugins>
     </build>
-
-<properties>
-   <maven.compiler.source>18</maven.compiler.source>
-   <maven.compiler.target>18</maven.compiler.target>
- </properties>
 
 </project>
