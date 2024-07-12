@@ -1,20 +1,21 @@
 package com.saucedemo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * All Tests need to extend this class to get the correct behavior.
  */
 public abstract class AbstractTestBase {
     public static final String buildName = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-
+    protected static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
+    protected static final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
+    protected static final String SCREENER_API_KEY = System.getenv("SCREENER_API_KEY");
     @Rule
     public TestName testName = new TestName() {
         public String getMethodName() {
@@ -23,11 +24,8 @@ public abstract class AbstractTestBase {
     };
     @Rule
     public SauceTestWatcher resultReportingTestWatcher = new SauceTestWatcher();
-
-    protected static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
-    protected static final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
-    protected static final String SCREENER_API_KEY = System.getenv("SCREENER_API_KEY");
     protected RemoteWebDriver driver;
+
 
     /**
      * Custom TestWatcher for Sauce Labs projects.
