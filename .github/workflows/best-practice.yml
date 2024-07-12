@@ -8,11 +8,11 @@ on:
     branches: [ main ]
     paths:
       - '**/best-practice/**'
-      - 'pom.xml'
+      - 'pom.*'
   pull_request:
     paths:
       - '**/best-practice/**'
-      - 'pom.xml'
+      - 'pom.*'
 
 jobs:
   build:
