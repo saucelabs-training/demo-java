@@ -11,9 +11,11 @@ on:
     branches: [ main ]
     paths:
       - '**/selenium-examples/**'
+      - 'pom.*'
   pull_request:
     paths:
       - '**/selenium-examples/**'
+      - 'pom.*'
 
 jobs:
   formatting:

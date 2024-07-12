@@ -11,9 +11,11 @@ on:
     branches: [ main ]
     paths:
       - '**/selenium-testng-examples/**'
+      - 'pom.*'
   pull_request:
     paths:
       - '**/selenium-testng-examples/**'
+      - 'pom.*'
 
 jobs:
   build:
