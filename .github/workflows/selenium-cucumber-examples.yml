@@ -4,24 +4,31 @@
 name: Cucumber Tests
 
 on:
+  schedule:
+    - cron: '35 19 * * *'
+  workflow_dispatch:
   push:
     branches: [ main ]
+    paths:
+      - '**/selenium-cucumber-examples/**'
   pull_request:
+    paths:
+      - '**/selenium-cucumber-examples/**'
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ ubuntu-latest ]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Java
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: Run tests
-      env:
-        SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-        SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-      run: mvn test -pl selenium-cucumber-examples -X
+      - uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Run tests
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+        run: mvn test -pl selenium-cucumber-examples -X

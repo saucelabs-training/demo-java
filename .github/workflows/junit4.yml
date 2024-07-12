@@ -4,9 +4,17 @@
 name: JUnit 4 Tests
 
 on:
+  schedule:
+    - cron: '35 23 * * *'
+  workflow_dispatch:
   push:
     branches: [ main ]
-  # pull_request:
+    paths:
+      - '**/selenium-junit4-examples/**'
+  pull_request:
+    paths:
+      - '**/selenium-junit4-examples/**'
+
 
 jobs:
   formatting:

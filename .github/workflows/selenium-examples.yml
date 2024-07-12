@@ -4,9 +4,16 @@
 name: Selenium JUnit 5 Tests
 
 on:
+  schedule:
+    - cron: '50 23 * * *'
+  workflow_dispatch:
   push:
     branches: [ main ]
-  # pull_request:
+    paths:
+      - '**/selenium-examples/**'
+  pull_request:
+    paths:
+      - '**/selenium-examples/**'
 
 jobs:
   formatting:
