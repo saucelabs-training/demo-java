@@ -3,9 +3,16 @@
 name: Real Devices
 
 on:
+  schedule:
+    - cron: '35 20 * * *'
+  workflow_dispatch:
   push:
     branches: [ main ]
+    paths:
+      - '**/appium/**'
   pull_request:
+    paths:
+      - '**/appium/**'
 
 env:
   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
@@ -16,14 +23,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ ubuntu-latest ]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Java
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: RDC Native App Android
-      run: mvn test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=eu -X
-    - name: RDC Native App IOS
-      run: mvn test -pl appium/appium-app/appium-app-examples  -Dtest=IOSNativeAppTest -Dregion=eu -X
+      - uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: RDC Native App Android
+        run: mvn test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=eu -X
+      - name: RDC Native App IOS
+        run: mvn test -pl appium/appium-app/appium-app-examples  -Dtest=IOSNativeAppTest -Dregion=eu -X

@@ -4,9 +4,16 @@
 name: Gitpod Tests Tests
 
 on:
+  schedule:
+    - cron: '35 21 * * *'
+  workflow_dispatch:
   push:
     branches: [ main ]
+    paths:
+      - '**/gitpod/**'
   pull_request:
+    paths:
+      - '**/gitpod/**'
 
 jobs:
   # appium
@@ -16,16 +23,16 @@ jobs:
       # !!!IMPORTANT!!! THIS MUST ALWAYS MATCH WHAT IS IN GITPOD.YML; SAUCE LABDS CUSTOMERS RELY ON THIS!!!!:
       image: maven:3.6.3-jdk-11
     steps:
-    - uses: actions/checkout@v2
-    - name: Run tests
-      working-directory: ./gitpod
-      env:
-        SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-        SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-        BUILD: 'selenium-build-whatever'
-        BROWSER_NAME: chrome
-      # !!!IMPORTANT!!! THIS MUST ALWAYS MATCH WHAT IS IN GITPOD.YML; SAUCE LABDS CUSTOMERS RELY ON THIS!!!!:
-      run: |
-        mvn dependency:resolve
-        mvn test-compile
-        mvn test -Dtest=SeleniumTest
+      - uses: actions/checkout@v2
+      - name: Run tests
+        working-directory: ./gitpod
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+          BUILD: 'selenium-build-whatever'
+          BROWSER_NAME: chrome
+        # !!!IMPORTANT!!! THIS MUST ALWAYS MATCH WHAT IS IN GITPOD.YML; SAUCE LABDS CUSTOMERS RELY ON THIS!!!!:
+        run: |
+          mvn dependency:resolve
+          mvn test-compile
+          mvn test -Dtest=SeleniumTest
