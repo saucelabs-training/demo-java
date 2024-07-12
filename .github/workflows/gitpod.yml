@@ -20,10 +20,14 @@ jobs:
   selenium:
     runs-on: ubuntu-latest
     container:
-      # !!!IMPORTANT!!! THIS MUST ALWAYS MATCH WHAT IS IN GITPOD.YML; SAUCE LABDS CUSTOMERS RELY ON THIS!!!!:
+      # !!!IMPORTANT!!! THIS MUST ALWAYS MATCH WHAT IS IN GITPOD.YML; SAUCE LABS CUSTOMERS RELY ON THIS!!!!:
       image: maven:3.6.3-jdk-11
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
       - name: Run tests
         working-directory: ./gitpod
         env:
