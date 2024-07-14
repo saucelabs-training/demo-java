@@ -2,12 +2,10 @@ package com.saucedemo.selenium.selenium_features;
 
 import com.google.common.collect.ImmutableMap;
 import com.saucedemo.selenium.TestBase;
-
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

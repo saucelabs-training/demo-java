@@ -7,12 +7,10 @@ import static org.openqa.selenium.remote.http.HttpMethod.DELETE;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
+import com.blibli.oss.qa.util.services.NetworkListener;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.net.MediaType;
-
-import com.blibli.oss.qa.util.services.NetworkListener;
 import com.saucedemo.selenium.TestBase;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -31,7 +29,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,8 +65,6 @@ import org.openqa.selenium.remote.http.Route;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DevToolsTest extends TestBase {
-  WebDriverWait wait;
-
   private static URL APP_URL;
 
   static {
@@ -79,6 +74,8 @@ public class DevToolsTest extends TestBase {
       // fall off
     }
   }
+
+  WebDriverWait wait;
 
   @BeforeEach
   public void setup(TestInfo testInfo) {
@@ -164,15 +161,16 @@ public class DevToolsTest extends TestBase {
     }
 
     metricList = devTools.send(Performance.getMetrics());
-    Metric heapCheckTwo = metricList.stream()
-      .filter(metric -> "JSHeapUsedSize".equals(metric.getName()))
-      .findFirst()
-      .orElse(new Metric("JSHeapUsedSize", 0));
+    Metric heapCheckTwo =
+        metricList.stream()
+            .filter(metric -> "JSHeapUsedSize".equals(metric.getName()))
+            .findFirst()
+            .orElse(new Metric("JSHeapUsedSize", 0));
 
     Assertions.assertTrue(heapCheckOne.getValue().intValue() < heapCheckTwo.getValue().intValue());
   }
 
-    @Test
+  @Test
   public void basicAuthenticationCdpApi() {
     DevTools devTools = ((HasDevTools) driver).getDevTools();
     devTools.createSession();
@@ -354,23 +352,28 @@ public class DevToolsTest extends TestBase {
     String item = "Buy rice";
     Path path = Paths.get("src/test/resources/cat-and-dog.jpg");
     byte[] sauceBotImage = Files.readAllBytes(path);
-    Routable replaceImage = Route
-      .matching(req -> req.getUri().contains("unsplash.com"))
-      .to(() -> req -> new HttpResponse()
-        .addHeader("Content-Type", JPEG.toString())
-        .setContent(Contents.bytes(sauceBotImage)));
+    Routable replaceImage =
+        Route.matching(req -> req.getUri().contains("unsplash.com"))
+            .to(
+                () ->
+                    req ->
+                        new HttpResponse()
+                            .addHeader("Content-Type", JPEG.toString())
+                            .setContent(Contents.bytes(sauceBotImage)));
 
     try (NetworkInterceptor ignore = new NetworkInterceptor(driver, replaceImage)) {
       driver.get(APP_URL.toString());
 
       String inputFieldLocator = "input[data-testid='new-item-text']";
-      WebElement inputField = wait.until(presenceOfElementLocated(By.cssSelector(inputFieldLocator)));
+      WebElement inputField =
+          wait.until(presenceOfElementLocated(By.cssSelector(inputFieldLocator)));
       inputField.sendKeys(item);
 
       driver.findElement(By.cssSelector("button[data-testid='new-item-button']")).click();
 
       String itemLocator = String.format("div[data-testid='%s']", item);
-      List<WebElement> addedItem = wait.until(presenceOfAllElementsLocatedBy(By.cssSelector(itemLocator)));
+      List<WebElement> addedItem =
+          wait.until(presenceOfAllElementsLocatedBy(By.cssSelector(itemLocator)));
 
       Assertions.assertEquals(1, addedItem.size());
     }
@@ -381,28 +384,38 @@ public class DevToolsTest extends TestBase {
     String item = "Clean the bathroom";
     String mockedItem = "Go to the park";
 
-    Routable apiPost = Route
-      .matching(req -> req.getUri().contains("items") && req.getMethod().equals(HttpMethod.POST))
-      .to(() -> req -> new HttpResponse()
-        .addHeader("Content-Type", "application/json; charset=utf-8")
-        .setStatus(200)
-        .setContent(
-          Contents.asJson(
-            ImmutableMap.of("id", "f2a5514c-f451-43a6-825c-8753a2566d6e",
-                            "name", mockedItem,
-                            "completed", false))));
+    Routable apiPost =
+        Route.matching(
+                req -> req.getUri().contains("items") && req.getMethod().equals(HttpMethod.POST))
+            .to(
+                () ->
+                    req ->
+                        new HttpResponse()
+                            .addHeader("Content-Type", "application/json; charset=utf-8")
+                            .setStatus(200)
+                            .setContent(
+                                Contents.asJson(
+                                    ImmutableMap.of(
+                                        "id",
+                                        "f2a5514c-f451-43a6-825c-8753a2566d6e",
+                                        "name",
+                                        mockedItem,
+                                        "completed",
+                                        false))));
 
     try (NetworkInterceptor ignore = new NetworkInterceptor(driver, apiPost)) {
       driver.get(APP_URL.toString());
 
       String inputFieldLocator = "input[data-testid='new-item-text']";
-      WebElement inputField = wait.until(presenceOfElementLocated(By.cssSelector(inputFieldLocator)));
+      WebElement inputField =
+          wait.until(presenceOfElementLocated(By.cssSelector(inputFieldLocator)));
       inputField.sendKeys(item);
 
       driver.findElement(By.cssSelector("button[data-testid='new-item-button']")).click();
 
       String itemLocator = String.format("div[data-testid='%s']", mockedItem);
-      List<WebElement> addedItem = wait.until(presenceOfAllElementsLocatedBy(By.cssSelector(itemLocator)));
+      List<WebElement> addedItem =
+          wait.until(presenceOfAllElementsLocatedBy(By.cssSelector(itemLocator)));
 
       Assertions.assertEquals(1, addedItem.size());
     }
@@ -415,5 +428,4 @@ public class DevToolsTest extends TestBase {
     driver.get("https://saucelabs.com");
     networkListener.createHarFile();
   }
-
 }
