@@ -1,12 +1,11 @@
 package com.saucedemo.selenium.selenium_features;
 
 import com.saucedemo.selenium.TestBase;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.ie.InternetExplorerOptions;
-
-import java.util.Map;
 
 public class EdgeIE extends TestBase {
   @BeforeEach
