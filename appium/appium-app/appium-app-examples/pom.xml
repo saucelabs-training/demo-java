@@ -18,7 +18,6 @@
     <selenium.version>4.14.1</selenium.version>
   </properties>
 
-  <!--    You will find Junit and Appium configration in the project level pom.xml -->
   <dependencies>
 
     <!-- Apache Commons Logging -->

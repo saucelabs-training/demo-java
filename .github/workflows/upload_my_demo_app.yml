@@ -1,0 +1,60 @@
+name: Upload My Demo App monthly
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 */30 * *'
+
+env:
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+
+jobs:
+  upload_android:
+    name: Upload My Demo App Android
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        datacenter: [ eu-central-1, us-west-1 ]
+    steps:
+      - name: Download My Demo App Android
+        uses: wei/curl@v1.1.1
+        with:
+          args: -L -o SauceLabs-Demo-App.apk https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.2/mda-2.0.2-23.apk
+      - name: Upload My Demo App Android
+        uses: wei/curl@v1.1.1
+        with:
+          args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"SauceLabs-Demo-App.apk"' --form 'name="SauceLabs-Demo-App.apk"'
+
+  download_ios_zip:
+    name: Upload My Demo App iOS zip
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        datacenter: [ eu-central-1, us-west-1 ]
+    steps:
+      - name: Download My Demo App iOS zip
+        uses: wei/curl@v1.1.1
+        with:
+          args: -L -o SauceLabs-Demo-App.Simulator.zip https://github.com/saucelabs/my-demo-app-ios/releases/download/2.0.2/SauceLabs-Demo-App.Simulator.zip
+      - name: Upload My Demo App iOS zip
+        uses: wei/curl@v1.1.1
+        with:
+          args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"SauceLabs-Demo-App.Simulator.zip"' --form 'name="SauceLabs-Demo-App.Simulator.zip"'
+
+  download_ios_ipa:
+    name: Upload My Demo App iOS ipa
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        datacenter: [ eu-central-1, us-west-1 ]
+    steps:
+      - name: Download My Demo App iOS ipa
+        uses: wei/curl@v1.1.1
+        with:
+          args: -L -o SauceLabs-Demo-App.ipa https://github.com/saucelabs/my-demo-app-ios/releases/download/2.0.2/SauceLabs-Demo-App.ipa
+      - name: Upload My Demo App iOS ipa
+        uses: wei/curl@v1.1.1
+        with:
+          args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"SauceLabs-Demo-App.ipa"' --form 'name="SauceLabs-Demo-App.ipa"'
