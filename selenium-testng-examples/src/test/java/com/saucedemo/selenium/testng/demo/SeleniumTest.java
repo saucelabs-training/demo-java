@@ -13,36 +13,35 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Example of running a TestNG test without using Sauce Bindings.
- */
+/** Example of running a TestNG test without using Sauce Bindings. */
 public class SeleniumTest {
-    protected RemoteWebDriver driver;
 
-    @BeforeMethod
-    public void setup(Method method) throws MalformedURLException {
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-        sauceOptions.setCapability("name", method.getName());
-        sauceOptions.setCapability("browserVersion", "latest");
+  protected RemoteWebDriver driver;
 
-        ChromeOptions options = new ChromeOptions();
-        options.setCapability("sauce:options", sauceOptions);
-        URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
+  @BeforeMethod
+  public void setup(Method method) throws MalformedURLException {
+    MutableCapabilities sauceOptions = new MutableCapabilities();
+    sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
+    sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+    sauceOptions.setCapability("name", method.getName());
+    sauceOptions.setCapability("browserVersion", "latest");
 
-        driver = new RemoteWebDriver(url, options);
-    }
+    ChromeOptions options = new ChromeOptions();
+    options.setCapability("sauce:options", sauceOptions);
+    URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
 
-    @Test
-    public void correctTitle() {
-        driver.navigate().to("https://www.saucedemo.com");
-        Assert.assertEquals("Swag Labs", driver.getTitle());
-    }
+    driver = new RemoteWebDriver(url, options);
+  }
 
-    @AfterMethod
-    public void teardown(ITestResult result) {
-        String status = result.isSuccess() ? "passed" : "failed";
-        driver.executeScript("sauce:job-result=" + status);
-    }
+  @Test
+  public void correctTitle() {
+    driver.navigate().to("https://www.saucedemo.com");
+    Assert.assertEquals("Swag Labs", driver.getTitle());
+  }
+
+  @AfterMethod
+  public void teardown(ITestResult result) {
+    String status = result.isSuccess() ? "passed" : "failed";
+    driver.executeScript("sauce:job-result=" + status);
+  }
 }
