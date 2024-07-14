@@ -1,6 +1,7 @@
 package com.saucedemo.selenium.selenium_features;
 
 import com.saucedemo.selenium.TestBase;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,8 +13,6 @@ import org.openqa.selenium.firefox.FirefoxCommandContext;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.HasContext;
 import org.openqa.selenium.remote.Augmenter;
-
-import java.util.Map;
 
 public class FirefoxContextTest extends TestBase {
 
