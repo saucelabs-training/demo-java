@@ -34,7 +34,7 @@ public class AuthenticationTest extends TestBase {
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
 
     Assert.assertEquals(
-        "https://www.saucedemo.com/inventory.html", driver.getCurrentUrl(), "Login Not Successful");
+        "Login Not Successful", "https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
   }
 
   @Test
@@ -49,6 +49,6 @@ public class AuthenticationTest extends TestBase {
     driver.findElement(By.id("logout_sidebar_link")).click();
 
     Assert.assertEquals(
-        "https://www.saucedemo.com/", driver.getCurrentUrl(), "Logout Not Successful");
+        "Logout Not Successful", "https://www.saucedemo.com/", driver.getCurrentUrl());
   }
 }
