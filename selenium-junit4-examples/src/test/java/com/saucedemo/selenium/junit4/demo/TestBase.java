@@ -46,7 +46,8 @@ public class TestBase {
 
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-    sauceOptions.put("name", testName);
+    sauceOptions.put("name", testName.getMethodName());
+    sauceOptions.put("screenResolution", "1440x900");
     sauceOptions.put("seleniumVersion", "4.14.1");
     ((MutableCapabilities) options).setCapability("sauce:options", sauceOptions);
     ((AbstractDriverOptions<?>) options).setPlatformName("Windows 11");
