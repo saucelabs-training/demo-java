@@ -29,6 +29,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 11
+          distribution: "temurin"
       - name: Run testng tests
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
