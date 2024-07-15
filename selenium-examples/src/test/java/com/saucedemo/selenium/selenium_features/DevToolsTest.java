@@ -287,7 +287,7 @@ public class DevToolsTest extends TestBase {
     driver.findElement(By.cssSelector("#checkbox-example > button")).click();
     wait.until(_d -> mutations.size() > 1);
 
-    Assertions.assertEquals(mutations.size(), 2);
+    Assertions.assertEquals(2, mutations.size());
   }
 
   @Test
