@@ -31,14 +31,10 @@ jobs:
         with:
           java-version: 11
       - name: Run tests
-        working-directory: ./gitpod
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
           BUILD: 'selenium-build-whatever'
           BROWSER_NAME: chrome
         # !!!IMPORTANT!!! THIS MUST ALWAYS MATCH WHAT IS IN GITPOD.YML; SAUCE LABS CUSTOMERS RELY ON THIS!!!!:
-        run: |
-          mvn dependency:resolve
-          mvn test-compile
-          mvn test -Dtest=SeleniumTest
+        run: mvn test -pl gitpod
