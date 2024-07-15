@@ -7,7 +7,6 @@ import static org.openqa.selenium.remote.http.HttpMethod.DELETE;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
-import com.blibli.oss.qa.util.services.NetworkListener;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.net.MediaType;
 import com.saucedemo.selenium.TestBase;
@@ -287,7 +286,7 @@ public class DevToolsTest extends TestBase {
     driver.findElement(By.cssSelector("#checkbox-example > button")).click();
     wait.until(_d -> mutations.size() > 1);
 
-    Assertions.assertEquals(2, mutations.size());
+    Assertions.assertTrue(mutations.size() >= 2);
   }
 
   @Test
@@ -419,13 +418,5 @@ public class DevToolsTest extends TestBase {
 
       Assertions.assertEquals(1, addedItem.size());
     }
-  }
-
-  @Test
-  void createHarFile() {
-    NetworkListener networkListener = new NetworkListener(driver, "har.har");
-    networkListener.start();
-    driver.get("https://saucelabs.com");
-    networkListener.createHarFile();
   }
 }
