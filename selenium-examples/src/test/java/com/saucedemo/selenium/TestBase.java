@@ -2,7 +2,9 @@ package com.saucedemo.selenium;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -20,20 +22,24 @@ import org.openqa.selenium.remote.SessionId;
 
 public class TestBase {
 
-  public WebDriver driver;
-
-  @RegisterExtension public TestBase.SauceTestWatcher watcher = new TestBase.SauceTestWatcher();
-  protected TestInfo testInfo;
-  protected SessionId id;
-
   static {
     String buildName = "Default Build Name";
     String buildNumber = String.valueOf(System.currentTimeMillis());
     System.setProperty("build.name", buildName + ": " + buildNumber);
   }
 
+  public WebDriver driver;
+  @RegisterExtension public TestBase.SauceTestWatcher watcher = new TestBase.SauceTestWatcher();
+  protected TestInfo testInfo;
+  protected SessionId id;
+
+  public void startChromeSession(TestInfo testInfo, List<String> args) {
+    ChromeOptions options = new ChromeOptions().addArguments(args);
+    startSession(testInfo, options);
+  }
+
   public void startChromeSession(TestInfo testInfo) {
-    startSession(testInfo, new ChromeOptions());
+    startChromeSession(testInfo, new ArrayList<>());
   }
 
   public void startFirefoxSession(TestInfo testInfo) {
