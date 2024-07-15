@@ -1,6 +1,7 @@
 package com.examples.simple_example;
 
 import com.helpers.SauceAppiumTestWatcher;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -25,9 +26,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class AndroidNativeAppTest {
 
-    By productsScreenLocator = By.xpath("//*[@content-desc=\"products screen\"]");
-    By sortButtonLocator = By.xpath("//*[@content-desc=\"sort button\"]");
-    By sortModalLocator = By.xpath("//*[@content-desc=\"active option\"]");
+    By productsScreenLocator = By.id("com.saucelabs.mydemoapp.android:id/productTV");
+    By sortButtonLocator = AppiumBy.accessibilityId("Shows current sorting order and displays available sorting options");
+    By sortModalLocator = By.id("com.saucelabs.mydemoapp.android:id/sortTV");
 
 
     @Rule
@@ -59,7 +60,7 @@ public class AndroidNativeAppTest {
         }
 
         // For all capabilities please check
-        // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
+        // https://appium.io/docs/en/2.0/guides/caps/
         // Use the platform configuration https://saucelabs.com/platform/platform-configurator#/
         // to find the emulators/real devices names, OS versions and appium versions you can use for your testings
 
@@ -75,17 +76,18 @@ public class AndroidNativeAppTest {
             capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
         }
         capabilities.setCapability("appium:platformVersion", "12");
-        String appName = "Android.MyDemoAppRN.apk";
+        String appName = "SauceLabs-Demo-App.apk";
         capabilities.setCapability("appium:app", "storage:filename=" +appName);
-        capabilities.setCapability("appium:appWaitActivity","com.saucelabs.mydemoapp.rn.MainActivity");
 
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
+        sauceOptions.setCapability("appiumVersion", "latest");
         sauceOptions.setCapability("build", "myApp-job-1");
         List<String> tags = Arrays.asList("sauceDemo", "Android", "Demo");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+
 
         capabilities.setCapability("sauce:options", sauceOptions);
 

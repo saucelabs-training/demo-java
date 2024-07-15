@@ -1,0 +1,10 @@
+# List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
+image: maven:3.6.3-jdk-11
+tasks:
+  - name: Script Task
+    init: |
+      mvn dependency:resolve
+      mvn test-compile
+      cd gitpod
+    command: $MVN_COMMAND
+

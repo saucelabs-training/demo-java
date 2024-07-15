@@ -4,24 +4,46 @@
 name: Selenium JUnit 5 Tests
 
 on:
+  schedule:
+    - cron: '50 23 * * *'
+  workflow_dispatch:
   push:
     branches: [ main ]
+    paths:
+      - '**/selenium-examples/**'
+      - 'pom.*'
   pull_request:
+    paths:
+      - '**/selenium-examples/**'
+      - 'pom.*'
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+  formatting:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Run tests
-      env:
-        SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-        SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-      run: mvn test -pl selenium-examples -X
+      - uses: actions/checkout@v4
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--replace"
+          files: "selenium-examples/**/*.java"
+          skip-commit: true
+      - name: Print diffs
+        if: success() || failure()
+        run: git --no-pager diff --exit-code
+
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: "temurin"
+      - name: Run JUnit 5 tests
+        working-directory: ./selenium-examples
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+        run: mvn test
