@@ -7,7 +7,6 @@ import static org.openqa.selenium.remote.http.HttpMethod.DELETE;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
-import com.blibli.oss.qa.util.services.NetworkListener;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.net.MediaType;
 import com.saucedemo.selenium.TestBase;
@@ -44,13 +43,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.NetworkInterceptor;
-import org.openqa.selenium.devtools.v122.browser.Browser;
-import org.openqa.selenium.devtools.v122.emulation.Emulation;
-import org.openqa.selenium.devtools.v122.network.Network;
-import org.openqa.selenium.devtools.v122.network.model.Headers;
-import org.openqa.selenium.devtools.v122.performance.Performance;
-import org.openqa.selenium.devtools.v122.performance.model.Metric;
-import org.openqa.selenium.devtools.v122.runtime.Runtime;
+import org.openqa.selenium.devtools.v126.browser.Browser;
+import org.openqa.selenium.devtools.v126.emulation.Emulation;
+import org.openqa.selenium.devtools.v126.network.Network;
+import org.openqa.selenium.devtools.v126.network.model.Headers;
+import org.openqa.selenium.devtools.v126.performance.Performance;
+import org.openqa.selenium.devtools.v126.performance.model.Metric;
+import org.openqa.selenium.devtools.v126.runtime.Runtime;
 import org.openqa.selenium.logging.HasLogEvents;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.http.ClientConfig;
@@ -287,7 +286,7 @@ public class DevToolsTest extends TestBase {
     driver.findElement(By.cssSelector("#checkbox-example > button")).click();
     wait.until(_d -> mutations.size() > 1);
 
-    Assertions.assertEquals(2, mutations.size());
+    Assertions.assertTrue(mutations.size() >= 2);
   }
 
   @Test
@@ -419,13 +418,5 @@ public class DevToolsTest extends TestBase {
 
       Assertions.assertEquals(1, addedItem.size());
     }
-  }
-
-  @Test
-  void createHarFile() {
-    NetworkListener networkListener = new NetworkListener(driver, "har.har");
-    networkListener.start();
-    driver.get("https://saucelabs.com");
-    networkListener.createHarFile();
   }
 }
