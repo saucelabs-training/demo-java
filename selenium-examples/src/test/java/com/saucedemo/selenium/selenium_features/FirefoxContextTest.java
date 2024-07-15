@@ -33,7 +33,7 @@ public class FirefoxContextTest extends TestBase {
         driver
             .findElement(By.id("gws-output-pages-elements-homepage_additional_languages__als"))
             .getText();
-    Assertions.assertTrue(lang1.contains("angeboten auf"));
+    Assertions.assertTrue(lang1.contains("gibt es auch"));
 
     WebDriver augmentedDriver = new Augmenter().augment(driver);
     ((HasContext) augmentedDriver).setContext(FirefoxCommandContext.CHROME);

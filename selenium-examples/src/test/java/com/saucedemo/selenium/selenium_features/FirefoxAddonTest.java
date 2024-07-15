@@ -24,7 +24,7 @@ public class FirefoxAddonTest extends TestBase {
     WebDriver augmentedDriver = new Augmenter().augment(driver);
     String id =
         ((HasExtensions) augmentedDriver)
-            .installExtension(Paths.get("src/test/resources/selenium-example.xpi"));
+            .installExtension(Paths.get("src/test/resources/webextensions-selenium-example.xpi"));
 
     driver.get("https://www.saucedemo.com");
     WebElement injected = driver.findElement(By.id("webextensions-selenium-example"));
