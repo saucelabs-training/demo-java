@@ -37,6 +37,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 11
+          distribution: "temurin"
       - name: Run JUnit 4 Tests
         working-directory: ./selenium-junit4-examples
         env:

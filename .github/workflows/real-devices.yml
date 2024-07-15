@@ -30,6 +30,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 11
+          distribution: "temurin"
       - name: RDC Native App Android
         run: mvn test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=eu
       - name: RDC Native App IOS
