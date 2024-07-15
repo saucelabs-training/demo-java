@@ -32,7 +32,7 @@ public class AppiumTest {
   public void setup(TestInfo testInfo) throws MalformedURLException {
     String platformName = System.getenv().getOrDefault("PLATFORM_NAME", "Android");
     options = new MutableCapabilities();
-    String appName = System.getenv().getOrDefault("APP_NAME", "SauceLabs-Demo-App.apk");
+    String appName = System.getenv().getOrDefault("APP_NAME", null);
     String defaultBrowser = appName != null ? null : "Chrome";
     options.setCapability(
         "browserName", System.getenv().getOrDefault("BROWSER_NAME", defaultBrowser));
