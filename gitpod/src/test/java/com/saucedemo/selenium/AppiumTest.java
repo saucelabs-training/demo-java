@@ -32,7 +32,7 @@ public class AppiumTest {
   public void setup(TestInfo testInfo) throws MalformedURLException {
     String platformName = System.getenv().getOrDefault("PLATFORM_NAME", "Android");
     options = new MutableCapabilities();
-    String appName = System.getenv().getOrDefault("APP_NAME", null);
+    String appName = System.getenv().getOrDefault("APP_NAME", "SauceLabs-Demo-App.apk");
     String defaultBrowser = appName != null ? null : "Chrome";
     options.setCapability(
         "browserName", System.getenv().getOrDefault("BROWSER_NAME", defaultBrowser));
@@ -44,7 +44,7 @@ public class AppiumTest {
     options.setCapability(
         "appium:automationName", System.getenv().getOrDefault("AUTOMATION_NAME", "UiAutomator2"));
 
-    ArrayList<String> tags = new ArrayList();
+    ArrayList<String> tags = new ArrayList<>();
     if (System.getenv("GITPOD_WORKSPACE_ID") != null) {
       tags.add("gitpod");
     }
