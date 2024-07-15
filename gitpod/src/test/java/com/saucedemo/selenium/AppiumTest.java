@@ -37,14 +37,16 @@ public class AppiumTest {
     options.setCapability(
         "browserName", System.getenv().getOrDefault("BROWSER_NAME", defaultBrowser));
     options.setCapability("platformName", platformName);
-    options.setCapability("appium:app", "storage:filename=" + appName);
+    if (appName != null) {
+      options.setCapability("appium:app", "storage:filename=" + appName);
+    }
     options.setCapability("appium:platformVersion", System.getenv("PLATFORM_VERSION"));
     options.setCapability(
         "appium:deviceName", System.getenv().getOrDefault("DEVICE_NAME", "Google.*"));
     options.setCapability(
         "appium:automationName", System.getenv().getOrDefault("AUTOMATION_NAME", "UiAutomator2"));
 
-    ArrayList<String> tags = new ArrayList();
+    ArrayList<String> tags = new ArrayList<>();
     if (System.getenv("GITPOD_WORKSPACE_ID") != null) {
       tags.add("gitpod");
     }
