@@ -19,7 +19,7 @@ jobs:
   formatting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--replace"
@@ -32,7 +32,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
