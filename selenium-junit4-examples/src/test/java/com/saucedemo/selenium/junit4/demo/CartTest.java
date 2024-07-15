@@ -19,16 +19,16 @@ public class CartTest extends TestBase {
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
 
-    driver.findElement(By.id("item_1_title_link")).click();
+    //    driver.findElement(By.id("item_1_title_link")).click();
 
     driver
         .findElement(By.cssSelector("button[data-test='add-to-cart-sauce-labs-bolt-t-shirt']"))
         .click();
 
     Assert.assertEquals(
+        "Item not correctly added to cart",
         "1",
-        driver.findElement(By.className("shopping_cart_badge")).getText(),
-        "Item not correctly added to cart");
+        driver.findElement(By.className("shopping_cart_badge")).getText());
   }
 
   @Test
@@ -37,7 +37,6 @@ public class CartTest extends TestBase {
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
-    driver.findElement(By.id("item_1_title_link")).click();
     driver
         .findElement(By.cssSelector("button[data-test='add-to-cart-sauce-labs-bolt-t-shirt']"))
         .click();
