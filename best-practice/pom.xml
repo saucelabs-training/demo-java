@@ -12,7 +12,7 @@
   <artifactId>best-practice</artifactId>
 
   <properties>
-    <selenium.version>4.22.0</selenium.version>
+    <selenium.version>4.23.0</selenium.version>
     <appium.version>9.2.3</appium.version>
   </properties>
 
