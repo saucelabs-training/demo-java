@@ -67,13 +67,16 @@ public class AndroidNativeAppTest {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("appium:automationName", "UiAutomator2");
         if (rdc.equals("true")) {
-            //Allocate any avilable samsung device with Android version 12
+            //Allocate any available samsung device with Android version 12
             capabilities.setCapability("appium:deviceName", "Samsung.*");
             sauceOptions.setCapability("resigningEnabled", true);
             sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+            sauceOptions.setCapability("appiumVersion", "latest");
         }
         else {
             capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
+            capabilities.setCapability("appium:appWaitActivity", ".view.activities.MainActivity");
+            sauceOptions.setCapability("appiumVersion", "2.11.0");
         }
         capabilities.setCapability("appium:platformVersion", "12");
         String appName = "SauceLabs-Demo-App.apk";
@@ -81,7 +84,7 @@ public class AndroidNativeAppTest {
 
         // Sauce capabilities
         sauceOptions.setCapability("name", name.getMethodName());
-        sauceOptions.setCapability("appiumVersion", "latest");
+
         sauceOptions.setCapability("build", "myApp-job-1");
         List<String> tags = Arrays.asList("sauceDemo", "Android", "Demo");
         sauceOptions.setCapability("tags", tags);
