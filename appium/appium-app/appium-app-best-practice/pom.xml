@@ -16,7 +16,7 @@
     <testngXmlDir>src/test/resources/config</testngXmlDir>
     <testngXmlFile>myDemoTests.xml</testngXmlFile>
     <testng.version>7.10.2</testng.version>
-    <appium.version>9.2.3</appium.version>
+    <appium.version>9.3.0</appium.version>
     <selenium.version>4.23.0</selenium.version>
   </properties>
 

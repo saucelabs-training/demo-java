@@ -13,7 +13,7 @@
 
   <properties>
     <maven.surefire.version>3.3.1</maven.surefire.version>
-    <appium.version>9.2.3</appium.version>
+    <appium.version>9.3.0</appium.version>
     <selenium.version>4.23.0</selenium.version>
   </properties>
 
