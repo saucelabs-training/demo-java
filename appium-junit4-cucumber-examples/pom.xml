@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <appium.version>9.2.3</appium.version>
+        <appium.version>9.3.0</appium.version>
     </properties>
 
     <artifactId>appium-junit4-cucumber-examples</artifactId>
