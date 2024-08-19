@@ -15,7 +15,7 @@
     <sauce_junit5.version>1.0.0</sauce_junit5.version>
     <sauce_junit4.version>1.5.0</sauce_junit4.version>
     <sauce_testng.version>1.5.0</sauce_testng.version>
-    <maven.surefire.version>3.3.1</maven.surefire.version>
+    <maven.surefire.version>3.4.0</maven.surefire.version>
   </properties>
 
   <modules>
