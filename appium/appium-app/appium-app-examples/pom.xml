@@ -13,7 +13,7 @@
   <artifactId>appium-app-examples</artifactId>
 
   <properties>
-    <maven.surefire.version>3.3.1</maven.surefire.version>
+    <maven.surefire.version>3.4.0</maven.surefire.version>
     <appium.version>9.3.0</appium.version>
     <selenium.version>4.23.1</selenium.version>
   </properties>
