@@ -132,7 +132,8 @@ public class TestExample {
   @Test
   void shouldClickButton() {
     page.navigate(
-        "data:text/html,<script>var result;</script><button onclick='result=\"Clicked\"'>Go</button>");
+        "data:text/html,<script>var result;</script><button "
+            + "onclick='result=\"Clicked\"'>Go</button>");
     page.locator("button").click();
     assertEquals("Clicked", page.evaluate("result"));
   }
