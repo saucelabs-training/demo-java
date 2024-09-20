@@ -15,7 +15,7 @@
   <properties>
     <maven.surefire.version>3.5.0</maven.surefire.version>
     <appium.version>9.3.0</appium.version>
-    <selenium.version>4.24.0</selenium.version>
+    <selenium.version>4.25.0</selenium.version>
   </properties>
 
   <dependencies>
