@@ -1,6 +1,7 @@
 package com.examples.up_download_file;
 
 import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -16,26 +17,27 @@ public class SamsungGallery {
 
     private AndroidDriver driver;
 
-    private String photos = "com.sec.android.gallery3d:id/recycler_view_item";
-    private String deleteButton ="com.sec.android.gallery3d:id/btn_delete";
-    private String confirmDeleteButton = "com.sec.android.gallery3d:id/button1";
+    private String photos = "//android.widget.FrameLayout[@content-desc='Button']";
+
+    private String deleteButton ="Delete";
+    private String confirmDeleteButton = "android:id/button1";
 
     public SamsungGallery(AndroidDriver driver) {
         this.driver = driver;
     }
 
     public void open() {
-        driver.executeScript("mobile: startActivity", ImmutableMap.of(
-                "appPackage", "com.sec.android.gallery3d",
-                "appActivity", "com.samsung.android.gallery.app.activity.GalleryActivity"
+        driver.executeScript("mobile: activateApp", ImmutableMap.of(
+                "appId", "com.sec.android.gallery3d"
         ));
+
     }
 
     public void openPhoto(String which){
         int whichPhoto = (which == "first" ? 0 : this.amountOfPhotos()-1);
 
         // open the photo
-        List<WebElement> photosList =  driver.findElements(By.id(photos));
+        List<WebElement> photosList =  driver.findElements(By.xpath(photos));
         photosList.get(whichPhoto).click();
     }
 
@@ -49,14 +51,15 @@ public class SamsungGallery {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        final WebElement deleteImgBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(deleteButton)));
+        final WebElement deleteImgBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(new AppiumBy.ByAccessibilityId(deleteButton)));
         deleteImgBtn.click();
         driver.findElement(By.id(confirmDeleteButton)).click();
 
     }
 
     public int amountOfPhotos(){
-        return (driver.findElements(By.id(photos)).size());
+        return (driver.findElements(By.xpath(photos)).size());
+
     }
 
     /**

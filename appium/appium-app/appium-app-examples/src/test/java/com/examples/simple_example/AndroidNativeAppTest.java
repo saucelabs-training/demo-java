@@ -2,6 +2,7 @@ package com.examples.simple_example;
 
 import com.helpers.SauceAppiumTestWatcher;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.junit.Rule;
@@ -76,10 +77,10 @@ public class AndroidNativeAppTest {
         else {
             capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
             capabilities.setCapability("appium:appWaitActivity", ".view.activities.MainActivity");
-            sauceOptions.setCapability("appiumVersion", "2.11.0");
+            sauceOptions.setCapability("appiumVersion", "latest");
         }
         capabilities.setCapability("appium:platformVersion", "12");
-        String appName = "SauceLabs-Demo-App.apk";
+        String appName = "mda-2.1.0-24.apk";
         capabilities.setCapability("appium:app", "storage:filename=" +appName);
 
         // Sauce capabilities
@@ -100,6 +101,8 @@ public class AndroidNativeAppTest {
             System.out.println("Error to create Android Driver: " + e.getMessage());
             return;
         }
+
+        System.out.println("Job ID is: " + driver.getCapabilities().getCapability("appium:jobUuid"));
         //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
     }

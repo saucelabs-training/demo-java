@@ -32,7 +32,7 @@ public class DownloadImageFromAndroidRealDevice {
 
     int currentPhotos = 0;
     String deviceFilePath = "/storage/self/primary/sauce-bot-coding.png";
-    String downloadFolder = "src/test/java/com/appium_app/up_download_file/samsung_real_device";
+    String downloadFolder = "src/test/java/com/examples/up_download_file/samsung_real_device";
 
     //This rule allows us to set test status with Junit
     @Rule
@@ -58,8 +58,8 @@ public class DownloadImageFromAndroidRealDevice {
 
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("appium:automationName", "UiAutomator2");
-        capabilities.setCapability("appium:deviceName", "Samsung Galaxy S9");
-        capabilities.setCapability("appium:platformVersion", "10");
+        capabilities.setCapability("appium:deviceName", "Samsung Galaxy S23");
+        capabilities.setCapability("appium:platformVersion", "13");
         capabilities.setCapability("appium:newCommandTimeout", 240);
         capabilities.setCapability("appium:browserName", "chrome");
         capabilities.setCapability("appium:autoGrantPermissions", true);
@@ -71,6 +71,7 @@ public class DownloadImageFromAndroidRealDevice {
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.setCapability("appiumVersion", "stable");
 
         capabilities.setCapability("sauce:options", sauceOptions);
 
@@ -98,12 +99,17 @@ public class DownloadImageFromAndroidRealDevice {
         System.out.println("Sauce - number of photos before upload: " + currentPhotos );
 
         // The file we want to upload
-        String codingBot = "src/test/java/com/appium_app/up_download_file/sauce-bot-coding.png";
+        String codingBot = "src/test/java/com/examples/up_download_file/sauce-bot-coding.png";
         File codingBotFile = new File(codingBot);
         // Push the file to the device
         // This is the `tricky` part, you need to know the file structure of the device and where you can download the file from.
         // We checked this structure with the VUSB offering of Sauce Labs for private devices.
-        driver.pushFile(deviceFilePath, codingBotFile);
+        try {
+            driver.pushFile(deviceFilePath, codingBotFile);
+        } catch(Exception ex)
+        {
+            System.out.println("Error: " + ex.getMessage());
+        }
 
         // wait till it is uploaded
         boolean bPhotoUpload = samsungGallery.waitUploadPhoto(currentPhotos, 5);
@@ -125,7 +131,7 @@ public class DownloadImageFromAndroidRealDevice {
         ImageIO.write(image, "png", f);
 
         // Now verify that the file does exist locally
-        assertThat(f.exists()).as("The file we downloaded from the device, doesm't exist locally").isTrue();
+        assertThat(f.exists()).as("The file we downloaded from the device, doesn't exist locally").isTrue();
         // This is not need only for the video
         waiting(2);
     }
