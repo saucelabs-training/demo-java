@@ -24,6 +24,6 @@ jobs:
           java-version: 11
           distribution: "temurin"
       - name: RDC Native App Android
-        run: mvn test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=eu
+        run: mvn test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=us
       - name: RDC Native App IOS
-        run: mvn test -pl appium/appium-app/appium-app-examples  -Dtest=IOSNativeAppTest -Dregion=eu
+        run: mvn test -pl appium/appium-app/appium-app-examples  -Dtest=IOSNativeAppTest -Dregion=us
