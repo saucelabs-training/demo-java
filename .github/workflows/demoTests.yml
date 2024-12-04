@@ -1,0 +1,20 @@
+name: Run Scheduled Tests Hourly
+
+on:
+  schedule:
+    # Cron expression for every Monday at midnight UTC
+    - cron: "0 * * * *"
+  workflow_dispatch:  # Allow manual trigger from the Actions tab
+
+jobs:
+  test:
+    runs-on: ubuntu-latest # You can choose macos-latest or ubuntu-latest
+
+    steps:
+      - name: Set up Sauce Labs credentials from secrets
+        run: |
+          echo "SAUCE_USERNAME=${{ secrets.SAUCE_USERNAME }}" >> $GITHUB_ENV
+          echo "SAUCE_ACCESS_KEY=${{ secrets.SAUCE_ACCESS_KEY }}" >> $GITHUB_ENV
+      - name: Run tests using the script
+        run: |
+          mvn clean test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=us ; mvn clean install -pl appium/appium-app/appium-app-examples -Dtest=IOSNativeAppTest -Dregion=us
