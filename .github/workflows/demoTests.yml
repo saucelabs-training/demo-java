@@ -6,15 +6,24 @@ on:
     - cron: "0 * * * *"
   workflow_dispatch:  # Allow manual trigger from the Actions tab
 
-jobs:
-  test:
-    runs-on: ubuntu-latest # You can choose macos-latest or ubuntu-latest
+env:
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
     steps:
-      - name: Set up Sauce Labs credentials from secrets
-        run: |
-          echo "SAUCE_USERNAME=${{ secrets.SAUCE_USERNAME }}" >> $GITHUB_ENV
-          echo "SAUCE_ACCESS_KEY=${{ secrets.SAUCE_ACCESS_KEY }}" >> $GITHUB_ENV
-      - name: Run tests using the script
-        run: |
-          mvn clean test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=us ; mvn clean install -pl appium/appium-app/appium-app-examples -Dtest=IOSNativeAppTest -Dregion=us
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: "temurin"
+      - name: RDC Native App Android
+        run: mvn test -pl appium/appium-app/appium-app-examples -Dtest=AndroidNativeAppTest -Dregion=eu
+      - name: RDC Native App IOS
+        run: mvn test -pl appium/appium-app/appium-app-examples  -Dtest=IOSNativeAppTest -Dregion=eu
