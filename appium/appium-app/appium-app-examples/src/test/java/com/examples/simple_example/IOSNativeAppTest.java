@@ -25,10 +25,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class IOSNativeAppTest {
 
-  @Rule public TestName name = new TestName();
+  @Rule
+  public TestName name = new TestName();
   // This rule allows us to set test status with Junit
-  @Rule public SauceAppiumTestWatcher resultReportingTestWatcher = new SauceAppiumTestWatcher();
+  @Rule
+  public SauceAppiumTestWatcher resultReportingTestWatcher = new SauceAppiumTestWatcher();
   By productsScreenLocator = AppiumBy.accessibilityId("Products");
+  By titleScreenLocator = AppiumBy.accessibilityId("title");
   By sortButtonLocator = AppiumBy.iOSClassChain("**/XCUIElementTypeButton[`name == \"Button\"`]");
   By sortModalLocator = AppiumBy.accessibilityId("Sort by:");
   private IOSDriver driver;
@@ -54,25 +57,27 @@ public class IOSNativeAppTest {
 
     // For all capabilities please check
     // https://appium.io/docs/en/2.0/guides/caps/
-    // Use the platform configuration https://saucelabs.com/platform/platform-configurator#/
-    // to find the simulators/real device names, OS versions and appium versions you can use for
+    // Use the platform configuration
+    // https://saucelabs.com/platform/platform-configurator#/
+    // to find the simulators/real device names, OS versions and appium versions you
+    // can use for
     // your testings
     capabilities.setCapability("platformName", "iOS");
     capabilities.setCapability("appium:automationName", "XCuiTest");
     if (rdc.equals("true")) {
-      // Allocate any available iPhone device with version 14
       capabilities.setCapability("appium:deviceName", "iPhone.*");
       appName = "SauceLabs-Demo-App.ipa";
       sauceOptions.setCapability("resigningEnabled", true);
-      sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+      // sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+      sauceOptions.setCapability("networkCapture", true);
     } else {
       capabilities.setCapability("appium:deviceName", "iPhone 11 Simulator");
       appName = "SauceLabs-Demo-App.Simulator.zip";
     }
     capabilities.setCapability("appium:app", "storage:filename=" + appName);
-    capabilities.setCapability("appium:platformVersion", "14");
+    // capabilities.setCapability("appium:platformVersion", "14");
     sauceOptions.setCapability("name", name.getMethodName());
-    sauceOptions.setCapability("build", "myApp-job-1");
+    sauceOptions.setCapability("build", "feature/demo-rdc");
     List<String> tags = Arrays.asList("sauceDemo_ios", "iOS", "Demo");
     sauceOptions.setCapability("tags", tags);
     sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
@@ -93,15 +98,31 @@ public class IOSNativeAppTest {
   public void verifyPromptSortModal() {
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    wait.until(ExpectedConditions.visibilityOfElementLocated(productsScreenLocator));
 
+    wait.until(ExpectedConditions.visibilityOfElementLocated(titleScreenLocator));
+
+    driver.executeScript("sauce:context=Finding sort button element");
     driver.findElement(sortButtonLocator).click();
 
     // Verify the sort modal is displayed on screen
     assertThat(isDisplayed(sortModalLocator, 5)).as("Verify sort modal is displayed").isTrue();
   }
 
-  public Boolean isDisplayed(By locator, long timeoutInSeconds) {
+  @Test
+  public void verifyTitleSetCorrectly() {
+
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+    wait.until(ExpectedConditions.visibilityOfElementLocated(titleScreenLocator));
+
+    driver.executeScript("sauce:context=Finding sort button element");
+    driver.findElement(sortButtonLocator).click();
+
+    // Verify the sort modal is displayed on screen
+    assertThat(isDisplayed(sortModalLocator, 5)).as("Verify sort modal is displayed").isTrue();
+  }
+
+  private Boolean isDisplayed(By locator, long timeoutInSeconds) {
     try {
       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
       wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
