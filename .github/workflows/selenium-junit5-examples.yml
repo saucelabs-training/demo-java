@@ -10,11 +10,11 @@ on:
   push:
     branches: [ main ]
     paths:
-      - '**/selenium-examples/**'
+      - '**/selenium-junit5-examples/**'
       - 'pom.*'
   pull_request:
     paths:
-      - '**/selenium-examples/**'
+      - '**/selenium-junit5-examples/**'
       - 'pom.*'
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--replace"
-          files: "selenium-examples/**/*.java"
+          files: "selenium-junit5-examples/**/*.java"
           skip-commit: true
       - name: Print diffs
         if: success() || failure()
@@ -42,7 +42,7 @@ jobs:
           java-version: 11
           distribution: "temurin"
       - name: Run JUnit 5 tests
-        working-directory: ./selenium-examples
+        working-directory: ./selenium-junit5-examples
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}

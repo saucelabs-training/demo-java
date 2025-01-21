@@ -89,6 +89,7 @@ public class PerformanceTest extends TestBase {
     Map<String, Object> metrics =
         (Map<String, Object>) ((JavascriptExecutor) driver).executeScript("sauce:jankinessCheck");
 
+    Assertions.assertTrue(metrics.containsKey("score"));
     Assertions.assertTrue((Double) metrics.get("score") > 0.5);
   }
 }

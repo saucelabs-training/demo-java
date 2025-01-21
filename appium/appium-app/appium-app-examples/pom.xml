@@ -2,15 +2,12 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <artifactId>demo-java</artifactId>
-    <groupId>com.saucelabs</groupId>
-    <version>1.0-SNAPSHOT</version>
-    <relativePath>../../../pom.xml</relativePath>
-  </parent>
+
   <modelVersion>4.0.0</modelVersion>
 
+  <groupId>com.saucelabs</groupId>
   <artifactId>appium-app-examples</artifactId>
+  <version>1.0-SNAPSHOT</version>
 
   <properties>
     <maven.surefire.version>3.5.2</maven.surefire.version>
@@ -19,21 +16,16 @@
   </properties>
 
   <dependencies>
-
-    <!-- Apache Commons Logging -->
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <version>1.3.4</version>
     </dependency>
-
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>3.27.3</version>
     </dependency>
-
-
     <dependency>
       <groupId>io.appium</groupId>
       <artifactId>java-client</artifactId>
@@ -73,6 +65,12 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.13.2</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.18.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>

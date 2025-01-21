@@ -41,15 +41,10 @@ public class IOSWebAppTest {
         URL url;
         String appName;
 
-        switch (region) {
-            case "us":
-                url = new URL(SAUCE_US_URL);
-                break;
-            case "eu":
-            default:
-                url = new URL(SAUCE_EU_URL);
-                break;
-        }
+        url = switch (region) {
+            case "us" -> new URL(SAUCE_US_URL);
+            default -> new URL(SAUCE_EU_URL);
+        };
 
         // For all capabilities please check
         // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
@@ -77,13 +72,8 @@ public class IOSWebAppTest {
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        try {
         driver = new IOSDriver(url, capabilities);
-        } catch (Exception e){
-            System.out.println("Error to create iOS Driver: " + e.getMessage());
-        }
 
-        //Setting the driver so that we can report results
         resultReportingTestWatcher.setDriver(driver);
     }
 
@@ -100,21 +90,16 @@ public class IOSWebAppTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        // Verificsation
         Assert.assertTrue(isOnProductsPage());
-
     }
 
     public void login(String user, String pass){
-
         driver.findElement(usernameInput).sendKeys(user);
         driver.findElement(passwordInput).sendKeys(pass);
         driver.findElement(submitButton).click();
-
     }
 
     public boolean isOnProductsPage() {
-
         return driver.findElement(inventoryList).isDisplayed();
     }
 

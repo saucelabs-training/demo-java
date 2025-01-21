@@ -46,14 +46,10 @@ public class DownloadImageFromAndroidRealDevice {
         MutableCapabilities sauceOptions = new MutableCapabilities();
         URL url;
 
-        switch (Constants.region) {
-            case "us":
-                url = new URL(SAUCE_US_URL);
-                break;
-            case "eu":
-            default:
-                url = new URL(SAUCE_EU_URL);
-                break;
+        if (Constants.region.equals("us")) {
+            url = new URL(SAUCE_US_URL);
+        } else {
+            url = new URL(SAUCE_EU_URL);
         }
 
         capabilities.setCapability("platformName", "Android");

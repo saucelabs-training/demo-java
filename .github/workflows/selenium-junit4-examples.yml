@@ -1,4 +1,4 @@
-name: JUnit 4 Tests
+name: Selenium JUnit 4 Tests
 
 on:
   schedule:

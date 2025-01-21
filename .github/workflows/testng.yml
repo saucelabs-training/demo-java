@@ -30,8 +30,9 @@ jobs:
         with:
           java-version: 11
           distribution: "temurin"
-      - name: Run testng tests
+      - name: Run TestNG tests
+        working-directory: ./selenium-testng-examples
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-        run: mvn test -pl selenium-testng-examples
+        run: mvn test

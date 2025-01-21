@@ -72,8 +72,6 @@ public class BaseTest {
 
   @Before
   public void setup() throws MalformedURLException {
-
-    System.out.println("BeforeMethod hook");
     URL url;
 
     switch (region) {

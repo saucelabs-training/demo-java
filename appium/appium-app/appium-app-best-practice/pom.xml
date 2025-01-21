@@ -2,15 +2,12 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <artifactId>demo-java</artifactId>
-    <groupId>com.saucelabs</groupId>
-    <version>1.0-SNAPSHOT</version>
-    <relativePath>../../../pom.xml</relativePath>
-  </parent>
+
   <modelVersion>4.0.0</modelVersion>
 
+  <groupId>com.saucelabs</groupId>
   <artifactId>appium-app-best-practice</artifactId>
+  <version>1.0-SNAPSHOT</version>
 
   <properties>
     <testngXmlDir>src/test/resources/config</testngXmlDir>
@@ -26,14 +23,11 @@
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
     </dependency>
-
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>3.27.3</version>
     </dependency>
-
-
     <dependency>
       <groupId>io.appium</groupId>
       <artifactId>java-client</artifactId>
@@ -69,7 +63,6 @@
       <artifactId>selenium-support</artifactId>
       <version>${selenium.version}</version>
     </dependency>
-
   </dependencies>
 
   <build>
