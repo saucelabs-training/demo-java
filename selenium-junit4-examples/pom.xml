@@ -8,7 +8,7 @@
     <artifactId>selenium_junit4_examples</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>Sauce Labs Selenium Examples</name>
+    <name>Sauce Labs JUnit4 Examples</name>
     <description>Example code for using Selenium on Sauce labs</description>
     <url>https://github.com/saucelabs-training/demo-java</url>
     <licenses>
@@ -19,12 +19,7 @@
         </license>
     </licenses>
 
-    <properties>
-        <surefire.parallel>10</surefire.parallel>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+
 
     <dependencies>
         <dependency>

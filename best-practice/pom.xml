@@ -2,17 +2,19 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <artifactId>demo-java</artifactId>
-    <groupId>com.saucelabs</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+
   <modelVersion>4.0.0</modelVersion>
 
+  <groupId>com.saucelabs</groupId>
   <artifactId>best-practice</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>Sauce Labs Best Practices</name>
 
   <properties>
     <selenium.version>4.25.0</selenium.version>
+    <sauce_junit4.version>1.5.0</sauce_junit4.version>
+    <maven.surefire.version>3.5.1</maven.surefire.version>
     <appium.version>9.3.0</appium.version>
   </properties>
 

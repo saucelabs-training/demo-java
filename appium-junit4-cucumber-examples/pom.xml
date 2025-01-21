@@ -2,22 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>demo-java</artifactId>
-        <groupId>com.saucelabs</groupId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+
     <modelVersion>4.0.0</modelVersion>
+    <name>Sauce Labs Appium/Junit4/Cucumber Examples</name>
 
     <properties>
         <appium.version>9.3.0</appium.version>
     </properties>
 
+    <groupId>com.saucelabs</groupId>
     <artifactId>appium-junit4-cucumber-examples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
     <dependencies>
-    <!--        Appium dependency is in project level POM.xml -->
-    <!--        Maven Surefire dependency is in project level POM.xml -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>

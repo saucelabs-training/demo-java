@@ -2,14 +2,14 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <artifactId>demo-java</artifactId>
-    <groupId>com.saucelabs</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+
   <modelVersion>4.0.0</modelVersion>
 
+  <groupId>com.saucelabs</groupId>
   <artifactId>gitpod</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>Sauce Labs Gitpod Examples</name>
 
   <properties>
     <maven.surefire.version>3.5.1</maven.surefire.version>
