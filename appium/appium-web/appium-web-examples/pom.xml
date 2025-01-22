@@ -2,20 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>demo-java</artifactId>
-        <groupId>com.saucelabs</groupId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../../../pom.xml</relativePath>
-    </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.saucelabs</groupId>
     <artifactId>appium-web-examples</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Sauce Labs Appium Web</name>
 
     <properties>
         <maven.surefire.version>3.5.1</maven.surefire.version>
         <appium.version>9.3.0</appium.version>
         <selenium.version>4.25.0</selenium.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <!--    You will find Junit and Appium configration in the project level pom.xml -->

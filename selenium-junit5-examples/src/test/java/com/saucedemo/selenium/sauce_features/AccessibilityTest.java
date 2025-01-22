@@ -21,7 +21,8 @@ public class AccessibilityTest extends TestBase {
   public void accessibilityTest() {
     driver.navigate().to("https://www.saucedemo.com");
 
-    AxeBuilder axeBuilder = new AxeBuilder();
+    AxeBuilder axeBuilder;
+    axeBuilder = new AxeBuilder();
     Results accessibilityResults = axeBuilder.analyze(driver);
 
     Assertions.assertEquals(3, accessibilityResults.getViolations().size());
