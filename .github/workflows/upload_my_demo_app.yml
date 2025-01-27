@@ -21,7 +21,7 @@ jobs:
       - name: Download My Demo App Android
         uses: wei/curl@v1.1.1
         with:
-          args: -L -o SauceLabs-Demo-App.apk https://github.com/saucelabs/my-demo-app-android/releases/download/2.0.2/mda-2.0.2-23.apk
+          args: -L -o SauceLabs-Demo-App.apk https://github.com/saucelabs/my-demo-app-android/releases/download/2.2.0/mda-2.2.0-25.apk
       - name: Upload My Demo App Android
         uses: wei/curl@v1.1.1
         with:
