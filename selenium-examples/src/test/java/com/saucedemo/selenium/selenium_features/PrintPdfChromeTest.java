@@ -21,7 +21,7 @@ public class PrintPdfChromeTest extends TestBase {
   @BeforeEach
   public void setup(TestInfo testInfo) throws IOException {
     // PDF printing is only working in headless old mode
-    startChromeSession(testInfo, List.of("--headless=old"));
+    startChromeSession(testInfo, List.of("--headless=new"));
     driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
     directory = Files.createTempDirectory("chrome-");
     directory.toFile().deleteOnExit();
