@@ -48,6 +48,6 @@ public class FirefoxContextTest extends TestBase {
         driver
             .findElement(By.id("gws-output-pages-elements-homepage_additional_languages__als"))
             .getText();
-    Assertions.assertTrue(lang2.contains("Ofrecido por"));
+    Assertions.assertTrue(lang2.contains("disponible en"));
   }
 }
