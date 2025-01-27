@@ -13,7 +13,7 @@
 
   <properties>
     <selenium.version>4.28.1</selenium.version>
-    <appium.version>9.3.0</appium.version>
+    <appium.version>9.4.0</appium.version>
   </properties>
 
   <dependencies>
