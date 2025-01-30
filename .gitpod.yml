@@ -6,5 +6,5 @@ tasks:
       cd gitpod
       mvn dependency:resolve
       mvn test-compile
-    command: mvn clean test
+    command: mvn clean compile
 
