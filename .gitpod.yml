@@ -2,9 +2,9 @@
 image: maven:3.8.6-jdk-11
 tasks:
   - name: Script Task
+    dir: gitpod
     init: |
       mvn dependency:resolve
       mvn test-compile
-      cd gitpod
-    command: $MVN_COMMAND
+    command: mvn clean test
 
