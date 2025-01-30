@@ -13,6 +13,9 @@
     <maven.surefire.version>3.5.2</maven.surefire.version>
     <appium.version>9.4.0</appium.version>
     <selenium.version>4.28.1</selenium.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -73,8 +76,18 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.source}</target>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -88,6 +101,4 @@
       </plugin>
     </plugins>
   </build>
-
-
 </project>

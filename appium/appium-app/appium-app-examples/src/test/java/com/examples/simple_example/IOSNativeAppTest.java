@@ -79,11 +79,7 @@ public class IOSNativeAppTest {
     sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     capabilities.setCapability("sauce:options", sauceOptions);
 
-    try {
-      driver = new IOSDriver(url, capabilities);
-    } catch (Exception e) {
-      System.out.println("Error to create iOS Driver: " + e.getMessage());
-    }
+    driver = new IOSDriver(url, capabilities);
 
     // Setting the driver so that we can report results
     resultReportingTestWatcher.setDriver(driver);
