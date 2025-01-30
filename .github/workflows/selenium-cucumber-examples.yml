@@ -1,4 +1,4 @@
-name: Cucumber Tests
+name: Selenium Cucumber Tests
 
 on:
   schedule:
@@ -28,7 +28,8 @@ jobs:
           java-version: 11
           distribution: "temurin"
       - name: Run tests
+        working-directory: ./selenium-cucumber-examples
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-        run: mvn test -pl selenium-cucumber-examples -X
+        run: mvn test

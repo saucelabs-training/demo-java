@@ -22,8 +22,6 @@ import static com.helpers.Constants.*;
  * Android Native App Tests
  */
 public class AndroidWebAppTest {
-
-
     @Rule
     public TestName name = new TestName();
 
@@ -31,13 +29,12 @@ public class AndroidWebAppTest {
     @Rule
     public SauceAppiumTestWatcher resultReportingTestWatcher = new SauceAppiumTestWatcher();
 
-    private AppiumDriver driver;
+    private AndroidDriver driver;
 
     By usernameInput = By.id("user-name");
     By passwordInput = By.id("password");
     By submitButton = By.className("btn_action");
     By inventoryList = By.className("inventory_list");
-
 
     @Before
     public void setup() throws MalformedURLException {
@@ -47,17 +44,10 @@ public class AndroidWebAppTest {
         MutableCapabilities sauceOptions = new MutableCapabilities();
         URL url;
 
-        switch (region) {
-            case "us":
-                url = new URL(SAUCE_US_URL);
-                System.out.println("Sauce REGION US");
-                break;
-            case "eu":
-            default:
-                url = new URL(SAUCE_EU_URL);
-                System.out.println("Sauce REGION EU");
-                break;
-        }
+        url = switch (region) {
+            case "us" -> new URL(SAUCE_US_URL);
+            default -> new URL(SAUCE_EU_URL);
+        };
 
         // For all capabilities please check
         // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
@@ -87,13 +77,8 @@ public class AndroidWebAppTest {
 
         capabilities.setCapability("sauce:options", sauceOptions);
 
-        try {
-            driver = new AndroidDriver(url, capabilities);
-        } catch (Exception e){
-            System.out.println("Error to create Android Driver: " + e.getMessage());
-            return;
-        }
-        //Setting the driver so that we can report results
+        driver = new AndroidDriver(url, capabilities);
+
         resultReportingTestWatcher.setDriver(driver);
     }
 
@@ -110,26 +95,15 @@ public class AndroidWebAppTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        // Verificsation
         Assert.assertTrue(isOnProductsPage());
-
     }
-
     public void login(String user, String pass){
-
         driver.findElement(usernameInput).sendKeys(user);
         driver.findElement(passwordInput).sendKeys(pass);
         driver.findElement(submitButton).click();
-
     }
 
     public boolean isOnProductsPage() {
-
         return driver.findElement(inventoryList).isDisplayed();
     }
-
-
-
-
-
 }

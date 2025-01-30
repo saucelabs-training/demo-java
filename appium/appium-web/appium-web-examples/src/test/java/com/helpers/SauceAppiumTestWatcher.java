@@ -16,7 +16,6 @@ public class SauceAppiumTestWatcher extends TestWatcher {
     protected void succeeded(Description description) {
         if(driver != null)
         {
-            System.out.println("Test Passed!");
             driver.executeScript("sauce:job-result=passed");
             driver.quit();
         }
@@ -26,7 +25,6 @@ public class SauceAppiumTestWatcher extends TestWatcher {
     public void failed(Throwable e, Description description) {
         if(driver != null)
         {
-            System.out.println("Test Failed!");
             driver.executeScript("sauce:job-result=failed");
             driver.quit();
         }

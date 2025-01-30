@@ -25,8 +25,9 @@ jobs:
           java-version: 11
           distribution: "temurin"
       - name: Run tests
+        working-directory: ./best-practice
         continue-on-error: true
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-        run: mvn test -pl best-practice
+        run: mvn test

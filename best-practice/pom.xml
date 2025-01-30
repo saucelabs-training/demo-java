@@ -2,18 +2,23 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <artifactId>demo-java</artifactId>
-    <groupId>com.saucelabs</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+
   <modelVersion>4.0.0</modelVersion>
 
+  <groupId>com.saucelabs</groupId>
   <artifactId>best-practice</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>Sauce Labs Best Practices</name>
 
   <properties>
     <selenium.version>4.28.1</selenium.version>
     <appium.version>9.4.0</appium.version>
+    <sauce_junit4.version>1.5.0</sauce_junit4.version>
+    <maven.surefire.version>3.5.1</maven.surefire.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -23,30 +28,35 @@
       <version>${sauce_junit4.version}</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-api</artifactId>
       <version>${selenium.version}</version>
     </dependency>
-
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>${selenium.version}</version>
     </dependency>
-
     <dependency>
       <groupId>io.appium</groupId>
       <artifactId>java-client</artifactId>
       <version>${appium.version}</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.source}</target>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
