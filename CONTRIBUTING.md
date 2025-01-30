@@ -1,175 +1,67 @@
-# Adding Code To demo-java
+# Contributing to demo-java
 
-## 1.Clone this repository
+**Thank you for your interest in demo-java. Your contributions are highly welcome.**
 
-**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://kcd.im/pull-request)
+There are multiple ways of getting involved:
 
-1. Decide if your code is an [example (most likely)](#code-example) or a [best-practice (least common)](#best-practice)
-2. Add your code to the correct folder structure as specified in [Repository Structure](#repository-structure)
-3. Add a link to the code in the table of contents. The link should be placed in the right section and should be alphabetically organized. 
-4. Include relevant technology tags like `TestNG` and `Sauce Bindings`
-5. Push your changes to the remote repository
-6. Create a PR
-7. Make sure that all the checks pass
-8. Request someone to be a reviewer (@nadvolod or @joshmgrant are a good start)
+- [Report a bug](#report-a-bug)
+- [Suggest a feature](#suggest-a-feature)
+- [Contribute code](#contribute-code)
 
-### Code Example
+Below are a few guidelines we would like you to follow.
+If you need help, please reach out to us by opening an issue.
 
-An **example** is code that demonstrates a specific feature.
-If you're creating a simple test to show off Sauce Labs, don't
-add page objects for example. All examples must be buildable and executable. 
+## Report a bug
+Reporting bugs is one of the best ways to contribute. Before creating a bug report, please check that an [issue](/issues) reporting the same problem does not already exist. If there is such an issue, you may add your information as a comment.
 
-#### Standards for examples
+To report a new bug you should open an issue that summarizes the bug and set the label to "bug".
 
-* Junit4 as the test runner (unless a specific feature is needed)
-* Selenium 4
-* non-Sauce Bindings
-* Java8
-* No page objects (can be found in best-practice)
-* If code doesn't contribute to showing a feature then don't add that extra code
+If you want to provide a fix along with your bug report: That is great! In this case please send us a pull request as described in section [Contribute Code](#contribute-code).
+
+## Suggest a feature
+To request a new feature you should open an [issue](../../issues/new) and summarize the desired functionality and its use case. Set the issue label to "feature".
+
+## Contribute code
+This is an outline of what the workflow for code contributions looks like
+
+- Check the list of open [issues](../../issues). Either assign an existing issue to yourself, or
+  create a new one that you would like work on and discuss your ideas and use cases.
+
+It is always best to discuss your plans beforehand, to ensure that your contribution is in line with our goals.
+
+### Standards we use for examples
+
+* Junit5 as the default test runner (unless a specific feature is needed)
+* Selenium 4, latest version
+* Java 11 (Java version will map to the earliest version of Java supported by the latest listed version of Selenium or Appium)
+* If code doesn't contribute to showing a feature precisely, then don't add that extra code
 
 > The primary goal is to keep maintenance costs as low as possible!
 
-### Best Practice
+- Fork the repository on GitHub
+- Create a topic branch from where you want to base your work. This is usually `main`.
+- Open a new pull request, label it `work in progress` and outline what you will be contributing
+- Make commits of logical units.
+- Make sure you sign-off on your commits `git commit -s -m "adding X to change Y"`
+- Write good commit messages (see below).
+- Push your changes to a topic branch in your fork of the repository.
+- As you push your changes, update the pull request with new infomation and tasks as you complete them
+- Project maintainers might comment on your work as you progress
+- When you are done, remove the `work in progess` label and ping the maintainers for a review
+- Your pull request must receive a :thumbsup: from one [maintainers](MAINTAINERS)
 
-A **best-practice** is solution that shows off
-how to use a specific technology combination in the optimal way
-to test applications, according to the Solution Architects team. Typically there is
-only a single best practice for web and for mobile.
-A **best-practice** will show:
-* Page Objects
-* Proper folder structure
-* Correct parallelization
-* Correct abstractions
-* Use of all Sauce testing types (visual, perf, visual component) where applicable.
+Thanks for your contributions!
 
-## 2.Add relevant code
+### Commit messages
+Your commit messages ideally can answer two questions: what changed and why. The subject line should feature the “what” and the body of the commit should describe the “why”.
 
-### Repository Structure
+When creating a pull request, its description should reference the corresponding issue id.
 
-The correct repository structure is:
+### Sign your work / Developer certificate of origin
+All contributions (including pull requests) must agree to the Developer Certificate of Origin (DCO) version 1.1. This is exactly the same one created and used by the Linux kernel developers and posted on http://developercertificate.org/. This is a developer's certification that he or she has the right to submit the patch for inclusion into the project. Simply submitting a contribution implies this agreement, however, please include a "Signed-off-by" tag in every patch (this tag is a conventional way to confirm that you agree to the DCO) - you can automate this with a [Git hook](https://stackoverflow.com/questions/15015894/git-add-signed-off-by-line-using-format-signoff-not-working)
 
-```text
-Description
------------------
-Most of the code that we will ever create is an "example"
-
-|-- demo-java
-    |-- appium-examples (Java module, default is Junit4)
-    |-- best-practice (Java module, default is Junit4)
-    |-- best-practice-mobile-native (Java module, default is Junit4)
-    |-- selenium-cucumber-examples (Java module, default is Junit4)
-    |-- selenium-examples (Java module, default is Junit4)
-    |-- selenium-junit5-examples (Java module)
-    |-- selenium-testng-examples (Java module)
+```
+git commit -s -m "adding X to change Y"
 ```
 
-```text
-Specific Structure With Examples
---------------------------------
-|-- demo-java
-    |-- best-practice (Java module)
-        |-- src
-            |-- main
-            |-- test
-                |-- java
-                    |-- com.saucedemo
-                        |--pages
-                            |--BasePage.java
-                            |--LoginPage.java
-                            |-- ...
-                        |--tests
-                            |--DesktopTests.java
-                            |--PerformanceTests.java
-                            |--RealDeviceWebTests.java
-                            |-- ...
-    |-- best-practice-mobile-native
-    |-- selenium-examples (Java module)
-        |-- src
-            |-- test
-                |-- java
-                    |-- com.saucedemo.selenium
-                        |-- accessibility
-                            |-- ...
-                        |-- demo
-                            |-SaucebindingsJunitTest.java
-                            |-SeleniumTest.java
-                        |-- login
-                            |-- ...
-                        |-- PerformanceTest.java
-    |-- selenium-cucumber-examples (Java module)
-        |-- ...
-    |-- appium-examples (Java module)
-        |-- src
-            |-- main
-            |-- test
-                |-- java
-                    |-- com.saucedemo.emusim (Java package)
-                        |-- SomeEmuSimExample.java
-                    |-- com.saucedemo.realdevice (Java package)
-                        |-- SomeRealDeviceExample.java
-                    |-- com.saucedemo.realdevice.legacy (Java package)
-                        |-- ...
-```
-
-## FAQs
-
-### How do you define "Best Practice"?
-
-With the evolution of Sauce, a true Best Practice is not only
-Selenium automation. A true Best Practice shows customers
-how to utilize all of the tools (Selenium, Appium, Visual, Performance, API...)
-that Sauce Labs has to offer in a cohesive framework
-and test strategy.
-
-### Why distinguish between "examples" and "best practices"?
-
-The key ideas behind this organization are visibility and
-re-usability for the clients and the team. A mature customer may need
-a performance testing code example using Junit5. On the other
-hand, a less mature, but very valuable customer may need the
-same exact code sample but using Junit3. If we create
-this code sample for one of the customers, wouldn't it
-also be nice to make these visible to all other customers
-that desire a specific combination of technologies?
-
-But where would such code examples go?
-
-In the above structure that's easy for everyone to understand.
-
-### Where can I add Cucumber best practices examples?
-
-Because the organization of the Cucumber source code is
-different than the typical organization of a Maven project.
-As a result, Cucumber needs it's own module where everything
-is separated to meet Cucumber standards.
-
-Also, Cucumber doesn't have a Best Practice as we don't
-believe that it is one nor does our team have a Best Practice strategy
-developed.
-
-### Is there a risk of creating too many examples?
-
-There is no requirement to have a code **example** for every single tech combination.
-
-Only create what's needed at the time.
-All we ask is that if you create a code example for one client
-using a specific combination of technologies (ex Junit3 test status reporting),
-then make
-that available to all customers, SAs, and SEs.
-
-Let your work be reusable and visible for the future instead
-of being hidden somewhere in a private repository. It's highly
-likely that there is a customer, or an engineer that's
-spending time recreating a code sample that you already
-created in your private repo.
-
-### How will someone find my beautiful code sample?
-
-There are code examples that are popular
-(Getting started samples) and there are code examples that
-aren't so popular (using Junit3 to update test status).
-
-If you feel that your code example needs to be front and
-center then simply add it to the main [README](README.md).
-We would be happy to see your excellent code there 😁
+**Have fun, and happy hacking!**
