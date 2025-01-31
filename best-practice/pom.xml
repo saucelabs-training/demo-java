@@ -15,7 +15,7 @@
     <selenium.version>4.28.1</selenium.version>
     <appium.version>9.4.0</appium.version>
     <sauce_junit4.version>1.5.0</sauce_junit4.version>
-    <maven.surefire.version>3.5.1</maven.surefire.version>
+    <maven.surefire.version>3.5.2</maven.surefire.version>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
