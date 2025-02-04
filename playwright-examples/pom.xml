@@ -7,14 +7,13 @@
   <groupId>com.saucelabs</groupId>
   <artifactId>playwright-examples</artifactId>
   <version>1.0-SNAPSHOT</version>
-
   <name>Sauce Labs Playwright Examples</name>
 
   <properties>
+    <surefire.parallel>2</surefire.parallel>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>11</maven.compiler.target>
     <maven.compiler.source>11</maven.compiler.source>
-    <junit.version>5.11.4</junit.version>
   </properties>
 
   <dependencies>
@@ -26,15 +25,25 @@
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit.version}</version>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
+      <groupId>com.saucelabs</groupId>
+      <artifactId>sauce_bindings</artifactId>
+      <version>2.0.0-beta.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20231013</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.34</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.saucelabs</groupId>
@@ -48,11 +57,24 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.1</version>
         <configuration>
-          <source>${maven.compiler.source}</source>
-          <target>${maven.compiler.source}</target>
+          <excludes>
+            <exclude>**/StandaloneTest.java</exclude>
+          </excludes>
+          <properties>
+            <configurationParameters>
+              junit.jupiter.execution.parallel.enabled = true
+              junit.jupiter.execution.parallel.mode.default = concurrent
+              junit.jupiter.execution.parallel.config.strategy = fixed
+              junit.jupiter.execution.parallel.config.fixed.parallelism = ${surefire.parallel}
+              junit.jupiter.execution.parallel.config.fixed.max-pool-size = ${surefire.parallel}
+            </configurationParameters>
+          </properties>
+          <includes>
+            <include>com/saucedemo/**/*.java</include>
+          </includes>
         </configuration>
       </plugin>
     </plugins>

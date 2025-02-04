@@ -1,4 +1,4 @@
-package com.saucelabs.playwrightexamples;
+package com.saucelabs;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +29,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
 
-public class TestExample {
+public class StandaloneTest {
 
   static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
   static final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
