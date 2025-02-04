@@ -1,0 +1,34 @@
+name: Appium Examples
+
+on:
+  schedule:
+    - cron: '35 20 * * *'
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - '**/appium/**'
+  pull_request:
+    paths:
+      - '**/appium/**'
+
+env:
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cloud: [ RDC, VDC ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: "temurin"
+      - name: Android Native App ${{ matrix.cloud }}
+        working-directory: ./appium/android-app
+        run: mvn test -Dsauce.cloud=${{ matrix.cloud }}
