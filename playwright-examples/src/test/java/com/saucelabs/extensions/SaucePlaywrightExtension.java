@@ -92,8 +92,7 @@ public class SaucePlaywrightExtension
     try {
       session.stop(true);
     } catch (Exception e) {
-      LOGGER.severe(
-          "Session quit prematurely; Ensure you are allowing SaucePlaywrightExtension to stop the test");
+      LOGGER.severe("Session quit prematurely; Allow SaucePlaywrightExtension to stop the test");
       throw e;
     }
   }
@@ -105,8 +104,7 @@ public class SaucePlaywrightExtension
       try {
         session.stop(false);
       } catch (Exception e) {
-        LOGGER.severe(
-            "Session quit prematurely; Ensure you are allowing SaucePlaywrightExtension to stop the test");
+        LOGGER.severe("Session quit prematurely; Allow SaucePlaywrightExtension to stop the test");
         throw e;
       }
     }
