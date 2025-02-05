@@ -1,4 +1,4 @@
-name: Real Devices
+name: iOS Real Devices
 
 on:
   schedule:
@@ -31,9 +31,6 @@ jobs:
         with:
           java-version: 11
           distribution: "temurin"
-      - name: RDC Native App Android
-        working-directory: ./appium/appium-app/appium-app-examples
-        run: mvn test -Dtest=AndroidNativeAppTest -Dregion=eu
       - name: RDC Native App IOS
         working-directory: ./appium/appium-app/appium-app-examples
         run: mvn test -Dtest=IOSNativeAppTest -Dregion=eu
