@@ -65,12 +65,7 @@ public class StandaloneTest {
 
   static void createAPIRequestContext() {
     request =
-        playwright
-            .request()
-            .newContext(
-                new APIRequest.NewContextOptions()
-                    .setBaseURL(SAUCE_URL)
-                    .setIgnoreHTTPSErrors(true));
+        playwright.request().newContext(new APIRequest.NewContextOptions().setBaseURL(SAUCE_URL));
   }
 
   static void createPlaywright() {
