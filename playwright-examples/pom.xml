@@ -10,7 +10,7 @@
   <name>Sauce Labs Playwright Examples</name>
 
   <properties>
-    <surefire.parallel>2</surefire.parallel>
+    <surefire.parallel>10</surefire.parallel>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>11</maven.compiler.target>
     <maven.compiler.source>11</maven.compiler.source>

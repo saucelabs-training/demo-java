@@ -54,8 +54,12 @@ public class SaucePlaywrightSession {
                 new APIRequest.NewContextOptions().setBaseURL(String.valueOf(getSauceUrl())));
 
     JSONObject jsonPayload = new JSONObject(capabilities);
-    APIResponse newSessionResponse =
-        request.post("session", RequestOptions.create().setData(jsonPayload.toString()));
+    RequestOptions options = RequestOptions.create()
+            .setMethod("POST")
+            .setData(jsonPayload.toString())
+            .setMaxRedirects(5)
+            .setTimeout(120000);
+    APIResponse newSessionResponse = request.fetch("session", options);
     JSONObject response = new JSONObject(newSessionResponse.text()).getJSONObject("value");
 
     this.id = response.getString("sessionId");

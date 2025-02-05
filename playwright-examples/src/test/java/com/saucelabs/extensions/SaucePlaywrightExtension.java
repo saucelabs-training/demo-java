@@ -101,12 +101,14 @@ public class SaucePlaywrightExtension
   @Override
   public void testFailed(ExtensionContext context, Throwable cause) {
     SaucePlaywrightSession session = (SaucePlaywrightSession) getStore(context).get("session");
-    try {
-      session.stop(false);
-    } catch (Exception e) {
-      LOGGER.severe(
-          "Session quit prematurely; Ensure you are allowing SaucePlaywrightExtension to stop the test");
-      throw e;
+    if (session != null) {
+      try {
+        session.stop(false);
+      } catch (Exception e) {
+        LOGGER.severe(
+            "Session quit prematurely; Ensure you are allowing SaucePlaywrightExtension to stop the test");
+        throw e;
+      }
     }
   }
 
