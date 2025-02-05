@@ -54,7 +54,8 @@ public class SaucePlaywrightSession {
                 new APIRequest.NewContextOptions().setBaseURL(String.valueOf(getSauceUrl())));
 
     JSONObject jsonPayload = new JSONObject(capabilities);
-    RequestOptions options = RequestOptions.create()
+    RequestOptions options =
+        RequestOptions.create()
             .setMethod("POST")
             .setData(jsonPayload.toString())
             .setMaxRedirects(5)
@@ -69,12 +70,14 @@ public class SaucePlaywrightSession {
   }
 
   public void annotate(String comment) {
-    RequestOptions options = RequestOptions.create().setData("{\"script\": \"sauce:context=" + comment + "\", \"args\": []}");
+    RequestOptions options =
+        RequestOptions.create()
+            .setData("{\"script\": \"sauce:context=" + comment + "\", \"args\": []}");
 
     request.post("session/" + id + "/execute/sync", options);
   }
 
-  public  void addTag(String tag) {
+  public void addTag(String tag) {
     rest.addTags(Collections.singletonList(tag));
   }
 

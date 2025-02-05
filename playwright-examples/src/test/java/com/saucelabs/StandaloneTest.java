@@ -94,12 +94,14 @@ public class StandaloneTest {
   void createSession() {
     JsonObject payload = getSessionPayload();
 
-    APIResponse newSessionResponse = request.fetch("session",
+    APIResponse newSessionResponse =
+        request.fetch(
+            "session",
             RequestOptions.create()
-                    .setMethod("POST")
-                    .setData(payload.toString())
-                    .setMaxRedirects(5)
-                    .setTimeout(120000));
+                .setMethod("POST")
+                .setData(payload.toString())
+                .setMaxRedirects(5)
+                .setTimeout(120000));
 
     JsonObject newSessionBlob = new Gson().fromJson(newSessionResponse.text(), JsonObject.class);
     sessionId = newSessionBlob.get("value").getAsJsonObject().get("sessionId").getAsString();

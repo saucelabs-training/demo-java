@@ -18,8 +18,8 @@ public class CheckoutTest extends TestBase {
     page.locator("[data-test='continue']").click();
 
     Assertions.assertTrue(
-            page.locator("[data-test='firstName']").getAttribute("class").contains("error"),
-            "Expected error not found on page");
+        page.locator("[data-test='firstName']").getAttribute("class").contains("error"),
+        "Expected error not found on page");
   }
 
   @Test
@@ -39,9 +39,9 @@ public class CheckoutTest extends TestBase {
     page.locator("[data-test='continue']").click();
 
     Assertions.assertEquals(
-            "https://www.saucedemo.com/checkout-step-two.html",
-            page.url(),
-            "Information Submission Unsuccessful");
+        "https://www.saucedemo.com/checkout-step-two.html",
+        page.url(),
+        "Information Submission Unsuccessful");
   }
 
   @Test
@@ -60,9 +60,7 @@ public class CheckoutTest extends TestBase {
 
     page.locator("[data-test='finish']").click();
 
-    Assertions.assertEquals(
-            "https://www.saucedemo.com/checkout-complete.html",
-            page.url());
+    Assertions.assertEquals("https://www.saucedemo.com/checkout-complete.html", page.url());
 
     Assertions.assertTrue(page.locator(".complete-text").isVisible());
   }

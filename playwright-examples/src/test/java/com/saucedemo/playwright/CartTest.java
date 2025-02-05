@@ -15,9 +15,9 @@ public class CartTest extends TestBase {
     page.locator("[data-test='add-to-cart-sauce-labs-bolt-t-shirt']").click();
 
     Assertions.assertEquals(
-            "1",
-            page.locator(".shopping_cart_badge").textContent(),
-            "Item not correctly added to cart");
+        "1",
+        page.locator(".shopping_cart_badge").textContent(),
+        "Item not correctly added to cart");
   }
 
   @Test
@@ -30,9 +30,8 @@ public class CartTest extends TestBase {
 
     page.locator("[data-test='remove-sauce-labs-bolt-t-shirt']").click();
 
-    Assertions.assertEquals(0,
-            page.locator(".shopping_cart_badge").count(),
-            "Item not correctly removed from cart");
+    Assertions.assertEquals(
+        0, page.locator(".shopping_cart_badge").count(), "Item not correctly removed from cart");
   }
 
   @Test
@@ -57,9 +56,8 @@ public class CartTest extends TestBase {
 
     page.locator("[data-test='remove-sauce-labs-bike-light']").click();
 
-    Assertions.assertEquals(0,
-            page.locator(".shopping_cart_badge").count(),
-            "Shopping Cart is not empty");
+    Assertions.assertEquals(
+        0, page.locator(".shopping_cart_badge").count(), "Shopping Cart is not empty");
   }
 
   @Test
@@ -73,8 +71,7 @@ public class CartTest extends TestBase {
 
     page.locator("[data-test='remove-sauce-labs-backpack']").click();
 
-    Assertions.assertEquals(0,
-            page.locator(".shopping_cart_badge").count(),
-            "Shopping Cart is not empty");
+    Assertions.assertEquals(
+        0, page.locator(".shopping_cart_badge").count(), "Shopping Cart is not empty");
   }
 }

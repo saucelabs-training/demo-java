@@ -14,7 +14,8 @@ public class AuthenticationTest extends TestBase {
     page.click("[data-test='login-button']");
 
     String errorText = page.textContent("[data-test='error']");
-    Assertions.assertTrue(errorText.contains("Sorry, this user has been locked out"), "Error Not Found");
+    Assertions.assertTrue(
+        errorText.contains("Sorry, this user has been locked out"), "Error Not Found");
   }
 
   @Test
@@ -25,7 +26,8 @@ public class AuthenticationTest extends TestBase {
     page.fill("[data-test='password']", "secret_sauce");
     page.click("[data-test='login-button']");
 
-    Assertions.assertEquals("https://www.saucedemo.com/inventory.html", page.url(), "Login Not Successful");
+    Assertions.assertEquals(
+        "https://www.saucedemo.com/inventory.html", page.url(), "Login Not Successful");
   }
 
   @Test
