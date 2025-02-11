@@ -1,4 +1,4 @@
-name: iOS Real Devices
+name: Appium Examples
 
 on:
   schedule:
@@ -8,11 +8,9 @@ on:
     branches: [ main ]
     paths:
       - '**/appium/**'
-      - 'pom.*'
   pull_request:
     paths:
       - '**/appium/**'
-      - 'pom.*'
 
 env:
   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
@@ -20,10 +18,10 @@ env:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        cloud: [ RDC, VDC ]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Java
@@ -31,6 +29,6 @@ jobs:
         with:
           java-version: 11
           distribution: "temurin"
-      - name: RDC Native App IOS
-        working-directory: ./appium/appium-app/appium-app-examples
-        run: mvn test -Dtest=IOSNativeAppTest -Dregion=eu
+      - name: Android Native App ${{ matrix.cloud }}
+        working-directory: ./appium/android-app
+        run: mvn test -Dsauce.cloud=${{ matrix.cloud }}
