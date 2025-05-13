@@ -1,4 +1,4 @@
-package com.saucelabs.playwrightexamples;
+package com.saucelabs;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +29,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.extension.TestWatcher;
 
-public class TestExample {
+public class StandaloneTest {
 
   static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
   static final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
@@ -95,7 +95,14 @@ public class TestExample {
     JsonObject payload = getSessionPayload();
 
     APIResponse newSessionResponse =
-        request.post("session", RequestOptions.create().setData(payload.toString()));
+        request.fetch(
+            "session",
+            RequestOptions.create()
+                .setMethod("POST")
+                .setData(payload.toString())
+                .setMaxRedirects(5)
+                .setTimeout(120000));
+
     JsonObject newSessionBlob = new Gson().fromJson(newSessionResponse.text(), JsonObject.class);
     sessionId = newSessionBlob.get("value").getAsJsonObject().get("sessionId").getAsString();
     cdpEndpoint =
