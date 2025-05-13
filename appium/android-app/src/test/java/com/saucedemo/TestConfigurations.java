@@ -50,6 +50,7 @@ public class TestConfigurations {
     caps.put("appium:app", ANDROID_APP_URL);
     caps.put("appium:deviceName", "Android GoogleAPI Emulator");
     caps.put("appium:platformVersion", "current_major");
+    caps.put("appium:appPackage", "com.saucelabs.mydemoapp.android");
 
     Map<String, Object> sauceOptions = new HashMap<>();
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
