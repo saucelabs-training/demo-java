@@ -1,7 +1,7 @@
-# Playwright Examples
+# Testing an Android App
 
-There is only one way to execute Playwright on Sauce Labs with Java.
-It works with any production version of Chrome or Edge.
+If you have an Android native application, you can test it with Appium on a Simulator
+in Sauce Labs Virtual Device Cloud, or on a Real Device in the Sauce Labs Real Device Cloud.
 
 [Setup Instructions](https://github.com/saucelabs-training/demo-java/blob/main/README.md#%EF%B8%8Fsetupprerequisites)
 and
@@ -13,7 +13,7 @@ The Android app being tested is found in the [My Demo App Android Repository](ht
 
 1. After cloning this repo from instructions, change to this subdirectory:
     ```
-   $ cd playwright-examples
+   $ cd appium/android-app
    ```
 
 2. Run the following command to update any package dependencies:
@@ -29,21 +29,24 @@ The Android app being tested is found in the [My Demo App Android Repository](ht
     $ mvn clean test
     ```
 
-   See passing tests on [GitHub Actions](https://github.com/saucelabs-training/demo-java/actions/workflows/playwright-examples.yml)
+   See passing tests on [GitHub Actions](https://github.com/saucelabs-training/demo-java/actions/workflows/appium-examples.yml)
 
 ## Configurations
-This code allows toggling which browser the tests will run on.
+This code allows toggling what cloud the tests will target.
+The capabilities for these configurations can be copied from the
+[Platform Configurator](https://app.saucelabs.com/platform-configurator), 
+and can be viewed in the [Test Configurations](src/test/java/com/saucedemo/TestConfigurations.java) file.
 
-### Chrome (default)
-Tests will execute on the latest version of Chrome:
+### Virtual Device Cloud (default)
+Tests will execute on an emulator:
    ```
-   $ mvn clean test -Dsauce.browser=Chrome
+   $ mvn clean test -Dsauce.cloud=vdc
    ```
 
-### Microsoft Edge
-Tests will execute on the latest version of Edge:
+### Real Device Cloud
+Tests will execute on a real device:
    ```
-   $ mvn clean test -Dsauce.browser=MicrosoftEdge
+   $ mvn clean test -Dsauce.cloud=rdc
    ```
 
 ## Disclaimer
