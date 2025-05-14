@@ -20,6 +20,7 @@ public class FirefoxContextTest extends TestBase {
   public void setup(TestInfo testInfo) {
     FirefoxOptions firefoxOptions = new FirefoxOptions();
     firefoxOptions.addPreference("intl.accept_languages", "de-DE");
+    firefoxOptions.addArguments("-remote-allow-system-access");
     Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
 
     startSession(firefoxOptions, sauceOptions);

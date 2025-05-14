@@ -13,11 +13,11 @@
 
   <properties>
     <appium.version>9.4.0</appium.version>
-    <selenium.version>4.28.1</selenium.version>
+    <selenium.version>4.32.0</selenium.version>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.surefire.version>3.5.2</maven.surefire.version>
+    <maven.surefire.version>3.5.3</maven.surefire.version>
   </properties>
   <dependencies>
     <dependency>
@@ -44,7 +44,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
+        <version>3.14.0</version>
         <configuration>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.source}</target>
