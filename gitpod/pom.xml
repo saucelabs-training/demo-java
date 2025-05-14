@@ -17,7 +17,7 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.surefire.version>3.5.2</maven.surefire.version>
+    <maven.surefire.version>3.5.3</maven.surefire.version>
   </properties>
   <dependencies>
     <dependency>
