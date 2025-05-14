@@ -28,6 +28,7 @@
 
   <properties>
     <surefire.parallel>10</surefire.parallel>
+    <selenium.version>4.32.0</selenium.version>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,7 +38,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.32.0</version>
+      <version>${selenium.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
