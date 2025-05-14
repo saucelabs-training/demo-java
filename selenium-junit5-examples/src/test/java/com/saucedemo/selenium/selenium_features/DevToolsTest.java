@@ -350,7 +350,7 @@ public class DevToolsTest extends TestBase {
   void replaceImage() throws IOException {
     String item = "Buy rice";
     Path path = Paths.get("src/test/resources/cat-and-dog.jpg");
-    byte[] sauceBotImage = Files.readAllBytes(path);
+    byte[] catAndDog = Files.readAllBytes(path);
     Routable replaceImage =
         Route.matching(req -> req.getUri().contains("picsum.photos"))
             .to(
@@ -358,7 +358,7 @@ public class DevToolsTest extends TestBase {
                     req ->
                         new HttpResponse()
                             .addHeader("Content-Type", JPEG.toString())
-                            .setContent(Contents.bytes(sauceBotImage)));
+                            .setContent(Contents.bytes(catAndDog)));
 
     try (NetworkInterceptor ignore = new NetworkInterceptor(driver, replaceImage)) {
       driver.get(APP_URL.toString());
