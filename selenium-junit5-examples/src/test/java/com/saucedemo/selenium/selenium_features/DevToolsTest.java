@@ -352,7 +352,7 @@ public class DevToolsTest extends TestBase {
     Path path = Paths.get("src/test/resources/cat-and-dog.jpg");
     byte[] sauceBotImage = Files.readAllBytes(path);
     Routable replaceImage =
-        Route.matching(req -> req.getUri().contains("unsplash.com"))
+        Route.matching(req -> req.getUri().contains("picsum.photos"))
             .to(
                 () ->
                     req ->
