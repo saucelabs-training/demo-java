@@ -75,7 +75,7 @@ public class TestBase {
     options.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     options.put("name", testInfo.getDisplayName());
     options.put("build", System.getProperty("build.name"));
-    options.put("seleniumVersion", System.getProperty("selenium.version"));
+    options.put("seleniumVersion", "4.32.0");
     return options;
   }
 
