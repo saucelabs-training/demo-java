@@ -45,7 +45,6 @@ public class BidirectionalTests extends TestBase {
     FirefoxOptions firefoxOptions = new FirefoxOptions();
     firefoxOptions.enableBiDi();
     startSession(firefoxOptions, sauceOptions);
-
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     driver = new Augmenter().augment(driver);
   }
