@@ -22,6 +22,7 @@ import org.openqa.selenium.remote.SessionId;
 
 public class TestBase {
 
+  // we want build name to be constant across build runs
   static {
     String buildName = "Default Build Name";
     String buildNumber = String.valueOf(System.currentTimeMillis());
@@ -35,6 +36,8 @@ public class TestBase {
 
   public void startChromeSession(TestInfo testInfo, List<String> args) {
     ChromeOptions options = new ChromeOptions().addArguments(args);
+    options.setExperimentalOption(
+        "prefs", Map.of("profile.password_manager_leak_detection", false));
     startSession(testInfo, options);
   }
 
