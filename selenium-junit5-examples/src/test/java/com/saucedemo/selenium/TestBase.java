@@ -19,14 +19,16 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.openqa.selenium.support.events.WebDriverListener;
 
 public class TestBase {
 
-  // we want build name to be constant across build runs
+  // Ideally these get pulled dynamically from environment variables; hard coded here for clarity
   static {
-    String buildName = "Default Build Name";
+    System.setProperty("build.name", "Default Build Name");
     String buildNumber = String.valueOf(System.currentTimeMillis());
-    System.setProperty("build.name", buildName + ": " + buildNumber);
+    System.setProperty("sauce.build", System.getProperty("build.name") + ": " + buildNumber);
   }
 
   public WebDriver driver;
@@ -68,6 +70,11 @@ public class TestBase {
 
     driver = new RemoteWebDriver(url, options);
     this.id = ((RemoteWebDriver) driver).getSessionId();
+
+    if (Boolean.getBoolean("sauce.visual")) {
+      WebDriverListener listener = new VisualDriverListener(driver, testInfo);
+      driver = new EventFiringDecorator<>(listener).decorate(driver);
+    }
   }
 
   protected Map<String, Object> defaultSauceOptions(TestInfo testInfo) {
@@ -77,7 +84,7 @@ public class TestBase {
     options.put("username", System.getenv("SAUCE_USERNAME"));
     options.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     options.put("name", testInfo.getDisplayName());
-    options.put("build", System.getProperty("build.name"));
+    options.put("build", System.getProperty("sauce.build"));
     options.put("seleniumVersion", "4.32.0");
     return options;
   }
@@ -88,9 +95,10 @@ public class TestBase {
       printResults();
       try {
         ((JavascriptExecutor) driver).executeScript("sauce:job-result=passed");
-        driver.quit();
       } catch (Exception e) {
         System.out.println("problem with using driver: " + e);
+      } finally {
+        driver.quit();
       }
     }
 
@@ -100,9 +108,10 @@ public class TestBase {
 
       try {
         ((JavascriptExecutor) driver).executeScript("sauce:job-result=failed");
-        driver.quit();
       } catch (Exception e) {
         System.out.println("problem with using driver: " + e);
+      } finally {
+        driver.quit();
       }
     }
 
