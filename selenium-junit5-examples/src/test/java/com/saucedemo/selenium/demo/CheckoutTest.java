@@ -13,7 +13,7 @@ public class CheckoutTest extends TestBase {
 
   @Test
   public void badInfo() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
@@ -33,7 +33,7 @@ public class CheckoutTest extends TestBase {
 
   @Test
   public void goodInfo() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
@@ -55,7 +55,7 @@ public class CheckoutTest extends TestBase {
 
   @Test
   public void completeCheckout() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();

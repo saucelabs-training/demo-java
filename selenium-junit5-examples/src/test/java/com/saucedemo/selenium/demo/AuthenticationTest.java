@@ -14,7 +14,7 @@ public class AuthenticationTest extends TestBase {
 
   @Test
   public void signInUnsuccessful() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
 
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("locked_out_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
@@ -27,7 +27,7 @@ public class AuthenticationTest extends TestBase {
 
   @Test
   public void signInSuccessful() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
 
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
@@ -39,7 +39,7 @@ public class AuthenticationTest extends TestBase {
 
   @Test
   public void logout() throws InterruptedException {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();

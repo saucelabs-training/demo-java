@@ -13,7 +13,7 @@ public class CartTest extends TestBase {
 
   @Test
   public void addFromProductPage() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
@@ -30,7 +30,7 @@ public class CartTest extends TestBase {
 
   @Test
   public void removeFromProductPage() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
@@ -49,7 +49,7 @@ public class CartTest extends TestBase {
 
   @Test
   public void addFromInventoryPage() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
@@ -61,7 +61,7 @@ public class CartTest extends TestBase {
 
   @Test
   public void removeFromInventoryPage() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
@@ -78,7 +78,7 @@ public class CartTest extends TestBase {
 
   @Test
   public void removeFromCartPage() {
-    driver.get("https://www.saucedemo.com/");
+    driver.navigate().to("https://www.saucedemo.com/");
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
