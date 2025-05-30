@@ -35,6 +35,7 @@ public class TestBase {
 
   public void startChromeSession(TestInfo testInfo, List<String> args) {
     ChromeOptions options = new ChromeOptions().addArguments(args);
+    options.addArguments("--disable-features=SafeBrowsing,PasswordLeakToggleMove");
     startSession(testInfo, options);
   }
 

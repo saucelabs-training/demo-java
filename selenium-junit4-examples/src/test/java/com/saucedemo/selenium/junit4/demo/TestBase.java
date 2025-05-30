@@ -29,7 +29,9 @@ public class TestBase {
   protected SessionId id;
 
   public void startChromeSession() {
-    startSession(new ChromeOptions());
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--disable-features=SafeBrowsing,PasswordLeakToggleMove");
+    startSession(options);
   }
 
   public void startFirefoxSession() {
