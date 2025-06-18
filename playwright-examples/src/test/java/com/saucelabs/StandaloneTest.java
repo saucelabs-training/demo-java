@@ -130,7 +130,7 @@ public class StandaloneTest {
   }
 
   @AfterEach
-  void closeContextAndWindow() throws IOException {
+  void closeContextAndWindow() {
     context.close();
     browser.close();
     request.delete("session/" + sessionId);
