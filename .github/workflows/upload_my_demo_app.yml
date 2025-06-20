@@ -90,3 +90,19 @@ jobs:
         uses: wei/curl@v1.1.1
         with:
           args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"iOS.MyDemoAppRN.zip"' --form 'name="iOS.MyDemoAppRN.zip"'
+
+  upload_ios_rn_ipa:
+    name: Upload My Demo App iOS ipa RN
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        datacenter: [ eu-central-1, us-west-1 ]
+    steps:
+      - name: Download My Demo App iOS ipa RN
+        uses: wei/curl@v1.1.1
+        with:
+          args: -L -o iOS.MyDemoAppRN.ipa https://github.com/saucelabs/my-demo-app-rn/releases/download/v1.3.0/iOS-Real-Device-MyRNDemoApp.1.3.0-162.ipa
+      - name: Upload My Demo App iOS ipa RN
+        uses: wei/curl@v1.1.1
+        with:
+          args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"iOS.MyDemoAppRN.ipa"' --form 'name="iOS.MyDemoAppRN.ipa"'
