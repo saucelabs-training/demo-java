@@ -1,4 +1,4 @@
-name: Upload My Demo App monthly
+name: Upload My Demo App Daily
 
 on:
   workflow_call:
@@ -27,7 +27,7 @@ jobs:
         with:
           args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"SauceLabs-Demo-App.apk"' --form 'name="SauceLabs-Demo-App.apk"'
 
-  download_ios_zip:
+  upload_ios_zip:
     name: Upload My Demo App iOS zip
     runs-on: ubuntu-latest
     strategy:
@@ -43,7 +43,7 @@ jobs:
         with:
           args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"SauceLabs-Demo-App.Simulator.zip"' --form 'name="SauceLabs-Demo-App.Simulator.zip"'
 
-  download_ios_ipa:
+  upload_ios_ipa:
     name: Upload My Demo App iOS ipa
     runs-on: ubuntu-latest
     strategy:
@@ -58,3 +58,35 @@ jobs:
         uses: wei/curl@v1.1.1
         with:
           args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"SauceLabs-Demo-App.ipa"' --form 'name="SauceLabs-Demo-App.ipa"'
+
+  upload_android_rn:
+    name: Upload My Demo App Android RN
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        datacenter: [ eu-central-1, us-west-1 ]
+    steps:
+      - name: Download My Demo App Android RN
+        uses: wei/curl@v1.1.1
+        with:
+          args: -L -o Android.MyDemoAppRN.apk https://github.com/saucelabs/my-demo-app-rn/releases/download/v1.3.0/Android-MyDemoAppRN.1.3.0.build-244.apk
+      - name: Upload My Demo App Android RN
+        uses: wei/curl@v1.1.1
+        with:
+          args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"Android.MyDemoAppRN.apk"' --form 'name="Android.MyDemoAppRN.apk"'
+
+  upload_ios_rn_zip:
+    name: Upload My Demo App iOS zip RN
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        datacenter: [ eu-central-1, us-west-1 ]
+    steps:
+      - name: Download My Demo App iOS zip RN
+        uses: wei/curl@v1.1.1
+        with:
+          args: -L -o iOS.MyDemoAppRN.zip https://github.com/saucelabs/my-demo-app-rn/releases/download/v1.3.0/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip
+      - name: Upload My Demo App iOS zip RN
+        uses: wei/curl@v1.1.1
+        with:
+          args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"iOS.MyDemoAppRN.zip"' --form 'name="iOS.MyDemoAppRN.zip"'
