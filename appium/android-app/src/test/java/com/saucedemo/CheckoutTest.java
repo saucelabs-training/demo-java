@@ -108,7 +108,6 @@ public class CheckoutTest extends TestBase {
 
   private void login() {
     driver.findElement(AppiumBy.accessibilityId("View menu")).click();
-    // driver.findElement(AppiumBy.id("com.saucelabs.mydemoapp.android:id/drawerMenu"));
 
     scrollDown(AppiumBy.id("com.saucelabs.mydemoapp.android:id/menuRV"));
     driver.findElement(AppiumBy.accessibilityId("Login Menu Item")).click();
