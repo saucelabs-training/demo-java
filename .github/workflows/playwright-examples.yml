@@ -47,8 +47,9 @@ jobs:
   suite:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        browser: [Chrome, MicrosoftEdge]
+        browser: [ Chrome, MicrosoftEdge ]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Java
