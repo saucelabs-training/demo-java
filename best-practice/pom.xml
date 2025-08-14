@@ -13,7 +13,7 @@
 
   <properties>
     <selenium.version>4.34.0</selenium.version>
-    <appium.version>9.5.0</appium.version>
+    <appium.version>10.0.0</appium.version>
     <sauce_junit4.version>1.5.0</sauce_junit4.version>
     <maven.surefire.version>3.5.3</maven.surefire.version>
     <maven.compiler.source>11</maven.compiler.source>
