@@ -43,13 +43,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.NetworkInterceptor;
-import org.openqa.selenium.devtools.v136.browser.Browser;
-import org.openqa.selenium.devtools.v136.emulation.Emulation;
-import org.openqa.selenium.devtools.v136.network.Network;
-import org.openqa.selenium.devtools.v136.network.model.Headers;
-import org.openqa.selenium.devtools.v136.performance.Performance;
-import org.openqa.selenium.devtools.v136.performance.model.Metric;
-import org.openqa.selenium.devtools.v136.runtime.Runtime;
+import org.openqa.selenium.devtools.v139.browser.Browser;
+import org.openqa.selenium.devtools.v139.emulation.Emulation;
+import org.openqa.selenium.devtools.v139.network.Network;
+import org.openqa.selenium.devtools.v139.network.model.Headers;
+import org.openqa.selenium.devtools.v139.performance.Performance;
+import org.openqa.selenium.devtools.v139.performance.model.Metric;
+import org.openqa.selenium.devtools.v139.runtime.Runtime;
 import org.openqa.selenium.logging.HasLogEvents;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.http.ClientConfig;
@@ -173,7 +173,12 @@ public class DevToolsTest extends TestBase {
   public void basicAuthenticationCdpApi() {
     DevTools devTools = ((HasDevTools) driver).getDevTools();
     devTools.createSession();
-    devTools.send(Network.enable(Optional.of(100000), Optional.of(100000), Optional.of(100000)));
+    devTools.send(
+        Network.enable(
+            Optional.of(100000),
+            Optional.of(100000),
+            Optional.of(100000),
+            Optional.of(Boolean.TRUE)));
 
     String encodedAuth = Base64.getEncoder().encodeToString("admin:admin".getBytes());
     Map<String, Object> headers = ImmutableMap.of("Authorization", "Basic " + encodedAuth);
