@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.UsernameAndPassword;
 import org.openqa.selenium.WebElement;
@@ -102,8 +103,15 @@ public class BidirectionalTests extends TestBase {
     if (fullPageScreenshot.toFile().exists()) {
       fullPageScreenshot.toFile().delete();
     }
+    driver.navigate().to("https://www.saucedemo.com/");
+    Cookie cookie =
+        new Cookie.Builder("session-username", "session-username")
+            .domain("www.saucedemo.com")
+            .path("/")
+            .build();
+    driver.manage().addCookie(cookie);
     BrowsingContext browsingContext = new BrowsingContext(driver, driver.getWindowHandle());
-    driver.get("https://www.saucedemo.com/v1/inventory.html");
+    driver.get("https://www.saucedemo.com/inventory.html");
     CaptureScreenshotParameters csp = new CaptureScreenshotParameters();
     csp.origin(CaptureScreenshotParameters.Origin.DOCUMENT);
     String screenshot = browsingContext.captureScreenshot(csp);

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -18,7 +19,14 @@ public class ViewPageChromeTest extends TestBase {
   @BeforeEach
   public void setup(TestInfo testInfo) throws IOException {
     startChromeSession(testInfo);
-    driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
+    driver.navigate().to("https://www.saucedemo.com/");
+    Cookie cookie =
+        new Cookie.Builder("session-username", "session-username")
+            .domain("www.saucedemo.com")
+            .path("/")
+            .build();
+    driver.manage().addCookie(cookie);
+    driver.navigate().to("https://www.saucedemo.com/inventory.html");
     directory = Files.createTempDirectory("chrome-");
     directory.toFile().deleteOnExit();
   }

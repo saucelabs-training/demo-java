@@ -20,7 +20,14 @@ public class ViewPageFirefoxTest extends TestBase {
   @BeforeEach
   public void setup(TestInfo testInfo) throws IOException {
     startFirefoxSession(testInfo);
-    driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
+    driver.navigate().to("https://www.saucedemo.com/");
+    Cookie cookie =
+        new Cookie.Builder("session-username", "session-username")
+            .domain("www.saucedemo.com")
+            .path("/")
+            .build();
+    driver.manage().addCookie(cookie);
+    driver.navigate().to("https://www.saucedemo.com/inventory.html");
     directory = Files.createTempDirectory("firefox-");
     directory.toFile().deleteOnExit();
   }
