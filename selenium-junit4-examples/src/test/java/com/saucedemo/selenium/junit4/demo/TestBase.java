@@ -29,8 +29,13 @@ public class TestBase {
   protected SessionId id;
 
   public void startChromeSession() {
+    Map<String, Object> chromePrefs = new HashMap<>();
+    chromePrefs.put("credentials_enable_service", false);
+    chromePrefs.put("profile.password_manager_enabled", false);
+    chromePrefs.put("profile.password_manager_leak_detection", false);
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--disable-features=SafeBrowsing,PasswordLeakToggleMove");
+    options.setExperimentalOption("prefs", chromePrefs);
     startSession(options);
   }
 
@@ -50,7 +55,7 @@ public class TestBase {
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("name", testName.getMethodName());
     sauceOptions.put("screenResolution", "1440x900");
-    sauceOptions.put("seleniumVersion", "4.22.0");
+    sauceOptions.put("seleniumVersion", "4.37.0");
     ((MutableCapabilities) options).setCapability("sauce:options", sauceOptions);
     ((AbstractDriverOptions<?>) options).setPlatformName("Windows 11");
     URL url;
