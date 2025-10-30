@@ -52,7 +52,7 @@ public class AppiumTest {
     }
 
     Map<String, Object> sauceOptions = new HashMap<>();
-    sauceOptions.put("appiumVersion", "2.0.0");
+    sauceOptions.put("appiumVersion", "stable");
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     sauceOptions.put("build", System.getenv("BUILD"));

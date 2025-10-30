@@ -34,8 +34,13 @@ public class TestBase {
   protected SessionId id;
 
   public void startChromeSession(TestInfo testInfo, List<String> args) {
-    ChromeOptions options = new ChromeOptions().addArguments(args);
+    Map<String, Object> chromePrefs = new HashMap<>();
+    chromePrefs.put("credentials_enable_service", false);
+    chromePrefs.put("profile.password_manager_enabled", false);
+    chromePrefs.put("profile.password_manager_leak_detection", false);
+    ChromeOptions options = new ChromeOptions();
     options.addArguments("--disable-features=SafeBrowsing,PasswordLeakToggleMove");
+    options.setExperimentalOption("prefs", chromePrefs);
     startSession(testInfo, options);
   }
 
@@ -76,7 +81,7 @@ public class TestBase {
     options.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     options.put("name", testInfo.getDisplayName());
     options.put("build", System.getProperty("build.name"));
-    options.put("seleniumVersion", "4.32.0");
+    options.put("seleniumVersion", "4.37.0");
     return options;
   }
 
