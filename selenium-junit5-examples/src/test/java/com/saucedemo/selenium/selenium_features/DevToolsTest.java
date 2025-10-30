@@ -178,6 +178,7 @@ public class DevToolsTest extends TestBase {
             Optional.of(100000),
             Optional.of(100000),
             Optional.of(100000),
+            Optional.of(Boolean.TRUE),
             Optional.of(Boolean.TRUE)));
 
     String encodedAuth = Base64.getEncoder().encodeToString("admin:admin".getBytes());
