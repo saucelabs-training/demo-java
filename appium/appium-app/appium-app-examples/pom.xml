@@ -10,7 +10,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <properties>
-    <maven.surefire.version>3.5.3</maven.surefire.version>
+    <maven.surefire.version>3.5.4</maven.surefire.version>
     <appium.version>10.0.0</appium.version>
     <selenium.version>4.35.0</selenium.version>
     <maven.compiler.source>11</maven.compiler.source>
