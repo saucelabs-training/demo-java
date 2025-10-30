@@ -19,7 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: axel-op/googlejavaformat-action@v3
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: "temurin"
+      - uses: axel-op/googlejavaformat-action@v4
         with:
           args: "--replace"
           files: "playwright-examples/**/*.java"
