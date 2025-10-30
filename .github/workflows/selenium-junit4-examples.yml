@@ -41,7 +41,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v5
         with:
-          java-version: 11
+          java-version: 21
           distribution: "temurin"
       - name: Run JUnit 4 Tests
         working-directory: ./selenium-junit4-examples
