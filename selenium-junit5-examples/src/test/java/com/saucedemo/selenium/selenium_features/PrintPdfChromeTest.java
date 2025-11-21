@@ -25,7 +25,7 @@ public class PrintPdfChromeTest extends TestBase {
     startChromeSession(testInfo, List.of("--headless"));
     driver.navigate().to("https://www.saucedemo.com/");
     Cookie cookie =
-        new Cookie.Builder("session-username", "session-username")
+        new Cookie.Builder("session-username", "standard_user")
             .domain("www.saucedemo.com")
             .path("/")
             .build();

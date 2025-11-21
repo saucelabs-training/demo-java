@@ -21,7 +21,7 @@ public class ViewPageChromeTest extends TestBase {
     startChromeSession(testInfo);
     driver.navigate().to("https://www.saucedemo.com/");
     Cookie cookie =
-        new Cookie.Builder("session-username", "session-username")
+        new Cookie.Builder("session-username", "standard_user")
             .domain("www.saucedemo.com")
             .path("/")
             .build();

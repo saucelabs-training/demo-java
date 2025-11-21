@@ -13,6 +13,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 /** Performance Test. */
+@SuppressWarnings("unchecked")
 public class PerformanceTest extends TestBase {
 
   @BeforeEach

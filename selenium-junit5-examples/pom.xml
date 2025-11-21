@@ -50,13 +50,7 @@
     <dependency>
       <groupId>com.deque.html.axe-core</groupId>
       <artifactId>selenium</artifactId>
-      <version>4.10.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.titusfortner</groupId>
-      <artifactId>selenium-logger</artifactId>
-      <version>2.4.0</version>
+      <version>4.11.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
