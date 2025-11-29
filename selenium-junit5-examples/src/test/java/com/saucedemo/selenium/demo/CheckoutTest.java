@@ -1,5 +1,7 @@
 package com.saucedemo.selenium.demo;
 
+import com.deque.html.axecore.results.Results;
+import com.deque.html.axecore.selenium.AxeBuilder;
 import com.saucedemo.selenium.TestBase;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -34,6 +36,9 @@ public class CheckoutTest extends TestBase {
   @Test
   public void goodInfo() {
     driver.get("https://www.saucedemo.com/");
+    AxeBuilder axeBuilder = new AxeBuilder();
+    axeBuilder.analyze(driver);
+
     driver.findElement(By.cssSelector("input[data-test='username']")).sendKeys("standard_user");
     driver.findElement(By.cssSelector("input[data-test='password']")).sendKeys("secret_sauce");
     driver.findElement(By.cssSelector("input[data-test='login-button']")).click();
@@ -46,6 +51,7 @@ public class CheckoutTest extends TestBase {
     driver.findElement(By.cssSelector("input[data-test='postalCode']")).sendKeys("90210");
 
     driver.findElement(By.cssSelector("input[data-test='continue']")).click();
+
 
     Assertions.assertEquals(
         "https://www.saucedemo.com/checkout-step-two.html",
