@@ -18,7 +18,7 @@ jobs:
   formatting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Set up Java
         uses: actions/setup-java@v5
         with:
@@ -36,7 +36,7 @@ jobs:
   standalone:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Set up Java
         uses: actions/setup-java@v5
         with:
@@ -56,7 +56,7 @@ jobs:
       matrix:
         browser: [ Chrome, MicrosoftEdge ]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Set up Java
         uses: actions/setup-java@v5
         with:
