@@ -6,10 +6,10 @@ It works with any production version of Chrome or Edge.
 [Setup Instructions](https://github.com/saucelabs-training/demo-java/blob/main/README.md#%EF%B8%8Fsetupprerequisites)
 and
 [Contribution Information](https://github.com/saucelabs-training/demo-java/blob/main/README.md#contributing)
-can be found on the [Main README](https://github.com/saucelabs-training/demo-java/blob/main/README.md).
+can be found on
+the [Main README](https://github.com/saucelabs-training/demo-java/blob/main/README.md).
 
 ## Executing Examples
-The Android app being tested is found in the [My Demo App Android Repository](https://github.com/saucelabs/my-demo-app-android)
 
 1. After cloning this repo from instructions, change to this subdirectory:
     ```
@@ -29,19 +29,25 @@ The Android app being tested is found in the [My Demo App Android Repository](ht
     $ mvn clean test
     ```
 
-   See passing tests on [GitHub Actions](https://github.com/saucelabs-training/demo-java/actions/workflows/playwright-examples.yml)
+   See passing tests
+   on [GitHub Actions](https://github.com/saucelabs-training/demo-java/actions/workflows/playwright-examples.yml)
 
 ## Configurations
+
 This code allows toggling which browser the tests will run on.
 
 ### Chrome (default)
+
 Tests will execute on the latest version of Chrome:
+
    ```
    $ mvn clean test -Dsauce.browser=Chrome
    ```
 
 ### Microsoft Edge
+
 Tests will execute on the latest version of Edge:
+
    ```
    $ mvn clean test -Dsauce.browser=MicrosoftEdge
    ```
