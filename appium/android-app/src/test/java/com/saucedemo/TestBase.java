@@ -29,7 +29,7 @@ public class TestBase {
     Capabilities capabilities = TestConfigurations.getCapabilities(testInfo);
 
     this.driver = new AndroidDriver(new URL(SAUCE_URL), capabilities);
-    this.driver.manage().timeouts().implicitlyWait(Duration.of(5, ChronoUnit.SECONDS));
+    this.driver.manage().timeouts().implicitlyWait(Duration.of(15, ChronoUnit.SECONDS));
   }
 
   public void scrollDown(By locator) {

@@ -19,8 +19,6 @@ public class SaucePlaywrightExtension
     implements TestWatcher, BeforeEachCallback, ParameterResolver {
   private static final Logger LOGGER = Logger.getLogger(SaucePlaywrightExtension.class.getName());
   private static final String BROWSER_NAME = System.getProperty("sauce.browser", "Chrome");
-  private final String build;
-  protected Map<String, Object> capabilities;
   protected DataCenter dataCenter;
 
   public SaucePlaywrightExtension() {
@@ -29,7 +27,6 @@ public class SaucePlaywrightExtension
 
   private SaucePlaywrightExtension(DataCenter dataCenter) {
     this.dataCenter = dataCenter;
-    this.build = CITools.getBuildName() + ": " + CITools.getBuildNumber();
   }
 
   @Override
