@@ -1,7 +1,8 @@
 # Java Demonstration Scripts
 
 Welcome to Java Demo Scripts, a set of examples showing how to use the features of Sauce
-Labs. This repository contains everything you need to start with web, mobile, functional, and all other types of
+Labs. This repository contains everything you need to start with web, mobile, functional, and all
+other types of
 Java automation.
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -29,36 +30,81 @@ Java automation.
 
 ## Best Practices
 
-* [Desktop](./best-practice/src/test/java/com/saucedemo/tests/DesktopTests.java) `junit4` `sauce-bindings`
-* [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmuSimWebAppTests.java) `junit4` `sauce-bindings`
-* [Performance](./best-practice/src/test/java/com/saucedemo/tests/PerformanceTests.java) `junit4` `sauce-bindings`
-* [RealDevice](./best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java) `junit4` `sauce-bindings`
+* [Desktop](./best-practice/src/test/java/com/saucedemo/tests/DesktopTests.java) `junit4`
+  `sauce-bindings`
+* [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmuSimWebAppTests.java) `junit4`
+  `sauce-bindings`
+* [Performance](./best-practice/src/test/java/com/saucedemo/tests/PerformanceTests.java) `junit4`
+  `sauce-bindings`
+* [RealDevice](./best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java) `junit4`
+  `sauce-bindings`
 
 ## 🖥Web automation
 
 - Selenium Examples
-    * [Accessibility Test with Deque axe-core](./selenium-junit5-examples/src/test/java/com/saucedemo/selenium/sauce_features/AccessibilityTest.java) `junit5`
-    * [Cucumber web test](./selenium-cucumber-examples/src/test/java/com/saucedemo/selenium/cucumber/RunTestsAT.java) `cucumber` `bdd`
-    * [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/CrossBrowserPlatformTest.java) `testng`
-    * [Performance, front-end with Sauce Bindings](./selenium-junit5-examples/src/test/java/com/saucedemo/selenium/sauce_features/PerformanceTest.java) `junit5` `sauce-bindings`
-    * [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/ParallelSingleBrowserTest.java) `testng`
+    * [Accessibility Test with Deque axe-core](./selenium-junit5-examples/src/test/java/com/saucedemo/selenium/sauce_features/AccessibilityTest.java)
+      `junit5`
+    * [Cucumber web test](./selenium-cucumber-examples/src/test/java/com/saucedemo/selenium/cucumber/RunTestsAT.java)
+      `cucumber` `bdd`
+    * [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/CrossBrowserPlatformTest.java)
+      `testng`
+    * [Performance, front-end with Sauce Bindings](./selenium-junit5-examples/src/test/java/com/saucedemo/selenium/sauce_features/PerformanceTest.java)
+      `junit5` `sauce-bindings`
+    * [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/ParallelSingleBrowserTest.java)
+      `testng`
 
 ## 📱Mobile automation
 
 [📚 Mobile Testing Training Tutorials](./TRAINING.md)
 
 - Real Devices
-    * [iOS native app](./appium-examples/src/test/java/com/appium_app/simple_example/IOSNativeAppTest.java)
-    * [Android native app](./appium-examples/src/test/java/com/appium_app/simple_example/AndroidNativeAppTest.java)
-    * [Upload app to Sauce Storage](./appium-examples/src/test/java/com/helpers/push_apps_to_storage.sh)
-    * [Image Injection](./appium-examples/src/test/java/com/appium_app/image_injection)
-    * [Biometric Login](./appium-examples/src/test/java/com/appium_app/biometric_login)
-    * [Cucumber w/ Appium](./appium-junit4-cucumber-examples/src/test/resources/LoginPage.feature) `junit4` `cucumber`
+    * [iOS native app](./appium/appium-app/appium-app-examples/src/test/java/com/examples/simple_example/IOSNativeAppTest.java)
+    * [Android native app](./appium/appium-app/appium-app-examples/src/test/java/com/examples/simple_example/AndroidNativeAppTest.java)
+    * [Upload app to Sauce Storage](./appium/appium-app/appium-app-examples/src/test/java/com/helpers/push_apps_to_storage.sh)
+    * [Image Injection](./appium/appium-app/appium-app-examples/src/test/java/com/examples/image_injection)
+    * [Biometric Login](./appium/appium-app/appium-app-examples/src/test/java/com/examples/biometric_login)
+    * [Deep Link](./appium/appium-app/appium-app-examples/src/test/java/com/examples/deep_link)
+    * [Find By Image](./appium/appium-app/appium-app-examples/src/test/java/com/examples/find_by_image)
+    * [Gestures](./appium/appium-app/appium-app-examples/src/test/java/com/examples/gestures)
+    * [Mid-Session App Installs](./appium/appium-app/appium-app-examples/src/test/java/com/examples/mid_session_app_installs)
+    * [Network Throttling](./appium/appium-app/appium-app-examples/src/test/java/com/examples/network_throttling)
+    * [Upload/Download File](./appium/appium-app/appium-app-examples/src/test/java/com/examples/up_download_file)
+    * [Allowlist](./appium/appium-app/appium-app-examples/src/test/java/com/examples/allowlist)
+    * [Cucumber w/ Appium](./appium-junit4-cucumber-examples/src/test/resources/LoginPage.feature)
+      `junit4` `cucumber`
 
 - Emulators and Simulators
-    * [iOS native app](./appium-examples/src/test/java/com/appium_app/simple_example/IOSNativeAppTest.java)
-    * [Android native app](./appium-examples/src/test/java/com/appium_app/simple_example/AndroidNativeAppTest.java)
-    * [Biometric Login](./appium-examples/src/test/java/com/appium_app/biometric_login)
+    * [iOS native app](./appium/appium-app/appium-app-examples/src/test/java/com/examples/simple_example/IOSNativeAppTest.java)
+    * [Android native app](./appium/appium-app/appium-app-examples/src/test/java/com/examples/simple_example/AndroidNativeAppTest.java)
+    * [Biometric Login](./appium/appium-app/appium-app-examples/src/test/java/com/examples/biometric_login)
+
+- Best Practice
+    * [iOS Best Practice](./appium/appium-app/appium-app-best-practice/src/test/java/com/saucelabs/tests/iOS/DemoSimpleTest.java)
+
+- Mobile Web
+    * [Mobile Web Tests](./appium/mobile-web/)
+
+- Android App
+    * [Android App Tests](./appium/android-app/)
+
+## 🎭 Playwright automation
+
+- Playwright Examples
+    * [Authentication Test](./playwright-examples/src/test/java/com/saucedemo/playwright/AuthenticationTest.java)
+      `junit5`
+    * [Cart Test](./playwright-examples/src/test/java/com/saucedemo/playwright/CartTest.java)
+      `junit5`
+    * [Checkout Test](./playwright-examples/src/test/java/com/saucedemo/playwright/CheckoutTest.java)
+      `junit5`
+    * [Navigation Test](./playwright-examples/src/test/java/com/saucedemo/playwright/NavigationTest.java)
+      `junit5`
+    * [Standalone Test](./playwright-examples/src/test/java/com/saucelabs/StandaloneTest.java)
+      `junit5`
+
+## ☁️ Gitpod Examples
+
+* [Selenium Test](./gitpod/src/test/java/com/saucedemo/selenium/SeleniumTest.java)
+* [Appium Test](./gitpod/src/test/java/com/saucedemo/selenium/AppiumTest.java)
 
 ## ⚙️Setup/Prerequisites
 
@@ -67,7 +113,6 @@ Java automation.
 * Maven
 * IntelliJ, VS Code, or another IDE
 * Sauce Labs account, with Username and Access Key
-
 
 ### Import the Project
 
@@ -93,14 +138,16 @@ Java automation.
    $ export SAUCE_USERNAME="your username"
    $ export SAUCE_ACCESS_KEY="your accessKey"
    ```
-   > To set an environment variable permanently in MacOS, you must set it within your chosen shell's profile config.
+   > To set an environment variable permanently in MacOS, you must set it within your chosen shell's
+   profile config.
 
    **Windows:**
    ```
    > set SAUCE_USERNAME="username"
    > set SAUCE_ACCESS_KEY="accessKey"
    ```
-   > To set an environment variable permanently in Windows, you must set it within System Properties.
+   > To set an environment variable permanently in Windows, you must set it within System
+   Properties.
 
    > Go to **Control Panel > System > Windows version > Advanced System Settings > Environment
    Variables > System Variables > Edit > New**
@@ -133,7 +180,8 @@ Java automation.
 
 ### Run a Maven Test
 
-1. Go to the chosen module where you'd like to do your testing (these examples will use `best-practice`)
+1. Go to the chosen module where you'd like to do your testing (these examples will use
+   `best-practice`)
     ```
     $ cd best-practice
     ```
@@ -164,7 +212,8 @@ Guidance for contributing can be found [here](./CONTRIBUTING.md)
 
 > The code in these scripts is provided on an "AS-IS" basis without warranty of any kind, either
 > express or implied, including without limitation any implied warranties of condition,
-> uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These scripts are
+> uninterrupted use, merchantability, fitness for a particular purpose, or non-infringement. These
+> scripts are
 > provided for educational and demonstration purposes only and should not be used in production.
 > Issues regarding these scripts should be submitted through GitHub. These scripts are maintained by
 > the Technical Services team at Sauce Labs.
