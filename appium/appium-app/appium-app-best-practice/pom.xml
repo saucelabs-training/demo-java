@@ -14,7 +14,7 @@
     <testngXmlFile>myDemoTests.xml</testngXmlFile>
     <testng.version>7.12.0</testng.version>
     <appium.version>10.0.0</appium.version>
-    <selenium.version>4.39.0</selenium.version>
+    <selenium.version>4.40.0</selenium.version>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
