@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,9 +38,13 @@ public class DownloadTest extends TestBase {
     driver.findElement(By.id("file-1")).click();
     driver.findElement(By.id("file-2")).click();
     new WebDriverWait(driver, Duration.ofSeconds(5))
-        .until(d -> ((HasDownloads) d).getDownloadableFiles().contains("file_2.jpg"));
+        .until(d -> ((HasDownloads) d).getDownloadedFiles().size() == 2);
 
-    List<String> files = ((HasDownloads) driver).getDownloadableFiles();
+    List<String> files =
+        ((HasDownloads) driver)
+            .getDownloadedFiles().stream()
+                .map(HasDownloads.DownloadedFile::getName)
+                .collect(Collectors.toList());
 
     // Sorting them to avoid differences when comparing the files
     fileNames.sort(Comparator.naturalOrder());
