@@ -58,7 +58,7 @@ public class TestBase {
 
   protected void startSession(Capabilities options, Map<String, Object> sauceOptions) {
     ((MutableCapabilities) options).setCapability("sauce:options", sauceOptions);
-    if (options.getPlatformName() == null) {
+    if (options.getCapability("platformName") == null) {
       ((AbstractDriverOptions<?>) options).setPlatformName("Windows 11");
     }
 
