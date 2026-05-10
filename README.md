@@ -101,11 +101,6 @@ Java automation.
     * [Standalone Test](./playwright-examples/src/test/java/com/saucelabs/StandaloneTest.java)
       `junit5`
 
-## ☁️ Gitpod Examples
-
-* [Selenium Test](./gitpod/src/test/java/com/saucedemo/selenium/SeleniumTest.java)
-* [Appium Test](./gitpod/src/test/java/com/saucedemo/selenium/AppiumTest.java)
-
 ## ⚙️Setup/Prerequisites
 
 * git
