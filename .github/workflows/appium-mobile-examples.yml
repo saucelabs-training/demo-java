@@ -32,5 +32,8 @@ jobs:
           java-version: 21
           distribution: "temurin"
       - name: Mobile Web ${{ matrix.cloud }} {{ matrix.browser }}
-        working-directory: ./appium/mobile-web
-        run: mvn test -Dsauce.cloud=${{ matrix.cloud}} -Dsauce.browser=${{ matrix.browser}}
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 30
+          max_attempts: 3
+          command: cd ./appium/mobile-web && mvn test -Dsauce.cloud=${{ matrix.cloud}} -Dsauce.browser=${{ matrix.browser}}

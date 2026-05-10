@@ -20,6 +20,9 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
+    env:
+      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+      SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v6
       - name: Set up Java
@@ -28,8 +31,8 @@ jobs:
           java-version: 21
           distribution: "temurin"
       - name: Run tests
-        working-directory: ./selenium-cucumber-examples
-        env:
-          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-        run: mvn test
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 30
+          max_attempts: 3
+          command: cd ./selenium-cucumber-examples && mvn test
