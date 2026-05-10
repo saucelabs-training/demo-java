@@ -27,7 +27,6 @@ public class AccessibilityTest extends TestBase {
 
     // Exact violation count varies by axe-core version; assert violations were found
     Assertions.assertFalse(
-        accessibilityResults.violationFree(),
-        "Expected axe violations on saucedemo.com");
+        accessibilityResults.violationFree(), "Expected axe violations on saucedemo.com");
   }
 }
