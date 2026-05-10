@@ -20,7 +20,7 @@ public class PerformanceTest extends TestBase {
   public void setup(TestInfo testInfo) {
     ChromeOptions options = new ChromeOptions();
     options.setPlatformName("Windows 10");
-    options.setBrowserVersion("117");
+    options.setBrowserVersion("145");
 
     Map<String, Object> sauceOptions = defaultSauceOptions(testInfo);
     sauceOptions.put("capturePerformance", true);
