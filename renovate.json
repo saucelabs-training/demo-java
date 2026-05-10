@@ -4,5 +4,8 @@
     "config:recommended"
   ],
   "prConcurrentLimit": 1,
-  "branchConcurrentLimit": 1
+  "branchConcurrentLimit": 1,
+  "automerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "squash"
 }
