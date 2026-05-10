@@ -29,7 +29,8 @@ public class TestConfigurations {
       }
     }
 
-    throw new RuntimeException("Invalid platform/cloud combination. Browser must be chrome or safari and  cloud must be vdc or rdc.");
+    throw new RuntimeException(
+        "Invalid platform/cloud combination. Browser must be chrome or safari and  cloud must be vdc or rdc.");
   }
 
   private static Capabilities androidVDC(TestInfo testInfo) {
@@ -96,7 +97,7 @@ public class TestConfigurations {
     Map<String, Object> sauceOptions = new HashMap<>();
     sauceOptions.put("username", System.getenv("SAUCE_USERNAME"));
     sauceOptions.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-    sauceOptions.put("appiumVersion", "latest");
+    sauceOptions.put("appiumVersion", "appium3-2026-04");
     sauceOptions.put("name", testInfo.getDisplayName());
     sauceOptions.put("build", "iOS Web RDC: " + BUILD_TIME);
     caps.put("sauce:options", sauceOptions);
