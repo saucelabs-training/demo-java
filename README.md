@@ -26,15 +26,12 @@ Java automation.
 * [Quick start test, Junit 4](./selenium-junit4-examples/src/test/java/com/saucedemo/selenium/junit4/demo/CartTest.java)
 * [Quick start test, TestNg](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/demo/SeleniumTest.java)
 * [iOS real device, native app](./appium/appium-app/appium-app-examples/src/test/java/com/examples/simple_example/IOSNativeAppTest.java)
-* [Front-end performance testing](./selenium-junit5-examples/src/test/java/com/saucedemo/selenium/sauce_features/PerformanceTest.java)
 
 ## Best Practices
 
 * [Desktop](./best-practice/src/test/java/com/saucedemo/tests/DesktopTests.java) `junit4`
   `sauce-bindings`
 * [Emu/Sim Web](./best-practice/src/test/java/com/saucedemo/tests/EmuSimWebAppTests.java) `junit4`
-  `sauce-bindings`
-* [Performance](./best-practice/src/test/java/com/saucedemo/tests/PerformanceTests.java) `junit4`
   `sauce-bindings`
 * [RealDevice](./best-practice/src/test/java/com/saucedemo/tests/RealDeviceWebTests.java) `junit4`
   `sauce-bindings`
@@ -48,8 +45,6 @@ Java automation.
       `cucumber` `bdd`
     * [Cross Browser/Platform in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/CrossBrowserPlatformTest.java)
       `testng`
-    * [Performance, front-end with Sauce Bindings](./selenium-junit5-examples/src/test/java/com/saucedemo/selenium/sauce_features/PerformanceTest.java)
-      `junit5` `sauce-bindings`
     * [Single Browser in Parallel w/ TestNG](./selenium-testng-examples/src/test/java/com/saucedemo/selenium/testng/ParallelSingleBrowserTest.java)
       `testng`
 

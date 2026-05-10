@@ -1,8 +1,6 @@
 package com.saucedemo.pages;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -41,19 +39,5 @@ public class LoginPage extends AbstractBasePage {
     userNameField.sendKeys(userName);
     passwordField.sendKeys("secret_sauce");
     submitButton.click();
-  }
-
-  /**
-   * How long it takes to load the page.
-   *
-   * @return duration of time to load the page
-   */
-  @SuppressWarnings("unchecked")
-  public Integer getPageLoadTime() {
-    HashMap<String, Object> metrics = new HashMap<>();
-    metrics.put("type", "sauce:performance");
-    Map<String, Object> perfMetrics =
-        (Map<String, Object>) driver.executeScript("sauce:log", metrics);
-    return Integer.parseInt(perfMetrics.get("load").toString());
   }
 }
