@@ -106,3 +106,14 @@ jobs:
         uses: wei/curl@v1.1.1
         with:
           args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.${{ matrix.datacenter }}.saucelabs.com/v1/storage/upload' --form 'payload=@"iOS.MyDemoAppRN.ipa"' --form 'name="iOS.MyDemoAppRN.ipa"'
+
+  upload_allow_safari_downloads_script:
+    name: Upload allow_safari_downloads.sh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Upload allow_safari_downloads.sh
+        uses: wei/curl@v1.1.1
+        with:
+          args: -u "$SAUCE_USERNAME:$SAUCE_ACCESS_KEY" --location --request POST 'https://api.us-west-1.saucelabs.com/v1/storage/upload' --form 'payload=@"selenium-junit5-examples/src/test/resources/allow_safari_downloads.sh"' --form 'name="allow_safari_downloads.sh"'
