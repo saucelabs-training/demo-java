@@ -1,26 +1,20 @@
 package com.saucedemo.playwright;
 
 import com.microsoft.playwright.Page;
-import com.saucelabs.bindings.SaucePlaywrightSession;
-import com.saucelabs.extensions.SaucePlaywrightExtension;
+import com.saucelabs.playwright.SauceExtension;
+import com.saucelabs.playwright.SauceSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 public class TestBase {
-  SaucePlaywrightSession session;
+  SauceSession session;
   Page page;
 
-  @RegisterExtension
-  public SaucePlaywrightExtension sauceExtension = new SaucePlaywrightExtension();
+  @RegisterExtension public static SauceExtension sauceExtension = new SauceExtension();
 
   @BeforeEach
-  public void setUp(SaucePlaywrightSession session, Page page) {
+  public void setUp(SauceSession session, Page page) {
     this.session = session;
     this.page = page;
-  }
-
-  static {
-    System.setProperty("sauce.build.name", "Playwright Sauce Demo");
-    System.setProperty("sauce.build.number", String.valueOf(System.currentTimeMillis()));
   }
 }

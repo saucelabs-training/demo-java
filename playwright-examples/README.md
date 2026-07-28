@@ -1,7 +1,7 @@
 # Playwright Examples
 
-There is only one way to execute Playwright on Sauce Labs with Java.
-It works with any production version of Chrome or Edge.
+Tests connect to Sauce Labs through Playwright's native WebSocket endpoint, so any of
+Playwright's engines - Chromium, Firefox or WebKit - works the same way.
 
 [Setup Instructions](https://github.com/saucelabs-training/demo-java/blob/main/README.md#%EF%B8%8Fsetupprerequisites)
 and
@@ -34,22 +34,26 @@ the [Main README](https://github.com/saucelabs-training/demo-java/blob/main/READ
 
 ## Configurations
 
-This code allows toggling which browser the tests will run on.
+### Browser
 
-### Chrome (default)
-
-Tests will execute on the latest version of Chrome:
-
-   ```
-   $ mvn clean test -Dsauce.browser=Chrome
-   ```
-
-### Microsoft Edge
-
-Tests will execute on the latest version of Edge:
+This code allows toggling which browser engine the tests will run on: `chromium` (default),
+`firefox`, or `webkit`.
 
    ```
-   $ mvn clean test -Dsauce.browser=MicrosoftEdge
+   $ mvn clean test -Dsauce.browser.name=firefox
+   ```
+
+### Session grouping / parallelism
+
+By default, all the test methods in a test class share a single Sauce session (one Sauce job per
+test class), and different test classes run in parallel with each other. A session that sees a
+test failure is closed and reported immediately rather than reused by the next test.
+
+To give every test method its own independent Sauce session instead, switch JUnit5's own
+method-execution mode to `concurrent`:
+
+   ```
+   $ mvn clean test -Djunit.parallel.mode.default=concurrent
    ```
 
 ## Disclaimer
