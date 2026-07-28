@@ -14,10 +14,15 @@ import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.RequestOptions;
-import com.saucelabs.saucerest.DataCenter;
-import com.saucelabs.saucerest.SauceREST;
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.time.Duration;
+import java.util.Base64;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -34,7 +39,8 @@ public class StandaloneTest {
   static final String SAUCE_USERNAME = System.getenv("SAUCE_USERNAME");
   static final String SAUCE_ACCESS_KEY = System.getenv("SAUCE_ACCESS_KEY");
   static final String SAUCE_URL = "https://ondemand.us-west-1.saucelabs.com/wd/hub/";
-  static SauceREST sauceREST = new SauceREST(SAUCE_USERNAME, SAUCE_ACCESS_KEY, DataCenter.US_WEST);
+  static final String SAUCE_API_URL = "https://api.us-west-1.saucelabs.com";
+  static final HttpClient HTTP_CLIENT = HttpClient.newHttpClient();
   static APIRequestContext request;
   static Playwright playwright;
   @RegisterExtension public SauceTestWatcher watcher = new SauceTestWatcher();
@@ -119,7 +125,9 @@ public class StandaloneTest {
   void launchBrowserAndCreatePage(TestInfo testInfo) throws IOException {
     createSession();
     this.testInfo = testInfo;
-    sauceREST.getJobsEndpoint().changeName(sessionId, testInfo.getDisplayName());
+    JsonObject renamePayload = new JsonObject();
+    renamePayload.addProperty("name", testInfo.getDisplayName());
+    updateJob(sessionId, renamePayload);
     browser = playwright.chromium().connectOverCDP(cdpEndpoint);
 
     // Maximize browser
@@ -134,6 +142,26 @@ public class StandaloneTest {
     context.close();
     browser.close();
     request.delete("session/" + sessionId);
+  }
+
+  static void updateJob(String sessionId, JsonObject payload) throws IOException {
+    String credentials = SAUCE_USERNAME + ":" + SAUCE_ACCESS_KEY;
+    String authHeader =
+        "Basic " + Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
+
+    HttpRequest httpRequest =
+        HttpRequest.newBuilder(
+                URI.create(SAUCE_API_URL + "/rest/v1/" + SAUCE_USERNAME + "/jobs/" + sessionId))
+            .timeout(Duration.ofSeconds(30))
+            .header("Authorization", authHeader)
+            .header("Content-Type", "application/json")
+            .method("PUT", HttpRequest.BodyPublishers.ofString(payload.toString()))
+            .build();
+    try {
+      HTTP_CLIENT.send(httpRequest, HttpResponse.BodyHandlers.discarding());
+    } catch (InterruptedException e) {
+      throw new IOException(e);
+    }
   }
 
   @Test
@@ -172,21 +200,22 @@ public class StandaloneTest {
     @Override
     public void testSuccessful(ExtensionContext context) {
       printResults();
-      try {
-        sauceREST.getJobsEndpoint().passed(sessionId);
-      } catch (Exception e) {
-        System.out.println("Problem setting job as passed: " + e);
-      }
+      reportResult(true);
     }
 
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
       printResults();
+      reportResult(false);
+    }
 
+    private void reportResult(boolean passed) {
+      JsonObject resultPayload = new JsonObject();
+      resultPayload.addProperty("passed", passed);
       try {
-        sauceREST.getJobsEndpoint().failed(sessionId);
-      } catch (Exception e) {
-        System.out.println("Problem setting job as failed: " + e);
+        updateJob(sessionId, resultPayload);
+      } catch (IOException e) {
+        System.out.println("Problem setting job result: " + e);
       }
     }
 

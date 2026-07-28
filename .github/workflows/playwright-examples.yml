@@ -35,6 +35,9 @@ jobs:
 
   standalone:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
     env:
       SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
       SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
@@ -51,13 +54,23 @@ jobs:
           timeout_minutes: 30
           max_attempts: 3
           command: cd ./playwright-examples && mvn test -Dtest=StandaloneTest -Dsurefire.parallel=1
+      - name: Test Report
+        uses: dorny/test-reporter@v2
+        if: success() || failure()
+        with:
+          name: Standalone Test Report
+          path: playwright-examples/target/surefire-reports/*.xml
+          reporter: java-junit
 
   suite:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
     strategy:
       fail-fast: false
       matrix:
-        browser: [ Chrome, MicrosoftEdge ]
+        browser: [ chromium, firefox, webkit ]
     env:
       SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
       SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
@@ -74,3 +87,10 @@ jobs:
           timeout_minutes: 30
           max_attempts: 3
           command: cd ./playwright-examples && mvn test -Dsauce.browser.name=${{ matrix.browser }}
+      - name: Test Report
+        uses: dorny/test-reporter@v2
+        if: success() || failure()
+        with:
+          name: Suite Test Report (${{ matrix.browser }})
+          path: playwright-examples/target/surefire-reports/*.xml
+          reporter: java-junit
