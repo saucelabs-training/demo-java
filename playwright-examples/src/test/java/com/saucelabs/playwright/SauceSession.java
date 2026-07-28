@@ -14,10 +14,9 @@ import java.util.Base64;
 import org.json.JSONObject;
 
 /**
- * A single Sauce Labs job created through the native Playwright WebSocket endpoint
- * (POST /playwright/session), as opposed to the old WebDriver-session + CDP approach. Unlike CDP,
- * this endpoint's connection is a plain WebSocket, so it drives Chromium, Firefox and WebKit
- * alike.
+ * A single Sauce Labs job created through the native Playwright WebSocket endpoint (POST
+ * /playwright/session), as opposed to the old WebDriver-session + CDP approach. Unlike CDP, this
+ * endpoint's connection is a plain WebSocket, so it drives Chromium, Firefox and WebKit alike.
  */
 public class SauceSession {
   private static final Duration VM_PREP_TIMEOUT = Duration.ofSeconds(120);
@@ -58,8 +57,7 @@ public class SauceSession {
             .put("browserName", browserName)
             .put("platformName", "Linux")
             .put("playwrightVersion", installedPlaywrightVersion())
-            .put(
-                "sauce:options", new JSONObject().put("name", sessionName).put("build", build));
+            .put("sauce:options", new JSONObject().put("name", sessionName).put("build", build));
 
     JSONObject response =
         requestFollowing303s(
@@ -114,9 +112,7 @@ public class SauceSession {
                 .headers()
                 .firstValue("Location")
                 .orElseThrow(
-                    () ->
-                        new SauceSessionException(
-                            "Sauce responded 303 without a Location header"));
+                    () -> new SauceSessionException("Sauce responded 303 without a Location header"));
         nextUrl = location.startsWith("http") ? location : (region(url) + location);
         method = "GET";
       }

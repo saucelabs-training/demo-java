@@ -14,17 +14,17 @@ import org.junit.jupiter.api.extension.ParameterResolver;
  * Creates Sauce Playwright sessions through the native WebSocket endpoint and injects
  * Browser/Page/SauceSession into test methods.
  *
- * <p>Session grouping follows the same switch JUnit5's own parallel executor uses:
- * {@code junit.jupiter.execution.parallel.mode.default}. When it's {@code same_thread} (this
- * project's default), one session is shared across every method of a test class - JUnit5
- * schedules a same_thread class's methods on a single thread with no overlap, confirmed
- * empirically to never interleave across classes even when the thread pool is smaller than the
- * number of classes. When it's {@code concurrent}, every test method gets its own independent
- * session instead, since methods of one class may then run on different threads at once and
- * can't safely share a single browser connection.
+ * <p>Session grouping follows the same switch JUnit5's own parallel executor uses: {@code
+ * junit.jupiter.execution.parallel.mode.default}. When it's {@code same_thread} (this project's
+ * default), one session is shared across every method of a test class - JUnit5 schedules a
+ * same_thread class's methods on a single thread with no overlap, confirmed empirically to never
+ * interleave across classes even when the thread pool is smaller than the number of classes. When
+ * it's {@code concurrent}, every test method gets its own independent session instead, since
+ * methods of one class may then run on different threads at once and can't safely share a single
+ * browser connection.
  *
- * <p>A session whose test fails is closed and reported immediately rather than handed to
- * whatever runs next in the same group - a session that just saw a failure isn't assumed clean.
+ * <p>A session whose test fails is closed and reported immediately rather than handed to whatever
+ * runs next in the same group - a session that just saw a failure isn't assumed clean.
  */
 public class SauceExtension
     implements BeforeEachCallback, AfterEachCallback, AfterAllCallback, ParameterResolver {
@@ -163,8 +163,7 @@ public class SauceExtension
     if (type == Page.class) {
       return extensionContext.getStore(NAMESPACE).get(PAGE_KEY, Page.class);
     }
-    SessionHolder holder =
-        sessionStore(extensionContext).get(SESSION_KEY, SessionHolder.class);
+    SessionHolder holder = sessionStore(extensionContext).get(SESSION_KEY, SessionHolder.class);
     return type == Browser.class ? holder.browser : holder.session;
   }
 }
