@@ -112,7 +112,8 @@ public class SauceSession {
                 .headers()
                 .firstValue("Location")
                 .orElseThrow(
-                    () -> new SauceSessionException("Sauce responded 303 without a Location header"));
+                    () ->
+                        new SauceSessionException("Sauce responded 303 without a Location header"));
         nextUrl = location.startsWith("http") ? location : (region(url) + location);
         method = "GET";
       }
