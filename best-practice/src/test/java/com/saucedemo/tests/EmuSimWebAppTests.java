@@ -8,6 +8,7 @@ import com.saucedemo.MobileTestsBase;
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductsPage;
 import java.net.MalformedURLException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
 import org.junit.Before;
@@ -16,7 +17,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.remote.HttpCommandExecutor;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.http.ClientConfig;
 
 /** Emulator / Simulator Web Tests. */
 @RunWith(Parameterized.class)
@@ -75,7 +78,12 @@ public class EmuSimWebAppTests extends MobileTestsBase {
     capabilities.setCapability("sauce:options", sauceOptions);
     // EmuSim devices have Simulator/Emulator in the name
 
-    driver = new RemoteWebDriver(Endpoints.getEmuSimHub(), capabilities);
+    // Simulators can take longer to start than Selenium's default 3-minute read timeout
+    ClientConfig clientConfig =
+        ClientConfig.defaultConfig()
+            .baseUrl(Endpoints.getEmuSimHub())
+            .readTimeout(Duration.ofMinutes(6));
+    driver = new RemoteWebDriver(new HttpCommandExecutor(clientConfig), capabilities);
   }
 
   @Test
