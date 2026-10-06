@@ -35,8 +35,5 @@ jobs:
           java-version: 21
           distribution: "temurin"
       - name: Run TestNG tests
-        uses: nick-fields/retry@v4
-        with:
-          timeout_minutes: 30
-          max_attempts: 3
-          command: cd ./selenium-testng-examples && mvn test
+        timeout-minutes: 30
+        run: cd ./selenium-testng-examples && mvn test -Dsurefire.rerunFailingTestsCount=2

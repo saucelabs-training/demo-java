@@ -47,8 +47,5 @@ jobs:
           java-version: 21
           distribution: "temurin"
       - name: Run JUnit 4 Tests
-        uses: nick-fields/retry@v4
-        with:
-          timeout_minutes: 30
-          max_attempts: 3
-          command: cd ./selenium-junit4-examples && mvn test
+        timeout-minutes: 30
+        run: cd ./selenium-junit4-examples && mvn test -Dsurefire.rerunFailingTestsCount=2

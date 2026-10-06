@@ -31,8 +31,5 @@ jobs:
           java-version: 21
           distribution: "temurin"
       - name: Android Native App ${{ matrix.cloud }}
-        uses: nick-fields/retry@v4
-        with:
-          timeout_minutes: 30
-          max_attempts: 3
-          command: cd ./appium/android-app && mvn test -Dsauce.cloud=${{ matrix.cloud }}
+        timeout-minutes: 30
+        run: cd ./appium/android-app && mvn test -Dsauce.cloud=${{ matrix.cloud }} -Dsurefire.rerunFailingTestsCount=2

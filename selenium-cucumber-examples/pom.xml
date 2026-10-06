@@ -73,6 +73,12 @@
             <include>**/*AT.class</include>
           </includes>
           <testFailureIgnore>true</testFailureIgnore>
+          <properties>
+            <property>
+              <name>listener</name>
+              <value>com.saucedemo.selenium.cucumber.RetryListener</value>
+            </property>
+          </properties>
         </configuration>
       </plugin>
       <plugin>

@@ -92,6 +92,7 @@ public class TestConfigurations {
     caps.put("platformName", "iOS");
     caps.put("browserName", "Safari");
     caps.put("appium:deviceName", "iPhone.*");
+    caps.put("appium:platformVersion", "18");
     caps.put("appium:automationName", "XCUITest");
 
     Map<String, Object> sauceOptions = new HashMap<>();
