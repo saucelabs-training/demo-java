@@ -60,17 +60,19 @@ public class IOSNativeAppTest {
     capabilities.setCapability("platformName", "iOS");
     capabilities.setCapability("appium:automationName", "XCuiTest");
     if (rdc.equals("true")) {
-      // Allocate any available iPhone device with version 14
+      // Allocate any available iPhone device with version 18
       capabilities.setCapability("appium:deviceName", "iPhone.*");
+      capabilities.setCapability("appium:platformVersion", "18");
       appName = "SauceLabs-Demo-App.ipa";
+      sauceOptions.setCapability("appiumVersion", "appium3-2026-04");
       sauceOptions.setCapability("resigningEnabled", true);
       sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
     } else {
       capabilities.setCapability("appium:deviceName", "iPhone 11 Simulator");
+      capabilities.setCapability("appium:platformVersion", "14");
       appName = "SauceLabs-Demo-App.Simulator.zip";
     }
     capabilities.setCapability("appium:app", "storage:filename=" + appName);
-    capabilities.setCapability("appium:platformVersion", "14");
     sauceOptions.setCapability("name", name.getMethodName());
     sauceOptions.setCapability("build", "myApp-job-1");
     List<String> tags = Arrays.asList("sauceDemo_ios", "iOS", "Demo");

@@ -38,6 +38,12 @@
           <parallel>methods</parallel>
           <threadCount>10</threadCount>
           <redirectTestOutputToFile>false</redirectTestOutputToFile>
+          <properties>
+            <property>
+              <name>listener</name>
+              <value>com.saucedemo.selenium.testng.RetryListener</value>
+            </property>
+          </properties>
         </configuration>
       </plugin>
     </plugins>

@@ -29,8 +29,5 @@ jobs:
           distribution: "temurin"
       - name: Run tests
         continue-on-error: true
-        uses: nick-fields/retry@v4
-        with:
-          timeout_minutes: 30
-          max_attempts: 3
-          command: cd ./best-practice && mvn test
+        timeout-minutes: 30
+        run: cd ./best-practice && mvn test -Dsurefire.rerunFailingTestsCount=2
