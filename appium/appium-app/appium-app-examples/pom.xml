@@ -10,9 +10,9 @@
   <version>1.0-SNAPSHOT</version>
 
   <properties>
-    <maven.surefire.version>3.5.6</maven.surefire.version>
+    <maven.surefire.version>3.6.0</maven.surefire.version>
     <appium.version>10.1.1</appium.version>
-    <selenium.version>4.46.0</selenium.version>
+    <selenium.version>4.50.0</selenium.version>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -82,7 +82,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.15.0</version>
+        <version>3.16.0</version>
         <configuration>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.source}</target>
@@ -93,9 +93,14 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven.surefire.version}</version>
         <configuration>
-          <parallel>all</parallel>
-          <threadCountMethods>30</threadCountMethods>
-          <useUnlimitedThreads>true</useUnlimitedThreads>
+          <properties>
+            <configurationParameters>
+              junit.vintage.execution.parallel.enabled = true
+              junit.vintage.execution.parallel.classes = true
+              junit.vintage.execution.parallel.methods = true
+              junit.vintage.execution.parallel.pool-size = 30
+            </configurationParameters>
+          </properties>
           <redirectTestOutputToFile>false</redirectTestOutputToFile>
         </configuration>
       </plugin>
